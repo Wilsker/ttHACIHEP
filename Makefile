@@ -6,8 +6,11 @@
 #####################################################################
 # Makefile that compiles IHEP ttH Analysis Code against root6 with
 # dependencies from  CommonClassifier and MEMClassifier packages.
-# Code invokes make and does preprocessing, compilation, assembly
-# and linking (combining all the object files into an executable).
+# To run, invoke make command in the run directory:
+#	${CMSSW_BASE}/src/TTH/ttHACIHEP
+#
+# 'make' will find the Makefile, preprocess, compile, assemble
+# and link (combining all the object files into an executable).
 #####################################################################
 # Environment Setup
 #####################################################################
