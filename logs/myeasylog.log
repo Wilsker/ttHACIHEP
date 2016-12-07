@@ -1,0 +1,128 @@
+2016-11-22 17:11:49,446 INFO  [default] cteq66
+
+2016-11-22 17:11:50,397 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGSEGV] signal
+2016-11-22 17:11:50,397 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-11-22 17:12:14,415 INFO  [default] cteq66
+
+2016-11-22 17:12:14,736 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGSEGV] signal
+2016-11-22 17:12:14,736 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-11-22 17:14:33,113 INFO  [default] cteq66
+
+2016-11-22 17:14:33,540 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGSEGV] signal
+2016-11-22 17:14:33,540 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-11-22 17:16:12,147 INFO  [default] cteq66
+
+2016-11-22 17:16:32,805 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGSEGV] signal
+2016-11-22 17:16:32,805 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-11-22 17:30:32,717 INFO  [default] cteq66
+
+2016-11-22 17:30:35,413 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGSEGV] signal
+2016-11-22 17:30:35,413 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-11-22 17:36:55,414 INFO  [default] cteq66
+
+2016-11-22 17:36:59,720 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGSEGV] signal
+2016-11-22 17:36:59,720 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-11-22 17:37:26,022 INFO  [default] cteq66
+
+2016-11-22 17:37:29,176 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGSEGV] signal
+2016-11-22 17:37:29,176 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-11-22 17:38:32,938 INFO  [default] cteq66
+
+2016-11-22 17:38:35,419 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGSEGV] signal
+2016-11-22 17:38:35,419 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-11-22 17:39:12,554 INFO  [default] cteq66
+
+2016-11-22 17:39:15,399 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGSEGV] signal
+2016-11-22 17:39:15,399 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-11-22 18:18:47,834 INFO  [default] cteq66
+
+2016-11-22 18:18:51,061 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGSEGV] signal
+2016-11-22 18:18:51,062 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-11-22 18:27:47,789 INFO  [default] cteq66
+
+2016-11-22 18:27:50,378 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGSEGV] signal
+2016-11-22 18:27:50,378 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-11-23 12:09:19,962 INFO  [default] cteq66
+
+2016-11-23 12:09:22,397 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGSEGV] signal
+2016-11-23 12:09:22,397 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-11-23 12:28:35,011 INFO  [default] cteq66
+
+2016-11-23 12:35:53,325 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-11-23 12:35:53,325 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-11-23 12:36:02,018 INFO  [default] cteq66
+
+2016-11-24 17:29:15,599 INFO  [default] cteq66
+
+2016-11-24 17:35:45,051 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-11-24 17:35:45,051 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-11-25 11:38:42,108 INFO  [default] cteq66
+
+2016-11-25 11:44:40,654 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-11-25 11:44:40,654 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-12-01 14:35:54,902 INFO  [default] cteq66
+
+2016-12-01 14:35:58,184 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGSEGV] signal
+2016-12-01 14:35:58,184 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-12-01 14:36:35,769 INFO  [default] cteq66
+
+2016-12-01 14:36:37,667 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGSEGV] signal
+2016-12-01 14:36:37,667 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-12-01 14:37:26,776 INFO  [default] cteq66
+
+2016-12-01 14:44:36,909 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-12-01 14:44:36,909 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-12-01 15:32:32,806 INFO  [default] cteq66
+
+2016-12-01 15:33:17,823 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-12-01 15:33:17,823 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-12-01 15:50:40,497 INFO  [default] cteq66
+
+2016-12-01 16:57:25,000 INFO  [default] cteq66
+
+2016-12-01 16:58:32,286 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-12-01 16:58:32,287 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-12-01 17:07:01,008 INFO  [default] cteq66
+
+2016-12-01 17:16:04,487 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-12-01 17:16:04,498 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-12-01 17:36:28,849 INFO  [default] cteq66
+
+2016-12-01 17:37:46,479 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-12-01 17:37:46,479 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-12-01 17:47:09,081 INFO  [default] cteq66
+
+2016-12-01 17:54:50,911 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-12-01 17:54:50,912 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-12-02 14:50:40,848 INFO  [default] cteq66
+
+2016-12-02 14:51:24,770 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-12-02 14:51:24,770 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-12-02 14:51:35,296 INFO  [default] cteq66
+
+2016-12-02 16:38:41,092 INFO  [default] cteq66
+
+2016-12-02 16:40:46,951 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-12-02 16:40:46,952 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-12-02 17:11:21,679 INFO  [default] cteq66
+
+2016-12-02 17:13:52,102 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-12-02 17:13:52,102 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-12-05 11:24:39,995 INFO  [default] cteq66
+
+2016-12-05 11:24:46,247 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-12-05 11:24:46,248 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_8_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-12-05 11:29:36,828 INFO  [default] cteq66
+
+2016-12-07 12:07:03,375 INFO  [default] cteq66
+
+2016-12-07 12:07:07,128 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGSEGV] signal
+2016-12-07 12:07:07,128 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_24_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-12-07 12:09:11,983 INFO  [default] cteq66
+
+2016-12-07 12:09:15,523 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGSEGV] signal
+2016-12-07 12:09:15,523 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_24_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
+2016-12-07 12:10:26,954 INFO  [default] cteq66
+
+2016-12-07 12:11:07,753 FATAL [default] CRASH HANDLED; Application has crashed due to [SIGINT] signal
+2016-12-07 12:11:07,753 WARN  [default] Aborting application. Reason: Fatal log at [/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_24_patch1/src/TTH/MEIntegratorStandalone/interface/easylogging++.h:5583]
