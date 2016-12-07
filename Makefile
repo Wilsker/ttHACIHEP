@@ -11,8 +11,10 @@
 #####################################################################
 # 										 				Setup
 # 1.) Working version of CMSSW required for ${CMSSW_BASE}
-# 2.) CommonClassifier and MEIntegratorStandalone compiled against
-#  	  CMSSW. Required to be in directory ${CMSSW_BASE}/src/TTH
+# 2.) CommonClassifier (kit80x) and MEIntegratorStandalone compiled
+#			against CMSSW. Required to be in directory ${CMSSW_BASE}/src/TTH
+# 	  To setup CommonClassifer see:
+#			https://github.com/cms-ttH/CommonClassifier
 
 
 # CXXFLAGS are the options passed to the compiler.
