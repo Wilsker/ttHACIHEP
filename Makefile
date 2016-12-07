@@ -1,15 +1,16 @@
 #####################################################################
-#									MakeFile - SecondStep.cc
+# MakeFile - SecondStep.cc
 #####################################################################
-#									Joshuha Thomas-Wilsker
-#							Institute of High Energy Physics
+# Joshuha Thomas-Wilsker
+# Institute of High Energy Physics
 #####################################################################
 # Makefile that compiles IHEP ttH Analysis Code against root6 with
 # dependencies from  CommonClassifier and MEMClassifier packages.
 # Code invokes make and does preprocessing, compilation, assembly
 # and linking (combining all the object files into an executable).
 #####################################################################
-# 										 				Setup
+# Environment Setup
+#####################################################################
 # 1.) Working version of CMSSW required for ${CMSSW_BASE}
 # 2.) CommonClassifier (kit80x) and MEIntegratorStandalone compiled
 #			against CMSSW. Required to be in directory ${CMSSW_BASE}/src/TTH
