@@ -27,7 +27,7 @@
 ## '-Wall' flag will turn on all warnings g++ can tell you.
 ## '-Werror' flag (wouldnt advise unless being very strict) treat warnings as errors.
 ## '-Wextra' enable extra warnings.
-CXXFLAGS   = -g $(shell root-config --cflags)
+CXXFLAGS   = -ggdb $(shell root-config --cflags)
 
 # INCL variable contains all include directories.
 # Run Directory:
@@ -39,13 +39,24 @@ INCL	 += -I${LHAPDF_DATA_PATH}/../../../6.1.6-giojec/include/LHAPDF
 
 # 'LDFLAGS' variable containing flags passed through the linker.
 # Mostly libs as they are only needed at linking stage (not during assembly).
+
+# !!!! HEED THIS WARNING !!!! scram b clean will clear openloops ME libs from local CMSSW
+# You will see this error:
+# 		[OpenLoops] ERROR: register_process: proclib folder not found, check install_path or install libraries.
+#
+# To resolve, copy all libs from MEIntegratorStandalone back to $SCRAM_ARCH:
+#			$> cd ${CMSSW_BASE}/src
+# 		$> cp -R TTH/MEIntegratorStandalone/libs/* ../lib/$SCRAM_ARCH/
+
+
 LDFLAGS    = $(shell root-config --libs) -lMinuit
 LDFLAGS		+= $(shell root-config --ldflags)
 LDFLAGS   += -lHistFactory -lRooStats -lRooFit -lRooFitCore -lMathMore -lTMVA
 LDFLAGS   += -L${CMSSW_BASE}/lib/slc6_amd64_gcc493
-LDFLAGS		+= -lopenloops
 LDFLAGS	  += -L${LHAPDF_DATA_PATH}/../../../6.1.6-giojec/lib
 LDFLAGS 	+= -lLHAPDF
+LDFLAGS		+= -L${CMS_OPENLOOPS_PREFIX}/lib
+LDFLAGS		+= -lopenloops
 
 # Following lines have format of 'target: dependencies'.
 # Indented lines should be run if dependecies are newer than target so that target is updated and rebuilt.
@@ -57,6 +68,8 @@ LDFLAGS 	+= -lLHAPDF
 # '$@' is the name of the file being generated (target).
 # '$<' expands to the name of the FIRST dependency.
 # '$^' expands to a list of all dependencies.
+
+# I know, I know! The following could be simplified by using the correct include directories above.
 
 all: obj/SecondStep.o SecondStep
 SRCS := ${CMSSW_BASE}/src/TTH/CommonClassifier/src/BlrBDTClassifier.cpp

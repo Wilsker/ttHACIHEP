@@ -8,6 +8,8 @@
 #include "TLorentzVector.h"
 #include "TVector.h"
 #include <iostream>
+#include <stdexcept>
+#include <exception>
 #include "TMVA/Reader.h"
 #include <vector>
 #include <map>
@@ -24,9 +26,12 @@ using namespace std;
 class SecondStep{
 
 public:
+  SecondStep();
+  void Process(char* inFile);
+  void Usage();
+  ~SecondStep();
 
 private:
-
 
 };
 
