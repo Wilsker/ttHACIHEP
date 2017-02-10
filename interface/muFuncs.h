@@ -9,6 +9,8 @@ using namespace std;
 class muFuncs {
 
 public:
+  muFuncs();
+  ~muFuncs();
   pair<double,double> Muon_IDSF(double pt, double eta);
   pair<double,double> Muon_IsoSF(double pt, double eta);
   pair<double,double> Muon_TrkSF(double eta);

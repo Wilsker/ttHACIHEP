@@ -1,5 +1,12 @@
 #include "../interface/jetFuncs.h"
 
+jetFuncs::jetFuncs(){
+  return;
+}
+jetFuncs::~jetFuncs(){
+  return;
+}
+
 void jetFuncs::convert_jets_to_TLVs(vector<vector<double>> jets, vector<TLorentzVector> &vect_of_jet_TLVs){
   TLorentzVector jet;
   int nJets = jets.size();

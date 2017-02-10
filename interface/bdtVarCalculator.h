@@ -13,7 +13,8 @@ using namespace std;
 
 class bdtVarCalculator {
 public:
-
+  bdtVarCalculator();
+  ~bdtVarCalculator();
   void getSp(TLorentzVector lepton, TLorentzVector met, vector<TLorentzVector> jets, double &Aplanarity, double &Sphericity);
   double getBestHiggsMass(TLorentzVector lepton, TLorentzVector met, vector<TLorentzVector> jets, vector<double> btag, double &minChi, double &dRbb, TLorentzVector &bjet1, TLorentzVector &bjet2, vector<TLorentzVector> loose_jets, vector<double> loose_btag);
   double getBestHiggsMass2(TLorentzVector lepton, TLorentzVector &met, vector<TLorentzVector> jets, vector<double> btag, double &minChi, double &dRbb, TLorentzVector &bjet1, TLorentzVector &bjet2, double &chi2lepW, double &chi2leptop, double &chi2hadW, double &chi2hadtop, double &mass_lepW, double &mass_leptop, double &mass_hadW, double &mass_hadtop, TLorentzVector &toplep, TLorentzVector &tophad);

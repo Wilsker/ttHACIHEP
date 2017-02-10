@@ -4,11 +4,11 @@
 # > Don't forget . . . whitespace matters ;)
 
 CMSSW_SRC=$(echo ${CMSSW_BASE})/src
-WORKING_DIR=$(echo ${CMSSW_BASE})/src/TTH/ttHACIHEP
+WORKING_DIR=$(echo ${CMSSW_BASE})/src/TTH/ttHACIHEP_v2
 
 export CMSSW_BASE=$CMSSW_SRC
 cd $CMSSW_SRC
-eval `scramv1 runtime -sh`
+eval `scramv1 runtime -sh` # Establishes runtime env. of local shell on node.
 
 cd $WORKING_DIR
 echo $WORKING_DIR
@@ -16,4 +16,4 @@ echo $WORKING_DIR
 #====== cmsRun Config File =======
 #sleep 10
 
-eval ./SecondStep ttHbb_MC
+./SecondStep ttHbb_MC

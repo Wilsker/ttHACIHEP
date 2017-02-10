@@ -1,5 +1,12 @@
 #include "../interface/eleFuncs.h"
 
+eleFuncs::eleFuncs(){
+  return;
+}
+eleFuncs::~eleFuncs(){
+  return;
+}
+
 pair<double,double> eleFuncs::Electron_ID(double pt, double eta){
   double sfval = 1;
   double sferr = 1;

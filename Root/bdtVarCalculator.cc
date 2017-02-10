@@ -1,5 +1,13 @@
 #include "../interface/bdtVarCalculator.h"
 
+bdtVarCalculator::bdtVarCalculator(){
+  return;
+}
+
+bdtVarCalculator::~bdtVarCalculator(){
+  return;
+}
+
 void bdtVarCalculator::getSp(TLorentzVector lepton, TLorentzVector met, vector<TLorentzVector> jets, double &Aplanarity, double &Sphericity) {
   int nJets = int(jets.size());
   double mxx = lepton.Px()*lepton.Px() + met.Px()*met.Px();

@@ -6,6 +6,8 @@ using namespace std;
 
 class eleFuncs {
 public:
+  eleFuncs();
+  ~eleFuncs();
   pair<double,double> Electron_ID(double , double );
   pair<double,double> Electron_GsfSF(double );
 

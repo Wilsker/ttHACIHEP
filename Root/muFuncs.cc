@@ -1,5 +1,12 @@
 #include "../interface/muFuncs.h"
 
+muFuncs::muFuncs(){
+  return;
+}
+muFuncs::~muFuncs(){
+  return;
+}
+
 pair<double,double> muFuncs::Muon_IDSF(double pt, double eta){
   double sfval = 1;
   double sferr = 1;

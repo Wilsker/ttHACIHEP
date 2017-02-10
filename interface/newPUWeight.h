@@ -13,6 +13,8 @@
 
 class PUWTool {
 public:
+  PUWTool();
+  ~PUWTool();
   void newPUWeight(double PUWeight_, double &puweight,double &puweightUP,double &puweightDOWN);
 private:
 };

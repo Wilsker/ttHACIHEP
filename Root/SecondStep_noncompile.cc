@@ -767,8 +767,8 @@ void SecondStep_noncompile(){
   t.Start();
   cout << "Stopwatch started" << endl;
   MEMClassifier mem;
-  int sample = 2;
-  const char * Input = "root://eoscms//eos/cms/store/cmst3/user/fromeo/TTHbbjpt10/TT_TuneCUETP8M1_13TeV-powheg-pythia8/crab_TTHbbjpt10_TT/161115_172327/0000/OutTree_9.root";
+  int sample = 1;
+  const char * Input = "/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_24_patch1/src/TTH/ttHACIHEP_v2/input/ttHbb_MC.root";
   const char * Output = "output.root";
 
   //Get old file, old tree and set top branch address
@@ -853,7 +853,7 @@ void SecondStep_noncompile(){
   oldtree->SetBranchStatus("BJetness_numjettrks",1);
   oldtree->SetBranchStatus("BJetness_numjettrkspv",1);
   oldtree->SetBranchStatus("BJetness_numjettrksnopv",1);
-  oldtree->SetBranchStatus("BJetness_npvTrkOVcollTrk",1);
+//  oldtree->SetBranchStatus("BJetness_npvTrkOVcollTrk",1);
   oldtree->SetBranchStatus("BJetness_pvTrkOVcollTrk",1);
   oldtree->SetBranchStatus("BJetness_npvTrkOVpvTrk",1);
   oldtree->SetBranchStatus("BJetness_npvPtOVcollPt",1);
@@ -1190,7 +1190,7 @@ void SecondStep_noncompile(){
   vector<double>* BJetness_numjettrks=0;
   vector<double>* BJetness_numjettrkspv=0;
   vector<double>* BJetness_numjettrksnopv=0;
-  vector<double>* BJetness_npvTrkOVcollTrk=0;
+//  vector<double>* BJetness_npvTrkOVcollTrk=0;
   vector<double>* BJetness_pvTrkOVcollTrk=0;
   vector<double>* BJetness_npvTrkOVpvTrk=0;
   vector<double>* BJetness_npvPtOVcollPt=0;
@@ -1240,7 +1240,7 @@ void SecondStep_noncompile(){
   vector<double>* BJetnessFV_avsip3d_sig=0;
   vector<double>* BJetnessFV_avip1d_sig=0;
   double bWeight, bWeightLFup, bWeightLFdown, bWeightHFup, bWeightHFdown, bWeightHFStats1up, bWeightHFStats1down, bWeightLFStats1up, bWeightLFStats1down, bWeightHFStats2up, bWeightHFStats2down, bWeightLFStats2up, bWeightLFStats2down, bWeightCErr1up, bWeightCErr1down, bWeightCErr2up, bWeightCErr2down, bWeightJESup, bWeightJESdown;
-  TBranch *b_BJetness_isSingleLepton, *b_BJetness_isDoubleLepton, *b_BJetness_ngenbh, *b_BJetness_ngenbt, *b_BJetness_ngenb, *b_BJetness_ngenc, *b_BJetness_partonFlavour, *b_BJetness_hadronFlavour, *b_BJetness_numjet, *b_BJetness_jetpt, *b_BJetness_jeteta, *b_BJetness_jetphi, *b_BJetness_jetenergy, *b_BJetness_jetcsv, *b_BJetness_pfJetProbabilityBJetTags, *b_BJetness_pfCombinedMVAV2BJetTags, *b_BJetness_pfCombinedCvsLJetTags, *b_BJetness_pfCombinedCvsBJetTags, *b_BJetness_pt, *b_BJetness_eta, *b_BJetness_phi, *b_BJetness_en, *b_BJetness_ptOVen, *b_BJetness_jetschpvass, *b_BJetness_jetschfrompv, *b_BJetness_jetschip3dval, *b_BJetness_jetschip3dsig, *b_BJetness_jetschip2dval, *b_BJetness_jetschip2dsig, *b_BJetness_jetschisgoodtrk, *b_BJetness_jetschtrkpur, *b_BJetness_jetschpt, *b_BJetness_jetschen, *b_BJetness_num_pdgid_eles, *b_BJetness_num_soft_eles, *b_BJetness_num_vetonoipnoiso_eles, *b_BJetness_num_loosenoipnoiso_eles, *b_BJetness_num_veto_eles, *b_BJetness_num_loose_eles, *b_BJetness_num_medium_eles, *b_BJetness_num_tight_eles, *b_BJetness_num_mvatrig_eles, *b_BJetness_num_mvanontrig_eles, *b_BJetness_num_mvatrigwp90_eles, *b_BJetness_num_mvanontrigwp90_eles, *b_BJetness_num_heep_eles, *b_BJetness_num_pdgid_mus, *b_BJetness_num_loose_mus, *b_BJetness_num_soft_mus, *b_BJetness_num_medium_mus, *b_BJetness_num_tight_mus, *b_BJetness_num_highpt_mus, *b_BJetness_num_POGisGood_mus, *b_BJetness_numjettrks, *b_BJetness_numjettrkspv, *b_BJetness_numjettrksnopv, *b_BJetness_npvTrkOVcollTrk, *b_BJetness_pvTrkOVcollTrk, *b_BJetness_npvTrkOVpvTrk, *b_BJetness_npvPtOVcollPt, *b_BJetness_pvPtOVcollPt, *b_BJetness_npvPtOVpvPt, *b_BJetness_avprel, *b_BJetness_avppar, *b_BJetness_avetarel, *b_BJetness_avetapar, *b_BJetness_avdr, *b_BJetness_avpreljetpt, *b_BJetness_avpreljeten, *b_BJetness_avpparjetpt, *b_BJetness_avpparjeten, *b_BJetness_avnum2v, *b_BJetness_avnumno2v, *b_BJetness_avdca3d2t, *b_BJetness_avdca3dno2t, *b_BJetness_avdca3d, *b_BJetness_avdca2d2t, *b_BJetness_avdca2dno2t, *b_BJetness_avdca2d, *b_BJetness_chi2, *b_BJetness_avip3d_val, *b_BJetness_avip3d_sig, *b_BJetness_avsip3d_val, *b_BJetness_avsip3d_sig, *b_BJetness_numip3dpos, *b_BJetness_numip3dneg, *b_BJetness_avip2d_val, *b_BJetness_avip2d_sig, *b_BJetness_avsip2d_val, *b_BJetness_avsip2d_sig, *b_BJetness_numip2dpos, *b_BJetness_numip2dneg, *b_BJetness_avip1d_val, *b_BJetness_avip1d_sig, *b_BJetness_avsip1d_val, *b_BJetness_avsip1d_sig, *b_BJetnessFV_isSingleLepton, *b_BJetnessFV_isDoubleLepton, *b_BJetnessFV_jetcsv, *b_BJetnessFV_pfJetProbabilityBJetTags, *b_BJetnessFV_pfCombinedMVAV2BJetTags, *b_BJetnessFV_num_leps, *b_BJetnessFV_npvTrkOVcollTrk, *b_BJetnessFV_avip3d_val, *b_BJetnessFV_avip3d_sig, *b_BJetnessFV_avsip3d_sig, *b_BJetnessFV_avip1d_sig, *b_bWeight, *b_bWeightLFup, *b_bWeightLFdown, *b_bWeightHFup, *b_bWeightHFdown, *b_bWeightHFStats1up, *b_bWeightHFStats1down, *b_bWeightLFStats1up, *b_bWeightLFStats1down, *b_bWeightHFStats2up, *b_bWeightHFStats2down, *b_bWeightLFStats2up, *b_bWeightLFStats2down, *b_bWeightCErr1up, *b_bWeightCErr1down, *b_bWeightCErr2up, *b_bWeightCErr2down, *b_bWeightJESup, *b_bWeightJESdown;
+  TBranch *b_BJetness_isSingleLepton, *b_BJetness_isDoubleLepton, *b_BJetness_ngenbh, *b_BJetness_ngenbt, *b_BJetness_ngenb, *b_BJetness_ngenc, *b_BJetness_partonFlavour, *b_BJetness_hadronFlavour, *b_BJetness_numjet, *b_BJetness_jetpt, *b_BJetness_jeteta, *b_BJetness_jetphi, *b_BJetness_jetenergy, *b_BJetness_jetcsv, *b_BJetness_pfJetProbabilityBJetTags, *b_BJetness_pfCombinedMVAV2BJetTags, *b_BJetness_pfCombinedCvsLJetTags, *b_BJetness_pfCombinedCvsBJetTags, *b_BJetness_pt, *b_BJetness_eta, *b_BJetness_phi, *b_BJetness_en, *b_BJetness_ptOVen, *b_BJetness_jetschpvass, *b_BJetness_jetschfrompv, *b_BJetness_jetschip3dval, *b_BJetness_jetschip3dsig, *b_BJetness_jetschip2dval, *b_BJetness_jetschip2dsig, *b_BJetness_jetschisgoodtrk, *b_BJetness_jetschtrkpur, *b_BJetness_jetschpt, *b_BJetness_jetschen, *b_BJetness_num_pdgid_eles, *b_BJetness_num_soft_eles, *b_BJetness_num_vetonoipnoiso_eles, *b_BJetness_num_loosenoipnoiso_eles, *b_BJetness_num_veto_eles, *b_BJetness_num_loose_eles, *b_BJetness_num_medium_eles, *b_BJetness_num_tight_eles, *b_BJetness_num_mvatrig_eles, *b_BJetness_num_mvanontrig_eles, *b_BJetness_num_mvatrigwp90_eles, *b_BJetness_num_mvanontrigwp90_eles, *b_BJetness_num_heep_eles, *b_BJetness_num_pdgid_mus, *b_BJetness_num_loose_mus, *b_BJetness_num_soft_mus, *b_BJetness_num_medium_mus, *b_BJetness_num_tight_mus, *b_BJetness_num_highpt_mus, *b_BJetness_num_POGisGood_mus, *b_BJetness_numjettrks, *b_BJetness_numjettrkspv, *b_BJetness_numjettrksnopv, *b_BJetness_pvTrkOVcollTrk, *b_BJetness_npvTrkOVpvTrk, *b_BJetness_npvPtOVcollPt, *b_BJetness_pvPtOVcollPt, *b_BJetness_npvPtOVpvPt, *b_BJetness_avprel, *b_BJetness_avppar, *b_BJetness_avetarel, *b_BJetness_avetapar, *b_BJetness_avdr, *b_BJetness_avpreljetpt, *b_BJetness_avpreljeten, *b_BJetness_avpparjetpt, *b_BJetness_avpparjeten, *b_BJetness_avnum2v, *b_BJetness_avnumno2v, *b_BJetness_avdca3d2t, *b_BJetness_avdca3dno2t, *b_BJetness_avdca3d, *b_BJetness_avdca2d2t, *b_BJetness_avdca2dno2t, *b_BJetness_avdca2d, *b_BJetness_chi2, *b_BJetness_avip3d_val, *b_BJetness_avip3d_sig, *b_BJetness_avsip3d_val, *b_BJetness_avsip3d_sig, *b_BJetness_numip3dpos, *b_BJetness_numip3dneg, *b_BJetness_avip2d_val, *b_BJetness_avip2d_sig, *b_BJetness_avsip2d_val, *b_BJetness_avsip2d_sig, *b_BJetness_numip2dpos, *b_BJetness_numip2dneg, *b_BJetness_avip1d_val, *b_BJetness_avip1d_sig, *b_BJetness_avsip1d_val, *b_BJetness_avsip1d_sig, *b_BJetnessFV_isSingleLepton, *b_BJetnessFV_isDoubleLepton, *b_BJetnessFV_jetcsv, *b_BJetnessFV_pfJetProbabilityBJetTags, *b_BJetnessFV_pfCombinedMVAV2BJetTags, *b_BJetnessFV_num_leps, *b_BJetnessFV_npvTrkOVcollTrk, *b_BJetnessFV_avip3d_val, *b_BJetnessFV_avip3d_sig, *b_BJetnessFV_avsip3d_sig, *b_BJetnessFV_avip1d_sig, *b_bWeight, *b_bWeightLFup, *b_bWeightLFdown, *b_bWeightHFup, *b_bWeightHFdown, *b_bWeightHFStats1up, *b_bWeightHFStats1down, *b_bWeightLFStats1up, *b_bWeightLFStats1down, *b_bWeightHFStats2up, *b_bWeightHFStats2down, *b_bWeightLFStats2up, *b_bWeightLFStats2down, *b_bWeightCErr1up, *b_bWeightCErr1down, *b_bWeightCErr2up, *b_bWeightCErr2down, *b_bWeightJESup, *b_bWeightJESdown;// *b_BJetness_npvTrkOVcollTrk
   oldtree->SetBranchAddress("BJetness_isSingleLepton",&BJetness_isSingleLepton,&b_BJetness_isSingleLepton);
   oldtree->SetBranchAddress("BJetness_isDoubleLepton",&BJetness_isDoubleLepton,&b_BJetness_isDoubleLepton);
   oldtree->SetBranchAddress("BJetness_ngenbh",&BJetness_ngenbh,&b_BJetness_ngenbh);
@@ -1297,7 +1297,7 @@ void SecondStep_noncompile(){
   oldtree->SetBranchAddress("BJetness_numjettrks",&BJetness_numjettrks,&b_BJetness_numjettrks);
   oldtree->SetBranchAddress("BJetness_numjettrkspv",&BJetness_numjettrkspv,&b_BJetness_numjettrkspv);
   oldtree->SetBranchAddress("BJetness_numjettrksnopv",&BJetness_numjettrksnopv,&b_BJetness_numjettrksnopv);
-  oldtree->SetBranchAddress("BJetness_npvTrkOVcollTrk",&BJetness_npvTrkOVcollTrk,&b_BJetness_npvTrkOVcollTrk);
+//  oldtree->SetBranchAddress("BJetness_npvTrkOVcollTrk",&BJetness_npvTrkOVcollTrk,&b_BJetness_npvTrkOVcollTrk);
   oldtree->SetBranchAddress("BJetness_pvTrkOVcollTrk",&BJetness_pvTrkOVcollTrk,&b_BJetness_pvTrkOVcollTrk);
   oldtree->SetBranchAddress("BJetness_npvTrkOVpvTrk",&BJetness_npvTrkOVpvTrk,&b_BJetness_npvTrkOVpvTrk);
   oldtree->SetBranchAddress("BJetness_npvPtOVcollPt",&BJetness_npvPtOVcollPt,&b_BJetness_npvPtOVcollPt);
@@ -1413,6 +1413,7 @@ void SecondStep_noncompile(){
 
   Int_t nentries = (Int_t)oldtree->GetEntries();
   for (Int_t i=0;i<nentries; i++) {//if(i==100) break;
+    cout << "Entry: " << i << endl;
     Long64_t tentry = oldtree->LoadTree(i);
     b_Muon_pt->GetEntry(tentry);
     b_Muon_eta->GetEntry(tentry);
@@ -1511,7 +1512,7 @@ void SecondStep_noncompile(){
     b_BJetness_numjettrks->GetEntry(tentry);
     b_BJetness_numjettrkspv->GetEntry(tentry);
     b_BJetness_numjettrksnopv->GetEntry(tentry);
-    b_BJetness_npvTrkOVcollTrk->GetEntry(tentry);
+  //  b_BJetness_npvTrkOVcollTrk->GetEntry(tentry);
     b_BJetness_pvTrkOVcollTrk->GetEntry(tentry);
     b_BJetness_npvTrkOVpvTrk->GetEntry(tentry);
     b_BJetness_npvPtOVcollPt->GetEntry(tentry);

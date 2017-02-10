@@ -1,5 +1,12 @@
 #include "../interface/newPUWeight.h"
 
+PUWTool::PUWTool(){
+  return;
+}
+PUWTool::~PUWTool(){
+  return;
+}
+
 void PUWTool::newPUWeight(double PUWeight_, double &puweight,double &puweightUP,double &puweightDOWN){
   double *npuProbs = 0;
   unsigned int nPUMax = 50;
