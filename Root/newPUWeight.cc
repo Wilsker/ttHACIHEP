@@ -9,17 +9,29 @@ PUWTool::~PUWTool(){
 
 void PUWTool::newPUWeight(double PUWeight_, double &puweight,double &puweightUP,double &puweightDOWN){
   double *npuProbs = 0;
-  unsigned int nPUMax = 50;
-  double npu_mix_2016_25ns_SpringMC_PUScenarioV1[50] = {0.000829312873542,0.00124276120498,0.00339329181587,0.00408224735376,0.00383036590008,0.00659159288946,0.00816022734493,0.00943640833116,0.0137777376066,0.017059392038,0.0213193035468,0.0247343174676,0.0280848773878,0.0323308476564,0.0370394341409,0.0456917721191,0.0558762890594,0.0576956187107,0.0625325287017,0.0591603758776,0.0656650815128,0.0678329011676,0.0625142146389,0.0548068448797,0.0503893295063,0.040209818868,0.0374446988111,0.0299661572042,0.0272024759921,0.0219328403791,0.0179586571619,0.0142926728247,0.00839941654725,0.00522366397213,0.00224457976761,0.000779274977993,0.000197066585944,7.16031761328e-05,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
-  npuProbs = npu_mix_2016_25ns_SpringMC_PUScenarioV1;
-  TFile file("/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW_8_0_24_patch1/src/BSMFramework/BSM3G_TNT_Maker/data/PUReweight/PileUpReweighting2016.root", "READ");
+
+  //------------ Moriond17 PU SCENARIO ------------//
+  unsigned int nPUMax = 0;
+  nPUMax =75;//# of bins in pile-up distributions
+  //Array of normalisation factors for MC.
+  double npu_Moriond17Scenario[nPUMax] = {1.78653e-05 ,2.56602e-05 ,5.27857e-05 ,8.88954e-05 ,0.000109362 ,0.000140973 ,0.000240998 ,0.00071209 ,0.00130121 ,0.00245255 ,0.00502589 ,0.00919534 ,0.0146697 ,0.0204126 ,0.0267586 ,0.0337697 ,0.0401478 ,0.0450159 ,0.0490577 ,0.0524855 ,0.0548159 ,0.0559937 ,0.0554468 ,0.0537687 ,0.0512055 ,0.0476713 ,0.0435312 ,0.0393107 ,0.0349812 ,0.0307413 ,0.0272425 ,0.0237115 ,0.0208329 ,0.0182459 ,0.0160712 ,0.0142498 ,0.012804 ,0.011571 ,0.010547 ,0.00959489 ,0.00891718 ,0.00829292 ,0.0076195 ,0.0069806 ,0.0062025 ,0.00546581 ,0.00484127 ,0.00407168 ,0.00337681 ,0.00269893 ,0.00212473 ,0.00160208 ,0.00117884 ,0.000859662 ,0.000569085 ,0.000365431 ,0.000243565 ,0.00015688 ,9.88128e-05 ,6.53783e-05 ,3.73924e-05 ,2.61382e-05 ,2.0307e-05 ,1.73032e-05 ,1.435e-05 ,1.36486e-05 ,1.35555e-05 ,1.37491e-05 ,1.34255e-05 ,1.33987e-05 ,1.34061e-05 ,1.34211e-05 ,1.34177e-05 ,1.32959e-05 ,1.33287e-05};
+  npuProbs = npu_Moriond17Scenario;
+  //------------------------------------------//
+
+  // Data pileup histogram for current Moriond17 dataset 14th Feb 2017.
+  TFile file("/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW/CMSSW_8_0_24/src/BSMFramework/BSM3G_TNT_Maker/data/PUReweight/PileUpReweightingMoriond17.root", "READ");
   TH1* h = NULL;
   file.GetObject("pileup",h);
   h->SetDirectory(0);
   file.Close();
   std::vector<double> result(nPUMax,0.);
   double s = 0.;
-  TFile fileNEW(  "SF/MyDataPileupHistogram_69200.root",   "READ");
+  // Histograms used to scale to new lumi (in case Data increases and dont want to run all MC again to get one weight.)
+  // Currently, nominal the same as PileUpReweightingMoriond17.root
+  // Systematic variations scale luminosity up/down by 5%
+  // New histograms can be calculated using procedure on twiki:
+  //              https://twiki.cern.ch/twiki/bin/view/CMS/PileupJSONFileforData#Pileup_JSON_Files_For_Run_II
+  TFile fileNEW("SF/MyDataPileupHistogram_69200.root", "READ");
   TFile fileNEWUp("SF/MyDataPileupHistogram_69200Up.root", "READ");
   TFile fileNEWDo("SF/MyDataPileupHistogram_69200Do.root", "READ");
   TH1* hNEW   = NULL;
@@ -42,8 +54,8 @@ void PUWTool::newPUWeight(double PUWeight_, double &puweight,double &puweightUP,
   double sNEWDo = 0.;
   for(unsigned int npu = 0; npu < nPUMax; ++npu) {
     const double npu_estimated = h->GetBinContent(h->GetXaxis()->FindBin(npu));
-    result[npu] = npu_estimated / npuProbs[npu];
-    s += npu_estimated;
+    result[npu] = npu_estimated / npuProbs[npu]; // Data (un-normalised) / MC (normalised)
+    s += npu_estimated;//Cumulative sum of all bins in data pileup
     const double npu_estimatedNEW   = hNEW  ->GetBinContent(hNEW  ->GetXaxis()->FindBin(npu));
     const double npu_estimatedNEWUp = hNEWUp->GetBinContent(hNEWUp->GetXaxis()->FindBin(npu));
     const double npu_estimatedNEWDo = hNEWDo->GetBinContent(hNEWDo->GetXaxis()->FindBin(npu));
@@ -56,7 +68,7 @@ void PUWTool::newPUWeight(double PUWeight_, double &puweight,double &puweightUP,
   }
   unsigned int NPU = -1;
   for(unsigned int npu = 0; npu < nPUMax; ++npu) {
-    result[npu] /= s;
+    result[npu] /= s;// Normalises data.
     resultNEW[npu]   /= sNEW;
     resultNEWUp[npu] /= sNEWUp;
     resultNEWDo[npu] /= sNEWDo;

@@ -31,7 +31,7 @@ CXXFLAGS   = -ggdb $(shell root-config --cflags)
 
 # INCL variable contains all include directories.
 # Run Directory:
-INCL  := -I${CMSSW_BASE}/src/TTH/ttHACIHEP_v2#<<<<NEED TO CHANGE THIS TO ${PWD}
+INCL  := -I${CMSSW_BASE}/src/TTH/ttHACIHEP#<<<<NEED TO CHANGE THIS TO ${PWD}
 # External stuff:
 INCL   += -I${ROOTSYS}/include
 INCL   += -I${CMSSW_BASE}/src

@@ -60,9 +60,13 @@ void SecondStep::Process(char* inFile){
 
 
   int sample=-999;
-  if (infilename=="ttHbb_MC"){sample = 1;}
-  else if (infilename=="ttjets_MC"){sample = 2;}
-  else {sample = 0;}
+  //if (infilename=="ttH"){sample = 1;}
+  //else if (infilename=="ttjets"){sample = 2;}
+  //else {sample = 0;}
+
+  if(infilename.find("ttH")!=std::string::npos){sample=1;}
+  else if(infilename.find("ttjets")!=std::string::npos){sample=2;}
+  else{sample=0;}
 
   string inputFullPath = inPathString+infilename+suffix;
   const char* Input = inputFullPath.c_str();
@@ -104,7 +108,6 @@ void SecondStep::Process(char* inFile){
   oldtree->SetBranchStatus("Jet_numberOfConstituents",1);
   oldtree->SetBranchStatus("Jet_chargedHadronEnergyFraction",1);
   oldtree->SetBranchStatus("Jet_chargedMultiplicity",1);
-
   oldtree->SetBranchStatus("BJetness_jetpt0",1);
   oldtree->SetBranchStatus("BJetness_numleps",1);
   //oldtree->SetBranchStatus("BJetness_npvTrkOVcollTrk",1);
@@ -112,7 +115,6 @@ void SecondStep::Process(char* inFile){
   oldtree->SetBranchStatus("BJetness_avip3dsig",1);
   oldtree->SetBranchStatus("BJetness_avsip3dsig",1);
   oldtree->SetBranchStatus("BJetness_avip1dsig",1);
-
   oldtree->SetBranchStatus("bWeight",1);
   oldtree->SetBranchStatus("bWeightLFup",1);
   oldtree->SetBranchStatus("bWeightLFdown",1);
@@ -138,10 +140,13 @@ void SecondStep::Process(char* inFile){
   oldtree->SetBranchStatus("patElectron_pdgId",1);
   oldtree->SetBranchStatus("patElectron_energy",1);
   oldtree->SetBranchStatus("patElectron_SCeta",1);
+  oldtree->SetBranchStatus("patElectron_gsfTrack_dz_pv",1);
+  oldtree->SetBranchStatus("patElectron_d0",1);
   oldtree->SetBranchStatus("patElectron_passConversionVeto",1);
   oldtree->SetBranchStatus("patElectron_inCrack",1);
   oldtree->SetBranchStatus("patElectron_isPassMvatrig",1);
   oldtree->SetBranchStatus("patElectron_isPassMvanontrig",1);
+  oldtree->SetBranchStatus("patElectron_isPassMedium",1);
   oldtree->SetBranchStatus("patElectron_full5x5_sigmaIetaIeta",1);
   oldtree->SetBranchStatus("patElectron_hOverE",1);
   oldtree->SetBranchStatus("patElectron_ecalPFClusterIso",1);
@@ -156,34 +161,23 @@ void SecondStep::Process(char* inFile){
   oldtree->SetBranchStatus("Muon_pdgId",1);
   oldtree->SetBranchStatus("Muon_energy",1);
   oldtree->SetBranchStatus("Muon_charge",1);
+  oldtree->SetBranchStatus("Muon_loose",1);
   oldtree->SetBranchStatus("Muon_tight",1);
   oldtree->SetBranchStatus("Muon_TrackerIso",1);
   oldtree->SetBranchStatus("Muon_isHighPt",1);
   oldtree->SetBranchStatus("Muon_relIsoDeltaBetaR04",1);
-  if(sample==0 || sample==2){
-    oldtree->SetBranchStatus("HLT_IsoMu22",1);
-    oldtree->SetBranchStatus("HLT_IsoTkMu22",1);
-    oldtree->SetBranchStatus("HLT_IsoMu24",1);//<< SL mu
-    oldtree->SetBranchStatus("HLT_IsoTkMu24",1);//<< SL mu
-    oldtree->SetBranchStatus("HLT_Ele27_eta2p1_WPTight_Gsf",1);//<< SL e
-    oldtree->SetBranchStatus("HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL",1);//<< DL emu
-    oldtree->SetBranchStatus("HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ",1);//<< DL emu (filled -9999 atm by BSMFramework)
-    oldtree->SetBranchStatus("HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL",1);//<< DL emu
-    oldtree->SetBranchStatus("HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ",1);//<< DL emu (filled -9999 atm by BSMFramework)
-    oldtree->SetBranchStatus("HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL",1);//<< DL mumu
-    oldtree->SetBranchStatus("HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ",1);//<< DL mumu
-    oldtree->SetBranchStatus("HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL",1);//<< DL mumu
-    oldtree->SetBranchStatus("HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ",1);//<< DL mumu
-    oldtree->SetBranchStatus("HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ",1);//<< DL ee
-  }
-  if(sample==1 || sample==2){
-    oldtree->SetBranchStatus("ttHFCategory",1);
-    oldtree->SetBranchStatus("Gen_pt",1);
-    oldtree->SetBranchStatus("Gen_eta",1);
-    oldtree->SetBranchStatus("Gen_phi",1);
-    oldtree->SetBranchStatus("Gen_pdg_id",1);
-    oldtree->SetBranchStatus("Gen_motherpdg_id",1);
-  }
+  oldtree->SetBranchStatus("HLT_Ele27_eta2p1_WPTight_Gsf",1);//<< SL e
+  oldtree->SetBranchStatus("HLT_IsoMu24",1);//<< SL mu
+  oldtree->SetBranchStatus("HLT_IsoTkMu24",1);//<< SL mu
+  oldtree->SetBranchStatus("HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ",1);//<< DL ee
+  oldtree->SetBranchStatus("HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL",1);//<< DL emu
+  oldtree->SetBranchStatus("HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ",1);//<< DL emu
+  oldtree->SetBranchStatus("HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL",1);//<< DL emu
+  oldtree->SetBranchStatus("HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ",1);//<< DL emu
+  oldtree->SetBranchStatus("HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL",1);//<< DL mumu
+  oldtree->SetBranchStatus("HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ",1);//<< DL mumu
+  oldtree->SetBranchStatus("HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL",1);//<< DL mumu
+  oldtree->SetBranchStatus("HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ",1);//<< DL mumu
   oldtree->SetBranchStatus("EVENT_Q2tthbbWeightUp",1);
   oldtree->SetBranchStatus("EVENT_Q2tthbbWeightDown",1);
   oldtree->SetBranchStatus("EVENT_PDFtthbbWeightUp",1);
@@ -193,10 +187,29 @@ void SecondStep::Process(char* inFile){
   oldtree->SetBranchStatus("EVENT_lumiBlock",1);
   oldtree->SetBranchStatus("PUWeight",1);
   oldtree->SetBranchStatus("trueInteractions",1);
+  oldtree->SetBranchStatus("pvertex_ndof",1);
+  oldtree->SetBranchStatus("pvertex_z",1);
+  oldtree->SetBranchStatus("pvertex_Rho",1);
   oldtree->SetBranchStatus("Met_type1PF_pt",1);
   oldtree->SetBranchStatus("Met_type1PF_px",1);
   oldtree->SetBranchStatus("Met_type1PF_py",1);
   oldtree->SetBranchStatus("Met_type1PF_phi",1);
+
+  oldtree->SetBranchStatus("Flag_HBHENoiseFilter",1);
+  oldtree->SetBranchStatus("Flag_HBHENoiseIsoFilter",1);
+  oldtree->SetBranchStatus("Flag_CSCTightHalo2015Filter",1);
+  oldtree->SetBranchStatus("Flag_EcalDeadCellTriggerPrimitiveFilter",1);
+  oldtree->SetBranchStatus("Flag_goodVertices",1);
+
+
+  if(sample==1 || sample==2){
+    oldtree->SetBranchStatus("ttHFCategory",1);
+    oldtree->SetBranchStatus("Gen_pt",1);
+    oldtree->SetBranchStatus("Gen_eta",1);
+    oldtree->SetBranchStatus("Gen_phi",1);
+    oldtree->SetBranchStatus("Gen_pdg_id",1);
+    oldtree->SetBranchStatus("Gen_motherpdg_id",1);
+  }
 
   //Create a new file + a clone of old tree in new file
   std::cout << "SecondStep()::Create new file + clone of old tree in file file." << std::endl;
@@ -279,13 +292,15 @@ void SecondStep::Process(char* inFile){
   vector<double>* Muon_energy=0;
   vector<double>* Muon_relIsoDeltaBetaR04=0;
   vector<int>* Muon_tight=0;
-  TBranch *b_Muon_pt,*b_Muon_eta,*b_Muon_phi,*b_Muon_energy,*b_Muon_relIsoDeltaBetaR04,*b_Muon_tight;
+  vector<int>* Muon_loose=0;
+  TBranch *b_Muon_pt,*b_Muon_eta,*b_Muon_phi,*b_Muon_energy,*b_Muon_relIsoDeltaBetaR04,*b_Muon_tight,*b_Muon_loose;
   oldtree->SetBranchAddress("Muon_pt", &Muon_pt, &b_Muon_pt);
   oldtree->SetBranchAddress("Muon_eta",&Muon_eta,&b_Muon_eta);
   oldtree->SetBranchAddress("Muon_phi",&Muon_phi,&b_Muon_phi);
   oldtree->SetBranchAddress("Muon_energy",&Muon_energy,&b_Muon_energy);
   oldtree->SetBranchAddress("Muon_relIsoDeltaBetaR04",&Muon_relIsoDeltaBetaR04,&b_Muon_relIsoDeltaBetaR04);
   oldtree->SetBranchAddress("Muon_tight",&Muon_tight,&b_Muon_tight);
+  oldtree->SetBranchAddress("Muon_loose",&Muon_loose,&b_Muon_loose);
 
   //ELECTRON LOAD
   vector<double>* patElectron_passConversionVeto=0;
@@ -295,6 +310,8 @@ void SecondStep::Process(char* inFile){
   vector<double>* patElectron_SCeta=0;
   vector<double>* patElectron_phi=0;
   vector<double>* patElectron_energy=0;
+  vector<double>* patElectron_d0=0;
+  vector<double>* patElectron_gsfTrack_dz_pv=0;
   vector<double>* patElectron_full5x5_sigmaIetaIeta=0;
   vector<double>* patElectron_hOverE=0;
   vector<double>* patElectron_ecalPFClusterIso=0;
@@ -305,13 +322,16 @@ void SecondStep::Process(char* inFile){
   vector<double>* patElectron_relIsoRhoEA=0;
   vector<int> *patElectron_isPassMvatrig=0;
   vector<int> *patElectron_isPassMvanontrig=0;
-  TBranch *b_patElectron_pt,*b_patElectron_eta,*b_patElectron_SCeta,*b_patElectron_phi,*b_patElectron_energy,*b_patElectron_isPassMvatrig,*b_patElectron_isPassMvanontrig,*b_patElectron_inCrack,*b_patElectron_passConversionVeto,*b_patElectron_full5x5_sigmaIetaIeta,*b_patElectron_hOverE,*b_patElectron_ecalPFClusterIso,*b_patElectron_hcalPFClusterIso,*b_patElectron_isolPtTracks,*b_patElectron_dEtaIn,*b_patElectron_dPhiIn,*b_patElectron_relIsoRhoEA;
+  vector<int> *patElectron_isPassMedium=0;
+  TBranch *b_patElectron_pt,*b_patElectron_eta,*b_patElectron_SCeta,*b_patElectron_phi,*b_patElectron_energy,*b_patElectron_d0,*b_patElectron_gsfTrack_dz_pv,*b_patElectron_isPassMvatrig,*b_patElectron_isPassMvanontrig,*b_patElectron_inCrack,*b_patElectron_passConversionVeto,*b_patElectron_full5x5_sigmaIetaIeta,*b_patElectron_hOverE,*b_patElectron_ecalPFClusterIso,*b_patElectron_hcalPFClusterIso,*b_patElectron_isolPtTracks,*b_patElectron_dEtaIn,*b_patElectron_dPhiIn,*b_patElectron_relIsoRhoEA, *b_patElectron_isPassMedium;
   oldtree->SetBranchAddress("patElectron_pt", &patElectron_pt, &b_patElectron_pt);
   oldtree->SetBranchAddress("patElectron_eta", &patElectron_eta, &b_patElectron_eta);
   oldtree->SetBranchAddress("patElectron_SCeta", &patElectron_SCeta, &b_patElectron_SCeta);
   oldtree->SetBranchAddress("patElectron_phi", &patElectron_phi, &b_patElectron_phi);
   oldtree->SetBranchAddress("patElectron_energy", &patElectron_energy, &b_patElectron_energy);
   oldtree->SetBranchAddress("patElectron_inCrack", &patElectron_inCrack, &b_patElectron_inCrack);
+  oldtree->SetBranchAddress("patElectron_d0", &patElectron_d0, &b_patElectron_d0);
+  oldtree->SetBranchAddress("patElectron_gsfTrack_dz_pv", &patElectron_gsfTrack_dz_pv, &b_patElectron_gsfTrack_dz_pv);
   oldtree->SetBranchAddress("patElectron_passConversionVeto", &patElectron_passConversionVeto, &b_patElectron_passConversionVeto);
   oldtree->SetBranchAddress("patElectron_isPassMvatrig",&patElectron_isPassMvatrig,&b_patElectron_isPassMvatrig);
   oldtree->SetBranchAddress("patElectron_isPassMvanontrig",&patElectron_isPassMvanontrig,&b_patElectron_isPassMvanontrig);
@@ -323,6 +343,7 @@ void SecondStep::Process(char* inFile){
   oldtree->SetBranchAddress("patElectron_dEtaIn",&patElectron_dEtaIn,&b_patElectron_dEtaIn);
   oldtree->SetBranchAddress("patElectron_dPhiIn",&patElectron_dPhiIn,&b_patElectron_dPhiIn);
   oldtree->SetBranchAddress("patElectron_relIsoRhoEA",&patElectron_relIsoRhoEA,&b_patElectron_relIsoRhoEA);
+  oldtree->SetBranchAddress("patElectron_isPassMedium",&patElectron_isPassMedium,&b_patElectron_isPassMedium);
 
   //JET LOAD
   vector<double>* Jet_pt=0;
@@ -418,6 +439,8 @@ void SecondStep::Process(char* inFile){
   int HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL=0;
   int HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ=0;
   int HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL=0;
+  int HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ=0;
+  int HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL=0;
   int HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ=0;
   int HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL=0;
   int HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ=0;
@@ -431,26 +454,36 @@ void SecondStep::Process(char* inFile){
   double Met_type1PF_px = -99.;
   double Met_type1PF_py = -99.;
   double Met_type1PF_phi = -99.;
+  double Flag_HBHENoiseFilter = -99;
+  double Flag_HBHENoiseIsoFilter = -99;
+  double Flag_CSCTightHalo2015Filter = -99;
+  double Flag_EcalDeadCellTriggerPrimitiveFilter = -99;
+  double Flag_goodVertices = -99;
   vector<double>* Gen_pt=0;
   vector<double>* Gen_eta=0;
   vector<double>* Gen_phi=0;
   vector<int>* Gen_motherpdg_id=0;
   vector<int>* Gen_pdg_id=0;
-  TBranch *b_HLT_IsoMu22,*b_HLT_IsoMu24,*b_HLT_IsoTkMu24,*b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL,*b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,*b_HLT_IsoTkMu22,*b_HLT_Ele27_eta2p1_WPTight_Gsf,*b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL,*b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ,*b_b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL,*b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ,*b_HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,*b_ttHFCategory,*b_EVENT_event,*b_EVENT_run,*b_EVENT_lumiBlock,*b_Met_type1PF_pt,*b_Met_type1PF_px,*b_Met_type1PF_py,*b_Met_type1PF_phi,*b_EVENT_Q2tthbbWeightUp,*b_EVENT_Q2tthbbWeightDown,*b_EVENT_PDFtthbbWeightUp,*b_EVENT_PDFtthbbWeightDown,*b_PUWeight,*b_Gen_pt,*b_Gen_eta,*b_Gen_phi,*b_Gen_pdg_id,*b_Gen_motherpdg_id,*b_trueInteractions;
-  if(sample==0 || sample==2){
-    oldtree->SetBranchAddress("HLT_IsoMu22",&HLT_IsoMu22,&b_HLT_IsoMu22);
-    oldtree->SetBranchAddress("HLT_IsoTkMu22",&HLT_IsoTkMu22,&b_HLT_IsoTkMu22);
-    oldtree->SetBranchAddress("HLT_IsoMu24",&HLT_IsoMu24,&b_HLT_IsoMu24);
-    oldtree->SetBranchAddress("HLT_IsoTkMu24",&HLT_IsoTkMu24,&b_HLT_IsoTkMu24);
-    oldtree->SetBranchAddress("HLT_Ele27_eta2p1_WPTight_Gsf",&HLT_Ele27_eta2p1_WPTight_Gsf,&b_HLT_Ele27_eta2p1_WPTight_Gsf);
-    oldtree->SetBranchAddress("HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL",&HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL,&b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL);
-    oldtree->SetBranchAddress("HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ",&HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ,&b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ);
-    oldtree->SetBranchAddress("HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL",&HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL,&b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL);
-    oldtree->SetBranchAddress("HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ",&HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ,&b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ);
-    oldtree->SetBranchAddress("HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ",&HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,&b_HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ);
-    oldtree->SetBranchAddress("HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL",&HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL,&b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL);
-    oldtree->SetBranchAddress("HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ",&HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,&b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ);
-  }
+  vector<double>* pvertex_ndof=0;
+  vector<double>* pvertex_Rho=0;
+  vector<double>* pvertex_z=0;
+  TBranch *b_HLT_IsoMu22,*b_HLT_IsoMu24,*b_HLT_IsoTkMu24,*b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL,*b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,*b_HLT_IsoTkMu22,*b_HLT_Ele27_eta2p1_WPTight_Gsf,*b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL,*b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ,*b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL,*b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ,*b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL,*b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ,*b_HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,*b_ttHFCategory,*b_EVENT_event,*b_EVENT_run,*b_EVENT_lumiBlock,*b_Met_type1PF_pt,*b_Met_type1PF_px,*b_Met_type1PF_py,*b_Met_type1PF_phi,*b_EVENT_Q2tthbbWeightUp,*b_EVENT_Q2tthbbWeightDown,*b_EVENT_PDFtthbbWeightUp,*b_EVENT_PDFtthbbWeightDown,*b_PUWeight,*b_Gen_pt,*b_Gen_eta,*b_Gen_phi,*b_Gen_pdg_id,*b_Gen_motherpdg_id,*b_trueInteractions,*b_pvertex_ndof,*b_pvertex_z,*b_pvertex_Rho;
+  TBranch *b_Flag_HBHENoiseFilter,*b_Flag_HBHENoiseIsoFilter,*b_Flag_CSCTightHalo2015Filter,*b_Flag_EcalDeadCellTriggerPrimitiveFilter,*b_Flag_goodVertices;
+  oldtree->SetBranchAddress("HLT_IsoMu22",&HLT_IsoMu22,&b_HLT_IsoMu22);
+  oldtree->SetBranchAddress("HLT_IsoTkMu22",&HLT_IsoTkMu22,&b_HLT_IsoTkMu22);
+  oldtree->SetBranchAddress("HLT_IsoMu24",&HLT_IsoMu24,&b_HLT_IsoMu24);
+  oldtree->SetBranchAddress("HLT_IsoTkMu24",&HLT_IsoTkMu24,&b_HLT_IsoTkMu24);
+  oldtree->SetBranchAddress("HLT_Ele27_eta2p1_WPTight_Gsf",&HLT_Ele27_eta2p1_WPTight_Gsf,&b_HLT_Ele27_eta2p1_WPTight_Gsf);
+  oldtree->SetBranchAddress("HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL",&HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL,&b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL);
+  oldtree->SetBranchAddress("HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ",&HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ,&b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ);
+  oldtree->SetBranchAddress("HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL",&HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL,&b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL);
+  oldtree->SetBranchAddress("HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ",&HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ,&b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ);
+  oldtree->SetBranchAddress("HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL",&HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL,&b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL);
+  oldtree->SetBranchAddress("HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ",&HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ,&b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ);
+  oldtree->SetBranchAddress("HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ",&HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,&b_HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ);
+  oldtree->SetBranchAddress("HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL",&HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL,&b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL);
+  oldtree->SetBranchAddress("HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ",&HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,&b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ);
+
   if(sample==1 || sample==2){
     oldtree->SetBranchAddress("ttHFCategory",&ttHFCategory,&b_ttHFCategory);
     oldtree->SetBranchAddress("Gen_pt",&Gen_pt,&b_Gen_pt);
@@ -472,6 +505,14 @@ void SecondStep::Process(char* inFile){
   oldtree->SetBranchAddress("Met_type1PF_px",&Met_type1PF_px,&b_Met_type1PF_px);
   oldtree->SetBranchAddress("Met_type1PF_py",&Met_type1PF_py,&b_Met_type1PF_py);
   oldtree->SetBranchAddress("Met_type1PF_phi",&Met_type1PF_phi,&b_Met_type1PF_phi);
+  oldtree->SetBranchAddress("Flag_HBHENoiseFilter",&Flag_HBHENoiseFilter,&b_Flag_HBHENoiseFilter);
+  oldtree->SetBranchAddress("Flag_HBHENoiseIsoFilter",&Flag_HBHENoiseIsoFilter,&b_Flag_HBHENoiseIsoFilter);
+  oldtree->SetBranchAddress("Flag_CSCTightHalo2015Filter",&Flag_CSCTightHalo2015Filter,&b_Flag_CSCTightHalo2015Filter);
+  oldtree->SetBranchAddress("Flag_EcalDeadCellTriggerPrimitiveFilter",&Flag_EcalDeadCellTriggerPrimitiveFilter,&b_Flag_EcalDeadCellTriggerPrimitiveFilter);
+  oldtree->SetBranchAddress("Flag_goodVertices",&Flag_goodVertices,&b_Flag_goodVertices);
+  oldtree->SetBranchAddress("pvertex_ndof",&pvertex_ndof,&b_pvertex_ndof);
+  oldtree->SetBranchAddress("pvertex_z",&pvertex_z,&b_pvertex_z);
+  oldtree->SetBranchAddress("pvertex_Rho",&pvertex_Rho,&b_pvertex_Rho);
 
   Int_t nentries = (Int_t)oldtree->GetEntries();
   std::cout << "SecondStep.cc:: Entering event loop with: " << nentries << " entries." << std::endl;
@@ -490,16 +531,26 @@ void SecondStep::Process(char* inFile){
   //Instance of BlrBDT must be outside loop. Class currently contains pointers (TMVA Reader objects) that casue memory leak.
   BlrBDTClassifier bdt;
 
-  //!!! Reduce size of program (easier to get on lxbatch node)
-  // by defining any vector that can be, outside event loop.
-  // dont forget to clear vector at start of loop.!!!
+  vector<int> eventNums_passed;
+  double bTagWP_DiscrCut = 0.8484;
+
   int firstEvent = 0;
   int neventsfilled = 0;
   for (Int_t i=firstEvent;i<nentries; i++) {//if(i>500) break;
-    if(i % 1000 == 0){cout << "Entry: " << i << endl;}
     Long64_t tentry = oldtree->LoadTree(i);
     oldtree->GetEntry(i);
-    //cout << "Entry = " << i << endl;
+
+    if(i % 1000 == 0){
+      cout << "Entry: " << i << endl;
+    }
+
+    //DONT FORGET TO REMOVE THIS!!!!!!!
+    //if(EVENT_event!=47021987){continue;}
+    //else cout << "EVENT_event = " << EVENT_event << endl;
+    //if(EVENT_event!=41608676 && EVENT_event!=315650 && EVENT_event!=3113715 && EVENT_event!=57121951 && EVENT_event!=3113505 && EVENT_event!=57121941 && EVENT_event!=315755 && EVENT_event!=57122067){
+    //  continue;
+    //}
+    //DONT FORGET TO REMOVE THIS!!!!!!!
 
     if(sample==1 || sample==2){
       //ttH_hbb ttH_hcc ttH_hww ttH_hzz ttH_htt ttH_hgg ttH_hgluglu ttH_hzg
@@ -525,14 +576,25 @@ void SecondStep::Process(char* inFile){
       if(z_from_H==1 && g_from_H==1) ttHGenCategory_def=8;
       ttHGenCategory_ = ttHGenCategory_def;
     }
+
+    // Primary Vertex must fulfill vertex selection.
+
+    if(pvertex_ndof->at(0)<=4 && abs(pvertex_Rho->at(0))>=24 && abs(pvertex_z->at(0))>=2) {
+      cout << "NDOF = " << pvertex_ndof->at(0) << endl;
+      cout << "Rho = " << abs(pvertex_Rho->at(0)) << endl;
+      cout << "z = " << abs(pvertex_z->at(0)) << endl;
+      cout << "PV failed vertex selection" << endl;
+      continue;
+    }
+
     // LEPTON SELECTION - MUON
-    // - Selects all muons that are at least subleading in DL channel.
+    // - Selects veto/subleading muons to perform overlap removal.
     vector<double> SelMuon_pt,SelMuon_eta,SelMuon_phi,SelMuon_iso,SelMuon_energy;
     for (UInt_t j = 0; j < Muon_pt->size(); ++j){
       if(!(Muon_pt->at(j)>15))                     continue;
       if(!(fabs(Muon_eta->at(j))<2.4))             continue;
       if(!(Muon_tight->at(j)==1))                  continue;
-      if(!(Muon_relIsoDeltaBetaR04->at(j)<0.25))   continue;
+      if(!(Muon_relIsoDeltaBetaR04->at(j)<0.25))   continue;// = Loose iso
       SelMuon_pt.push_back(Muon_pt->at(j));
       SelMuon_eta.push_back(Muon_eta->at(j));
       SelMuon_phi.push_back(Muon_phi->at(j));
@@ -540,14 +602,33 @@ void SecondStep::Process(char* inFile){
       SelMuon_iso.push_back(Muon_relIsoDeltaBetaR04->at(j));
     }
     // LEPTON SELECTION - ELECTRON
-    // - Selects all electrons that are at least subleading in DL channel.
+    // - Selects veto/subleading electrons to perform overlap removal.
     vector<double> SelElectronMVA_pt,SelElectronMVA_eta,SelElectronMVA_phi,SelElectronMVA_energy,SelElectronMVA_iso;
     for (UInt_t j = 0; j < patElectron_pt->size(); ++j){
+      /*cout << " ============ Index " << j << "================" << endl;
+      cout << "patElectron_pt->at(j) = " << patElectron_pt->at(j) << endl;
+      cout << "patElectron_SCeta->at(j) = " << patElectron_SCeta->at(j) << endl;
+      cout << "fabs(patElectron_eta->at(j)) = " << fabs(patElectron_eta->at(j)) << endl;
+      cout << "patElectron_inCrack->at(j) = " << patElectron_inCrack->at(j) << endl;
+      cout << "patElectron_isPassMedium->at(j) = " << patElectron_isPassMedium->at(j) << endl;
+      cout << "patElectron_gsfTrack_dz_pv : " << patElectron_gsfTrack_dz_pv->at(j) << endl;
+      cout << "patElectron_d0 : " << patElectron_d0->at(j) << endl;*/
       if(!(patElectron_pt->at(j)>15))               continue;
       if(!(fabs(patElectron_eta->at(j))<2.4))	    continue;
       if(!(patElectron_inCrack->at(j)==0))	    continue;
-      if(!(patElectron_isPassMvanontrig->at(j)==1)) continue;
+      if(!(patElectron_isPassMedium->at(j)==1)) continue;
+      //Barrel impact parameter cuts
+      if(fabs(patElectron_SCeta->at(j))<=1.479){
+        if(fabs(patElectron_gsfTrack_dz_pv->at(j))>0.10) continue;
+        if(fabs(patElectron_d0->at(j))>0.05) continue;
+      }
+      //End-cap impact parameter cuts
+      if(fabs(patElectron_SCeta->at(j))>1.479){
+        if(fabs(patElectron_gsfTrack_dz_pv->at(j))>0.20) continue;
+        if(fabs(patElectron_d0->at(j))>0.10) continue;
+      }
       if(!(patElectron_relIsoRhoEA->at(j)<0.15))    continue;
+      //cout << "patElectron_isPassMvanontrig->at(j) = " << patElectron_isPassMvanontrig->at(j) << endl;
       SelElectronMVA_pt.push_back(patElectron_pt->at(j));
       SelElectronMVA_eta.push_back(patElectron_eta->at(j));
       SelElectronMVA_phi.push_back(patElectron_phi->at(j));
@@ -561,41 +642,51 @@ void SecondStep::Process(char* inFile){
     vector<double> SelJet_pt,SelJet_eta,SelJet_phi,SelJet_mass,SelJet_pfCombinedInclusiveSecondaryVertexV2BJetTags;
     vector<double> SelTightJet_pt,SelTightJet_eta,SelTightJet_phi,SelTightJet_mass,SelTightJet_pfCombinedInclusiveSecondaryVertexV2BJetTags;
     for (UInt_t j = 0; j < Jet_pt->size(); ++j){
+      //Jet_Uncorr_pt here should be uncorrected Jet_Uncorr_pt from BSMFramework.
       double jet_pt = Jet_Uncorr_pt->at(j)*Jet_JesSF->at(j)*Jet_JerSF->at(j);
       if(!(jet_pt>20)) continue;
       if(!(fabs(Jet_eta->at(j))<2.4)) continue;
+
+      //Jet ID Loose
       if(!(Jet_neutralHadEnergyFraction->at(j)<0.99)) continue;
-      if(!(Jet_chargedEmEnergyFraction->at(j)<0.99)) continue;
       if(!(Jet_neutralEmEnergyFraction->at(j)<0.99)) continue;
       if(!(Jet_numberOfConstituents->at(j)>1)) continue;
+      if(!(Jet_chargedEmEnergyFraction->at(j)<0.99)) continue;
       if(!(Jet_chargedHadronEnergyFraction->at(j)>0.0)) continue;
       if(!(Jet_chargedMultiplicity->at(j)>0.0)) continue;
+
+      //TLorentzVector temp_jet;
+      //temp_jet.SetPtEtaPhiM(jet_pt,Jet_eta->at(j),Jet_phi->at(j),Jet_mass->at(j));
       bool deltaRJetLepBoolean = true;
       for (UInt_t k = 0; k < SelMuon_pt.size(); ++k){
+        //TLorentzVector temp_muon;
+        //temp_muon.SetPtEtaPhiE(SelMuon_pt[k],SelMuon_eta[k],SelMuon_phi[k],SelMuon_energy[k]);
+        //cout << "DeltaR(Jet,muon) = " << temp_jet.DeltaR(temp_muon) << endl;
         float deltaEta = SelMuon_eta[k]-Jet_eta->at(j);
         float deltaPhi = fabs(SelMuon_phi[k]-Jet_phi->at(j));
-        if(deltaPhi>TMath::Pi()) deltaPhi = 2*TMath::Pi() - deltaPhi;
-        if(sqrt(deltaEta*deltaEta + deltaPhi*deltaPhi)<0.4) deltaRJetLepBoolean=false;
+        if(deltaPhi>=TMath::Pi()) deltaPhi = 2*TMath::Pi() - deltaPhi;
+        if(sqrt(deltaEta*deltaEta + deltaPhi*deltaPhi)<=0.4) deltaRJetLepBoolean=false;
       }
       for (UInt_t k = 0; k < SelElectronMVA_pt.size(); ++k){
+        //TLorentzVector temp_el;
+        //temp_el.SetPtEtaPhiE(SelElectronMVA_pt[k],SelElectronMVA_eta[k],SelElectronMVA_phi[k],SelElectronMVA_energy[k]);
+        //cout << "DeltaR(Jet,el) = " << temp_jet.DeltaR(temp_el) << endl;
         float deltaEta = SelElectronMVA_eta[k]-Jet_eta->at(j);
         float deltaPhi = fabs(SelElectronMVA_phi[k]-Jet_phi->at(j));
-        if(deltaPhi>TMath::Pi()) deltaPhi = 2*TMath::Pi() - deltaPhi;
-        if(sqrt(deltaEta*deltaEta + deltaPhi*deltaPhi)<0.4) deltaRJetLepBoolean=false;
+        if(deltaPhi>=TMath::Pi()) deltaPhi = 2*TMath::Pi() - deltaPhi;
+        if(sqrt(deltaEta*deltaEta + deltaPhi*deltaPhi)<=0.4) deltaRJetLepBoolean=false;
       }
       if(deltaRJetLepBoolean){
-        SelJet_pt.push_back(Jet_pt->at(j));
+        SelJet_pt.push_back(jet_pt);//<<<<< Changed from Jet_pt->at(j)
         SelJet_eta.push_back(Jet_eta->at(j));
         SelJet_phi.push_back(Jet_phi->at(j));
         SelJet_mass.push_back(Jet_mass->at(j));
-        //SelJet_newpfCombinedInclusiveSecondaryVertexV2BJetTags.push_back(Jet_newpfCombinedInclusiveSecondaryVertexV2BJetTags->at(j));
         SelJet_pfCombinedInclusiveSecondaryVertexV2BJetTags.push_back(Jet_pfCombinedInclusiveSecondaryVertexV2BJetTags->at(j));
         if(!(jet_pt>30)) continue;
-        SelTightJet_pt.push_back(Jet_pt->at(j));
+        SelTightJet_pt.push_back(jet_pt);
         SelTightJet_eta.push_back(Jet_eta->at(j));
         SelTightJet_phi.push_back(Jet_phi->at(j));
         SelTightJet_mass.push_back(Jet_mass->at(j));
-        //SelTightJet_newpfCombinedInclusiveSecondaryVertexV2BJetTags.push_back(Jet_newpfCombinedInclusiveSecondaryVertexV2BJetTags->at(j));
         SelTightJet_pfCombinedInclusiveSecondaryVertexV2BJetTags.push_back(Jet_pfCombinedInclusiveSecondaryVertexV2BJetTags->at(j));
       }
     }
@@ -608,19 +699,17 @@ void SecondStep::Process(char* inFile){
     int nBCSVM_DL = 0;
     int nBCSVM_SL = 0;
     for(UInt_t k = 0; k < SelJet_pt.size(); ++k){
-      if(SelJet_pfCombinedInclusiveSecondaryVertexV2BJetTags[k]>0.80) nBCSVM_DL=nBCSVM_DL+1;
+      if(SelJet_pfCombinedInclusiveSecondaryVertexV2BJetTags[k]>bTagWP_DiscrCut) nBCSVM_DL=nBCSVM_DL+1;
     }
     for(UInt_t k = 0; k < SelTightJet_pt.size(); ++k){
-      if(SelTightJet_pfCombinedInclusiveSecondaryVertexV2BJetTags[k]>0.80) nBCSVM_SL=nBCSVM_SL+1;
+      if(SelTightJet_pfCombinedInclusiveSecondaryVertexV2BJetTags[k]>bTagWP_DiscrCut) nBCSVM_SL=nBCSVM_SL+1;
     }
 
     //=================================
     //    ttH EVENT PRE-SELECTION
     //=================================
     // - Ensure events fall into a single lepton or dilepton channel.
-    // - If event does not pass pre-selection event is not stored in output.
-    // - I think here, we should apply the loosest cuts from either single lepton or dilepton analysis.
-    // - Means both single lepton and dilepton synchronisation can be performed.
+    // - Ensure passing minimum jet and b-tag requirements.
     //=================================
 
     bool MUON = false;
@@ -629,60 +718,146 @@ void SecondStep::Process(char* inFile){
     bool MUONMUON = false;
     bool ELMUON = false;
 
-
-
-
-    if(sample==0 || sample==2){
-      if(SelMuon_pt.size()==1&&SelMuon_pt[0]>26&&fabs(SelMuon_eta[0])<2.1&&SelMuon_iso[0]<0.15&&(HLT_IsoMu24==1 || HLT_IsoTkMu24==1)) {
-        MUON=true;
-      }
-      if(SelElectronMVA_pt.size()==1&&SelElectronMVA_pt[0]>30&&fabs(SelElectronMVA_eta[0])<2.1&&HLT_Ele27_eta2p1_WPTight_Gsf==1) {
-        ELECTRON=true;
-      }
-      if(SelElectronMVA_pt.size()==2&&SelElectronMVA_pt[0]>25&&SelElectronMVA_pt[1]>15&&fabs(SelElectronMVA_eta[0])<2.4&&fabs(SelElectronMVA_eta[1])<2.4&&HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ==1) {
-        ELEL=true;
-      }
-      if( ( (SelElectronMVA_pt.size()==1&&SelElectronMVA_pt[0]>25&&fabs(SelElectronMVA_eta[0])<2.4&&SelMuon_pt.size()==1&&SelMuon_pt[0]>15&&fabs(SelMuon_eta[0])<2.4&&SelMuon_iso[0]<0.25) || (SelElectronMVA_pt.size()==1&&SelElectronMVA_pt[0]>15&&fabs(SelElectronMVA_eta[0])<2.4&&SelMuon_pt.size()==1&&SelMuon_pt[0]>25&&fabs(SelMuon_eta[0])<2.4&&SelMuon_iso[0]<0.25) ) && (HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL==1||HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL==1||HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ==1||HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ==1)) {
-        ELMUON=true;
-      }
-      if(SelMuon_pt.size()==2&&SelMuon_pt[0]>25&&SelMuon_pt[1]>15&&fabs(SelMuon_eta[0])<2.4&&fabs(SelMuon_eta[1])<2.4&&SelMuon_iso[0]<0.25&&SelMuon_iso[1]<0.25&&(HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL==1||HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL==1||HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ==1||HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ==1)) {
-        MUONMUON=true;
-      }
-    } else {
-      if(SelMuon_pt.size()==1&&SelMuon_pt[0]>26&&fabs(SelMuon_eta[0])<2.1&&SelMuon_iso[0]<0.15) {
-        MUON=true;
-      }
-      if(SelElectronMVA_pt.size()==1&&SelElectronMVA_pt[0]>30&&fabs(SelElectronMVA_eta[0])<2.1) {
-        ELECTRON=true;
-      }
-      if(SelElectronMVA_pt.size()==2&&SelElectronMVA_pt[0]>25&&SelElectronMVA_pt[1]>15&&fabs(SelElectronMVA_eta[0])<2.4&&fabs(SelElectronMVA_eta[1])<2.4) {
-        ELEL=true;
-      }
-      if( (SelElectronMVA_pt.size()==1&&SelElectronMVA_pt[0]>25&&fabs(SelElectronMVA_eta[0])<2.4&&SelMuon_pt.size()==1&&SelMuon_pt[0]>15&&fabs(SelMuon_eta[0])<2.4&&SelMuon_iso[0]<0.25) || (SelElectronMVA_pt.size()==1&&SelElectronMVA_pt[0]>15&&fabs(SelElectronMVA_eta[0])<2.4&&SelMuon_pt.size()==1&&SelMuon_pt[0]>25&&fabs(SelMuon_eta[0])<2.4&&SelMuon_iso[0]<0.25) ) {
-        ELMUON=true;
-      }
-      if(SelMuon_pt.size()==2&&SelMuon_pt[0]>25&&SelMuon_pt[1]>15&&fabs(SelMuon_eta[0])<2.4&&fabs(SelMuon_eta[1])<2.4&&SelMuon_iso[0]<0.25&&SelMuon_iso[1]<0.25) {
-        MUONMUON=true;
+    if(SelMuon_pt.size()==1 && SelElectronMVA_pt.size()==0){// # leptons
+      if(SelMuon_pt[0]>26 && fabs(SelMuon_eta[0])<2.1 && SelMuon_iso[0]<0.15){// lepton kinematics
+        if((HLT_IsoMu24==1 || HLT_IsoTkMu24==1)){// Triggers
+          MUON=true;
+        }
       }
     }
-    if(!(MUON || ELECTRON || ELEL || MUONMUON || ELMUON)){
-      //cout << "No good leptons found." << endl;
-      continue;
+    if(SelElectronMVA_pt.size()==1 && SelMuon_pt.size()==0) {// # leptons
+      if(SelElectronMVA_pt[0]>30 && fabs(SelElectronMVA_eta[0])<2.1){// lepton kinematics
+        if(HLT_Ele27_eta2p1_WPTight_Gsf==1){// Triggers
+          ELECTRON=true;
+        }
+      }
     }
-    //if(!(SelMuon_pt.size()+SelElectronMVA_pt.size()==1)){
-      //cout << "Skipping event -> Not single Lepton event." << endl;
-    //  continue;
-    //}
+    if(SelElectronMVA_pt.size()==2&&SelMuon_pt.size()==0){// # leptons
+      if(SelElectronMVA_pt[0]>25&&SelElectronMVA_pt[1]>15 && fabs(SelElectronMVA_eta[0])<2.4 && fabs(SelElectronMVA_eta[1])<2.4){// lepton kinematics
+        if(HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ==1){// Triggers
+          ELEL=true;
+        }
+      }
+    }
+    if(SelElectronMVA_pt.size()==1 && SelMuon_pt.size()==1) {
+      if(SelElectronMVA_pt[0]>25 && fabs(SelElectronMVA_eta[0])<2.4 && SelMuon_pt[0]>15 && fabs(SelMuon_eta[0])<2.4 && SelMuon_iso[0]<0.25){
+        if(HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL==1 || HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL==1 || HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ==1 || HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ==1){
+          ELMUON=true;
+        }
+      }
+    }
+    if(SelElectronMVA_pt.size()==1&&SelMuon_pt.size()==1){
+      if(SelElectronMVA_pt[0]>15 && fabs(SelElectronMVA_eta[0])<2.4 && SelMuon_pt[0]>25 && fabs(SelMuon_eta[0])<2.4 && SelMuon_iso[0]<0.25){
+        if(HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL==1 || HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL==1 || HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ==1 || HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ==1){
+          ELMUON=true;
+        }
+      }
+    }
+    if(SelMuon_pt.size()==2&&SelElectronMVA_pt.size()==0){
+      if(SelMuon_pt[0]>25 && SelMuon_pt[1]>15 && fabs(SelMuon_eta[0])<2.4 && fabs(SelMuon_eta[1])<2.4 && SelMuon_iso[0]<0.25 && SelMuon_iso[1]<0.25){
+        if(HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL==1 || HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL==1 || HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ==1 || HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ==1){
+          MUONMUON=true;
+        }
+      }
+    }
 
-    /*if(!(SelTightJet_pt.size()>=4&&nBCSVM_SL>=2)) {
-      //cout << "Skipping event -> !(#Jets>=4 && #Tags>=2)." << endl;
+
+
+
+
+  /*  cout << "Event number : " << EVENT_event << endl;
+    cout << "Run number : " << EVENT_run << endl;
+    cout << "# Electrons: " << SelElectronMVA_pt.size() << endl;
+    if(SelElectronMVA_pt.size()>0){
+      for(int x=0; x<SelElectronMVA_pt.size(); x++){
+        cout << "index = " << x << endl;
+        cout << "SelElectronMVA_pt = " << SelElectronMVA_pt.at(x) << endl;
+        cout << "fabs(SelElectronMVA_eta) = " << fabs(SelElectronMVA_eta.at(x)) << endl;
+      }
+    }
+    cout << "# Muons: " << SelMuon_pt.size() << endl;
+    if(SelMuon_pt.size()>0){
+      for(int x=0; x<SelMuon_pt.size(); x++){
+        cout << "Index = " << x << endl;
+        cout << "SelMuon_pt = " << SelMuon_pt.at(x) << endl;
+        cout << "fabs(SelMuon_eta) = " << fabs(SelMuon_eta[x]) << endl;
+        cout << "SelMuon_iso[0] = " << SelMuon_iso[x] << endl;
+      }
+    }
+    cout << "# Jets " << SelTightJet_pt.size() << endl;
+    if(SelTightJet_pt.size()>0){
+      for(int x=0; x<SelTightJet_pt.size(); x++)
+      cout << "SelTightJet_pt = " << SelTightJet_pt.at(x) << endl;
+    }
+    cout << "# SL b-tag = " << nBCSVM_SL << endl;
+    cout << "# DL b-tag = " << nBCSVM_DL << endl;*/
+
+
+
+
+
+    if(!MUON && !ELECTRON && !ELEL && !MUONMUON && !ELMUON){
       continue;
     }
-    if(!((SelTightJet_pt.size()>5&&nBCSVM_SL>1) || (SelTightJet_pt.size()==5&&nBCSVM_SL>3) || (SelTightJet_pt.size()==4&&nBCSVM_SL>2))) {
-      //cout << "Skipping event -> not in 5jinc 1binc, 5jexc 3binc or 4jexc 2b inc." << endl;
-      continue;
-    }*/
-    //    if(len(SelTightJet_pt)>=4 and nBCSVM_SL>=2):
+    if(MUON || ELECTRON){
+      if(!(SelTightJet_pt.size()>=4&&nBCSVM_SL>=2)) {continue;}
+    }
+    if(ELEL || MUONMUON || ELMUON){
+        if(!(SelTightJet_pt.size()>=2)&&nBCSVM_DL>=1){continue;}
+    }
+
+    if((MUON || ELECTRON) && (ELEL||MUONMUON||ELMUON)){
+      cout << "WARNING: Event passes both single lepton and dilepton selections!" << endl;
+      cout << "Event number: " << EVENT_event << endl;
+      cout << "# Electrons: " << SelElectronMVA_pt.size() << endl;
+      cout << "# Muons: " << SelMuon_pt.size() << endl;
+    }
+
+    /*if (std::find(eventNums_passed.begin(), eventNums_passed.end(), EVENT_event) != eventNums_passed.end()){
+      cout << "DUPLICATE EVENT_event number" << endl;
+      cout << "Event number : " << EVENT_event << endl;
+      cout << "Run number : " << EVENT_run << endl;
+      cout << "# Electrons: " << SelElectronMVA_pt.size() << endl;
+      cout << "# Muons: " << SelMuon_pt.size() << endl;
+      cout << "MUON : " << MUON << endl;
+      cout << "ELECTRON : " << ELECTRON << endl;
+      cout << "HLT_IsoMu24 = " << HLT_IsoMu24 << endl;
+      cout << "HLT_IsoTkMu24 = " << HLT_IsoTkMu24 << endl;
+      cout << "HLT_Ele27_eta2p1_WPTight_Gsf = " << HLT_Ele27_eta2p1_WPTight_Gsf << endl;
+      cout << "HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ = " << HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ << endl;
+
+      cout << "HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL = " << HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL << endl;
+      cout << "HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL = " << HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL << endl;
+      cout << "HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ = " << HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ << endl;
+      cout << "HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ = " << HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ << endl;
+      cout << "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL = " << HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL << endl;
+      cout << "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL = " << HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL << endl;
+      cout << "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ = " << HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ << endl;
+      cout << "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ = " << HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ << endl;
+    }
+    else eventNums_passed.push_back(EVENT_event);*/
+
+
+
+
+    /*cout << "MUON : " << MUON << endl;
+    cout << "ELECTRON : " << ELECTRON << endl;
+    cout << "ELEL : " << ELEL << endl;
+    cout << "ELMUON : " << ELMUON << endl;
+    cout << "MUONMUON : " << MUONMUON << endl;
+    cout << "HLT_IsoMu24 = " << HLT_IsoMu24 << endl;
+    cout << "HLT_IsoTkMu24 = " << HLT_IsoTkMu24 << endl;
+    cout << "HLT_Ele27_eta2p1_WPTight_Gsf = " << HLT_Ele27_eta2p1_WPTight_Gsf << endl;
+
+    cout << "HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ = " << HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ << endl;
+    cout << "HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL = " << HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL << endl;
+    cout << "HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL = " << HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL << endl;
+    cout << "HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ = " << HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ << endl;
+    cout << "HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ = " << HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ << endl;
+    cout << "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL = " << HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL << endl;
+    cout << "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL = " << HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL << endl;
+    cout << "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ = " << HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ << endl;
+    cout << "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ = " << HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ << endl;*/
 
     //!!! BDT VARIABLES !!!
     std::vector<TLorentzVector> selectedLeptonP4;
@@ -730,7 +905,7 @@ void SecondStep::Process(char* inFile){
     std::sort(sortedCSV.begin(),sortedCSV.end());
     std::vector<TLorentzVector> selectedTaggedJetP4;
     for(unsigned int j=0; j<selectedJetP4.size(); j++){
-      if(selectedJetCSV_fixed[j]>0.80){
+      if(selectedJetCSV_fixed[j]>bTagWP_DiscrCut){
         selectedTaggedJetP4.push_back(selectedJetP4[j]);
       }
     }
@@ -845,7 +1020,7 @@ void SecondStep::Process(char* inFile){
     int ntags=0;
     for(auto itCSV = selectedJetCSV_fixed.begin() ; itCSV != selectedJetCSV_fixed.end(); ++itCSV){
       if(*itCSV>0) averageCSV_all += *itCSV;
-      if(*itCSV<0.80) continue;
+      if(*itCSV<bTagWP_DiscrCut) continue;
       if(*itCSV<Lowest_btag) Lowest_btag=*itCSV;
       if(*itCSV>0) averageCSV_tagged += *itCSV;
       ntags++;
@@ -857,7 +1032,7 @@ void SecondStep::Process(char* inFile){
     if(Lowest_btag>90) Lowest_btag=-1;
     double csvDev = 0;
     for(auto itCSV = selectedJetCSV_fixed.begin() ; itCSV != selectedJetCSV_fixed.end(); ++itCSV){
-      if(*itCSV<0.80) continue;
+      if(*itCSV<bTagWP_DiscrCut) continue;
       csvDev += pow(*itCSV - averageCSV_tagged,2);
     }
     if(ntags>0) csvDev /= ntags;
@@ -884,20 +1059,8 @@ void SecondStep::Process(char* inFile){
     int bJetness_num_soft_leps = 1;//(int)BJetness_num_soft_leps[0];
     double bJetness_avip3d_val = 0.2;//BJetness_avip3d_val[0];
     //auto result = bdt.GetBDTOutput(
-    /*cout << "BDT input variables: " << endl;
-    cout << "selectedLeptonP4 : " << selectedLeptonP4.size() << endl;
-    cout << "selectedJetP4: " << selectedJetP4.size() << endl;
-    cout << "selectedJetCSV: " << selectedJetCSV.size() << endl;
-    cout << "looseSelectedJetP4: " << looseSelectedJetP4.size() << endl;
-    cout << "looseSelectedJetCSV: " << looseSelectedJetCSV.size() << endl;
-    cout << "metP4: " << metP4.Pt() << endl;
-    cout << "eth_blr : " << eth_blr << endl;*/
 
     double result = bdt.GetBDTOutput(selectedLeptonP4,selectedJetP4,selectedJetCSV,looseSelectedJetP4,looseSelectedJetCSV,metP4,eth_blr);
-    //double result = 1;
-    /*if (result != -2){
-      cout << "bdt result = " << result << endl;
-    }*/
 
     if(!(eth_blr>=0.0 || eth_blr<0.0)) eth_blr=0.001;
     eth_blr = TMath::Log(eth_blr/(1-eth_blr));
@@ -906,8 +1069,6 @@ void SecondStep::Process(char* inFile){
     PUWTool PileupTool;
 
     // AUGMENTED VARIABLES & SFs
-    //cout << "Augmented vairables and SFs" << endl;
-
     if(sample!=0){
       PileupTool.newPUWeight(PUWeight, puweight_,puweightUP_,puweightDOWN_);
       if(MUON==true && ELECTRON==false){
@@ -955,10 +1116,13 @@ void SecondStep::Process(char* inFile){
       else                                   type_ = 2;
     }
     BDT_ = result;
-    //BDT_ = 1;
     NumberOfJets_  = SelTightJet_pt.size();
-    //NumberOfBJets_ = nBCSVM_SL;
-    //NumberOfBJets_ = nBCSVM;
+    if((ELECTRON || MUON) && !(ELEL || ELMUON || MUONMUON)){
+      NumberOfBJets_ = nBCSVM_SL;
+    }
+    if(!(ELECTRON || MUON) && (ELEL || ELMUON || MUONMUON)){
+      NumberOfBJets_ = nBCSVM_DL;
+    }
     all_sum_pt_with_met_ = sum_pt_with_met;
     aplanarity_ = Aplanarity;
     avg_btag_disc_btags_ = averageCSV_tagged;
@@ -998,19 +1162,43 @@ void SecondStep::Process(char* inFile){
     Evt_CSV_Average_ = averageCSV_all;
     Evt_Deta_JetsAverage_ = detaJetsAverage;
     blr_ = eth_blr;
-    //cout << "Filling event in output" << endl;
     newtree->Fill();
     neventsfilled = neventsfilled +1;
 
+
+    /*if(EVENT_event==8191792){
+      cout << "================================="<< endl;
+      cout << "Event number : " << EVENT_event << endl;
+      cout << "Run number : " << EVENT_run << endl;
+      cout << "# Electrons: " << SelElectronMVA_pt.size() << endl;
+      cout << "# Muons: " << SelMuon_pt.size() << endl;
+      cout << "MUON : " << MUON << endl;
+      cout << "ELECTRON : " << ELECTRON << endl;
+      cout << "HLT_IsoMu24 = " << HLT_IsoMu24 << endl;
+      cout << "HLT_IsoTkMu24 = " << HLT_IsoTkMu24 << endl;
+      cout << "HLT_Ele27_eta2p1_WPTight_Gsf = " << HLT_Ele27_eta2p1_WPTight_Gsf << endl;
+      cout << "HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ = " << HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ << endl;
+      cout << "HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL = " << HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL << endl;
+      cout << "HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL = " << HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL << endl;
+      cout << "HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ = " << HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ << endl;
+      cout << "HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ = " << HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ << endl;
+      cout << "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL = " << HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL << endl;
+      cout << "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL = " << HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL << endl;
+      cout << "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ = " << HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ << endl;
+      cout << "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ = " << HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ << endl;
+
+      cout << "NumberOfJets_ = " << NumberOfJets_ << endl;
+      cout << "NumberOfBJets_ = " << NumberOfBJets_ << endl;
+      cout << "first_jet_pt_ = " << first_jet_pt_ << endl;
+      cout << "second_jet_pt_ = " << second_jet_pt_ << endl;
+      cout << "third_jet_pt_ = " << third_jet_pt_ << endl;
+      cout << "fourth_jet_pt_ = " << fourth_jet_pt_ << endl;
+    }*/
   }
   cout << "events filled : " << neventsfilled << endl;
   std::cout << "SecondStep.cc:: Print and save newtree." << std::endl;
   cout << "SecondStep was run on Input file: " << Input << endl;
   cout << "Output in file: " << Output << endl;
-  //newtree->Print();
-  //newtree->AutoSave();
-  //newevtree->Print();
-  //newevtree->AutoSave();
   newfile->Write();
   oldfile->Close();
   newfile->Close();
@@ -1042,15 +1230,15 @@ int main(int argc, char* argv[]){
     string inputFullPath = inPathString+infilename+suffix;
     cout << "string " << inputFullPath << endl;
     Input = inputFullPath.c_str();
-    ifstream inputFile (Input);
+    ifstream inputFile(Input);
 
 
     if(!inputFile.is_open()){
-      cout << "File " << inputFile << " could not be openend!"<<endl;
+      std::cout << "File " << Input << " could not be openend!"<< std::endl;
       exit(0);
     }
     else{
-      cout << "File " << inputFile << " opened successfully!"<<endl;;
+      cout << "File " << Input << " opened successfully!"<<endl;;
     }
   }
 
