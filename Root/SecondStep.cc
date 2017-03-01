@@ -200,7 +200,10 @@ void SecondStep::Process(char* inFile){
   oldtree->SetBranchStatus("Flag_CSCTightHalo2015Filter",1);
   oldtree->SetBranchStatus("Flag_EcalDeadCellTriggerPrimitiveFilter",1);
   oldtree->SetBranchStatus("Flag_goodVertices",1);
-
+  oldtree->SetBranchStatus("Flag_globalTightHalo2016Filter",1);
+  oldtree->SetBranchStatus("Flag_eeBadScFilter",1);
+  oldtree->SetBranchStatus("EVENT_filterBadGlobalMuonTagger",1);
+  oldtree->SetBranchStatus("EVENT_filtercloneGlobalMuonTagger",1);
 
   if(sample==1 || sample==2){
     oldtree->SetBranchStatus("ttHFCategory",1);
@@ -454,11 +457,17 @@ void SecondStep::Process(char* inFile){
   double Met_type1PF_px = -99.;
   double Met_type1PF_py = -99.;
   double Met_type1PF_phi = -99.;
-  double Flag_HBHENoiseFilter = -99;
-  double Flag_HBHENoiseIsoFilter = -99;
-  double Flag_CSCTightHalo2015Filter = -99;
-  double Flag_EcalDeadCellTriggerPrimitiveFilter = -99;
-  double Flag_goodVertices = -99;
+  int Flag_CSCTightHalo2015Filter = -99;
+
+  int Flag_goodVertices = -99;
+  int Flag_globalTightHalo2016Filter = -99;
+  int Flag_HBHENoiseFilter = -99;
+  int Flag_HBHENoiseIsoFilter = -99;
+  int Flag_EcalDeadCellTriggerPrimitiveFilter = -99;
+  int Flag_eeBadScFilter = -99;
+  bool EVENT_filterBadGlobalMuonTagger = 0;
+  bool EVENT_filtercloneGlobalMuonTagger = 0;
+
   vector<double>* Gen_pt=0;
   vector<double>* Gen_eta=0;
   vector<double>* Gen_phi=0;
@@ -469,6 +478,10 @@ void SecondStep::Process(char* inFile){
   vector<double>* pvertex_z=0;
   TBranch *b_HLT_IsoMu22,*b_HLT_IsoMu24,*b_HLT_IsoTkMu24,*b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL,*b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,*b_HLT_IsoTkMu22,*b_HLT_Ele27_eta2p1_WPTight_Gsf,*b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL,*b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ,*b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL,*b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ,*b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL,*b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ,*b_HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,*b_ttHFCategory,*b_EVENT_event,*b_EVENT_run,*b_EVENT_lumiBlock,*b_Met_type1PF_pt,*b_Met_type1PF_px,*b_Met_type1PF_py,*b_Met_type1PF_phi,*b_EVENT_Q2tthbbWeightUp,*b_EVENT_Q2tthbbWeightDown,*b_EVENT_PDFtthbbWeightUp,*b_EVENT_PDFtthbbWeightDown,*b_PUWeight,*b_Gen_pt,*b_Gen_eta,*b_Gen_phi,*b_Gen_pdg_id,*b_Gen_motherpdg_id,*b_trueInteractions,*b_pvertex_ndof,*b_pvertex_z,*b_pvertex_Rho;
   TBranch *b_Flag_HBHENoiseFilter,*b_Flag_HBHENoiseIsoFilter,*b_Flag_CSCTightHalo2015Filter,*b_Flag_EcalDeadCellTriggerPrimitiveFilter,*b_Flag_goodVertices;
+  TBranch *b_Flag_globalTightHalo2016Filter;
+  TBranch *b_Flag_eeBadScFilter;
+  TBranch *b_EVENT_filterBadGlobalMuonTagger;
+  TBranch *b_EVENT_filtercloneGlobalMuonTagger;
   oldtree->SetBranchAddress("HLT_IsoMu22",&HLT_IsoMu22,&b_HLT_IsoMu22);
   oldtree->SetBranchAddress("HLT_IsoTkMu22",&HLT_IsoTkMu22,&b_HLT_IsoTkMu22);
   oldtree->SetBranchAddress("HLT_IsoMu24",&HLT_IsoMu24,&b_HLT_IsoMu24);
@@ -510,6 +523,10 @@ void SecondStep::Process(char* inFile){
   oldtree->SetBranchAddress("Flag_CSCTightHalo2015Filter",&Flag_CSCTightHalo2015Filter,&b_Flag_CSCTightHalo2015Filter);
   oldtree->SetBranchAddress("Flag_EcalDeadCellTriggerPrimitiveFilter",&Flag_EcalDeadCellTriggerPrimitiveFilter,&b_Flag_EcalDeadCellTriggerPrimitiveFilter);
   oldtree->SetBranchAddress("Flag_goodVertices",&Flag_goodVertices,&b_Flag_goodVertices);
+  oldtree->SetBranchAddress("Flag_globalTightHalo2016Filter",&Flag_globalTightHalo2016Filter,&b_Flag_globalTightHalo2016Filter);
+  oldtree->SetBranchAddress("Flag_eeBadScFilter",&Flag_eeBadScFilter,&b_Flag_eeBadScFilter);
+  oldtree->SetBranchAddress("EVENT_filterBadGlobalMuonTagger",&EVENT_filterBadGlobalMuonTagger,&b_EVENT_filterBadGlobalMuonTagger);
+  oldtree->SetBranchAddress("EVENT_filtercloneGlobalMuonTagger",&EVENT_filtercloneGlobalMuonTagger,&b_EVENT_filtercloneGlobalMuonTagger);
   oldtree->SetBranchAddress("pvertex_ndof",&pvertex_ndof,&b_pvertex_ndof);
   oldtree->SetBranchAddress("pvertex_z",&pvertex_z,&b_pvertex_z);
   oldtree->SetBranchAddress("pvertex_Rho",&pvertex_Rho,&b_pvertex_Rho);
@@ -545,11 +562,9 @@ void SecondStep::Process(char* inFile){
     }
 
     //DONT FORGET TO REMOVE THIS!!!!!!!
-    //if(EVENT_event!=47021987){continue;}
+    //if(EVENT_event!=69153022 && EVENT_event!=23826934 && EVENT_event!=72365857 && EVENT_event!=3113829 && EVENT_event!=598118 && EVENT_event!=16003367 && EVENT_event!=35266726 && EVENT_event!=35266726){continue;}
     //else cout << "EVENT_event = " << EVENT_event << endl;
-    //if(EVENT_event!=41608676 && EVENT_event!=315650 && EVENT_event!=3113715 && EVENT_event!=57121951 && EVENT_event!=3113505 && EVENT_event!=57121941 && EVENT_event!=315755 && EVENT_event!=57122067){
-    //  continue;
-    //}
+    //if(EVENT_event!=57122020 && EVENT_event!=10718174 && EVENT_event!=47021987){continue;}
     //DONT FORGET TO REMOVE THIS!!!!!!!
 
     if(sample==1 || sample==2){
@@ -765,7 +780,7 @@ void SecondStep::Process(char* inFile){
 
 
 
-  /*  cout << "Event number : " << EVENT_event << endl;
+    cout << "Event number : " << EVENT_event << endl;
     cout << "Run number : " << EVENT_run << endl;
     cout << "# Electrons: " << SelElectronMVA_pt.size() << endl;
     if(SelElectronMVA_pt.size()>0){
@@ -784,16 +799,16 @@ void SecondStep::Process(char* inFile){
         cout << "SelMuon_iso[0] = " << SelMuon_iso[x] << endl;
       }
     }
-    cout << "# Jets " << SelTightJet_pt.size() << endl;
+
+    cout << "# Tight Jets = " << SelTightJet_pt.size() << endl;
+    cout << "# Loose Jets = " << SelJet_pt.size() << endl;
+
     if(SelTightJet_pt.size()>0){
       for(int x=0; x<SelTightJet_pt.size(); x++)
       cout << "SelTightJet_pt = " << SelTightJet_pt.at(x) << endl;
     }
     cout << "# SL b-tag = " << nBCSVM_SL << endl;
-    cout << "# DL b-tag = " << nBCSVM_DL << endl;*/
-
-
-
+    cout << "# DL b-tag = " << nBCSVM_DL << endl;
 
 
     if(!MUON && !ELECTRON && !ELEL && !MUONMUON && !ELMUON){
@@ -814,7 +829,6 @@ void SecondStep::Process(char* inFile){
     }
 
     /*if (std::find(eventNums_passed.begin(), eventNums_passed.end(), EVENT_event) != eventNums_passed.end()){
-      cout << "DUPLICATE EVENT_event number" << endl;
       cout << "Event number : " << EVENT_event << endl;
       cout << "Run number : " << EVENT_run << endl;
       cout << "# Electrons: " << SelElectronMVA_pt.size() << endl;
@@ -840,7 +854,7 @@ void SecondStep::Process(char* inFile){
 
 
 
-    /*cout << "MUON : " << MUON << endl;
+    cout << "MUON : " << MUON << endl;
     cout << "ELECTRON : " << ELECTRON << endl;
     cout << "ELEL : " << ELEL << endl;
     cout << "ELMUON : " << ELMUON << endl;
@@ -857,7 +871,17 @@ void SecondStep::Process(char* inFile){
     cout << "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL = " << HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL << endl;
     cout << "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL = " << HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL << endl;
     cout << "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ = " << HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ << endl;
-    cout << "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ = " << HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ << endl;*/
+    cout << "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ = " << HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ << endl;
+
+    cout << "===== MET Filters =====" << endl;
+    cout << "Flag_HBHENoiseFilter = " << Flag_HBHENoiseFilter << endl;
+    cout << "Flag_HBHENoiseIsoFilter = " << Flag_HBHENoiseIsoFilter << endl;
+    cout << "Flag_EcalDeadCellTriggerPrimitiveFilter = " << Flag_EcalDeadCellTriggerPrimitiveFilter << endl;
+    cout << "Flag_goodVertices = " << Flag_goodVertices << endl;
+    cout << "Flag_globalTightHalo2016Filter = " << Flag_globalTightHalo2016Filter << endl;
+    cout << "Flag_eeBadScFilter = " << Flag_eeBadScFilter << endl;
+    cout << "EVENT_filterBadGlobalMuonTagger = " << EVENT_filterBadGlobalMuonTagger << endl;
+    cout << "EVENT_filtercloneGlobalMuonTagger = " << EVENT_filtercloneGlobalMuonTagger << endl;
 
     //!!! BDT VARIABLES !!!
     std::vector<TLorentzVector> selectedLeptonP4;
