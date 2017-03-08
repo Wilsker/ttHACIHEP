@@ -68,6 +68,8 @@ void SecondStep::Process(char* inFile){
   else if(infilename.find("ttjets")!=std::string::npos){sample=2;}
   else{sample=0;}
 
+  int data_type = -99;
+
   string inputFullPath = inPathString+infilename+suffix;
   const char* Input = inputFullPath.c_str();
 
@@ -94,12 +96,17 @@ void SecondStep::Process(char* inFile){
   oldtree->SetBranchStatus("Jet_eta",1);
   oldtree->SetBranchStatus("Jet_phi",1);
   oldtree->SetBranchStatus("Jet_mass",1);
+  oldtree->SetBranchStatus("Jet_energy",1);
   oldtree->SetBranchStatus("Jet_JesSF",1);
   oldtree->SetBranchStatus("Jet_JerSF",1);
   oldtree->SetBranchStatus("Jet_JesSFup",1);
   oldtree->SetBranchStatus("Jet_JerSFup",1);
   oldtree->SetBranchStatus("Jet_JesSFdown",1);
   oldtree->SetBranchStatus("Jet_JerSFdown",1);
+  oldtree->SetBranchStatus("Jet_genpt",1);
+  oldtree->SetBranchStatus("Jet_geneta",1);
+  oldtree->SetBranchStatus("Jet_genphi",1);
+  oldtree->SetBranchStatus("Jet_genenergy",1);
   oldtree->SetBranchStatus("Jet_newpfCombinedInclusiveSecondaryVertexV2BJetTags",1);
   oldtree->SetBranchStatus("Jet_pfCombinedInclusiveSecondaryVertexV2BJetTags",1);
   oldtree->SetBranchStatus("Jet_neutralHadEnergyFraction",1);
@@ -353,6 +360,11 @@ void SecondStep::Process(char* inFile){
   vector<double>* Jet_Uncorr_pt=0;
   vector<double>* Jet_eta=0;
   vector<double>* Jet_phi=0;
+  vector<double>* Jet_energy=0;
+  vector<double>* Jet_genpt=0;
+  vector<double>* Jet_geneta=0;
+  vector<double>* Jet_genphi=0;
+  vector<double>* Jet_genenergy=0;
   vector<double>* Jet_newpfCombinedInclusiveSecondaryVertexV2BJetTags=0;
   vector<double>* Jet_pfCombinedInclusiveSecondaryVertexV2BJetTags=0;
   vector<double>* Jet_neutralHadEnergyFraction=0;
@@ -368,12 +380,18 @@ void SecondStep::Process(char* inFile){
   vector<double>* Jet_JerSFup=0;
   vector<double>* Jet_JesSFdown=0;
   vector<double>* Jet_JerSFdown=0;
-  TBranch *b_Jet_pt,*b_Jet_Uncorr_pt,*b_Jet_eta,*b_Jet_phi,*b_Jet_neutralHadEnergyFraction,*b_Jet_chargedEmEnergyFraction,*b_Jet_neutralEmEnergyFraction,*b_Jet_mass,*b_Jet_JesSF,*b_Jet_JesSFup,*b_Jet_JesSFdown;
+  TBranch *b_Jet_pt,*b_Jet_Uncorr_pt,*b_Jet_eta,*b_Jet_phi,*b_Jet_energy,*b_Jet_neutralHadEnergyFraction,*b_Jet_chargedEmEnergyFraction,*b_Jet_neutralEmEnergyFraction,*b_Jet_mass,*b_Jet_JesSF,*b_Jet_JesSFup,*b_Jet_JesSFdown;
   TBranch *b_Jet_newpfCombinedInclusiveSecondaryVertexV2BJetTags,*b_Jet_pfCombinedInclusiveSecondaryVertexV2BJetTags,*b_Jet_numberOfConstituents,*b_Jet_chargedHadronEnergyFraction,*b_Jet_chargedMultiplicity,*b_Jet_JerSF,*b_Jet_JerSFup,*b_Jet_JerSFdown;
+  TBranch *b_Jet_genpt, *b_Jet_geneta, *b_Jet_genphi, *b_Jet_genenergy;
   oldtree->SetBranchAddress("Jet_pt", &Jet_pt, &b_Jet_pt);
   oldtree->SetBranchAddress("Jet_Uncorr_pt", &Jet_Uncorr_pt, &b_Jet_Uncorr_pt);
   oldtree->SetBranchAddress("Jet_eta", &Jet_eta, &b_Jet_eta);
   oldtree->SetBranchAddress("Jet_phi", &Jet_phi, &b_Jet_phi);
+  oldtree->SetBranchAddress("Jet_energy", &Jet_energy, &b_Jet_energy);
+  oldtree->SetBranchAddress("Jet_genpt", &Jet_genpt, &b_Jet_genpt);
+  oldtree->SetBranchAddress("Jet_geneta", &Jet_geneta, &b_Jet_geneta);
+  oldtree->SetBranchAddress("Jet_genphi", &Jet_genphi, &b_Jet_genphi);
+  oldtree->SetBranchAddress("Jet_genenergy", &Jet_genenergy, &b_Jet_genenergy);
   oldtree->SetBranchAddress("Jet_newpfCombinedInclusiveSecondaryVertexV2BJetTags", &Jet_newpfCombinedInclusiveSecondaryVertexV2BJetTags, &b_Jet_newpfCombinedInclusiveSecondaryVertexV2BJetTags);
   oldtree->SetBranchAddress("Jet_pfCombinedInclusiveSecondaryVertexV2BJetTags", &Jet_pfCombinedInclusiveSecondaryVertexV2BJetTags, &b_Jet_pfCombinedInclusiveSecondaryVertexV2BJetTags);
   oldtree->SetBranchAddress("Jet_neutralHadEnergyFraction", &Jet_neutralHadEnergyFraction, &b_Jet_neutralHadEnergyFraction);
@@ -560,11 +578,10 @@ void SecondStep::Process(char* inFile){
     if(i % 1000 == 0){
       cout << "Entry: " << i << endl;
     }
-
+    //cout << "Entry: " << i << endl;
     //DONT FORGET TO REMOVE THIS!!!!!!!
-    //if(EVENT_event!=69153022 && EVENT_event!=23826934 && EVENT_event!=72365857 && EVENT_event!=3113829 && EVENT_event!=598118 && EVENT_event!=16003367 && EVENT_event!=35266726 && EVENT_event!=35266726){continue;}
-    //else cout << "EVENT_event = " << EVENT_event << endl;
-    //if(EVENT_event!=57122020 && EVENT_event!=10718174 && EVENT_event!=47021987){continue;}
+    //if(EVENT_event!=3222742 && EVENT_event!=3278733 && EVENT_event!=2602188){continue;}
+    //cout << "EVENT_event = " << EVENT_event << endl;
     //DONT FORGET TO REMOVE THIS!!!!!!!
 
     if(sample==1 || sample==2){
@@ -593,16 +610,14 @@ void SecondStep::Process(char* inFile){
     }
 
     // Primary Vertex must fulfill vertex selection.
+    //cout << "pvertex_ndof size = " << pvertex_ndof->size() << endl;
+    if(pvertex_ndof->size()<1){continue;}
 
     if(pvertex_ndof->at(0)<=4 && abs(pvertex_Rho->at(0))>=24 && abs(pvertex_z->at(0))>=2) {
-      cout << "NDOF = " << pvertex_ndof->at(0) << endl;
-      cout << "Rho = " << abs(pvertex_Rho->at(0)) << endl;
-      cout << "z = " << abs(pvertex_z->at(0)) << endl;
-      cout << "PV failed vertex selection" << endl;
       continue;
     }
 
-    // LEPTON SELECTION - MUON
+    // MUON SELECTION
     // - Selects veto/subleading muons to perform overlap removal.
     vector<double> SelMuon_pt,SelMuon_eta,SelMuon_phi,SelMuon_iso,SelMuon_energy;
     for (UInt_t j = 0; j < Muon_pt->size(); ++j){
@@ -616,34 +631,23 @@ void SecondStep::Process(char* inFile){
       SelMuon_energy.push_back(Muon_energy->at(j));
       SelMuon_iso.push_back(Muon_relIsoDeltaBetaR04->at(j));
     }
-    // LEPTON SELECTION - ELECTRON
+    // ELECTRON SELECTION
     // - Selects veto/subleading electrons to perform overlap removal.
     vector<double> SelElectronMVA_pt,SelElectronMVA_eta,SelElectronMVA_phi,SelElectronMVA_energy,SelElectronMVA_iso;
     for (UInt_t j = 0; j < patElectron_pt->size(); ++j){
-      /*cout << " ============ Index " << j << "================" << endl;
-      cout << "patElectron_pt->at(j) = " << patElectron_pt->at(j) << endl;
-      cout << "patElectron_SCeta->at(j) = " << patElectron_SCeta->at(j) << endl;
-      cout << "fabs(patElectron_eta->at(j)) = " << fabs(patElectron_eta->at(j)) << endl;
-      cout << "patElectron_inCrack->at(j) = " << patElectron_inCrack->at(j) << endl;
-      cout << "patElectron_isPassMedium->at(j) = " << patElectron_isPassMedium->at(j) << endl;
-      cout << "patElectron_gsfTrack_dz_pv : " << patElectron_gsfTrack_dz_pv->at(j) << endl;
-      cout << "patElectron_d0 : " << patElectron_d0->at(j) << endl;*/
-      if(!(patElectron_pt->at(j)>15))               continue;
-      if(!(fabs(patElectron_eta->at(j))<2.4))	    continue;
-      if(!(patElectron_inCrack->at(j)==0))	    continue;
+      if(!(patElectron_pt->at(j)>15)) continue;
+      if(!(fabs(patElectron_eta->at(j))<2.4)) continue;
+      if(!(patElectron_inCrack->at(j)==0)) continue;
       if(!(patElectron_isPassMedium->at(j)==1)) continue;
-      //Barrel impact parameter cuts
-      if(fabs(patElectron_SCeta->at(j))<=1.479){
-        if(fabs(patElectron_gsfTrack_dz_pv->at(j))>0.10) continue;
+      if(fabs(patElectron_SCeta->at(j))<=1.479){//Barrel impact parameter cuts
         if(fabs(patElectron_d0->at(j))>0.05) continue;
+        if(fabs(patElectron_gsfTrack_dz_pv->at(j))>0.10) continue;
       }
-      //End-cap impact parameter cuts
-      if(fabs(patElectron_SCeta->at(j))>1.479){
-        if(fabs(patElectron_gsfTrack_dz_pv->at(j))>0.20) continue;
+      if(fabs(patElectron_SCeta->at(j))>1.479){//End-cap impact parameter cuts
         if(fabs(patElectron_d0->at(j))>0.10) continue;
+        if(fabs(patElectron_gsfTrack_dz_pv->at(j))>0.20) continue;
       }
-      if(!(patElectron_relIsoRhoEA->at(j)<0.15))    continue;
-      //cout << "patElectron_isPassMvanontrig->at(j) = " << patElectron_isPassMvanontrig->at(j) << endl;
+      //if(!(patElectron_relIsoRhoEA->at(j)<0.15))    continue;
       SelElectronMVA_pt.push_back(patElectron_pt->at(j));
       SelElectronMVA_eta.push_back(patElectron_eta->at(j));
       SelElectronMVA_phi.push_back(patElectron_phi->at(j));
@@ -651,58 +655,75 @@ void SecondStep::Process(char* inFile){
       SelElectronMVA_iso.push_back(patElectron_relIsoRhoEA->at(j));
     }
 
+    //cout << "Event number : " << EVENT_event << endl;
+    //cout << "Run number : " << EVENT_run << endl;
+
     // JET SELECTION:
     // Subleading Jets in event.
     // Leading Jets in event.
     vector<double> SelJet_pt,SelJet_eta,SelJet_phi,SelJet_mass,SelJet_pfCombinedInclusiveSecondaryVertexV2BJetTags;
     vector<double> SelTightJet_pt,SelTightJet_eta,SelTightJet_phi,SelTightJet_mass,SelTightJet_pfCombinedInclusiveSecondaryVertexV2BJetTags;
+
+    //cout << "Gen jet size = " << Jet_genpt->size() << endl;
+    //cout << "Reco jet size = " << Jet_pt->size() << endl;
     for (UInt_t j = 0; j < Jet_pt->size(); ++j){
       //Jet_Uncorr_pt here should be uncorrected Jet_Uncorr_pt from BSMFramework.
+
       double jet_pt = Jet_Uncorr_pt->at(j)*Jet_JesSF->at(j)*Jet_JerSF->at(j);
+      /*TLorentzVector reco_jet;
+      TLorentzVector gen_jet;
+      reco_jet.SetPtEtaPhiE(Jet_Uncorr_pt->at(j)*Jet_JesSF->at(j),Jet_eta->at(j), Jet_phi->at(j),Jet_energy->at(j));
+      gen_jet.SetPtEtaPhiE(Jet_genpt->at(j),Jet_geneta->at(j),Jet_genphi->at(j),Jet_genenergy->at(j));
+      double dR_reco_gen = reco_jet.DeltaR(gen_jet);*/
+
+      /*cout << "Jet Index = " << j << endl;
+      cout << "Reco. uncorrected jet pt = " << Jet_Uncorr_pt->at(j) << endl;
+      cout << "JES SF = " << Jet_JesSF->at(j) << endl;
+      cout << "JER SF = " << Jet_JerSF->at(j) << endl;
+      cout << "Reco. corrected jet pt = " << jet_pt << endl;
+      cout << "Reco. jet eta = " << Jet_eta->at(j) << endl;
+      cout << "Reco. jet csv = " << Jet_pfCombinedInclusiveSecondaryVertexV2BJetTags->at(j) << endl;*/
+      /*cout << "Jet_genpt = " << Jet_genpt->at(j) << endl;
+      cout << "Jet_geneta = " << Jet_geneta->at(j) << endl;
+      cout << "Jet_genphi = " << Jet_genphi->at(j) << endl;
+      cout << "dR(Reco.,Gen.) = " << dR_reco_gen << endl;*/
+
       if(!(jet_pt>20)) continue;
       if(!(fabs(Jet_eta->at(j))<2.4)) continue;
-
-      //Jet ID Loose
+      // Jet kinematic & loose ID requirements
       if(!(Jet_neutralHadEnergyFraction->at(j)<0.99)) continue;
-      if(!(Jet_neutralEmEnergyFraction->at(j)<0.99)) continue;
-      if(!(Jet_numberOfConstituents->at(j)>1)) continue;
-      if(!(Jet_chargedEmEnergyFraction->at(j)<0.99)) continue;
       if(!(Jet_chargedHadronEnergyFraction->at(j)>0.0)) continue;
+      if(!(Jet_neutralEmEnergyFraction->at(j)<0.99)) continue;
+      if(!(Jet_chargedEmEnergyFraction->at(j)<0.99)) continue;
+      if(!(Jet_numberOfConstituents->at(j)>1)) continue;
       if(!(Jet_chargedMultiplicity->at(j)>0.0)) continue;
-
-      //TLorentzVector temp_jet;
-      //temp_jet.SetPtEtaPhiM(jet_pt,Jet_eta->at(j),Jet_phi->at(j),Jet_mass->at(j));
-      bool deltaRJetLepBoolean = true;
+      bool deltaRJetLepBoolean = false;
       for (UInt_t k = 0; k < SelMuon_pt.size(); ++k){
-        //TLorentzVector temp_muon;
-        //temp_muon.SetPtEtaPhiE(SelMuon_pt[k],SelMuon_eta[k],SelMuon_phi[k],SelMuon_energy[k]);
-        //cout << "DeltaR(Jet,muon) = " << temp_jet.DeltaR(temp_muon) << endl;
         float deltaEta = SelMuon_eta[k]-Jet_eta->at(j);
         float deltaPhi = fabs(SelMuon_phi[k]-Jet_phi->at(j));
         if(deltaPhi>=TMath::Pi()) deltaPhi = 2*TMath::Pi() - deltaPhi;
-        if(sqrt(deltaEta*deltaEta + deltaPhi*deltaPhi)<=0.4) deltaRJetLepBoolean=false;
+        if(sqrt(deltaEta*deltaEta + deltaPhi*deltaPhi)<=0.4) deltaRJetLepBoolean=true;
       }
       for (UInt_t k = 0; k < SelElectronMVA_pt.size(); ++k){
-        //TLorentzVector temp_el;
-        //temp_el.SetPtEtaPhiE(SelElectronMVA_pt[k],SelElectronMVA_eta[k],SelElectronMVA_phi[k],SelElectronMVA_energy[k]);
-        //cout << "DeltaR(Jet,el) = " << temp_jet.DeltaR(temp_el) << endl;
         float deltaEta = SelElectronMVA_eta[k]-Jet_eta->at(j);
         float deltaPhi = fabs(SelElectronMVA_phi[k]-Jet_phi->at(j));
         if(deltaPhi>=TMath::Pi()) deltaPhi = 2*TMath::Pi() - deltaPhi;
-        if(sqrt(deltaEta*deltaEta + deltaPhi*deltaPhi)<=0.4) deltaRJetLepBoolean=false;
+        if(sqrt(deltaEta*deltaEta + deltaPhi*deltaPhi)<=0.4) deltaRJetLepBoolean=true;
       }
-      if(deltaRJetLepBoolean){
-        SelJet_pt.push_back(jet_pt);//<<<<< Changed from Jet_pt->at(j)
+      if(!deltaRJetLepBoolean){
+        SelJet_pt.push_back(jet_pt);
         SelJet_eta.push_back(Jet_eta->at(j));
         SelJet_phi.push_back(Jet_phi->at(j));
         SelJet_mass.push_back(Jet_mass->at(j));
         SelJet_pfCombinedInclusiveSecondaryVertexV2BJetTags.push_back(Jet_pfCombinedInclusiveSecondaryVertexV2BJetTags->at(j));
+        //cout << "Jet passed loose selection" << endl;
         if(!(jet_pt>30)) continue;
         SelTightJet_pt.push_back(jet_pt);
         SelTightJet_eta.push_back(Jet_eta->at(j));
         SelTightJet_phi.push_back(Jet_phi->at(j));
         SelTightJet_mass.push_back(Jet_mass->at(j));
         SelTightJet_pfCombinedInclusiveSecondaryVertexV2BJetTags.push_back(Jet_pfCombinedInclusiveSecondaryVertexV2BJetTags->at(j));
+        //cout << "============== Jet passed tight selection ==============" << endl;
       }
     }
 
@@ -733,56 +754,115 @@ void SecondStep::Process(char* inFile){
     bool MUONMUON = false;
     bool ELMUON = false;
 
+    double leadEl_ptcut_SL = 30;
+    double leadEl_absetacut_SL = 2.1;
+
+    double leadMu_ptcut_SL = 26;
+    double leadMu_absetacut_SL = 2.1;
+    double leadMu_isocut_SL = 0.15;
+
+    double leadEl_ptcut_DL = 25;
+    double leadEl_absetacut_DL = 2.4;
+
+    double leadMu_ptcut_DL = 25;
+    double leadMu_absetacut_DL = 2.4;
+    double leadMu_isocut_DL = 0.25;
+
+    double subleadEl_ptcut_DL = 15;
+    double subleadEl_absetacut_DL = 2.4;
+
+    double subleadMu_ptcut_DL = 15;
+    double subleadMu_absetacut_DL = 2.4;
+    double subleadMu_isocut_DL = 0.25;
+
+    double invMcut_DL = 20;
+
     if(SelMuon_pt.size()==1 && SelElectronMVA_pt.size()==0){// # leptons
-      if(SelMuon_pt[0]>26 && fabs(SelMuon_eta[0])<2.1 && SelMuon_iso[0]<0.15){// lepton kinematics
+      if(SelMuon_pt[0]>leadMu_ptcut_SL && fabs(SelMuon_eta[0])<leadMu_absetacut_SL && SelMuon_iso[0]<leadMu_isocut_SL){// lepton kinematics
         if((HLT_IsoMu24==1 || HLT_IsoTkMu24==1)){// Triggers
           MUON=true;
         }
       }
     }
     if(SelElectronMVA_pt.size()==1 && SelMuon_pt.size()==0) {// # leptons
-      if(SelElectronMVA_pt[0]>30 && fabs(SelElectronMVA_eta[0])<2.1){// lepton kinematics
+      if(SelElectronMVA_pt[0]>leadEl_ptcut_SL && fabs(SelElectronMVA_eta[0])<leadEl_absetacut_SL){// lepton kinematics
         if(HLT_Ele27_eta2p1_WPTight_Gsf==1){// Triggers
           ELECTRON=true;
         }
       }
     }
     if(SelElectronMVA_pt.size()==2&&SelMuon_pt.size()==0){// # leptons
-      if(SelElectronMVA_pt[0]>25&&SelElectronMVA_pt[1]>15 && fabs(SelElectronMVA_eta[0])<2.4 && fabs(SelElectronMVA_eta[1])<2.4){// lepton kinematics
+      if(SelElectronMVA_pt[0]>leadEl_ptcut_DL && SelElectronMVA_pt[1]>subleadEl_ptcut_DL && fabs(SelElectronMVA_eta[0])<leadEl_absetacut_DL && fabs(SelElectronMVA_eta[1])<subleadEl_absetacut_DL){// lepton kinematics
         if(HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ==1){// Triggers
-          ELEL=true;
+          TLorentzVector temp_lep1;
+          TLorentzVector temp_lep2;
+          temp_lep1.SetPtEtaPhiE(SelElectronMVA_pt[0],SelElectronMVA_eta[0],SelElectronMVA_phi[0],SelElectronMVA_energy[0]);
+          temp_lep2.SetPtEtaPhiE(SelElectronMVA_pt[1],SelElectronMVA_eta[1],SelElectronMVA_phi[1],SelElectronMVA_energy[1]);
+          double dilep = (temp_lep1+temp_lep2).M();
+          //if(dilep>invMcut_DL && (dilep<76 || dilep>106)){
+            //if(Met_type1PF_pt>40){
+              ELEL=true;
+            //}
+          //}
         }
       }
     }
     if(SelElectronMVA_pt.size()==1 && SelMuon_pt.size()==1) {
-      if(SelElectronMVA_pt[0]>25 && fabs(SelElectronMVA_eta[0])<2.4 && SelMuon_pt[0]>15 && fabs(SelMuon_eta[0])<2.4 && SelMuon_iso[0]<0.25){
+      if(SelElectronMVA_pt[0]>leadEl_ptcut_DL && fabs(SelElectronMVA_eta[0])<leadEl_absetacut_DL && SelMuon_pt[0]>subleadMu_ptcut_DL && fabs(SelMuon_eta[0])<subleadMu_absetacut_DL && SelMuon_iso[0]<subleadMu_isocut_DL){
         if(HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL==1 || HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL==1 || HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ==1 || HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ==1){
-          ELMUON=true;
+          TLorentzVector temp_lep1;
+          TLorentzVector temp_lep2;
+          temp_lep1.SetPtEtaPhiE(SelElectronMVA_pt[0],SelElectronMVA_eta[0],SelElectronMVA_phi[0],SelElectronMVA_energy[0]);
+          temp_lep2.SetPtEtaPhiE(SelMuon_pt[0],SelMuon_eta[0],SelMuon_phi[0],SelMuon_energy[0]);
+          double M_ll = (temp_lep1+temp_lep2).M();
+          //cout << "M_ll = " << M_ll << endl;
+          //if(M_ll>invMcut_DL&& (M_ll<76 || M_ll>106)){
+            //cout << "Met_type1PF_pt = " << Met_type1PF_pt << endl;
+            //if(Met_type1PF_pt>40){
+              ELMUON=true;
+            //}
+          //}
         }
       }
     }
     if(SelElectronMVA_pt.size()==1&&SelMuon_pt.size()==1){
-      if(SelElectronMVA_pt[0]>15 && fabs(SelElectronMVA_eta[0])<2.4 && SelMuon_pt[0]>25 && fabs(SelMuon_eta[0])<2.4 && SelMuon_iso[0]<0.25){
+      if(SelElectronMVA_pt[0]>subleadEl_ptcut_DL && fabs(SelElectronMVA_eta[0])<subleadEl_absetacut_DL && SelMuon_pt[0]>leadMu_ptcut_DL && fabs(SelMuon_eta[0])<leadMu_absetacut_DL && SelMuon_iso[0]<leadMu_isocut_DL){
         if(HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL==1 || HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL==1 || HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ==1 || HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ==1){
-          ELMUON=true;
+          TLorentzVector temp_lep1;
+          TLorentzVector temp_lep2;
+          temp_lep1.SetPtEtaPhiE(SelElectronMVA_pt[0],SelElectronMVA_eta[0],SelElectronMVA_phi[0],SelElectronMVA_energy[0]);
+          temp_lep2.SetPtEtaPhiE(SelMuon_pt[0],SelMuon_eta[0],SelMuon_phi[0],SelMuon_energy[0]);
+          double M_ll = (temp_lep1+temp_lep2).M();
+          //cout << "M_ll = " << M_ll << endl;
+          //if(M_ll>invMcut_DL && (M_ll<76 || M_ll>106)){
+            //cout << "Met_type1PF_pt = " << Met_type1PF_pt << endl;
+            //if(Met_type1PF_pt>40){
+              ELMUON=true;
+            //}
+          //}
         }
       }
     }
     if(SelMuon_pt.size()==2&&SelElectronMVA_pt.size()==0){
-      if(SelMuon_pt[0]>25 && SelMuon_pt[1]>15 && fabs(SelMuon_eta[0])<2.4 && fabs(SelMuon_eta[1])<2.4 && SelMuon_iso[0]<0.25 && SelMuon_iso[1]<0.25){
+      if(SelMuon_pt[0]>leadMu_ptcut_DL && SelMuon_pt[1]>subleadMu_ptcut_DL && fabs(SelMuon_eta[0])<leadMu_absetacut_DL && fabs(SelMuon_eta[1])<subleadMu_absetacut_DL && SelMuon_iso[0]<leadMu_isocut_DL && SelMuon_iso[1]<subleadMu_isocut_DL){
         if(HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL==1 || HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL==1 || HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ==1 || HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ==1){
-          MUONMUON=true;
+          TLorentzVector temp_lep1;
+          TLorentzVector temp_lep2;
+          temp_lep1.SetPtEtaPhiE(SelMuon_pt[0],SelMuon_eta[0],SelMuon_phi[0],SelMuon_energy[0]);
+          temp_lep2.SetPtEtaPhiE(SelMuon_pt[1],SelMuon_eta[1],SelMuon_phi[1],SelMuon_energy[1]);
+          double M_ll = (temp_lep1+temp_lep2).M();
+          //cout << "M_ll = " << M_ll << endl;
+          //if(M_ll>invMcut_DL && (M_ll<76 || M_ll>106)){
+            //cout << "Met_type1PF_pt = " << Met_type1PF_pt << endl;
+            //if(Met_type1PF_pt>40){
+              MUONMUON=true;
+            //}
+          //}
         }
       }
     }
 
-
-
-
-
-    cout << "Event number : " << EVENT_event << endl;
-    cout << "Run number : " << EVENT_run << endl;
-    cout << "# Electrons: " << SelElectronMVA_pt.size() << endl;
+    /*cout << "# Electrons: " << SelElectronMVA_pt.size() << endl;
     if(SelElectronMVA_pt.size()>0){
       for(int x=0; x<SelElectronMVA_pt.size(); x++){
         cout << "index = " << x << endl;
@@ -809,7 +889,12 @@ void SecondStep::Process(char* inFile){
     }
     cout << "# SL b-tag = " << nBCSVM_SL << endl;
     cout << "# DL b-tag = " << nBCSVM_DL << endl;
-
+    cout << "======== Selection bools ========" << endl;
+    cout << "MUON : " << MUON << endl;
+    cout << "ELECTRON : " << ELECTRON << endl;
+    cout << "ELEL : " << ELEL << endl;
+    cout << "ELMUON : " << ELMUON << endl;
+    cout << "MUONMUON : " << MUONMUON << endl;*/
 
     if(!MUON && !ELECTRON && !ELEL && !MUONMUON && !ELMUON){
       continue;
@@ -827,8 +912,9 @@ void SecondStep::Process(char* inFile){
       cout << "# Electrons: " << SelElectronMVA_pt.size() << endl;
       cout << "# Muons: " << SelMuon_pt.size() << endl;
     }
-
+    //cout << "========= Passed selection ===========" << endl;
     /*if (std::find(eventNums_passed.begin(), eventNums_passed.end(), EVENT_event) != eventNums_passed.end()){
+      cout << " ============== Duplicate event ===================" << endl;
       cout << "Event number : " << EVENT_event << endl;
       cout << "Run number : " << EVENT_run << endl;
       cout << "# Electrons: " << SelElectronMVA_pt.size() << endl;
@@ -848,18 +934,12 @@ void SecondStep::Process(char* inFile){
       cout << "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL = " << HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL << endl;
       cout << "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ = " << HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ << endl;
       cout << "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ = " << HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ << endl;
+      cout << " ============== Duplicate event ===================" << endl;
     }
     else eventNums_passed.push_back(EVENT_event);*/
 
 
-
-
-    cout << "MUON : " << MUON << endl;
-    cout << "ELECTRON : " << ELECTRON << endl;
-    cout << "ELEL : " << ELEL << endl;
-    cout << "ELMUON : " << ELMUON << endl;
-    cout << "MUONMUON : " << MUONMUON << endl;
-    cout << "HLT_IsoMu24 = " << HLT_IsoMu24 << endl;
+    /*cout << "HLT_IsoMu24 = " << HLT_IsoMu24 << endl;
     cout << "HLT_IsoTkMu24 = " << HLT_IsoTkMu24 << endl;
     cout << "HLT_Ele27_eta2p1_WPTight_Gsf = " << HLT_Ele27_eta2p1_WPTight_Gsf << endl;
 
@@ -881,7 +961,7 @@ void SecondStep::Process(char* inFile){
     cout << "Flag_globalTightHalo2016Filter = " << Flag_globalTightHalo2016Filter << endl;
     cout << "Flag_eeBadScFilter = " << Flag_eeBadScFilter << endl;
     cout << "EVENT_filterBadGlobalMuonTagger = " << EVENT_filterBadGlobalMuonTagger << endl;
-    cout << "EVENT_filtercloneGlobalMuonTagger = " << EVENT_filtercloneGlobalMuonTagger << endl;
+    cout << "EVENT_filtercloneGlobalMuonTagger = " << EVENT_filtercloneGlobalMuonTagger << endl;*/
 
     //!!! BDT VARIABLES !!!
     std::vector<TLorentzVector> selectedLeptonP4;

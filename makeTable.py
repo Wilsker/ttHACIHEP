@@ -19,9 +19,9 @@ To Do:
 import ROOT, sys, math, os, csv
 workingDir = os.getcwd()
 inputDir = "output"
-#inputFile = 'synch_output_DATA_SS.root'
-#inputFile = "ttH_synch_SS.root"
-inputFile = "ttjets_synch_SS.root"
+#inputFile = 'synch_output_DATA_allRuns_SS.root'
+inputFile = "ttH_synch_SS.root"
+#inputFile = "ttjets_synch_SS.root"
 
 if ("ttH" in inputFile): sample=1
 elif ("ttjets" in inputFile): sample=2
@@ -60,24 +60,6 @@ for ev in range(tt.GetEntries()):
     if(ev % 1000 == 0):
         print 'Index: ', ev
 
-    #isduplicate = any(i[0] == tt.EVENT_event for i in evtList)
-
-    #if(isduplicate == False):
-    #    evtList.append((tt.EVENT_event,tt.EVENT_run))
-    #else:
-    #    print '!!! Duplicate event !!!'
-    #    print 'Current event number: ', tt.EVENT_event
-    #    print 'Current run nummber: ', tt.EVENT_run
-
-    #if(isduplicate == True):
-    #    for x in evtList:
-    #        if(x[0] == tt.EVENT_event):
-    #            print '!!! Duplicate event !!!'
-    #            print 'Current event number: ', tt.EVENT_event
-    #            print 'Current run nummber: ', tt.EVENT_run
-    #            print 'Previous entry event number: ', x[0]
-    #            print 'Previous entry run number: ', x[1]
-
     ##INITIALIZE LEPTON VARIABLES
     muons_pt = tt.Muon_pt
     electrons_pt = tt.patElectron_pt
@@ -88,21 +70,23 @@ for ev in range(tt.GetEntries()):
     SelLepton_phi = []
     SelLepton_iso = []
     SelLepton_energy = []
-
-    #if(tt.EVENT_event!=69153022 and tt.EVENT_event!=23826934 and tt.EVENT_event!=72365857):
+    #if(tt.EVENT_event!=3222742 or tt.EVENT_event!=3278733 or tt.EVENT_event!=2602188):
     #    continue
-    print '=================================='
-    print "Event number: ", tt.EVENT_event
+    #print 'Event number = ', tt.EVENT_event
+    #print '=================================='
+#    print '=================================='
+
+    #print "Event number: ", tt.EVENT_event
 
     ##MUON SELECTION
     for i in range(len(muons_pt)):
-        """print '>>>>> Muon <<<<<'
+        '''print '>>>>> Muon <<<<<'
         print 'Muon # = ', i
         print 'Muon pt = ', muons_pt[i]
         print 'Muon ID = ' , tt.Muon_pdgId[i]
-        print 'Muon eta = ', tt.Muon_eta[i]
+        print 'Muon eta = ', abs(tt.Muon_eta[i])
         print 'Is tight = ', tt.Muon_tight[i]
-        print 'Muon relIsoDeltaBetaR04 = ', tt.Muon_relIsoDeltaBetaR04[i]"""
+        print 'Muon relIsoDeltaBetaR04 = ', tt.Muon_relIsoDeltaBetaR04[i]'''
         if (muons_pt[i]>15 and math.fabs(tt.Muon_eta[i])<2.4 and tt.Muon_tight[i]==1 and tt.Muon_relIsoDeltaBetaR04[i]<0.25):
             SelLepton_pt.append(tt.Muon_pt[i])
             SelLepton_id.append(tt.Muon_pdgId[i])
@@ -111,32 +95,30 @@ for ev in range(tt.GetEntries()):
             SelLepton_phi.append(tt.Muon_phi[i])
             SelLepton_iso.append(tt.Muon_relIsoDeltaBetaR04[i])
             SelLepton_energy.append(tt.Muon_energy[i])
+            #print " Muon passed loose selection "
 
     #ELECTRON SELECTION
     for i in range(len(electrons_pt)):
-        """print '>>>>> Electron <<<<<'
+        '''print '>>>>> Electron <<<<<'
         print 'Electron pt = ', tt.patElectron_pt[i]
         print 'Electron abs eta = ', math.fabs(tt.patElectron_eta[i])
         print 'Electron abs SC eta = ', abs(tt.patElectron_SCeta[i])
         print 'Electron abs dz = ',abs(tt.patElectron_gsfTrack_dz_pv[i])
         print 'Electron abs d0 = ', abs(tt.patElectron_d0[i])
         print 'Electron inCrack = ', tt.patElectron_inCrack[i]
-        print 'Electron is medium = ', tt.patElectron_isPassMedium[i]"""
+        print 'Electron is medium = ', tt.patElectron_isPassMedium[i]'''
         d0cut = 0
         dzcut = 0
-        #Barrel impact parameter cut
-        if(abs(tt.patElectron_SCeta[i])<=1.479):
+        if(abs(tt.patElectron_SCeta[i])<=1.479):#Barrel impact parameter cut
             d0cut = 0.05
             dzcut = 0.10
-        #End-cap impact parameter cut
-        if(abs(tt.patElectron_SCeta[i])>1.479):
+        if(abs(tt.patElectron_SCeta[i])>1.479):#End-cap impact parameter cut
             d0cut = 0.10
             dzcut = 0.20
         if (tt.patElectron_pt[i]>15 and math.fabs(tt.patElectron_eta[i])<2.4 and
             tt.patElectron_inCrack[i]==0 and tt.patElectron_isPassMedium[i]==1
-            and abs(tt.patElectron_gsfTrack_dz_pv[i])<dzcut and abs(tt.patElectron_d0[i])<d0cut
-            #and tt.patElectron_relIsoRhoEA[i]<0.15
-            #and tt.patElectron_isPassMvanontrig[i]==1
+            and abs(tt.patElectron_gsfTrack_dz_pv[i])<dzcut and
+            abs(tt.patElectron_d0[i])<d0cut
             ):
             SelLepton_pt.append(tt.patElectron_pt[i])
             SelLepton_id.append(tt.patElectron_pdgId[i])
@@ -145,6 +127,7 @@ for ev in range(tt.GetEntries()):
             SelLepton_phi.append(tt.patElectron_phi[i])
             SelLepton_iso.append(tt.patElectron_relIsoRhoEA[i])
             SelLepton_energy.append(tt.patElectron_energy[i])
+            #print 'Passes loose electron selection'
 
     #INITIALIZE JET VARIABLES
     jet0_pt = -1
@@ -193,30 +176,41 @@ for ev in range(tt.GetEntries()):
     SelTightJet_JerSF = []
     jets_pt = tt.Jet_pt
 
-    ##JET SELECTION FOR DILEPTON EVENTS
+    ## LOOSE JET SELECTION
     for i in range(len(jets_pt)):
         jet_pt=(tt.Jet_Uncorr_pt[i]*tt.Jet_JesSF[i]*tt.Jet_JerSF[i])# Jets used must have JES and JER corrections applied to pt before cut.
-        """print '>>>>> Jet <<<<<'
-        print 'Jet pt = ', jet_pt
+        '''print '>>>>> Jet <<<<<'
+        print 'Jet index = ', i
+        print 'Uncorr. jet pt = ', tt.Jet_Uncorr_pt[i]
+        print 'JES SF = ' , tt.Jet_JesSF[i]
+        print 'JER SF = ', tt.Jet_JerSF[i]
+        print 'Corrected Jet pt = ', jet_pt
         print 'abs jet eta = ', math.fabs(tt.Jet_eta[i])
         print 'Jet csv weight = ', tt.Jet_pfCombinedInclusiveSecondaryVertexV2BJetTags[i]
         print 'Jet neutral HAD E frac = ', tt.Jet_neutralHadEnergyFraction[i]
         print 'Jet charged HAD E frac = ',tt.Jet_chargedHadronEnergyFraction[i]
         print 'Jet neutral EM E frac = ', tt.Jet_neutralEmEnergyFraction[i]
         print 'Jet charged EM E frac = ', tt.Jet_chargedEmEnergyFraction[i]
-        print 'Charged multiplicity = ', tt.Jet_chargedMultiplicity[i]"""
+        print 'Charged multiplicity = ', tt.Jet_chargedMultiplicity[i]'''
         # Jet kinematic & loose ID requirements
-        if (jet_pt>20 and math.fabs(tt.Jet_eta[i])<2.4 and tt.Jet_neutralHadEnergyFraction[i]<0.99
-            and tt.Jet_chargedEmEnergyFraction[i]<0.99 and tt.Jet_neutralEmEnergyFraction[i]<0.99 and tt.Jet_numberOfConstituents[i]>1
-            and tt.Jet_chargedHadronEnergyFraction[i]>0.0 and tt.Jet_chargedMultiplicity[i]>0.0):
+        if (jet_pt>20 and math.fabs(tt.Jet_eta[i])<2.4
+            and tt.Jet_neutralHadEnergyFraction[i]<0.99
+            and tt.Jet_chargedHadronEnergyFraction[i]>0.0
+            and tt.Jet_neutralEmEnergyFraction[i]<0.99
+            and tt.Jet_chargedEmEnergyFraction[i]<0.99
+            and tt.Jet_numberOfConstituents[i]>1
+            and tt.Jet_chargedMultiplicity[i]>0.0):
             deltaRJetLepBoolean = False
+            #print 'Calculate dR(j,l) : '
             for j in range(len(SelLepton_pt)):
-                deltaEta = SelLepton_eta[j]-tt.Jet_eta[i];
-                deltaPhi = math.fabs(SelLepton_phi[j]-tt.Jet_phi[i]);
+                #print 'lepton index = ', j
+                deltaEta = SelLepton_eta[j]-tt.Jet_eta[i]
+                deltaPhi = math.fabs(SelLepton_phi[j]-tt.Jet_phi[i])
                 if(deltaPhi >= math.pi):
-                    deltaPhi = 2*math.pi - deltaPhi;
-                if(math.sqrt(deltaEta*deltaEta + deltaPhi*deltaPhi)<=0.4):
-                    #print 'dR = True'
+                    deltaPhi = 2*math.pi - deltaPhi
+                dR_j_lep = math.sqrt(deltaEta*deltaEta + deltaPhi*deltaPhi)
+                #print 'dR_j_lep = ', dR_j_lep
+                if(dR_j_lep<=0.4):
                     deltaRJetLepBoolean = True
             if(deltaRJetLepBoolean==False):
                 SelJet_pt.append(jet_pt)
@@ -227,8 +221,9 @@ for ev in range(tt.GetEntries()):
                 SelJet_JecSFup.append(tt.Jet_JesSFup[i]/tt.Jet_JesSF[i])
                 SelJet_JecSFdown.append(tt.Jet_JesSFdown[i]/tt.Jet_JesSF[i])
                 SelJet_JerSF.append(tt.Jet_JerSF[i])
-        #else: print 'Jets failed pre-sel cuts'
-    ##JET SELECTION FOR SINGLE LEPTON EVENTS
+                #print 'Passes loose jet selection'
+
+    ##Tight JET SELECTION
     for i in range(len(SelJet_pt)):
         if(SelJet_pt[i]>30):
             SelTightJet_pt.append(SelJet_pt[i])
@@ -239,6 +234,7 @@ for ev in range(tt.GetEntries()):
             SelTightJet_JecSFup.append(SelJet_JecSFup[i])
             SelTightJet_JecSFdown.append(SelJet_JecSFdown[i])
             SelTightJet_JerSF.append(SelJet_JerSF[i])
+            #print 'Passes tight jet selection'
 
     #BTAG FOR SINGLE AND DILEPTON EVENTS
     nBCSVM = 0
@@ -254,8 +250,6 @@ for ev in range(tt.GetEntries()):
     ##MET CORRECTION
     MET = tt.Met_type1PF_pt
     MET_phi = tt.Met_type1PF_phi
-
-
 
     ##DEFINE VARIABLES
     lep0_pt = -1
@@ -291,6 +285,8 @@ for ev in range(tt.GetEntries()):
     met_pass = 1
 
     ##DILEPTON SELECTION
+    #print 'Dilepton Selection'
+    #print "len(SelLepton_pt) = " , len(SelLepton_pt)
     dilepSelection = True
     if (len(SelLepton_pt) == 2):
         lepCouplePt=-99
@@ -301,7 +297,8 @@ for ev in range(tt.GetEntries()):
                 lep1 = ROOT.TLorentzVector(0, 0, 0, 0)
                 lep1.SetPtEtaPhiE(SelLepton_pt[j], SelLepton_eta[j], SelLepton_phi[j], SelLepton_energy[j])
                 mll = (lep0+lep1).M()
-                if(SelLepton_pt[i]<20 and SelLepton_pt[j]<20):
+                #print "(lep0+lep1).M() = " , (lep0+lep1).M()
+                if(SelLepton_pt[i]<25 and SelLepton_pt[j]<25):
                     dilepSelection=False
                 if(SelLepton_id[i]*SelLepton_id[j]>0):
                     dilepSelection=False
@@ -359,10 +356,10 @@ for ev in range(tt.GetEntries()):
 
 
     if (data==True):
-        if(tt.Flag_goodVertices==1 and tt.Flag_globalTightHalo2016Filter==1 and tt.Flag_HBHENoiseFilter==1 and tt.Flag_HBHENoiseIsoFilter==1 and tt.Flag_EcalDeadCellTriggerPrimitiveFilter==1 and tt.Flag_eeBadScFilter==1 and tt.EVENT_filterBadGlobalMuonTagger==1 and tt.EVENT_filtercloneGlobalMuonTagger==1):
+        if(tt.Flag_goodVertices==1 and tt.Flag_globalTightHalo2016Filter==1 and tt.Flag_HBHENoiseFilter==1 and tt.Flag_HBHENoiseIsoFilter==1 and tt.Flag_EcalDeadCellTriggerPrimitiveFilter==1 and tt.Flag_eeBadScFilter==1):# tt.EVENT_filterBadGlobalMuonTagger==1 and tt.EVENT_filtercloneGlobalMuonTagger==1
             METFilters=True
     else:
-        if(tt.Flag_goodVertices==1 and tt.Flag_globalTightHalo2016Filter==1 and tt.Flag_HBHENoiseFilter==1 and tt.Flag_HBHENoiseIsoFilter==1 and tt.Flag_EcalDeadCellTriggerPrimitiveFilter==1 and tt.EVENT_filterBadGlobalMuonTagger==1 and tt.EVENT_filtercloneGlobalMuonTagger==1):
+        if(tt.Flag_goodVertices==1 and tt.Flag_globalTightHalo2016Filter==1 and tt.Flag_HBHENoiseFilter==1 and tt.Flag_HBHENoiseIsoFilter==1 and tt.Flag_EcalDeadCellTriggerPrimitiveFilter==1):# tt.EVENT_filterBadGlobalMuonTagger==1 and tt.EVENT_filtercloneGlobalMuonTagger==1
             METFilters=True
     if(len(SelTightJet_pt)>=4 and nBCSVM_SL>=2):
         jets=True
@@ -523,29 +520,12 @@ for ev in range(tt.GetEntries()):
             lepIsoSF = h2.GetBinContent(X2,Y2)
 
 
-    if(tt.EVENT_filterBadGlobalMuonTagger==True and is_mu==1):
-        print '========= Single lepton selection =========='
-        print '>>>>>>>>>>> MET Filters <<<<<<<<<'
-        print 'Flag_goodVertices = ', tt.Flag_goodVertices
-        print 'Flag_globalTightHalo2016Filter = ', tt.Flag_globalTightHalo2016Filter
-        print 'Flag_HBHENoiseFilter = ', tt.Flag_HBHENoiseFilter
-        print 'Flag_HBHENoiseIsoFilter = ', tt.Flag_HBHENoiseIsoFilter
-        print '(NOT SUGGESTED for MC) Flag_eeBadScFilter = ', tt.Flag_eeBadScFilter
-        print 'Flag_EcalDeadCellTriggerPrimitiveFilter = ', tt.Flag_EcalDeadCellTriggerPrimitiveFilter
-        print 'EVENT_filterBadGlobalMuonTagger = ', tt.EVENT_filterBadGlobalMuonTagger
-        print 'EVENT_filtercloneGlobalMuonTagger = ', tt.EVENT_filtercloneGlobalMuonTagger
-        print '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
-        print 'len(SelTightJet_pt) = ', len(SelTightJet_pt)
-        print 'nBCSVM_SL = ', nBCSVM_SL
-        print 'HLT_IsoMu24 = ', tt.HLT_IsoMu24
-        print 'HLT_IsoTkMu24 = ', tt.HLT_IsoTkMu24
-        print 'HLT_Ele27_eta2p1_WPTight_Gsf = ', tt.HLT_Ele27_eta2p1_WPTight_Gsf
-        print 'is e = ', electron
-        print 'is mu = ', muon
-        print 'is jets = ', jets
-        print 'MET filters = ', METFilters
 
-    ##SELECT DILEPTON EVENT
+
+
+
+
+    #=================== SELECT DILEPTON EVENT ======================
     DoubleLeptonEvent=False
     triggerForDL=False
     MuoMuo=False
@@ -555,20 +535,19 @@ for ev in range(tt.GetEntries()):
 
     if(len(SelLepton_pt)==2 and math.fabs(SelLepton_id[0])==11 and math.fabs(SelLepton_id[1])==11 and tt.HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ==1):
         EleEle=True
-    if(len(SelLepton_pt)==2 and math.fabs(SelLepton_id[0])==13 and math.fabs(SelLepton_id[1])==13 and (tt.HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ==1 or tt.HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ==1)):
+    if(len(SelLepton_pt)==2 and math.fabs(SelLepton_id[0])==13 and math.fabs(SelLepton_id[1])==13 and (tt.HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL==1 or tt.HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL==1 or tt.HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ==1 or tt.HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ==1)):
         MuoMuo=True
-    if(len(SelLepton_pt)==2 and math.fabs(SelLepton_id[0])==11 and math.fabs(SelLepton_id[1])==13 and (tt.HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL==1 or tt.HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL==1)):
+    if(len(SelLepton_pt)==2 and math.fabs(SelLepton_id[0])==11 and math.fabs(SelLepton_id[1])==13 and (tt.HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL==1 or tt.HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL==1 or tt.HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ==1 or tt.HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ==1)):
         EleMuo=True
-    if(len(SelLepton_pt)==2 and math.fabs(SelLepton_id[0])==13 and math.fabs(SelLepton_id[1])==11 and (tt.HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL==1 or tt.HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL==1)):
-            EleMuo=True
-
+    if(len(SelLepton_pt)==2 and math.fabs(SelLepton_id[0])==13 and math.fabs(SelLepton_id[1])==11 and (tt.HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL==1 or tt.HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL==1 or tt.HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ==1 or tt.HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ==1)):
+        EleMuo=True
 
     if((dataMU==True and MuoMuo==True) or (dataEL==True and EleEle==True) or (dataMUEL==True and EleMuo==True) or (data==False and (MuoMuo==True or EleEle==True or EleMuo==True))):
+    #if((data==True and (MuoMuo==True or EleEle==True or EleMuo==True)) or (data==False and (MuoMuo==True or EleEle==True or EleMuo==True))):
         triggerForDL=True
-    if(len(SelJet_pt)>=2 and SelJet_pt[0]>30 and SelJet_pt[1]>30 and nBCSVM_DL>=1):
-    #if(len(SelJet_pt)>=2 and SelJet_pt[0]>30 and SelJet_pt[1]>30 and nBCSVM>=1):
+    if(len(SelTightJet_pt)>=2 and SelTightJet_pt[0]>30 and SelTightJet_pt[1]>30 and nBCSVM_DL>=1):
         jetsDL=True
-    if(triggerForDL and jetsDL==True and dilepSelection==True):
+    if(triggerForDL and jetsDL==True and dilepSelection==True and METFilters==True):
         if(math.fabs(SelLepton_id[0])==11 and math.fabs(SelLepton_id[1])==11):
             is_ee = 1
         if(math.fabs(SelLepton_id[0])==13 and math.fabs(SelLepton_id[1])==13):
@@ -767,9 +746,56 @@ for ev in range(tt.GetEntries()):
         lepIDSF =lep1IDSF*lep2IDSF
         lepIsoSF=lep1IsoSF*lep2IsoSF
 
-    print "# Leptons", len(SelLepton_pt)
-    print "SingleLeptonEvent = " , SingleLeptonEvent
-    print "DoubleLeptonEvent = " , DoubleLeptonEvent
+
+
+    #if(tt.EVENT_filterBadGlobalMuonTagger==True and is_mu==1):
+    if(len(SelLepton_pt)>=1):
+        print '============= MET Filters ============='
+        print 'Flag_goodVertices = ', tt.Flag_goodVertices
+        print 'Flag_globalTightHalo2016Filter = ', tt.Flag_globalTightHalo2016Filter
+        print 'Flag_HBHENoiseFilter = ', tt.Flag_HBHENoiseFilter
+        print 'Flag_HBHENoiseIsoFilter = ', tt.Flag_HBHENoiseIsoFilter
+        print '(NOT SUGGESTED for MC) Flag_eeBadScFilter = ', tt.Flag_eeBadScFilter
+        print 'Flag_EcalDeadCellTriggerPrimitiveFilter = ', tt.Flag_EcalDeadCellTriggerPrimitiveFilter
+        print 'EVENT_filterBadGlobalMuonTagger = ', tt.EVENT_filterBadGlobalMuonTagger
+        print 'EVENT_filtercloneGlobalMuonTagger = ', tt.EVENT_filtercloneGlobalMuonTagger
+        print '======================================='
+        print "# Leptons", len(SelLepton_pt)
+        print '# tight jets = ', len(SelTightJet_pt)
+        print '# loose jets = ', len(SelJet_pt)
+        print 'nBCSVM_SL = ', nBCSVM_SL
+        print 'nBCSVM_DL = ', nBCSVM_DL
+        print '============= Triggers ============='
+        print 'HLT_IsoMu24 = ', tt.HLT_IsoMu24
+        print 'HLT_IsoTkMu24 = ', tt.HLT_IsoTkMu24
+        print 'HLT_Ele27_eta2p1_WPTight_Gsf = ', tt.HLT_Ele27_eta2p1_WPTight_Gsf
+        print 'HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL = ', tt.HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL
+        print 'HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL = ', tt.HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL
+        print 'HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ = ', tt.HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ
+        print 'HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ = ', tt.HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ
+        print 'HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL = ', tt.HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL
+        print 'HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL = ', tt.HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL
+        print 'HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ = ', tt.HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ
+        print 'HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ = ', tt.HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ
+        print 'HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL = ', tt.HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL
+        print 'HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL = ', tt.HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL
+        print 'HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ = ', tt.HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ
+        print 'HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ = ', tt.HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ
+        print '============= Selection Flags ============='
+        print 'is electron = ', electron
+        print 'is muon = ', muon
+        print 'is jets SL = ', jets
+        print 'is jets DL = ', jetsDL
+        print 'MET filters = ', METFilters
+        print 'triggerForDL = ', triggerForDL
+        print 'dilepSelection = ' , dilepSelection
+        print 'EleEle = ', EleEle
+        print 'EleMuo = ', EleMuo
+        print 'MuoMuo = ', MuoMuo
+
+        print "SingleLeptonEvent = " , SingleLeptonEvent
+        print "DoubleLeptonEvent = " , DoubleLeptonEvent
+        print "========================== Next event ==================================="
 
     ttHFCategory = -99
     if(sample!=0):
