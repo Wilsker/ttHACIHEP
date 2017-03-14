@@ -8,4 +8,4 @@ cd $CMSSW_SRC
 eval `scramv1 runtime -sh` # Establishes runtime env. of local shell on node.
 cd $WORKING_DIR
 echo $WORKING_DIR
-./SecondStep synch_output_RunF1_SL
+./SecondStep /afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW/CMSSW_8_0_26_patch2/src/TTH/ttHACIHEP/input/synch_output_RunF2_SL_SingleMuon.root

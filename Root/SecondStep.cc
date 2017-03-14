@@ -70,10 +70,14 @@ void SecondStep::Process(char* inFile){
 
   int data_type = -99;
 
-  string inputFullPath = inPathString+infilename+suffix;
+  //string inputFullPath = inPathString+infilename+suffix;
+  string inputFullPath = infilename;
   const char* Input = inputFullPath.c_str();
 
-  string outputFullPath = "output/"+infilename+"_SS"+suffix;
+
+  std::string out_test = "SS_" + inputFullPath.substr(inputFullPath.find_last_of("/")+1);
+
+  string outputFullPath = "output/"+out_test;
   const char * Output = outputFullPath.c_str();
 
   cout << "Input file: " << Input << endl;
@@ -231,6 +235,18 @@ void SecondStep::Process(char* inFile){
   cout << "File cloning complete." << endl;
 
   //NEW VARIABLES
+  int data_stream_=-99;
+  TBranch* data_stream = newtree->Branch("data_stream",&data_stream_,"data_stream/i");
+  if(sample==0){
+    if(infilename.find("DoubleEG")!=std::string::npos){data_stream_=11;}
+    if(infilename.find("DoubleMuon")!=std::string::npos){data_stream_=22;}
+    if(infilename.find("MuonEG")!=std::string::npos){data_stream_=12;}
+    if(infilename.find("SingleElectron")!=std::string::npos){data_stream_=1;}
+    if(infilename.find("SingleMuon")!=std::string::npos){data_stream_=2;}
+  }
+  //cout << "data_stream_ = " << data_stream_ << endl;
+
+
   double BDT_=-99;                TBranch *BDT =newtree->Branch("BDT",&BDT_,"BDT/D");
   double puweight_=1;             TBranch *puweight     =newtree->Branch("puweight",     &puweight_,     "puweight/D");
   double puweightUP_=1;           TBranch *puweightUP   =newtree->Branch("puweightUP",   &puweightUP_,   "puweightUP/D");
@@ -776,18 +792,37 @@ void SecondStep::Process(char* inFile){
     double subleadMu_isocut_DL = 0.25;
 
     double invMcut_DL = 20;
+    int METFilters = 0;
+
+    if(sample!=0){
+      if(Flag_goodVertices==1 && Flag_globalTightHalo2016Filter==1 && Flag_HBHENoiseFilter==1 && Flag_HBHENoiseIsoFilter==1 && Flag_EcalDeadCellTriggerPrimitiveFilter==1 && Flag_eeBadScFilter==1){
+        //tt.EVENT_filterBadGlobalMuonTagger==1 and tt.EVENT_filtercloneGlobalMuonTagger==1
+        METFilters = 1;
+      }
+    }
+    else{
+      if(Flag_goodVertices==1 && Flag_globalTightHalo2016Filter==1 && Flag_HBHENoiseFilter==1 && Flag_HBHENoiseIsoFilter==1 && Flag_EcalDeadCellTriggerPrimitiveFilter==1 && Flag_eeBadScFilter==1 && Flag_eeBadScFilter==1){
+        //tt.EVENT_filterBadGlobalMuonTagger==1 and tt.EVENT_filtercloneGlobalMuonTagger==1
+        METFilters = 1;
+      }
+    }
+    //cout << "METFilters = " << METFilters << endl;
 
     if(SelMuon_pt.size()==1 && SelElectronMVA_pt.size()==0){// # leptons
       if(SelMuon_pt[0]>leadMu_ptcut_SL && fabs(SelMuon_eta[0])<leadMu_absetacut_SL && SelMuon_iso[0]<leadMu_isocut_SL){// lepton kinematics
         if((HLT_IsoMu24==1 || HLT_IsoTkMu24==1)){// Triggers
-          MUON=true;
+          if(METFilters==1){
+            MUON=true;
+          }
         }
       }
     }
     if(SelElectronMVA_pt.size()==1 && SelMuon_pt.size()==0) {// # leptons
       if(SelElectronMVA_pt[0]>leadEl_ptcut_SL && fabs(SelElectronMVA_eta[0])<leadEl_absetacut_SL){// lepton kinematics
         if(HLT_Ele27_eta2p1_WPTight_Gsf==1){// Triggers
-          ELECTRON=true;
+          if(METFilters==1){
+            ELECTRON=true;
+          }
         }
       }
     }
@@ -799,11 +834,13 @@ void SecondStep::Process(char* inFile){
           temp_lep1.SetPtEtaPhiE(SelElectronMVA_pt[0],SelElectronMVA_eta[0],SelElectronMVA_phi[0],SelElectronMVA_energy[0]);
           temp_lep2.SetPtEtaPhiE(SelElectronMVA_pt[1],SelElectronMVA_eta[1],SelElectronMVA_phi[1],SelElectronMVA_energy[1]);
           double dilep = (temp_lep1+temp_lep2).M();
+          if(METFilters==1){
           //if(dilep>invMcut_DL && (dilep<76 || dilep>106)){
             //if(Met_type1PF_pt>40){
               ELEL=true;
             //}
           //}
+          }
         }
       }
     }
@@ -815,6 +852,7 @@ void SecondStep::Process(char* inFile){
           temp_lep1.SetPtEtaPhiE(SelElectronMVA_pt[0],SelElectronMVA_eta[0],SelElectronMVA_phi[0],SelElectronMVA_energy[0]);
           temp_lep2.SetPtEtaPhiE(SelMuon_pt[0],SelMuon_eta[0],SelMuon_phi[0],SelMuon_energy[0]);
           double M_ll = (temp_lep1+temp_lep2).M();
+          if(METFilters==1){
           //cout << "M_ll = " << M_ll << endl;
           //if(M_ll>invMcut_DL&& (M_ll<76 || M_ll>106)){
             //cout << "Met_type1PF_pt = " << Met_type1PF_pt << endl;
@@ -822,6 +860,7 @@ void SecondStep::Process(char* inFile){
               ELMUON=true;
             //}
           //}
+          }
         }
       }
     }
@@ -833,6 +872,7 @@ void SecondStep::Process(char* inFile){
           temp_lep1.SetPtEtaPhiE(SelElectronMVA_pt[0],SelElectronMVA_eta[0],SelElectronMVA_phi[0],SelElectronMVA_energy[0]);
           temp_lep2.SetPtEtaPhiE(SelMuon_pt[0],SelMuon_eta[0],SelMuon_phi[0],SelMuon_energy[0]);
           double M_ll = (temp_lep1+temp_lep2).M();
+          if(METFilters==1){
           //cout << "M_ll = " << M_ll << endl;
           //if(M_ll>invMcut_DL && (M_ll<76 || M_ll>106)){
             //cout << "Met_type1PF_pt = " << Met_type1PF_pt << endl;
@@ -840,6 +880,7 @@ void SecondStep::Process(char* inFile){
               ELMUON=true;
             //}
           //}
+          }
         }
       }
     }
@@ -851,6 +892,7 @@ void SecondStep::Process(char* inFile){
           temp_lep1.SetPtEtaPhiE(SelMuon_pt[0],SelMuon_eta[0],SelMuon_phi[0],SelMuon_energy[0]);
           temp_lep2.SetPtEtaPhiE(SelMuon_pt[1],SelMuon_eta[1],SelMuon_phi[1],SelMuon_energy[1]);
           double M_ll = (temp_lep1+temp_lep2).M();
+          if(METFilters==1){
           //cout << "M_ll = " << M_ll << endl;
           //if(M_ll>invMcut_DL && (M_ll<76 || M_ll>106)){
             //cout << "Met_type1PF_pt = " << Met_type1PF_pt << endl;
@@ -858,6 +900,7 @@ void SecondStep::Process(char* inFile){
               MUONMUON=true;
             //}
           //}
+          }
         }
       }
     }
@@ -1328,14 +1371,14 @@ int main(int argc, char* argv[]){
   //Assume arg 1 is the file to open.
     cout << "Running file: " << argv[1] << endl;
 
-    string inPathString="input/";
+    //string inPathString="input/";
     string infilename=string(argv[1]);
     string suffix =".root";
-    string inputFullPath = inPathString+infilename+suffix;
+    //string inputFullPath = inPathString+infilename+suffix;
+    string inputFullPath = infilename;
     cout << "string " << inputFullPath << endl;
     Input = inputFullPath.c_str();
     ifstream inputFile(Input);
-
 
     if(!inputFile.is_open()){
       std::cout << "File " << Input << " could not be openend!"<< std::endl;
