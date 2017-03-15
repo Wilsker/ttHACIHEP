@@ -16,7 +16,11 @@ To Do:
         - Uncomment electron trigger SFs section.
 """
 
-import ROOT, sys, math, os, csv
+import sys, math, os, csv, ROOT
+from ROOT import TFile, TTree, gDirectory, gROOT, TCanvas, TF1, vector
+from array import array
+import datetime
+
 workingDir = os.getcwd()
 inputDir = "output"
 #inputFile = 'synch_output_DATA_allRuns_SS.root'
@@ -40,9 +44,18 @@ csvnom = inputFile[:-5]+'_synchTable.csv'
 csv_writer = csv.writer(open(csvnom,'w'))
 csv_writer.writerow(['run','lumi','event','is_e','is_mu','is_ee','is_emu','is_mumu','n_jets','n_btags','lep1_pt','lep1_iso','lep1_pdgId','lep2_pt','lep2_iso','lep2_pdgId','jet1_pt','jet1_eta','jet1_phi','jet1_jesSF','jet1_jesSF_up','jet1_jesSF_down','jet1_csv','jet2_pt','jet2_eta','jet2_phi','jet2_jesSF','jet2_jesSF_up','jet2_jesSF_down','jet2_csv','MET_pt','MET_phi','mll','ttHFCategory','n_interactions','puWeight','csvSF','csvSF_lf_up','csvSF_hf_down','csvSF_cErr1_down','triggerSF','lep_idSF','lep_isoSF','pdf_up','pdf_down','me_up','me_down','bdt_output','mem_output','dnn_ttH_output','dnn_ttbb_output'])
 
-tf = ROOT.TFile(inputFullPath)
-tt = tf.Get("BOOM")
+# === Output tuples
+output_rootfile_dir = 'analysis_tuples/'
+output_rootfile_fullpath = os.path.join(workingDir,output_rootfile_dir,inputFile)
+out_tf = TFile(output_rootfile_fullpath,'recreate')
+out_tt = TTree('physics','physics')
 
+jet_0_pt = array('d', [ 0 ] )
+out_tt.Branch('jet_0_pt',jet_0_pt,'jet_0_pt/d')
+
+
+tf = TFile(inputFullPath)
+tt = gDirectory.Get( 'BOOM' )
 
 # >>>>>>> NEED to set using filenames
 dataMU   = False
@@ -801,6 +814,7 @@ for ev in range(tt.GetEntries()):
     if(sample!=0):
         ttHFCategory =(tt.ttHFCategory)
     if(SingleLeptonEvent or DoubleLeptonEvent):
+        jet_0_pt[0] = jet0_pt
         arr = [int(tt.EVENT_run), int(tt.EVENT_lumiBlock), int(tt.EVENT_event),
                int(is_e), int(is_mu), int(is_ee), int(is_emu), int(is_mumu),
                int(NumberOfJets), int(nBCSVM),
@@ -842,6 +856,9 @@ for ev in range(tt.GetEntries()):
         #print 'Fill event in .csv file: '
         #print arr
         csv_writer.writerow(arr)
+        out_tt.Fill()
         #print s[:-1]
+out_tf.Write()
+out_tf.Close()
 print "Output written to: ", csvnom
 print "FIN!"

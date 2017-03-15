@@ -26,6 +26,8 @@
 #include "../interface/SecondStep.h"
 #include "TTH/CommonClassifier/interface/BlrBDTClassifier.h"
 
+struct stat sb;
+
 SecondStep::SecondStep(){
   return;
 }
@@ -37,13 +39,13 @@ SecondStep::~SecondStep(){
 void SecondStep::Usage(){
   cout << "Incorrect usage of SecondStep code !!!!!" << endl;
   cout << "SecondStep Usage:" << endl;
-  cout << "./SecondStep <input_file_name>" << endl;
-  cout << "NOTE: For input_file_names, check 'input/' dir." << endl;
-  cout << "Do not include path or files suffix e.g. ttHbb_MC" << endl;
+  cout << "./SecondStep <input_file_name> <output_dir_path>" << endl;
+  cout << "NOTE: For input_file_names, give absolute path and filename." << endl;
+  cout << "      For output path no file is needed (uses input filename)." << endl;
   return;
 }
 
-void SecondStep::Process(char* inFile){
+void SecondStep::Process(char* inFile,char* outDirPath){
   std::cout << "SecondStep.cc::SecondStep()" << std::endl;
   MEMClassifier mem;
 
@@ -54,30 +56,21 @@ void SecondStep::Process(char* inFile){
   //      1 = MC (for MC samples with no HLT info)
   //      2 = reHLT MC (for MC samples with HLT info)
 
-  string inPathString="input/";
   string infilename=string(inFile);
   string suffix =".root";
 
-
   int sample=-999;
-  //if (infilename=="ttH"){sample = 1;}
-  //else if (infilename=="ttjets"){sample = 2;}
-  //else {sample = 0;}
 
   if(infilename.find("ttH")!=std::string::npos){sample=1;}
   else if(infilename.find("ttjets")!=std::string::npos){sample=2;}
   else{sample=0;}
 
-  int data_type = -99;
-
-  //string inputFullPath = inPathString+infilename+suffix;
   string inputFullPath = infilename;
   const char* Input = inputFullPath.c_str();
 
-
   std::string out_test = "SS_" + inputFullPath.substr(inputFullPath.find_last_of("/")+1);
 
-  string outputFullPath = "output/"+out_test;
+  std::string outputFullPath = outDirPath+out_test;
   const char * Output = outputFullPath.c_str();
 
   cout << "Input file: " << Input << endl;
@@ -1354,7 +1347,6 @@ void SecondStep::Process(char* inFile){
 
 }
 
-
 //Main function inside ifndef mean code can still be run by interpreter.
 # ifndef __CINT__
 
@@ -1363,22 +1355,33 @@ int main(int argc, char* argv[]){
   SecondStep SS;
   const char* Input;
 
-  if(argc!=2){
+  if(argc!=3){
     SS.Usage();
     exit(0);
   }
   else{
   //Assume arg 1 is the file to open.
     cout << "Running file: " << argv[1] << endl;
-
-    //string inPathString="input/";
     string infilename=string(argv[1]);
     string suffix =".root";
-    //string inputFullPath = inPathString+infilename+suffix;
     string inputFullPath = infilename;
-    cout << "string " << inputFullPath << endl;
+    cout << "inputFullPath = " << inputFullPath << endl;
     Input = inputFullPath.c_str();
     ifstream inputFile(Input);
+
+    string outputPath = string(argv[2]);
+    if(outputPath.compare(outputPath.length()-1,1,"/")){
+      cout << "Adding / to end of output path" << endl;
+      outputPath += "/";
+    }
+    const char* outpath_test_string = outputPath.c_str();
+    cout << "Output path: " << outpath_test_string << endl;
+
+    if (stat(outpath_test_string, &sb) == 1 || (!S_ISDIR(sb.st_mode))){
+      cout << "ERROR : \'outputPath\' does not exist!" << endl;
+      cout << "Please check the output directory you want to write to exists." << endl;
+      exit(0);
+    }
 
     if(!inputFile.is_open()){
       std::cout << "File " << Input << " could not be openend!"<< std::endl;
@@ -1389,7 +1392,7 @@ int main(int argc, char* argv[]){
     }
   }
 
-  SS.Process(argv[1]);
+  SS.Process(argv[1],argv[2]);
 
   return 0;
 }

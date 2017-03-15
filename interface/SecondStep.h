@@ -21,13 +21,15 @@
 #include "muFuncs.h"
 #include "jetFuncs.h"
 #include "bdtVarCalculator.h"
+#include <sys/types.h>
+#include <sys/stat.h>
 using namespace std;
 
 class SecondStep{
 
 public:
   SecondStep();
-  void Process(char* inFile);
+  void Process(char* inFile, char* outDirPath);
   void Usage();
   ~SecondStep();
 
