@@ -580,14 +580,14 @@ void SecondStep::Process(char* inFile,char* outDirPath){
 
   int firstEvent = 0;
   int neventsfilled = 0;
-  for (Int_t i=firstEvent;i<nentries; i++) {//if(i>500) break;
+  for (Int_t i=firstEvent;i<nentries; i++) {if(i>10) break;
     Long64_t tentry = oldtree->LoadTree(i);
     oldtree->GetEntry(i);
 
     if(i % 1000 == 0){
       cout << "Entry: " << i << endl;
     }
-    //cout << "Entry: " << i << endl;
+
     //DONT FORGET TO REMOVE THIS!!!!!!!
     //if(EVENT_event!=3222742 && EVENT_event!=3278733 && EVENT_event!=2602188){continue;}
     //cout << "EVENT_event = " << EVENT_event << endl;

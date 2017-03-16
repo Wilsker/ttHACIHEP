@@ -52,7 +52,7 @@ INCL	 += -I${LHAPDF_DATA_PATH}/../../../6.1.6-giojec/include/LHAPDF
 LDFLAGS    = $(shell root-config --libs) -lMinuit
 LDFLAGS		+= $(shell root-config --ldflags)
 LDFLAGS   += -lHistFactory -lRooStats -lRooFit -lRooFitCore -lMathMore -lTMVA
-LDFLAGS   += -L${CMSSW_BASE}/lib/slc6_amd64_gcc493
+#LDFLAGS   += -L${CMSSW_BASE}/lib/slc6_amd64_gcc493
 LDFLAGS	  += -L${LHAPDF_DATA_PATH}/../../../6.1.6-giojec/lib
 LDFLAGS 	+= -lLHAPDF
 LDFLAGS		+= -L${CMS_OPENLOOPS_PREFIX}/lib
@@ -72,21 +72,21 @@ LDFLAGS		+= -lopenloops
 # I know, I know! The following could be simplified by using the correct include directories above.
 
 all: obj/SecondStep.o SecondStep
-SRCS := ${CMSSW_BASE}/src/TTH/CommonClassifier/src/BlrBDTClassifier.cpp
-SRCS += ${CMSSW_BASE}/src/TTH/CommonClassifier/src/MEMClassifier.cc
-SRCS += ${CMSSW_BASE}/src/TTH/CommonClassifier/src/CommonBDTvars.cpp
-SRCS += ${CMSSW_BASE}/src/TTH/MEIntegratorStandalone/src/JetLikelihood.cpp
-SRCS += ${CMSSW_BASE}/src/TTH/MEIntegratorStandalone/src/Integrand.cpp
-SRCS += ${CMSSW_BASE}/src/TTH/MEIntegratorStandalone/src/Parameters.cpp
+SRCS := ${PWD}/../CommonClassifier/src/BlrBDTClassifier.cpp
+SRCS += ${PWD}/../CommonClassifier/src/MEMClassifier.cc
+SRCS += ${PWD}/../CommonClassifier/src/CommonBDTvars.cpp
+SRCS += ${PWD}/../MEIntegratorStandalone/src/JetLikelihood.cpp
+SRCS += ${PWD}/../MEIntegratorStandalone/src/Integrand.cpp
+SRCS += ${PWD}/../MEIntegratorStandalone/src/Parameters.cpp
 SRCS += Root/newPUWeight.cc Root/eleFuncs.cc Root/muFuncs.cc Root/jetFuncs.cc Root/bdtVarCalculator.cc
 
-DEPS := ${CMSSW_BASE}/src/TTH/CommonClassifier/interface/MEMClassifier.h
-DEPS += ${CMSSW_BASE}/src/TTH/CommonClassifier/interface/BlrBDTClassifier.h
-DEPS += ${CMSSW_BASE}/src/TTH/CommonClassifier/interface/CommonBDTvars.h
-DEPS += ${CMSSW_BASE}/src/TTH/MEIntegratorStandalone/interface/Integrand.h
-DEPS += ${CMSSW_BASE}/src/TTH/MEIntegratorStandalone/interface/JetLikelihood.h
-DEPS += ${CMSSW_BASE}/src/TTH/MEIntegratorStandalone/interface/Utils.h
-DEPS += ${CMSSW_BASE}/src/TTH/MEIntegratorStandalone/interface/Parameters.h
+DEPS := ${PWD}/../CommonClassifier/interface/MEMClassifier.h
+DEPS += ${PWD}/../CommonClassifier/interface/BlrBDTClassifier.h
+DEPS += ${PWD}/../CommonClassifier/interface/CommonBDTvars.h
+DEPS += ${PWD}/../MEIntegratorStandalone/interface/Integrand.h
+DEPS += ${PWD}/../MEIntegratorStandalone/interface/JetLikelihood.h
+DEPS += ${PWD}/../MEIntegratorStandalone/interface/Utils.h
+DEPS += ${PWD}/../MEIntegratorStandalone/interface/Parameters.h
 DEPS += interface/SecondStep.h interface/newPUWeight.h interface/eleFuncs.h interface/muFuncs.h interface/jetFuncs.h interface/bdtVarCalculator.h
 
 SecondStep: obj/SecondStep.o $(SRCS)
