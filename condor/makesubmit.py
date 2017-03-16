@@ -15,8 +15,6 @@ AnalyzerDir = condor_dir_path+"/"+"Analyzer"# Replaced/created on the fly
 task        = analysis+"_"+taskname
 analysis_dir_path = "/publicfs/cms/user/joshuha/ttHACIHEP/"
 rootplizer = "SecondStep"
-#rootplizer  = "Rootplizer_"+task+".cc"
-#headplizer  = "Rootplizer_"+task+".h"
 
 #Directory of input files
 sample={
@@ -111,7 +109,8 @@ for k in sample:
         # Input filename (full-path):
         input  = rootDirectory+"/"+roots[iroot]
         # Use input files to name output (with edited suffix)
-        output = outputDirectory+"/"+roots[iroot].replace(".root","_rootplas.root")
+        output = outputDirectory+"/"+roots[iroot].replace(".root","_rootplas")
+        os.popen('mkdir -p '+output)
         # Make temp directory in which the analysis is to be performed:
         analyzerpath = AnalyzerSampleDir+"/"+roots[iroot].replace(".root","")
         os.popen('mkdir -p '+analyzerpath)
