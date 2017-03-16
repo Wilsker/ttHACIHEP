@@ -1212,7 +1212,8 @@ void SecondStep::Process(char* inFile,char* outDirPath){
     std::vector<unsigned int> out_best_perm;
     double out_P_4b=-1;
     double out_P_2b=-1;
-    eth_blr=mem.GetBTagLikelihoodRatio(selectedJetP4,selectedJetCSV,out_best_perm,out_P_4b,out_P_2b);
+    // WARNING:: BDT been removed to run on IHEP farm
+    //eth_blr=mem.GetBTagLikelihoodRatio(selectedJetP4,selectedJetCSV,out_best_perm,out_P_4b,out_P_2b);
 
     int bJetness_num_soft_leps = 1;//(int)BJetness_num_soft_leps[0];
     double bJetness_avip3d_val = 0.2;//BJetness_avip3d_val[0];
@@ -1221,8 +1222,8 @@ void SecondStep::Process(char* inFile,char* outDirPath){
     double result = -99;
     //result = bdt.GetBDTOutput(selectedLeptonP4,selectedJetP4,selectedJetCSV,looseSelectedJetP4,looseSelectedJetCSV,metP4,eth_blr);
 
-    if(!(eth_blr>=0.0 || eth_blr<0.0)) eth_blr=0.001;
-    eth_blr = TMath::Log(eth_blr/(1-eth_blr));
+    //if(!(eth_blr>=0.0 || eth_blr<0.0)) eth_blr=0.001;
+    //eth_blr = TMath::Log(eth_blr/(1-eth_blr));
 
     muFuncs muF;
     PUWTool PileupTool;
