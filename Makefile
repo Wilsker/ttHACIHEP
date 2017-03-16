@@ -75,19 +75,21 @@ all: obj/SecondStep.o SecondStep
 SRCS := ${PWD}/../CommonClassifier/src/BlrBDTClassifier.cpp
 SRCS += ${PWD}/../CommonClassifier/src/MEMClassifier.cc
 SRCS += ${PWD}/../CommonClassifier/src/CommonBDTvars.cpp
-SRCS += ${PWD}/../MEIntegratorStandalone/src/JetLikelihood.cpp
-SRCS += ${PWD}/../MEIntegratorStandalone/src/Integrand.cpp
-SRCS += ${PWD}/../MEIntegratorStandalone/src/Parameters.cpp
-SRCS += Root/newPUWeight.cc Root/eleFuncs.cc Root/muFuncs.cc Root/jetFuncs.cc Root/bdtVarCalculator.cc
+#SRCS += ${PWD}/../MEIntegratorStandalone/src/JetLikelihood.cpp
+#SRCS += ${PWD}/../MEIntegratorStandalone/src/Integrand.cpp
+#SRCS += ${PWD}/../MEIntegratorStandalone/src/Parameters.cpp
+SRCS += Root/newPUWeight.cc Root/eleFuncs.cc Root/muFuncs.cc Root/jetFuncs.cc
+#SRCS += Root/bdtVarCalculator.cc
 
 DEPS := ${PWD}/../CommonClassifier/interface/MEMClassifier.h
 DEPS += ${PWD}/../CommonClassifier/interface/BlrBDTClassifier.h
 DEPS += ${PWD}/../CommonClassifier/interface/CommonBDTvars.h
-DEPS += ${PWD}/../MEIntegratorStandalone/interface/Integrand.h
-DEPS += ${PWD}/../MEIntegratorStandalone/interface/JetLikelihood.h
-DEPS += ${PWD}/../MEIntegratorStandalone/interface/Utils.h
-DEPS += ${PWD}/../MEIntegratorStandalone/interface/Parameters.h
-DEPS += interface/SecondStep.h interface/newPUWeight.h interface/eleFuncs.h interface/muFuncs.h interface/jetFuncs.h interface/bdtVarCalculator.h
+#DEPS += ${PWD}/../MEIntegratorStandalone/interface/Integrand.h
+#DEPS += ${PWD}/../MEIntegratorStandalone/interface/JetLikelihood.h
+#DEPS += ${PWD}/../MEIntegratorStandalone/interface/Utils.h
+#DEPS += ${PWD}/../MEIntegratorStandalone/interface/Parameters.h
+DEPS += interface/SecondStep.h interface/newPUWeight.h interface/eleFuncs.h interface/muFuncs.h interface/jetFuncs.h
+#DEPS += interface/bdtVarCalculator.h
 
 SecondStep: obj/SecondStep.o $(SRCS)
 	@echo '<<<<< Second Step Executable <<<<<<'
