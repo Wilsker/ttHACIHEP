@@ -117,7 +117,7 @@ for k in sample:
         os.popen('mkdir -p '+analyzerpath)
         # Copy analysis code to analysis Directory
         command_cp_cc = 'cp '+workpath+"/"+rootplizer+" "+analyzerpath
-        command_cp_h = 'cp '+workpath+"/"+headplizer+" "+analyzerpath
+        #command_cp_h = 'cp '+workpath+"/"+headplizer+" "+analyzerpath
         os.system(command_cp_cc)
         os.system(command_cp_h)
 
