@@ -77,7 +77,7 @@ def prepareCshJob(input,output,submitFileName,analyzerpath):
 	#print >> subFile, "setenv SCRAM_ARCH slc5_amd64_gcc462"
 	#print >> subFile, "source /cvmfs/cms.cern.ch/cmsset_default.csh"
 	#print >> subFile, "source  /afs/ihep.ac.cn/soft/CMS/64bit/root/profile/rootenv-entry 5.34.18"
-    print >> subFile, "source  /afs/ihep.ac.cn/soft/CMS/64bit/root/profile/rootenv-entry default-slc6"
+    print >> subFile, "source  /afs/ihep.ac.cn/soft/CMS/64bit/root/profile/rootenv-entry 6.08.02"
 	#print >> subFile, "eval \`scramv1 runtime -sh\`"
     print >> subFile, "cd "+analyzerpath
 	#print >> subFile, "cp ${jobDir}/getAhist.C ."
