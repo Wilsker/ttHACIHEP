@@ -9,11 +9,11 @@ import string
 analysis = "TTHbb"
 taskname = "SL"
 #for the queue
-workpath    = "/publicfs/cms/user/joshuha/ttHACIHEP/"
-jobDir      = workpath+"/"+"Jobs"# Replaced/created on the fly
-AnalyzerDir = workpath+"/"+"Analyzer"# Replaced/created on the fly
+condor_dir_path    = "/publicfs/cms/user/joshuha/ttHACIHEP/condor/"
+jobDir      = condor_dir_path+"/"+"Jobs"# Replaced/created on the fly
+AnalyzerDir = condor_dir_path+"/"+"Analyzer"# Replaced/created on the fly
 task        = analysis+"_"+taskname
-
+analysis_dir_path = "/publicfs/cms/user/joshuha/ttHACIHEP/"
 rootplizer = "SecondStep"
 #rootplizer  = "Rootplizer_"+task+".cc"
 #headplizer  = "Rootplizer_"+task+".h"
@@ -83,7 +83,7 @@ def prepareCshJob(input,output,submitFileName,analyzerpath):
 	#print >> subFile, "eval \`scramv1 runtime -sh\`"
     print >> subFile, "cd "+analyzerpath
 	#print >> subFile, "cp ${jobDir}/getAhist.C ."
-    print >> subFile, "root -b -q -l "+rootplizer+"+'(\""+input+"\",\""+output+"\")'"
+    #print >> subFile, "root -b -q -l "+rootplizer+"+'(\""+input+"\",\""+output+"\")'"
     print >> subFile, "./"+rootplizer+" "+input+" "+output
     #print >> subFile, "root -b -q -l "+rootplizer+"'(\""+input+"\",\""+output+"\")'"
 
@@ -116,7 +116,7 @@ for k in sample:
         analyzerpath = AnalyzerSampleDir+"/"+roots[iroot]
         os.popen('mkdir -p '+analyzerpath)
         # Copy analysis code to analysis Directory
-        command_cp_cc = 'cp '+workpath+"/"+rootplizer+" "+analyzerpath
+        command_cp_cc = 'cp '+analysis_dir_path+"/"+rootplizer+" "+analyzerpath
         #command_cp_h = 'cp '+workpath+"/"+headplizer+" "+analyzerpath
         os.system(command_cp_cc)
         #os.system(command_cp_h)
