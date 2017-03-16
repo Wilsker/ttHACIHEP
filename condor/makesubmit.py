@@ -9,7 +9,7 @@ import string
 analysis = "TTHbb"
 taskname = "SL"
 #for the queue
-workpath    = "/afs/ihep.ac.cn/users/j/joshuha/"+analysis
+workpath    = "/publicfs/cms/user/joshuha/ttHACIHEP/"
 jobDir      = workpath+"/"+"Jobs"# Replaced/created on the fly
 AnalyzerDir = workpath+"/"+"Analyzer"# Replaced/created on the fly
 task        = analysis+"_"+taskname
