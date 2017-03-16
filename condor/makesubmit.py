@@ -119,7 +119,7 @@ for k in sample:
         command_cp_cc = 'cp '+workpath+"/"+rootplizer+" "+analyzerpath
         #command_cp_h = 'cp '+workpath+"/"+headplizer+" "+analyzerpath
         os.system(command_cp_cc)
-        os.system(command_cp_h)
+        #os.system(command_cp_h)
 
         MergeSourceFile += " "+roots[iroot].replace(".root","_rootplas.root")
 
