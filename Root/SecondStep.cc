@@ -49,7 +49,9 @@ void SecondStep::Usage(){
 
 void SecondStep::Process(char* inFile,char* outDirPath){
   std::cout << "SecondStep.cc::SecondStep()" << std::endl;
-  MEMClassifier mem;
+
+  // WARNING:: BDT been removed to run on IHEP farm
+  //MEMClassifier mem;
 
   // 'sample' used to distinguish between data and MC or
   // MC with HLT info from MC without HLT info.
@@ -574,7 +576,8 @@ void SecondStep::Process(char* inFile,char* outDirPath){
 
   std::cout << "SecondStep.cc:: sample #: " << sample << std::endl;
 
-  //Instance of BlrBDT must be outside loop. Class currently contains pointers (TMVA Reader objects) that casue memory leak.
+  //Instance of BlrBDT must be outside loop.
+  //Class contains pointers (TMVA Reader objects) that casue memory leak.
   //BlrBDTClassifier bdt;
 
   vector<int> eventNums_passed;
