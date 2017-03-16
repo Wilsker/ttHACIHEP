@@ -24,7 +24,9 @@
 //        - Look into applying a less minimal preselection to speed up code.
 
 #include "../interface/SecondStep.h"
-#include "TTH/CommonClassifier/interface/BlrBDTClassifier.h"
+
+// WARNING:: BDT been removed to run on IHEP farm
+//#include "TTH/CommonClassifier/interface/BlrBDTClassifier.h"
 
 struct stat sb;
 
@@ -239,7 +241,7 @@ void SecondStep::Process(char* inFile,char* outDirPath){
   }
   //cout << "data_stream_ = " << data_stream_ << endl;
 
-
+// WARNING:: BDT been removed to run on IHEP farm
   double BDT_=-99;                TBranch *BDT =newtree->Branch("BDT",&BDT_,"BDT/D");
   double puweight_=1;             TBranch *puweight     =newtree->Branch("puweight",     &puweight_,     "puweight/D");
   double puweightUP_=1;           TBranch *puweightUP   =newtree->Branch("puweightUP",   &puweightUP_,   "puweightUP/D");
@@ -573,7 +575,7 @@ void SecondStep::Process(char* inFile,char* outDirPath){
   std::cout << "SecondStep.cc:: sample #: " << sample << std::endl;
 
   //Instance of BlrBDT must be outside loop. Class currently contains pointers (TMVA Reader objects) that casue memory leak.
-  BlrBDTClassifier bdt;
+  //BlrBDTClassifier bdt;
 
   vector<int> eventNums_passed;
   double bTagWP_DiscrCut = 0.8484;
@@ -1052,13 +1054,22 @@ void SecondStep::Process(char* inFile,char* outDirPath){
 
     double Aplanarity=-99.;
     double Sphericity=-99.;
-    bdtVarCalculator bdtVarCalc;
-    bdtVarCalc.getSp(selectedLeptonP4[0],metP4,selectedJetP4,Aplanarity,Sphericity);
-    double H0,H1,H2,H3,H4;
-    bdtVarCalc.getFox(selectedJetP4,H0,H1,H2,H3,H4);
-    double minChi,dRbb;
+    // WARNING:: BDT been removed to run on IHEP farm
+    //bdtVarCalculator bdtVarCalc;
+    //bdtVarCalc.getSp(selectedLeptonP4[0],metP4,selectedJetP4,Aplanarity,Sphericity);
+    double H0=-99;
+    double H1 = -99;
+    double H2 = -99;
+    double H3 = -99;
+    double H4= -99;
+    // WARNING:: BDT been removed to run on IHEP farm
+    //bdtVarCalc.getFox(selectedJetP4,H0,H1,H2,H3,H4);
+    double minChi=-99;
+    double dRbb =-99;
     TLorentzVector bjet1,bjet2;
-    double bestHiggsMass = bdtVarCalc.getBestHiggsMass(selectedLeptonP4[0],metP4,selectedJetP4,selectedJetCSV_fixed,minChi,dRbb,bjet1,bjet2,looseSelectedJetP4,looseSelectedJetCSV);
+    // WARNING:: BDT been removed to run on IHEP farm
+    double bestHiggsMass = -99;
+    //bestHiggsMass = bdtVarCalc.getBestHiggsMass(selectedLeptonP4[0],metP4,selectedJetP4,selectedJetCSV_fixed,minChi,dRbb,bjet1,bjet2,looseSelectedJetP4,looseSelectedJetCSV);
     TLorentzVector dummy_metv;
     double minChiStudy, chi2lepW, chi2leptop, chi2hadW, chi2hadtop, mass_lepW, mass_leptop, mass_hadW, mass_hadtop, dRbbStudy, testquant1, testquant2, testquant3, testquant4, testquant5, testquant6, testquant7;
     TLorentzVector b1,b2;
@@ -1071,12 +1082,20 @@ void SecondStep::Process(char* inFile,char* outDirPath){
       pxpypzE.push_back(jet->E());
       jets_vvdouble.push_back(pxpypzE);
     }
-    bdtVarCalc.study_tops_bb_syst(metP4.Pt(), metP4.Phi(), dummy_metv, selectedLeptonP4[0], jets_vvdouble, selectedJetCSV_fixed, minChiStudy, chi2lepW, chi2leptop, chi2hadW, chi2hadtop, mass_lepW, mass_leptop, mass_hadW, mass_hadtop, dRbbStudy, testquant1, testquant2, testquant3, testquant4, testquant5, testquant6, testquant7, b1, b2);
+    // WARNING:: BDT been removed to run on IHEP farm
+    //bdtVarCalc.study_tops_bb_syst(metP4.Pt(), metP4.Phi(), dummy_metv, selectedLeptonP4[0], jets_vvdouble, selectedJetCSV_fixed, minChiStudy, chi2lepW, chi2leptop, chi2hadW, chi2hadtop, mass_lepW, mass_leptop, mass_hadW, mass_hadtop, dRbbStudy, testquant1, testquant2, testquant3, testquant4, testquant5, testquant6, testquant7, b1, b2);
     double DEta_fn=testquant6;
-    double pt_E_ratio = bdtVarCalc.pt_E_ratio_jets(jets_vvdouble);
-    double jet_jet_etamax = bdtVarCalc.get_jet_jet_etamax (jets_vvdouble);
-    double jet_tag_etamax = bdtVarCalc.get_jet_tag_etamax (jets_vvdouble,selectedJetCSV_fixed);
-    double tag_tag_etamax = bdtVarCalc.get_tag_tag_etamax (jets_vvdouble,selectedJetCSV_fixed);
+
+    // WARNING:: BDT been removed to run on IHEP farm
+    double pt_E_ratio = -99;
+    //pt_E_ratio = bdtVarCalc.pt_E_ratio_jets(jets_vvdouble);
+    double jet_jet_etamax = -99;
+    //jet_jet_etamax = bdtVarCalc.get_jet_jet_etamax (jets_vvdouble);
+    double jet_tag_etamax = -99;
+    //jet_tag_etamax = bdtVarCalc.get_jet_tag_etamax (jets_vvdouble,selectedJetCSV_fixed);
+    double tag_tag_etamax = -99;
+    //tag_tag_etamax = bdtVarCalc.get_tag_tag_etamax (jets_vvdouble,selectedJetCSV_fixed);
+
     double sum_pt_jets=0;
     double Dr_between_lep_and_closest_jet=99;
     double mht_px=0;
@@ -1195,12 +1214,12 @@ void SecondStep::Process(char* inFile,char* outDirPath){
     double out_P_2b=-1;
     eth_blr=mem.GetBTagLikelihoodRatio(selectedJetP4,selectedJetCSV,out_best_perm,out_P_4b,out_P_2b);
 
-    //BDT
     int bJetness_num_soft_leps = 1;//(int)BJetness_num_soft_leps[0];
     double bJetness_avip3d_val = 0.2;//BJetness_avip3d_val[0];
-    //auto result = bdt.GetBDTOutput(
 
-    double result = bdt.GetBDTOutput(selectedLeptonP4,selectedJetP4,selectedJetCSV,looseSelectedJetP4,looseSelectedJetCSV,metP4,eth_blr);
+    // WARNING:: BDT been removed to run on IHEP farm
+    double result = -99;
+    //result = bdt.GetBDTOutput(selectedLeptonP4,selectedJetP4,selectedJetCSV,looseSelectedJetP4,looseSelectedJetCSV,metP4,eth_blr);
 
     if(!(eth_blr>=0.0 || eth_blr<0.0)) eth_blr=0.001;
     eth_blr = TMath::Log(eth_blr/(1-eth_blr));
@@ -1255,6 +1274,7 @@ void SecondStep::Process(char* inFile,char* outDirPath){
       else if(MUON==false && ELECTRON==true) type_ = 1;
       else                                   type_ = 2;
     }
+    // WARNING:: BDT been removed to run on IHEP farm
     BDT_ = result;
     NumberOfJets_  = SelTightJet_pt.size();
     if((ELECTRON || MUON) && !(ELEL || ELMUON || MUONMUON)){
