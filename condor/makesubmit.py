@@ -113,7 +113,7 @@ for k in sample:
         # Use input files to name output (with edited suffix)
         output = outputDirectory+"/"+roots[iroot].replace(".root","_rootplas.root")
         # Make temp directory in which the analysis is to be performed:
-        analyzerpath = AnalyzerSampleDir+"/"+roots[iroot]
+        analyzerpath = AnalyzerSampleDir+"/"+roots[iroot].replace(".root","")
         os.popen('mkdir -p '+analyzerpath)
         # Copy analysis code to analysis Directory
         command_cp_cc = 'cp '+analysis_dir_path+"/"+rootplizer+" "+analyzerpath
