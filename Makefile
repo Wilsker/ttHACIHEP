@@ -31,11 +31,11 @@ CXXFLAGS   = -ggdb $(shell root-config --cflags)
 
 # INCL variable contains all include directories.
 # Run Directory:
-INCL  := -I${CMSSW_BASE}/src/TTH/ttHACIHEP#<<<<NEED TO CHANGE THIS TO ${PWD}
+INCL  := -I${PWD}
 # External stuff:
 INCL   += -I${ROOTSYS}/include
-INCL   += -I${CMSSW_BASE}/src
-INCL	 += -I${LHAPDF_DATA_PATH}/../../../6.1.6-giojec/include/LHAPDF
+#INCL   += -I${CMSSW_BASE}/src
+#INCL	 += -I${LHAPDF_DATA_PATH}/../../../6.1.6-giojec/include/LHAPDF
 
 # 'LDFLAGS' variable containing flags passed through the linker.
 # Mostly libs as they are only needed at linking stage (not during assembly).
@@ -53,10 +53,10 @@ LDFLAGS    = $(shell root-config --libs) -lMinuit
 LDFLAGS		+= $(shell root-config --ldflags)
 LDFLAGS   += -lHistFactory -lRooStats -lRooFit -lRooFitCore -lMathMore -lTMVA
 #LDFLAGS   += -L${CMSSW_BASE}/lib/slc6_amd64_gcc493
-LDFLAGS	  += -L${LHAPDF_DATA_PATH}/../../../6.1.6-giojec/lib
-LDFLAGS 	+= -lLHAPDF
-LDFLAGS		+= -L${CMS_OPENLOOPS_PREFIX}/lib
-LDFLAGS		+= -lopenloops
+#LDFLAGS	  += -L${LHAPDF_DATA_PATH}/../../../6.1.6-giojec/lib
+#LDFLAGS 	+= -lLHAPDF
+#LDFLAGS		+= -L${CMS_OPENLOOPS_PREFIX}/lib
+#LDFLAGS		+= -lopenloops
 
 # Following lines have format of 'target: dependencies'.
 # Indented lines should be run if dependecies are newer than target so that target is updated and rebuilt.
