@@ -197,7 +197,10 @@ void SecondStep::Process(char* inFile,char* outDirPath){
   oldtree->SetBranchStatus("trueInteractions",1);
   oldtree->SetBranchStatus("pvertex_ndof",1);
   oldtree->SetBranchStatus("pvertex_z",1);
-  oldtree->SetBranchStatus("pvertex_Rho",1);
+  //==========================================
+  // HACK pvertex_Rho not in first ntuples
+  //==========================================
+//  oldtree->SetBranchStatus("pvertex_Rho",1);
   oldtree->SetBranchStatus("Met_type1PF_pt",1);
   oldtree->SetBranchStatus("Met_type1PF_px",1);
   oldtree->SetBranchStatus("Met_type1PF_py",1);
@@ -522,9 +525,16 @@ void SecondStep::Process(char* inFile,char* outDirPath){
   vector<int>* Gen_motherpdg_id=0;
   vector<int>* Gen_pdg_id=0;
   vector<double>* pvertex_ndof=0;
-  vector<double>* pvertex_Rho=0;
+  //==========================================
+  // HACK pvertex_Rho not in first ntuples
+  //==========================================
+//  vector<double>* pvertex_Rho=0;
   vector<double>* pvertex_z=0;
-  TBranch *b_HLT_IsoMu22,*b_HLT_IsoMu24,*b_HLT_IsoTkMu24,*b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL,*b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,*b_HLT_IsoTkMu22,*b_HLT_Ele27_eta2p1_WPTight_Gsf,*b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL,*b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ,*b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL,*b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ,*b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL,*b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ,*b_HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,*b_ttHFCategory,*b_EVENT_event,*b_EVENT_run,*b_EVENT_lumiBlock,*b_Met_type1PF_pt,*b_Met_type1PF_px,*b_Met_type1PF_py,*b_Met_type1PF_phi,*b_EVENT_Q2tthbbWeightUp,*b_EVENT_Q2tthbbWeightDown,*b_EVENT_PDFtthbbWeightUp,*b_EVENT_PDFtthbbWeightDown,*b_PUWeight,*b_Gen_pt,*b_Gen_eta,*b_Gen_phi,*b_Gen_pdg_id,*b_Gen_motherpdg_id,*b_trueInteractions,*b_pvertex_ndof,*b_pvertex_z,*b_pvertex_Rho;
+  TBranch *b_HLT_IsoMu22,*b_HLT_IsoMu24,*b_HLT_IsoTkMu24,*b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL,*b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,*b_HLT_IsoTkMu22,*b_HLT_Ele27_eta2p1_WPTight_Gsf,*b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL,*b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ,*b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL,*b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ,*b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL,*b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ,*b_HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,*b_ttHFCategory,*b_EVENT_event,*b_EVENT_run,*b_EVENT_lumiBlock,*b_Met_type1PF_pt,*b_Met_type1PF_px,*b_Met_type1PF_py,*b_Met_type1PF_phi,*b_EVENT_Q2tthbbWeightUp,*b_EVENT_Q2tthbbWeightDown,*b_EVENT_PDFtthbbWeightUp,*b_EVENT_PDFtthbbWeightDown,*b_PUWeight,*b_Gen_pt,*b_Gen_eta,*b_Gen_phi,*b_Gen_pdg_id,*b_Gen_motherpdg_id,*b_trueInteractions,*b_pvertex_ndof,*b_pvertex_z;
+  //==========================================
+  // HACK pvertex_Rho not in first ntuples
+  //==========================================
+  //,*b_pvertex_Rho;
   TBranch *b_Flag_HBHENoiseFilter,*b_Flag_HBHENoiseIsoFilter,*b_Flag_CSCTightHalo2015Filter,*b_Flag_EcalDeadCellTriggerPrimitiveFilter,*b_Flag_goodVertices;
   //==========================================
   // HACK Flag_globalTightHalo2016Filter not in first ntuples
@@ -589,7 +599,10 @@ void SecondStep::Process(char* inFile,char* outDirPath){
   //oldtree->SetBranchAddress("EVENT_filtercloneGlobalMuonTagger",&EVENT_filtercloneGlobalMuonTagger,&b_EVENT_filtercloneGlobalMuonTagger);
   oldtree->SetBranchAddress("pvertex_ndof",&pvertex_ndof,&b_pvertex_ndof);
   oldtree->SetBranchAddress("pvertex_z",&pvertex_z,&b_pvertex_z);
-  oldtree->SetBranchAddress("pvertex_Rho",&pvertex_Rho,&b_pvertex_Rho);
+  //==========================================
+  // HACK pvertex_Rho not in first ntuples
+  //==========================================
+  //oldtree->SetBranchAddress("pvertex_Rho",&pvertex_Rho,&b_pvertex_Rho);
 
   Int_t nentries = (Int_t)oldtree->GetEntries();
   std::cout << "SecondStep.cc:: Entering event loop with: " << nentries << " entries." << std::endl;
