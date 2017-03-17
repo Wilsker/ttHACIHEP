@@ -208,10 +208,19 @@ void SecondStep::Process(char* inFile,char* outDirPath){
   oldtree->SetBranchStatus("Flag_CSCTightHalo2015Filter",1);
   oldtree->SetBranchStatus("Flag_EcalDeadCellTriggerPrimitiveFilter",1);
   oldtree->SetBranchStatus("Flag_goodVertices",1);
-  oldtree->SetBranchStatus("Flag_globalTightHalo2016Filter",1);
+
+  //==========================================
+  // HACK Flag_globalTightHalo2016Filter not in first ntuples
+  //==========================================
+  //oldtree->SetBranchStatus("Flag_globalTightHalo2016Filter",1);
+  //==========================================
+
   oldtree->SetBranchStatus("Flag_eeBadScFilter",1);
-  oldtree->SetBranchStatus("EVENT_filterBadGlobalMuonTagger",1);
-  oldtree->SetBranchStatus("EVENT_filtercloneGlobalMuonTagger",1);
+  //==========================================
+  // HACK EVENT_filterBadGlobalMuonTagger and EVENT_filtercloneGlobalMuonTagger not in first ntuples
+  //==========================================
+  //oldtree->SetBranchStatus("EVENT_filterBadGlobalMuonTagger",1);
+  //oldtree->SetBranchStatus("EVENT_filtercloneGlobalMuonTagger",1);
 
   if(sample==1 || sample==2){
     oldtree->SetBranchStatus("ttHFCategory",1);
@@ -491,13 +500,21 @@ void SecondStep::Process(char* inFile,char* outDirPath){
   int Flag_CSCTightHalo2015Filter = -99;
 
   int Flag_goodVertices = -99;
-  int Flag_globalTightHalo2016Filter = -99;
+
+  //==========================================
+  // HACK Flag_globalTightHalo2016Filter not in first ntuples
+  //==========================================
+  //  int Flag_globalTightHalo2016Filter = -99;
+
   int Flag_HBHENoiseFilter = -99;
   int Flag_HBHENoiseIsoFilter = -99;
   int Flag_EcalDeadCellTriggerPrimitiveFilter = -99;
   int Flag_eeBadScFilter = -99;
-  bool EVENT_filterBadGlobalMuonTagger = 0;
-  bool EVENT_filtercloneGlobalMuonTagger = 0;
+  //==========================================
+  // HACK EVENT_filterBadGlobalMuonTagger and EVENT_filtercloneGlobalMuonTagger not in first ntuples
+  //==========================================
+  //bool EVENT_filterBadGlobalMuonTagger = 0;
+  //bool EVENT_filtercloneGlobalMuonTagger = 0;
 
   vector<double>* Gen_pt=0;
   vector<double>* Gen_eta=0;
@@ -509,10 +526,16 @@ void SecondStep::Process(char* inFile,char* outDirPath){
   vector<double>* pvertex_z=0;
   TBranch *b_HLT_IsoMu22,*b_HLT_IsoMu24,*b_HLT_IsoTkMu24,*b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL,*b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,*b_HLT_IsoTkMu22,*b_HLT_Ele27_eta2p1_WPTight_Gsf,*b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL,*b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ,*b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL,*b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ,*b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL,*b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ,*b_HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,*b_ttHFCategory,*b_EVENT_event,*b_EVENT_run,*b_EVENT_lumiBlock,*b_Met_type1PF_pt,*b_Met_type1PF_px,*b_Met_type1PF_py,*b_Met_type1PF_phi,*b_EVENT_Q2tthbbWeightUp,*b_EVENT_Q2tthbbWeightDown,*b_EVENT_PDFtthbbWeightUp,*b_EVENT_PDFtthbbWeightDown,*b_PUWeight,*b_Gen_pt,*b_Gen_eta,*b_Gen_phi,*b_Gen_pdg_id,*b_Gen_motherpdg_id,*b_trueInteractions,*b_pvertex_ndof,*b_pvertex_z,*b_pvertex_Rho;
   TBranch *b_Flag_HBHENoiseFilter,*b_Flag_HBHENoiseIsoFilter,*b_Flag_CSCTightHalo2015Filter,*b_Flag_EcalDeadCellTriggerPrimitiveFilter,*b_Flag_goodVertices;
-  TBranch *b_Flag_globalTightHalo2016Filter;
+  //==========================================
+  // HACK Flag_globalTightHalo2016Filter not in first ntuples
+  //==========================================
+  //TBranch *b_Flag_globalTightHalo2016Filter;
   TBranch *b_Flag_eeBadScFilter;
-  TBranch *b_EVENT_filterBadGlobalMuonTagger;
-  TBranch *b_EVENT_filtercloneGlobalMuonTagger;
+  //==========================================
+  // HACK EVENT_filterBadGlobalMuonTagger and EVENT_filtercloneGlobalMuonTagger not in first ntuples
+  //==========================================
+  //TBranch *b_EVENT_filterBadGlobalMuonTagger;
+  //TBranch *b_EVENT_filtercloneGlobalMuonTagger;
   oldtree->SetBranchAddress("HLT_IsoMu22",&HLT_IsoMu22,&b_HLT_IsoMu22);
   oldtree->SetBranchAddress("HLT_IsoTkMu22",&HLT_IsoTkMu22,&b_HLT_IsoTkMu22);
   oldtree->SetBranchAddress("HLT_IsoMu24",&HLT_IsoMu24,&b_HLT_IsoMu24);
@@ -554,10 +577,16 @@ void SecondStep::Process(char* inFile,char* outDirPath){
   oldtree->SetBranchAddress("Flag_CSCTightHalo2015Filter",&Flag_CSCTightHalo2015Filter,&b_Flag_CSCTightHalo2015Filter);
   oldtree->SetBranchAddress("Flag_EcalDeadCellTriggerPrimitiveFilter",&Flag_EcalDeadCellTriggerPrimitiveFilter,&b_Flag_EcalDeadCellTriggerPrimitiveFilter);
   oldtree->SetBranchAddress("Flag_goodVertices",&Flag_goodVertices,&b_Flag_goodVertices);
-  oldtree->SetBranchAddress("Flag_globalTightHalo2016Filter",&Flag_globalTightHalo2016Filter,&b_Flag_globalTightHalo2016Filter);
+  //==========================================
+  // HACK Flag_globalTightHalo2016Filter not in first ntuples
+  //==========================================
+//  oldtree->SetBranchAddress("Flag_globalTightHalo2016Filter",&Flag_globalTightHalo2016Filter,&b_Flag_globalTightHalo2016Filter);
   oldtree->SetBranchAddress("Flag_eeBadScFilter",&Flag_eeBadScFilter,&b_Flag_eeBadScFilter);
-  oldtree->SetBranchAddress("EVENT_filterBadGlobalMuonTagger",&EVENT_filterBadGlobalMuonTagger,&b_EVENT_filterBadGlobalMuonTagger);
-  oldtree->SetBranchAddress("EVENT_filtercloneGlobalMuonTagger",&EVENT_filtercloneGlobalMuonTagger,&b_EVENT_filtercloneGlobalMuonTagger);
+  //==========================================
+  // HACK EVENT_filterBadGlobalMuonTagger and EVENT_filtercloneGlobalMuonTagger not in first ntuples
+  //==========================================
+  //oldtree->SetBranchAddress("EVENT_filterBadGlobalMuonTagger",&EVENT_filterBadGlobalMuonTagger,&b_EVENT_filterBadGlobalMuonTagger);
+  //oldtree->SetBranchAddress("EVENT_filtercloneGlobalMuonTagger",&EVENT_filtercloneGlobalMuonTagger,&b_EVENT_filtercloneGlobalMuonTagger);
   oldtree->SetBranchAddress("pvertex_ndof",&pvertex_ndof,&b_pvertex_ndof);
   oldtree->SetBranchAddress("pvertex_z",&pvertex_z,&b_pvertex_z);
   oldtree->SetBranchAddress("pvertex_Rho",&pvertex_Rho,&b_pvertex_Rho);
@@ -627,9 +656,16 @@ void SecondStep::Process(char* inFile,char* outDirPath){
     //cout << "pvertex_ndof size = " << pvertex_ndof->size() << endl;
     if(pvertex_ndof->size()<1){continue;}
 
-    if(pvertex_ndof->at(0)<=4 && abs(pvertex_Rho->at(0))>=24 && abs(pvertex_z->at(0))>=2) {
+    //==========================================
+    // HACK pvertex_Rho not in first ntuples
+    //==========================================
+    //if(pvertex_ndof->at(0)<=4 && abs(pvertex_Rho->at(0))>=24 && abs(pvertex_z->at(0))>=2) {
+    //  continue;
+    //}
+    if(pvertex_ndof->at(0)<=4 && abs(pvertex_z->at(0))>=2) {
       continue;
     }
+    //==========================================
 
     // MUON SELECTION
     // - Selects veto/subleading muons to perform overlap removal.
@@ -793,13 +829,21 @@ void SecondStep::Process(char* inFile,char* outDirPath){
     int METFilters = 0;
 
     if(sample!=0){
-      if(Flag_goodVertices==1 && Flag_globalTightHalo2016Filter==1 && Flag_HBHENoiseFilter==1 && Flag_HBHENoiseIsoFilter==1 && Flag_EcalDeadCellTriggerPrimitiveFilter==1 && Flag_eeBadScFilter==1){
+      //==========================================
+      // HACK Flag_globalTightHalo2016Filter not in first ntuples
+      //==========================================
+      //if(Flag_goodVertices==1 && Flag_globalTightHalo2016Filter==1 && Flag_HBHENoiseFilter==1 && Flag_HBHENoiseIsoFilter==1 && Flag_EcalDeadCellTriggerPrimitiveFilter==1 && Flag_eeBadScFilter==1){
+      if(Flag_goodVertices==1 && Flag_HBHENoiseFilter==1 && Flag_HBHENoiseIsoFilter==1 && Flag_EcalDeadCellTriggerPrimitiveFilter==1 && Flag_eeBadScFilter==1){
         //tt.EVENT_filterBadGlobalMuonTagger==1 and tt.EVENT_filtercloneGlobalMuonTagger==1
         METFilters = 1;
       }
     }
     else{
-      if(Flag_goodVertices==1 && Flag_globalTightHalo2016Filter==1 && Flag_HBHENoiseFilter==1 && Flag_HBHENoiseIsoFilter==1 && Flag_EcalDeadCellTriggerPrimitiveFilter==1 && Flag_eeBadScFilter==1 && Flag_eeBadScFilter==1){
+      //==========================================
+      // HACK Flag_globalTightHalo2016Filter not in first ntuples
+      //==========================================
+      //if(Flag_goodVertices==1 && Flag_globalTightHalo2016Filter==1 && Flag_HBHENoiseFilter==1 && Flag_HBHENoiseIsoFilter==1 && Flag_EcalDeadCellTriggerPrimitiveFilter==1 && Flag_eeBadScFilter==1 && Flag_eeBadScFilter==1){
+      if(Flag_goodVertices==1 && Flag_HBHENoiseFilter==1 && Flag_HBHENoiseIsoFilter==1 && Flag_EcalDeadCellTriggerPrimitiveFilter==1 && Flag_eeBadScFilter==1 && Flag_eeBadScFilter==1){
         //tt.EVENT_filterBadGlobalMuonTagger==1 and tt.EVENT_filtercloneGlobalMuonTagger==1
         METFilters = 1;
       }
