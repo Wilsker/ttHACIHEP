@@ -19,7 +19,7 @@ void PUWTool::newPUWeight(double PUWeight_, double &puweight,double &puweightUP,
   //------------------------------------------//
 
   // Data pileup histogram for current Moriond17 dataset 14th Feb 2017.
-  TFile file("/afs/cern.ch/work/j/jthomasw/private/IHEP/CMSSW/CMSSW_8_0_24/src/BSMFramework/BSM3G_TNT_Maker/data/PUReweight/PileUpReweightingMoriond17.root", "READ");
+  TFile file("SF/PileUpReweightingMoriond17.root", "READ");
   TH1* h = NULL;
   file.GetObject("pileup",h);
   h->SetDirectory(0);
