@@ -223,6 +223,6 @@ for key,k in sample.iteritems():
 
 
     print >> MergeFile, "cd",outputDirectory
-    print >> MergeFile, "hadd" + key + "_Merged_rootplas.root",MergeSourceFile
+    print >> MergeFile, "hadd " + key + "_Merged_rootplas.root",MergeSourceFile
 
 print >> allJobFile, "cd -"
