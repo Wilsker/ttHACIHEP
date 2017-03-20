@@ -19,8 +19,8 @@ void PUWTool::newPUWeight(double PUWeight_, double &puweight,double &puweightUP,
   //------------------------------------------//
 
   // Data pileup histogram for current Moriond17 dataset 14th Feb 2017.
-  //TFile file("/publicfs/cms/user/joshuha/ttHACIHEP/SF/PileUpReweightingMoriond17.root", "READ");
-  TFile file("SF/PileUpReweightingMoriond17.root", "READ");
+  TFile file("/publicfs/cms/user/joshuha/ttHACIHEP/SF/PileUpReweightingMoriond17.root", "READ");
+  //TFile file("SF/PileUpReweightingMoriond17.root", "READ");
   TH1* h = NULL;
   file.GetObject("pileup",h);
   h->SetDirectory(0);
@@ -32,9 +32,12 @@ void PUWTool::newPUWeight(double PUWeight_, double &puweight,double &puweightUP,
   // Systematic variations scale luminosity up/down by 5%
   // New histograms can be calculated using procedure on twiki:
   //              https://twiki.cern.ch/twiki/bin/view/CMS/PileupJSONFileforData#Pileup_JSON_Files_For_Run_II
-  TFile fileNEW("SF/MyDataPileupHistogram_69200.root", "READ");
-  TFile fileNEWUp("SF/MyDataPileupHistogram_69200Up.root", "READ");
-  TFile fileNEWDo("SF/MyDataPileupHistogram_69200Do.root", "READ");
+  TFile fileNEW("/publicfs/cms/user/joshuha/ttHACIHEP/SF/MyDataPileupHistogram_69200.root", "READ");
+  TFile fileNEWUp("/publicfs/cms/user/joshuha/ttHACIHEP/SF/MyDataPileupHistogram_69200Up.root", "READ");
+  TFile fileNEWDo("/publicfs/cms/user/joshuha/ttHACIHEP/SF/MyDataPileupHistogram_69200Do.root", "READ");
+  //TFile fileNEW("SF/MyDataPileupHistogram_69200.root", "READ");
+  //TFile fileNEWUp("SF/MyDataPileupHistogram_69200Up.root", "READ");
+  //TFile fileNEWDo("SF/MyDataPileupHistogram_69200Do.root", "READ");
   TH1* hNEW   = NULL;
   TH1* hNEWUp = NULL;
   TH1* hNEWDo = NULL;
