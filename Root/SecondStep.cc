@@ -47,8 +47,9 @@ void SecondStep::Usage(){
   return;
 }
 
-void SecondStep::Process(char* inFile,const char* outDirPath){
+void SecondStep::Process(char* inFile, string outDirPath){
   std::cout << "SecondStep.cc::SecondStep()" << std::endl;
+
 
   // WARNING:: BDT been removed to run on IHEP farm
   //MEMClassifier mem;
@@ -65,26 +66,31 @@ void SecondStep::Process(char* inFile,const char* outDirPath){
 
   int sample=-999;
 
-  if(infilename.find("ttH")!=std::string::npos){sample=1;}
-  else if(infilename.find("ttjets")!=std::string::npos){sample=2;}
-  else{sample=0;}
-
+  if(infilename.find("/mc/")!=std::string::npos){sample=1;}
+  else if(infilename.find("/data/")!=std::string::npos){
+    sample=0;
+  }
+  else{
+    cout << "Input file does not fit naming convention!" << endl;
+    cout << "Check input file name"<< endl;
+    cout << "Input file name = " << infilename << endl;
+    exit(0);
+  }
   string inputFullPath = infilename;
   const char* Input = inputFullPath.c_str();
 
-  std::string out_test = "SS_" + inputFullPath.substr(inputFullPath.find_last_of("/")+1);
+  string out_test = "SS_" + inputFullPath.substr(inputFullPath.find_last_of("/")+1);
 
   std::string outputFullPath = outDirPath+out_test;
   const char * Output = outputFullPath.c_str();
 
   cout << "Input file: " << Input << endl;
-  cout << "SAMPLE = " << sample << endl;
+  cout << "Output file: " << Output << endl;
+  cout << "Sample Type: " << sample << endl;
 
   //Get old file, old tree and set top branch address
   TFile *oldfile = TFile::Open(Input);
   if (!oldfile->IsOpen()) throw "Input file could not be opened.";
-
-  cout << "Output file: " << Output << endl;
 
   TTree *evtree = (TTree*)oldfile->Get("TNT/evtree");
   evtree->SetBranchStatus("*",0);
@@ -1006,13 +1012,11 @@ void SecondStep::Process(char* inFile,const char* outDirPath){
     }
     if(ELECTRON){
       if(!(SelTightJet_pt.size()>=4&&nBCSVM_SL>=2)) {
-        is_e_ = true;
         continue;
       }
     }
     else if(MUON){
       if(!(SelTightJet_pt.size()>=4&&nBCSVM_SL>=2)) {
-        is_mu_ = true;
         continue;
       }
     }
@@ -1026,6 +1030,9 @@ void SecondStep::Process(char* inFile,const char* outDirPath){
       cout << "# Electrons: " << SelElectronMVA_pt.size() << endl;
       cout << "# Muons: " << SelMuon_pt.size() << endl;
     }
+    is_e_ = true;
+    is_mu_ = true;
+
     //cout << "========= Passed selection ===========" << endl;
     /*if (std::find(eventNums_passed.begin(), eventNums_passed.end(), EVENT_event) != eventNums_passed.end()){
       cout << " ============== Duplicate event ===================" << endl;
@@ -1451,29 +1458,28 @@ int main(int argc, char* argv[]){
   std::cout << "SecondStep.cc::main()" << std::endl;
   SecondStep SS;
   const char* Input;
-  const char* outpath_test_string ="";
+
+  const char* outpath_test_string;
+
+  string outputPath = "";
+
   if(argc!=3){
     SS.Usage();
     exit(0);
   }
   else{
-  //Assume arg 1 is the file to open.
-    cout << "Running file: " << argv[1] << endl;
     string infilename=string(argv[1]);
     string suffix =".root";
     string inputFullPath = infilename;
-    cout << "inputFullPath = " << inputFullPath << endl;
     Input = inputFullPath.c_str();
     ifstream inputFile(Input);
 
-    string outputPath = string(argv[2]);
+    outputPath = string(argv[2]);
     if(outputPath.compare(outputPath.length()-1,1,"/")){
       cout << "Adding / to end of output path" << endl;
       outputPath += "/";
     }
     outpath_test_string = outputPath.c_str();
-    cout << "Output path: " << outpath_test_string << endl;
-
     if (stat(outpath_test_string, &sb) == 1 || (!S_ISDIR(sb.st_mode))){
       cout << "ERROR : \'outputPath\' does not exist!" << endl;
       cout << "Please check the output directory you want to write to exists." << endl;
@@ -1489,7 +1495,7 @@ int main(int argc, char* argv[]){
     }
   }
 
-  SS.Process(argv[1],outpath_test_string);
+  SS.Process(argv[1],outputPath);
 
   return 0;
 }
