@@ -191,8 +191,8 @@ for key,k in sample.iteritems():
         input  = rootDirectory+"/"+roots[iroot]
 
         # Use input files to name output (with edited suffix)
-        output = outputDirectory+"/"+roots[iroot].replace(".root","_rootplas")
-        print 'output directory = ' , output
+        #output = outputDirectory+"/"+roots[iroot].replace(".root","_rootplas")
+        #print 'output directory = ' , output
         #os.popen('mkdir -p '+output)
 
         # Make temp directory in which the analysis is to be performed:
