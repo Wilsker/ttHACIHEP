@@ -172,10 +172,11 @@ for key,k in sample.iteritems():
     sampleName = key
     # Full input path + filename.
     rootDirectory   = k # +"/"+k    ## you can use your naming convension to set up the inputDirectory
-    outputDirectory = sampleout[key] # you can use your naming convension to set up the outputDirectory
+    outputDirectory = sampleout[key]+"/"+key # you can use your naming convension to set up the outputDirectory
     # Full paths to samples created: "/afs/ihep.ac.cn/users/j/joshuha/"+analysis+"Analyzer/"+ sample
     AnalyzerSampleDir = AnalyzerDir + "/" + sampleName
     os.popen('mkdir -p ' +AnalyzerSampleDir)
+    os.popen('mkdir -p ' +sampleout[key])
     os.popen('mkdir -p '+outputDirectory)
     os.chdir(rootDirectory)
     # glob.glob() is a wrapped around a os.listdir()
@@ -190,9 +191,9 @@ for key,k in sample.iteritems():
         input  = rootDirectory+"/"+roots[iroot]
 
         # Use input files to name output (with edited suffix)
-        output = outputDirectory+"/"+ key +"/"+roots[iroot].replace(".root","_rootplas")
+        output = outputDirectory+"/"+roots[iroot].replace(".root","_rootplas")
         print 'output directory = ' , output
-        os.popen('mkdir -p '+output)
+        #os.popen('mkdir -p '+output)
 
         # Make temp directory in which the analysis is to be performed:
         analyzerpath = AnalyzerSampleDir+"/"+roots[iroot].replace(".root","")
@@ -215,11 +216,13 @@ for key,k in sample.iteritems():
         errFileName = logFilePath+"/"+sampleName+"_"+name+".err"
 
         prepareSubmitJob(cshFilePath+"/"+submitFileName, cshFileName, logFileName, errFileName)
-        prepareCshJob(input,output,cshFileName,analyzerpath)
+        #prepareCshJob(input,output,cshFileName,analyzerpath)
+        prepareCshJob(input,outputDirectory,cshFileName,analyzerpath)
         print >> allJobFile, "condor_submit "+ submitFileName + " -group cms -name job@schedd01.ihep.ac.cn"
 
 
-    print >> MergeFile, "cd",outputDirectory
-    print >> MergeFile, "hadd " + key + "_Merged_rootplas.root",MergeSourceFile
+    print >> MergeFile, "cd ",outputDirectory
+    #print >> MergeFile, "hadd " + key + "_Merged_rootplas.root",MergeSourceFile
+    print >> MergeFile, "hadd " + key + "_Merged_rootplas.root", " *.root"
 
 print >> allJobFile, "cd -"
