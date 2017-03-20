@@ -16,7 +16,8 @@ task        = analysis+"_"+taskname
 analysis_dir_path = "/publicfs/cms/user/joshuha/ttHACIHEP/"
 rootplizer = "SecondStep"
 
-#Directory of input files
+
+# Python dictionaries map directory of input files to
 sample={
 "ttHbb": '/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ttHTobb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_ttHbb/170216_130523/0000/',
 "ttjets_DL": '/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTTo2L2Nu_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTTo2L2Nu/170216_131744/0000/',
@@ -165,9 +166,11 @@ def prepareCshJob(input,output,submitFileName,analyzerpath):
 
 
 # Loop over all samples you want to run on.
-for k in sample:
+keys=sample.keys()
+for key,k in sample.iteritems():
     print 'Index ' , k
     # sample[k] gives the full path of root input files.
+    print 'Dict key = ' , key
     print 'Sample = ', sample[k]
     sampleName = k
     # Full input path + filename.
