@@ -5,6 +5,11 @@ import string
 #####
 ##   Parameters to be specified by the user
 #####
+# Output Dir Structure:
+#   /publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/output/MC/<Process/DataBlock>/<subfile.root>
+
+
+
 #analysis and task
 analysis = "ttHbb"
 taskname = "SL"
@@ -19,8 +24,8 @@ rootplizer = "SecondStep"
 
 # Python dictionaries map directory of input files to
 sample={
-"ttHbb":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ttHTobb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_ttHbb/170216_130523/0000/',
-"ttjets_DL":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTTo2L2Nu_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTTo2L2Nu/170216_131744/0000/'
+"ttHbb":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ttHTobb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_ttHbb/170216_130523/0000/'
+#"ttjets_DL":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTTo2L2Nu_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTTo2L2Nu/170216_131744/0000/'
 #"stop_tchan":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_t-channel_antitop_4f_inclusiveDecays_TuneCUETP8M2T4_13TeV-powhegV2-madspin/crab_FullMorV1_SaTt/170216_132428/0000/',
 #"ttjets_SL":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTToSemilepton_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTToSemilepton/170216_131212/0000/',
 #"ttjets_bfilter":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTToSemilepton_ttbbFilter_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTToSemilepton_ttbbFilter/170217_064724/0000/',
@@ -61,8 +66,8 @@ sample={
 #"data_SMuBlockH2":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/data/SingleMuon/crab_FullMorV1_SMuBlockH2/170216_140830/0000/'
        }
 sampleout={
-"ttHbb": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
-"ttjets_DL": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/'
+"ttHbb": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/'
+#"ttjets_DL": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/'
 #"stop_tchan": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 #"ttjets_SL": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 #"ttjets_bfilter": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
