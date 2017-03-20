@@ -25,7 +25,7 @@ rootplizer = "SecondStep"
 # Python dictionaries map directory of input files to
 sample={
 "ttHbb":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ttHTobb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_ttHbb/170216_130523/0000/',
-"ttjets_DL":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTTo2L2Nu_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTTo2L2Nu/170216_131744/0000/'
+"ttjets_DL":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTTo2L2Nu_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTTo2L2Nu/170216_131744/0000/',
 "stop_tchan":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_t-channel_antitop_4f_inclusiveDecays_TuneCUETP8M2T4_13TeV-powhegV2-madspin/crab_FullMorV1_SaTt/170216_132428/0000/',
 "ttjets_SL":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTToSemilepton_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTToSemilepton/170216_131212/0000/',
 "ttjets_bfilter":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTToSemilepton_ttbbFilter_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTToSemilepton_ttbbFilter/170217_064724/0000/',
