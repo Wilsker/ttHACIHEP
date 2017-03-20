@@ -1014,11 +1014,13 @@ void SecondStep::Process(char* inFile, string outDirPath){
       if(!(SelTightJet_pt.size()>=4&&nBCSVM_SL>=2)) {
         continue;
       }
+      else{is_e_ = true;}
     }
     else if(MUON){
       if(!(SelTightJet_pt.size()>=4&&nBCSVM_SL>=2)) {
         continue;
       }
+      else{is_mu_ = true;}
     }
     if(ELEL || MUONMUON || ELMUON){
         if(!(SelTightJet_pt.size()>=2)&&nBCSVM_DL>=1){continue;}
