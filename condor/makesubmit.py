@@ -19,8 +19,8 @@ rootplizer = "SecondStep"
 
 # Python dictionaries map directory of input files to
 sample={
-"ttHbb":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ttHTobb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_ttHbb/170216_130523/0000/'
-#"ttjets_DL":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTTo2L2Nu_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTTo2L2Nu/170216_131744/0000/',
+"ttHbb":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ttHTobb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_ttHbb/170216_130523/0000/',
+"ttjets_DL":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTTo2L2Nu_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTTo2L2Nu/170216_131744/0000/'
 #"stop_tchan":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_t-channel_antitop_4f_inclusiveDecays_TuneCUETP8M2T4_13TeV-powhegV2-madspin/crab_FullMorV1_SaTt/170216_132428/0000/',
 #"ttjets_SL":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTToSemilepton_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTToSemilepton/170216_131212/0000/',
 #"ttjets_bfilter":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTToSemilepton_ttbbFilter_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTToSemilepton_ttbbFilter/170217_064724/0000/',
@@ -61,8 +61,8 @@ sample={
 #"data_SMuBlockH2":'/acfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/data/SingleMuon/crab_FullMorV1_SMuBlockH2/170216_140830/0000/'
        }
 sampleout={
-"ttHbb": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/'
-#"ttjets_DL": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
+"ttHbb": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
+"ttjets_DL": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/'
 #"stop_tchan": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 #"ttjets_SL": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 #"ttjets_bfilter": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
@@ -155,14 +155,11 @@ def prepareCshJob(input,output,submitFileName,analyzerpath):
 	#print >> subFile, "cd /publicfs/cms/user/libh/CMSSW_5_3_9/src/ttH_13Tev"
 	#print >> subFile, "setenv SCRAM_ARCH slc5_amd64_gcc462"
 	#print >> subFile, "source /cvmfs/cms.cern.ch/cmsset_default.csh"
-	#print >> subFile, "source  /afs/ihep.ac.cn/soft/CMS/64bit/root/profile/rootenv-entry 5.34.18"
     print >> subFile, "source  /afs/ihep.ac.cn/soft/CMS/64bit/root/profile/rootenv-entry 6.08.02"
 	#print >> subFile, "eval \`scramv1 runtime -sh\`"
     print >> subFile, "cd "+analyzerpath
 	#print >> subFile, "cp ${jobDir}/getAhist.C ."
-    #print >> subFile, "root -b -q -l "+rootplizer+"+'(\""+input+"\",\""+output+"\")'"
     print >> subFile, "./"+rootplizer+" "+input+" "+output
-    #print >> subFile, "root -b -q -l "+rootplizer+"'(\""+input+"\",\""+output+"\")'"
 
 
 # Loop over all samples you want to run on.
@@ -199,7 +196,7 @@ for key,k in sample.iteritems():
 
         # Make temp directory in which the analysis is to be performed:
         analyzerpath = AnalyzerSampleDir+"/"+roots[iroot].replace(".root","")
-        print 'Analyzer path = ', analyzerpath
+        print 'Temp. analysis directory = ', analyzerpath
         os.popen('mkdir -p '+analyzerpath)
 
         # Copy analysis code to analysis Directory
