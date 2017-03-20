@@ -1030,8 +1030,12 @@ void SecondStep::Process(char* inFile, string outDirPath){
       cout << "# Electrons: " << SelElectronMVA_pt.size() << endl;
       cout << "# Muons: " << SelMuon_pt.size() << endl;
     }
-    is_e_ = true;
-    is_mu_ = true;
+
+
+    // HACK Just running SL for now
+    if (is_e_ != true && is_mu_ != true){
+      continue;
+    }
 
     //cout << "========= Passed selection ===========" << endl;
     /*if (std::find(eventNums_passed.begin(), eventNums_passed.end(), EVENT_event) != eventNums_passed.end()){
