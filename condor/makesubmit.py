@@ -172,7 +172,7 @@ for key,k in sample.iteritems():
     # sample[k] gives the full path of root input files.
     print 'Dict key = ' , key
     print 'Sample = ', k
-    sampleName = k
+    sampleName = key
     # Full input path + filename.
     rootDirectory   = k # +"/"+k    ## you can use your naming convension to set up the inputDirectory
     outputDirectory = sampleout[key] # you can use your naming convension to set up the outputDirectory
