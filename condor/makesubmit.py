@@ -173,6 +173,8 @@ for key,k in sample.iteritems():
     # Full input path + filename.
     rootDirectory   = k # +"/"+k    ## you can use your naming convension to set up the inputDirectory
     outputDirectory = sampleout[key]+"/"+key # you can use your naming convension to set up the outputDirectory
+    print 'output directory = ' , outputDirectory
+
     # Full paths to samples created: "/afs/ihep.ac.cn/users/j/joshuha/"+analysis+"Analyzer/"+ sample
     AnalyzerSampleDir = AnalyzerDir + "/" + sampleName
     os.popen('mkdir -p ' +AnalyzerSampleDir)
