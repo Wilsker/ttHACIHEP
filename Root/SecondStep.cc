@@ -47,7 +47,7 @@ void SecondStep::Usage(){
   return;
 }
 
-void SecondStep::Process(char* inFile,char* outDirPath){
+void SecondStep::Process(char* inFile,const char* outDirPath){
   std::cout << "SecondStep.cc::SecondStep()" << std::endl;
 
   // WARNING:: BDT been removed to run on IHEP farm
@@ -319,6 +319,12 @@ void SecondStep::Process(char* inFile,char* outDirPath){
   TBranch *invariant_mass_of_everything=newtree->Branch("invariant_mass_of_everything",&invariant_mass_of_everything_,"invariant_mass_of_everything/D");
   TBranch *pt_all_jets_over_E_all_jets=newtree->Branch("pt_all_jets_over_E_all_jets",&pt_all_jets_over_E_all_jets_,"pt_all_jets_over_E_all_jets/D");
   TBranch *tagged_dijet_mass_closest_to_125=newtree->Branch("tagged_dijet_mass_closest_to_125",&tagged_dijet_mass_closest_to_125_,"tagged_dijet_mass_closest_to_125/D");
+
+  //Selection Variables:
+  bool is_e_ = false;
+  TBranch* is_e = newtree->Branch("is_e",&is_e_ ,"is_e/O");
+  bool is_mu_ = false;
+  TBranch* is_mu =newtree->Branch("is_mu",&is_mu_ ,"is_mu/O");
 
   //MUONS LOAD
   vector<double>* Muon_pt=0;
@@ -846,7 +852,7 @@ void SecondStep::Process(char* inFile,char* outDirPath){
       // HACK Flag_globalTightHalo2016Filter not in first ntuples
       //==========================================
       //if(Flag_goodVertices==1 && Flag_globalTightHalo2016Filter==1 && Flag_HBHENoiseFilter==1 && Flag_HBHENoiseIsoFilter==1 && Flag_EcalDeadCellTriggerPrimitiveFilter==1 && Flag_eeBadScFilter==1){
-      if(Flag_goodVertices==1 && Flag_HBHENoiseFilter==1 && Flag_HBHENoiseIsoFilter==1 && Flag_EcalDeadCellTriggerPrimitiveFilter==1 && Flag_eeBadScFilter==1){
+      if(Flag_goodVertices==1 && Flag_HBHENoiseFilter==1 && Flag_HBHENoiseIsoFilter==1 && Flag_EcalDeadCellTriggerPrimitiveFilter==1){
         //tt.EVENT_filterBadGlobalMuonTagger==1 and tt.EVENT_filtercloneGlobalMuonTagger==1
         METFilters = 1;
       }
@@ -856,12 +862,11 @@ void SecondStep::Process(char* inFile,char* outDirPath){
       // HACK Flag_globalTightHalo2016Filter not in first ntuples
       //==========================================
       //if(Flag_goodVertices==1 && Flag_globalTightHalo2016Filter==1 && Flag_HBHENoiseFilter==1 && Flag_HBHENoiseIsoFilter==1 && Flag_EcalDeadCellTriggerPrimitiveFilter==1 && Flag_eeBadScFilter==1 && Flag_eeBadScFilter==1){
-      if(Flag_goodVertices==1 && Flag_HBHENoiseFilter==1 && Flag_HBHENoiseIsoFilter==1 && Flag_EcalDeadCellTriggerPrimitiveFilter==1 && Flag_eeBadScFilter==1 && Flag_eeBadScFilter==1){
+      if(Flag_goodVertices==1 && Flag_HBHENoiseFilter==1 && Flag_HBHENoiseIsoFilter==1 && Flag_EcalDeadCellTriggerPrimitiveFilter==1 && Flag_eeBadScFilter==1 ){
         //tt.EVENT_filterBadGlobalMuonTagger==1 and tt.EVENT_filtercloneGlobalMuonTagger==1
         METFilters = 1;
       }
     }
-    //cout << "METFilters = " << METFilters << endl;
 
     if(SelMuon_pt.size()==1 && SelElectronMVA_pt.size()==0){// # leptons
       if(SelMuon_pt[0]>leadMu_ptcut_SL && fabs(SelMuon_eta[0])<leadMu_absetacut_SL && SelMuon_iso[0]<leadMu_isocut_SL){// lepton kinematics
@@ -994,11 +999,22 @@ void SecondStep::Process(char* inFile,char* outDirPath){
     cout << "ELMUON : " << ELMUON << endl;
     cout << "MUONMUON : " << MUONMUON << endl;*/
 
+    is_e_ = false;
+    is_mu_ = false;
     if(!MUON && !ELECTRON && !ELEL && !MUONMUON && !ELMUON){
       continue;
     }
-    if(MUON || ELECTRON){
-      if(!(SelTightJet_pt.size()>=4&&nBCSVM_SL>=2)) {continue;}
+    if(ELECTRON){
+      if(!(SelTightJet_pt.size()>=4&&nBCSVM_SL>=2)) {
+        is_e_ = true;
+        continue;
+      }
+    }
+    else if(MUON){
+      if(!(SelTightJet_pt.size()>=4&&nBCSVM_SL>=2)) {
+        is_mu_ = true;
+        continue;
+      }
     }
     if(ELEL || MUONMUON || ELMUON){
         if(!(SelTightJet_pt.size()>=2)&&nBCSVM_DL>=1){continue;}
@@ -1114,7 +1130,7 @@ void SecondStep::Process(char* inFile,char* outDirPath){
 
     double Aplanarity=-99.;
     double Sphericity=-99.;
-    // WARNING:: BDT been removed to run on IHEP farm
+    // HACK:: BDT been removed to run on IHEP farm
     //bdtVarCalculator bdtVarCalc;
     //bdtVarCalc.getSp(selectedLeptonP4[0],metP4,selectedJetP4,Aplanarity,Sphericity);
     double H0=-99;
@@ -1122,12 +1138,12 @@ void SecondStep::Process(char* inFile,char* outDirPath){
     double H2 = -99;
     double H3 = -99;
     double H4= -99;
-    // WARNING:: BDT been removed to run on IHEP farm
+    // HACK:: BDT been removed to run on IHEP farm
     //bdtVarCalc.getFox(selectedJetP4,H0,H1,H2,H3,H4);
     double minChi=-99;
     double dRbb =-99;
     TLorentzVector bjet1,bjet2;
-    // WARNING:: BDT been removed to run on IHEP farm
+    // HACK:: BDT been removed to run on IHEP farm
     double bestHiggsMass = -99;
     //bestHiggsMass = bdtVarCalc.getBestHiggsMass(selectedLeptonP4[0],metP4,selectedJetP4,selectedJetCSV_fixed,minChi,dRbb,bjet1,bjet2,looseSelectedJetP4,looseSelectedJetCSV);
     TLorentzVector dummy_metv;
@@ -1142,11 +1158,11 @@ void SecondStep::Process(char* inFile,char* outDirPath){
       pxpypzE.push_back(jet->E());
       jets_vvdouble.push_back(pxpypzE);
     }
-    // WARNING:: BDT been removed to run on IHEP farm
+    // HACK:: BDT been removed to run on IHEP farm
     //bdtVarCalc.study_tops_bb_syst(metP4.Pt(), metP4.Phi(), dummy_metv, selectedLeptonP4[0], jets_vvdouble, selectedJetCSV_fixed, minChiStudy, chi2lepW, chi2leptop, chi2hadW, chi2hadtop, mass_lepW, mass_leptop, mass_hadW, mass_hadtop, dRbbStudy, testquant1, testquant2, testquant3, testquant4, testquant5, testquant6, testquant7, b1, b2);
     double DEta_fn=testquant6;
 
-    // WARNING:: BDT been removed to run on IHEP farm
+    // HACK:: BDT been removed to run on IHEP farm
     double pt_E_ratio = -99;
     //pt_E_ratio = bdtVarCalc.pt_E_ratio_jets(jets_vvdouble);
     double jet_jet_etamax = -99;
@@ -1272,13 +1288,13 @@ void SecondStep::Process(char* inFile,char* outDirPath){
     std::vector<unsigned int> out_best_perm;
     double out_P_4b=-1;
     double out_P_2b=-1;
-    // WARNING:: BDT been removed to run on IHEP farm
+    // HACK:: BDT been removed to run on IHEP farm
     //eth_blr=mem.GetBTagLikelihoodRatio(selectedJetP4,selectedJetCSV,out_best_perm,out_P_4b,out_P_2b);
 
     int bJetness_num_soft_leps = 1;//(int)BJetness_num_soft_leps[0];
     double bJetness_avip3d_val = 0.2;//BJetness_avip3d_val[0];
 
-    // WARNING:: BDT been removed to run on IHEP farm
+    // HACK:: BDT been removed to run on IHEP farm
     double result = -99;
     //result = bdt.GetBDTOutput(selectedLeptonP4,selectedJetP4,selectedJetCSV,looseSelectedJetP4,looseSelectedJetCSV,metP4,eth_blr);
 
@@ -1335,7 +1351,7 @@ void SecondStep::Process(char* inFile,char* outDirPath){
       else if(MUON==false && ELECTRON==true) type_ = 1;
       else                                   type_ = 2;
     }
-    // WARNING:: BDT been removed to run on IHEP farm
+    // HACK:: BDT been removed to run on IHEP farm
     BDT_ = result;
     NumberOfJets_  = SelTightJet_pt.size();
     if((ELECTRON || MUON) && !(ELEL || ELMUON || MUONMUON)){
@@ -1373,7 +1389,6 @@ void SecondStep::Process(char* inFile,char* outDirPath){
     MHT_ = mht;
     Mlb_ = mlb;
     pt_all_jets_over_E_all_jets_ = pt_E_ratio;
-    //pt_all_jets_over_E_all_jets->Fill();
     second_highest_btag_ = Second_highest_btag;
     second_jet_pt_ = Second_jet_pt;
     sphericity_ = Sphericity;
@@ -1383,6 +1398,8 @@ void SecondStep::Process(char* inFile,char* outDirPath){
     Evt_CSV_Average_ = averageCSV_all;
     Evt_Deta_JetsAverage_ = detaJetsAverage;
     blr_ = eth_blr;
+    is_e_ = ELECTRON;
+    is_mu_ = MUON;
     newtree->Fill();
     neventsfilled = neventsfilled +1;
 
@@ -1425,7 +1442,6 @@ void SecondStep::Process(char* inFile,char* outDirPath){
   newfile->Close();
   delete oldfile;
   delete newfile;
-
 }
 
 //Main function inside ifndef mean code can still be run by interpreter.
@@ -1435,7 +1451,7 @@ int main(int argc, char* argv[]){
   std::cout << "SecondStep.cc::main()" << std::endl;
   SecondStep SS;
   const char* Input;
-
+  const char* outpath_test_string ="";
   if(argc!=3){
     SS.Usage();
     exit(0);
@@ -1455,7 +1471,7 @@ int main(int argc, char* argv[]){
       cout << "Adding / to end of output path" << endl;
       outputPath += "/";
     }
-    const char* outpath_test_string = outputPath.c_str();
+    outpath_test_string = outputPath.c_str();
     cout << "Output path: " << outpath_test_string << endl;
 
     if (stat(outpath_test_string, &sb) == 1 || (!S_ISDIR(sb.st_mode))){
@@ -1473,7 +1489,7 @@ int main(int argc, char* argv[]){
     }
   }
 
-  SS.Process(argv[1],argv[2]);
+  SS.Process(argv[1],outpath_test_string);
 
   return 0;
 }

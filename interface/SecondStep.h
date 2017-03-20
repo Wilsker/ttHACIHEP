@@ -29,7 +29,7 @@ class SecondStep{
 
 public:
   SecondStep();
-  void Process(char* inFile, char* outDirPath);
+  void Process(char* inFile, const char* outDirPath);
   void Usage();
   ~SecondStep();
 
