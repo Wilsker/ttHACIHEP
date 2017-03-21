@@ -13,7 +13,7 @@ W = (XS * BR) / N0
 Would then multiply by L(data) to rescale sample.
 '''
 
-import ROOT, sys, math, os,
+import ROOT, sys, math, os
 from array import array
 workingDir = os.getcwd()
 inputDir = '/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/output/'
