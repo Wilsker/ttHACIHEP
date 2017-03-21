@@ -29,7 +29,7 @@ BR = {
 }
 
 for file0 in inputFiles:
-    inputFullPath = os.path.join(inputDir,inputFiles)
+    inputFullPath = os.path.join(inputDir,file0)
     print 'Input file = ', inputFullPath
     tfile = ROOT.TFile(inputFullPath)
     tree = tfile.Get("BOOM")
