@@ -29,8 +29,11 @@ BR = {
 }
 
 for file0 in inputFiles:
-    inputFullPath = os.path.join(inputDir,file0)
+    inputFullPath = os.path.join(inputDir,file0,'.root')
     print 'Input file = ', inputFullPath
+    if os.path.isfile(inputFullPath):
+        print 'File exists'
+    else: continue
     tfile = ROOT.TFile(inputFullPath)
     tree = tfile.Get("BOOM")
 
