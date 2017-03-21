@@ -38,7 +38,7 @@ for file0 in inputFiles:
     tree = tfile.Get("BOOM")
 
     N0 = 0
-    N0 = range(ttree.GetEntries())
+    N0 = ttree.GetEntries()
     print '# Entries = ' , N0
 
     for key,value in XS.iteritems():
