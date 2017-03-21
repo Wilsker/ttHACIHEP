@@ -16,7 +16,7 @@ Would then multiply by L(data) to rescale sample.
 import ROOT, sys, math, os
 workingDir = os.getcwd()
 inputDir = '/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/output/'
-inputFiles = ["MC/altTUNE/ttjets_altTUNE_Merged_rootplas", "ttHbb_Merged_rootplas"]
+inputFiles = ["MC/altTUNE/ttjets_altTUNE_Merged_rootplas.root", "MC/ttHbb/ttHbb_Merged_rootplas.root"]
 
 XS = {
     "ttjets_SL_Merged_rootplas":831.76,
@@ -29,7 +29,7 @@ BR = {
 }
 
 for file0 in inputFiles:
-    inputFullPath = os.path.join(inputDir,file0,'.root')
+    inputFullPath = os.path.join(inputDir,file0)
     print 'Input file = ', inputFullPath
     if os.path.isfile(inputFullPath):
         print 'File exists'
