@@ -39,7 +39,7 @@ for file0 in inputFiles:
     ttree = tfile.Get("BOOM")
 
     lumiweight_ = array('f',[0.])
-    lumiweight_branch = ttree.Branch("lumiweight",lumiweight_, "lumiweight/F")
+    ttree.Branch("lumiweight",lumiweight_, "lumiweight/F")
 
     N0 = 0
     XS = 0
@@ -70,6 +70,6 @@ for file0 in inputFiles:
 
     for events in range(ttree.GetEntries()):
         ttree.GetEntry(events)
-        lumiweight_[events] = W
+        lumiweight_[0] = W
         ttree.Fill()
     tfile.Write()
