@@ -35,7 +35,7 @@ for file0 in inputFiles:
         print 'File exists'
     else: continue
     tfile = ROOT.TFile(inputFullPath)
-    tree = tfile.Get("BOOM")
+    ttree = tfile.Get("BOOM")
 
     N0 = 0
     N0 = ttree.GetEntries()
