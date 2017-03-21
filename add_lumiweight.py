@@ -20,12 +20,12 @@ inputDir = '/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/output/'
 inputFiles = ["MC/ttjets_altTUNE/ttjets_altTUNE_Merged_rootplas.root", "MC/ttHbb/ttHbb_Merged_rootplas.root"]
 
 XS_dict = {
-    "ttjets_SL_Merged_rootplas":831.76,
+    "ttjets_altTUNE_Merged_rootplas":831.76,
     "ttHbb_Merged_rootplas":0.5071
 }
 
 BR_dict = {
-    "ttjets_SL_Merged_rootplas":1,
+    "ttjets_altTUNE_Merged_rootplas":1,
     "ttHbb_Merged_rootplas":0.5824
 }
 
@@ -51,11 +51,19 @@ for file0 in inputFiles:
         if key in file0:
             print 'Got XS = ', value
             XS = value
+        else:
+            print 'No XS found for this file.'
+            print 'Moving to next file'
+            continue
 
     for key,value in BR_dict.iteritems():
         if key in file0:
             print 'Got BR = ', value
             BR = value
+        else:
+            print 'No BR found for this file.'
+            print 'Moving to next file'
+            continue
 
     W = (XS*BR)/N0
     print 'Weight for this sample = ', W
