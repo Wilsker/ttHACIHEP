@@ -35,10 +35,22 @@ for file0 in inputFiles:
     if os.path.isfile(inputFullPath):
         print 'File exists'
     else: continue
+
+    #output_tfile_name = ''
+
+    for key,value in XS_dict.iteritems():
+        if key in file0:
+            output_tfile_name = key
+
+    #output_tfile = TFile(key+'_wlumiweights.root','recreate')
+    #output_tree = TTree('BOOM','BOOM')
+
+    # Construct new variable.
+    lumiweight_ = array('f',[0.])
+
     tfile = ROOT.TFile(inputFullPath)
     ttree = tfile.Get("BOOM")
-
-    lumiweight_ = array('f',[0.])
+    #ttree.BuildIndex('EVENT_event','EVENT_run')
     ttree.Branch("lumiweight",lumiweight_, "lumiweight/F")
 
     N0 = 0
@@ -72,4 +84,4 @@ for file0 in inputFiles:
         ttree.GetEntry(events)
         lumiweight_[0] = W
         ttree.Fill()
-    tfile.Write()
+    #tfile.Write()
