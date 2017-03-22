@@ -80,8 +80,8 @@ sampleout={
 "stop_tchan": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 "stop_tW_antitop": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 "stop_tw_top": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
-"ttWjets_SL_v1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
-"ttWjets_SL_v3": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
+"ttWjets_SL_ext1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
+"ttWjets_SL_ext2": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 "ZZ": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 "ZZ_ext": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 "WZ": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
@@ -170,10 +170,10 @@ def prepareCshJob(input,output,submitFileName,analyzerpath):
 # Loop over all samples you want to run on.
 keys=sample.keys()
 for key,k in sample.iteritems():
-    print 'Index ' , k
+    #print 'Index ' , k
     # sample[k] gives the full path of root input files.
-    print 'Dict key = ' , key
-    print 'Sample = ', k
+    #print 'Dict key = ' , key
+    #print 'Sample = ', k
     sampleName = key
     # Full input path + filename.
     rootDirectory   = k # +"/"+k    ## you can use your naming convension to set up the inputDirectory
@@ -204,12 +204,12 @@ for key,k in sample.iteritems():
 
         # Make temp directory in which the analysis is to be performed:
         analyzerpath = AnalyzerSampleDir+"/"+roots[iroot].replace(".root","")
-        print 'Temp. analysis directory = ', analyzerpath
+        #print 'Temp. analysis directory = ', analyzerpath
         os.popen('mkdir -p '+analyzerpath)
 
         # Copy analysis code to analysis Directory
         analysis_code_path = analysis_dir_path+"/"+rootplizer
-        print "Analysis code path = ", analysis_code_path
+        #print "Analysis code path = ", analysis_code_path
         command_cp_cc = 'cp '+ analysis_code_path + " " + analyzerpath
         os.system(command_cp_cc)
 
