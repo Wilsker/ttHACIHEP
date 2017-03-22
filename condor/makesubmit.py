@@ -26,7 +26,6 @@ rootplizer = "SecondStep"
 sample={
 "ttHbb":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ttHTobb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_ttHbb/170216_130523/0000/',
 "ttjets_DL":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTTo2L2Nu_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTTo2L2Nu/170216_131744/0000/',
-"stop_tchan_antitop":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_t-channel_antitop_4f_inclusiveDecays_TuneCUETP8M2T4_13TeV-powhegV2-madspin/crab_FullMorV1_SaTt/170216_132428/0000/',
 "ttjets_SL":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTToSemilepton_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTToSemilepton/170216_131212/0000/',
 "ttjets_bfilter":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTToSemilepton_ttbbFilter_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTToSemilepton_ttbbFilter/170217_064724/0000/',
 "ttWjets_qq":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTWJetsToQQ_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8/crab_FullMorV1_amcTTWJetsToQQ/170217_065640/0000/',
@@ -36,6 +35,7 @@ sample={
 "ttjets_incl":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/crab_FullMorV1_TT/170216_130900/0000/',
 "stop_schan":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_s-channel_4f_leptonDecays_13TeV-amcatnlo-pythia8_TuneCUETP8M1/crab_FullMorV1_STs/170216_132119/0000/',
 "stop_tchan_top":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_t-channel_top_4f_inclusiveDecays_TuneCUETP8M2T4_13TeV-powhegV2-madspin/crab_FullMorV1_STt/170217_064944/0000/',
+"stop_tchan_antitop":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_t-channel_antitop_4f_inclusiveDecays_TuneCUETP8M2T4_13TeV-powhegV2-madspin/crab_FullMorV1_SaTt/170216_132428/0000/',
 "stop_tW_antitop":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M2T4/crab_FullMorV1_SaT/170216_133251/0000/',
 "stop_tw_top":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M2T4/crab_FullMorV1_ST/170217_065140/0000/',
 "ttWjets_SL_ext1":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8/crab_FullMorV1_amcTTWJetsToLNuext2/170216_135729/0000/',
@@ -223,13 +223,11 @@ for key,k in sample.iteritems():
         errFileName = logFilePath+"/"+sampleName+"_"+name+".err"
 
         prepareSubmitJob(cshFilePath+"/"+submitFileName, cshFileName, logFileName, errFileName)
-        #prepareCshJob(input,output,cshFileName,analyzerpath)
         prepareCshJob(input,outputDirectory,cshFileName,analyzerpath)
         print >> allJobFile, "condor_submit "+ submitFileName + " -group cms -name job@schedd01.ihep.ac.cn"
 
 
     print >> MergeFile, "cd ",outputDirectory
-    #print >> MergeFile, "hadd " + key + "_Merged_rootplas.root",MergeSourceFile
     print >> MergeFile, "hadd " + key + "_Merged_rootplas.root", " *.root"
 
 print >> allJobFile, "cd -"
