@@ -224,6 +224,6 @@ for key,k in sample.iteritems():
 
 
     print >> MergeFile, "cd ",outputDirectory
-    print >> MergeFile, "hadd " + key + "_Merged_rootplas.root", " *.root"
+    print >> MergeFile, "hadd -f " + key + "_Merged_rootplas.root", " *.root"
 
 print >> allJobFile, "cd -"
