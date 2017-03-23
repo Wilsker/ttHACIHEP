@@ -198,6 +198,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
   oldtree->SetBranchStatus("EVENT_PDFtthbbWeightDown",1);
   oldtree->SetBranchStatus("EVENT_event",1);
   oldtree->SetBranchStatus("EVENT_run",1);
+  oldtree->SetBranchStatus("EVENT_genWeight",1);
   oldtree->SetBranchStatus("EVENT_lumiBlock",1);
   oldtree->SetBranchStatus("PUWeight",1);
   oldtree->SetBranchStatus("trueInteractions",1);
@@ -505,7 +506,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
   int HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ=0;
 
   int ttHFCategory=0;
-  int EVENT_event,EVENT_run,EVENT_lumiBlock;
+  int EVENT_event,EVENT_run,EVENT_lumiBlock,EVENT_genWeight;
   double trueInteractions;
   double EVENT_Q2tthbbWeightUp,EVENT_Q2tthbbWeightDown,EVENT_PDFtthbbWeightUp,EVENT_PDFtthbbWeightDown,PUWeight;
   double Met_type1PF_pt = -99.;
@@ -542,7 +543,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
   //==========================================
 //  vector<double>* pvertex_Rho=0;
   vector<double>* pvertex_z=0;
-  TBranch *b_HLT_IsoMu22,*b_HLT_IsoMu24,*b_HLT_IsoTkMu24,*b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL,*b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,*b_HLT_IsoTkMu22,*b_HLT_Ele27_eta2p1_WPTight_Gsf,*b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL,*b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ,*b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL,*b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ,*b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL,*b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ,*b_HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,*b_ttHFCategory,*b_EVENT_event,*b_EVENT_run,*b_EVENT_lumiBlock,*b_Met_type1PF_pt,*b_Met_type1PF_px,*b_Met_type1PF_py,*b_Met_type1PF_phi,*b_EVENT_Q2tthbbWeightUp,*b_EVENT_Q2tthbbWeightDown,*b_EVENT_PDFtthbbWeightUp,*b_EVENT_PDFtthbbWeightDown,*b_PUWeight,*b_Gen_pt,*b_Gen_eta,*b_Gen_phi,*b_Gen_pdg_id,*b_Gen_motherpdg_id,*b_trueInteractions,*b_pvertex_ndof,*b_pvertex_z;
+  TBranch *b_HLT_IsoMu22,*b_HLT_IsoMu24,*b_HLT_IsoTkMu24,*b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL,*b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,*b_HLT_IsoTkMu22,*b_HLT_Ele27_eta2p1_WPTight_Gsf,*b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL,*b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ,*b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL,*b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ,*b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL,*b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ,*b_HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,*b_ttHFCategory,*b_EVENT_event,*b_EVENT_run,*b_EVENT_genWeight,*b_EVENT_lumiBlock,*b_Met_type1PF_pt,*b_Met_type1PF_px,*b_Met_type1PF_py,*b_Met_type1PF_phi,*b_EVENT_Q2tthbbWeightUp,*b_EVENT_Q2tthbbWeightDown,*b_EVENT_PDFtthbbWeightUp,*b_EVENT_PDFtthbbWeightDown,*b_PUWeight,*b_Gen_pt,*b_Gen_eta,*b_Gen_phi,*b_Gen_pdg_id,*b_Gen_motherpdg_id,*b_trueInteractions,*b_pvertex_ndof,*b_pvertex_z;
   //==========================================
   // HACK pvertex_Rho not in first ntuples
   //==========================================
@@ -587,6 +588,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
   oldtree->SetBranchAddress("EVENT_PDFtthbbWeightDown",&EVENT_PDFtthbbWeightDown,&b_EVENT_PDFtthbbWeightDown);
   oldtree->SetBranchAddress("EVENT_event",&EVENT_event,&b_EVENT_event);
   oldtree->SetBranchAddress("EVENT_run",&EVENT_run,&b_EVENT_run);
+  oldtree->SetBranchAddress("EVENT_genWeight",&EVENT_genWeight,&b_EVENT_genWeight);
   oldtree->SetBranchAddress("EVENT_lumiBlock",&EVENT_lumiBlock,&b_EVENT_lumiBlock);
   oldtree->SetBranchAddress("PUWeight",&PUWeight,&b_PUWeight);
   oldtree->SetBranchAddress("trueInteractions",&trueInteractions,&b_trueInteractions);
@@ -1456,6 +1458,26 @@ void SecondStep::Process(char* inFile, string outDirPath){
   delete oldfile;
   delete newfile;
 }
+
+
+//NOTE: maybe dont want this here:
+//      means have to combine all files before SecondStep
+//      takes much longer to run thank indivdiual OutputTrees.
+
+//double SecondStep::lumi_weight(string file_name){
+
+  //May want to move these and make them constants + available throughout code.
+//  std::map<string,double> xs_map;
+//  input_path = "/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/";
+//  xs_map['']=;
+
+//  std::map<string,double> BR_map;
+//  std::map<string,double> sumWeights_map;
+
+  //if(file_name.find("TT_TuneCUETP8M2T4_13TeV-powheg-pythia8") != std::string::npos)
+//}
+
+
 
 //Main function inside ifndef mean code can still be run by interpreter.
 # ifndef __CINT__
