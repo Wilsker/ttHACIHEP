@@ -24,7 +24,7 @@ rootplizer = "SecondStep"
 
 # Python dictionaries map directory of input files to
 sample={
-"ttHbb":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ttHTobb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_ttHbb/170216_130523/0000/',
+'''"ttHbb":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ttHTobb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_ttHbb/170216_130523/0000/',
 "ttjets_DL":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTTo2L2Nu_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTTo2L2Nu/170216_131744/0000/',
 "ttjets_SL":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTToSemilepton_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTToSemilepton/170216_131212/0000/',
 "ttjets_bfilter":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTToSemilepton_ttbbFilter_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTToSemilepton_ttbbFilter/170217_064724/0000/',
@@ -33,10 +33,10 @@ sample={
 "ttZ_DL":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTZToLLNuNu_M-10_TuneCUETP8M1_13TeV-amcatnlo-pythia8/crab_FullMorV1_amcTTZToLLNuNu_M-10_ext1/170216_140702/0000/',
 "ttH_nonbb":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ttHToNonbb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_ttHnobb/170216_105930/0000/',
 "ttjets_incl":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/crab_FullMorV1_TT/170216_130900/0000/',
-"stop_schan":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_s-channel_4f_leptonDecays_13TeV-amcatnlo-pythia8_TuneCUETP8M1/crab_FullMorV1_STs/170216_132119/0000/',
+"stop_schan":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_s-channel_4f_leptonDecays_13TeV-amcatnlo-pythia8_TuneCUETP8M1/crab_FullMorV1_STs/170216_132119/0000/','''
 "stop_tchan_top":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_t-channel_top_4f_inclusiveDecays_TuneCUETP8M2T4_13TeV-powhegV2-madspin/crab_FullMorV1_STt/170217_064944/0000/',
-"stop_tchan_antitop":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_t-channel_antitop_4f_inclusiveDecays_TuneCUETP8M2T4_13TeV-powhegV2-madspin/crab_FullMorV1_SaTt/170216_132428/0000/',
-"stop_tW_antitop":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M2T4/crab_FullMorV1_SaT/170216_133251/0000/',
+"stop_tchan_antitop":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_t-channel_antitop_4f_inclusiveDecays_TuneCUETP8M2T4_13TeV-powhegV2-madspin/crab_FullMorV1_SaTt/170216_132428/0000/'#,
+'''"stop_tW_antitop":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M2T4/crab_FullMorV1_SaT/170216_133251/0000/',
 "stop_tw_top":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M2T4/crab_FullMorV1_ST/170217_065140/0000/',
 "ttWjets_SL_ext1":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8/crab_FullMorV1_amcTTWJetsToLNuext2/170216_135729/0000/',
 "ttWjets_SL_ext2":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8/crab_FullMorV1_amcTTWJetsToLNuext1/170216_140120/0000/',
@@ -63,10 +63,10 @@ sample={
 "data_SMuBlockF2":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/data/SingleMuon/crab_FullMorV1_SMuBlockF2/170216_135711/0000/',
 "data_SMuBlockG1":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/data/SingleMuon/crab_FullMorV1_SMuBlockG1/170216_140118/0000/',
 "data_SMuBlockH1":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/data/SingleMuon/crab_FullMorV1_SMuBlockH1/170216_140404/0000/',
-"data_SMuBlockH2":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/data/SingleMuon/crab_FullMorV1_SMuBlockH2/170216_140830/0000/'
+"data_SMuBlockH2":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/data/SingleMuon/crab_FullMorV1_SMuBlockH2/170216_140830/0000/''''
        }
 sampleout={
-"ttHbb": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
+'''"ttHbb": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 "ttjets_DL": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 "ttjets_SL": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 "ttjets_bfilter": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
@@ -75,10 +75,10 @@ sampleout={
 "ttZ_DL": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 "ttH_nonbb": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 "ttjets_incl": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
-"stop_schan": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
+"stop_schan": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/','''
 "stop_tchan_top": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
-"stop_tchan_antitop": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
-"stop_tW_antitop": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
+"stop_tchan_antitop": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/'#,
+'''"stop_tW_antitop": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 "stop_tw_top": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 "ttWjets_SL_ext1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 "ttWjets_SL_ext2": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
@@ -105,7 +105,7 @@ sampleout={
 "data_SMuBlockF2": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/DATA/',
 "data_SMuBlockG1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/DATA/',
 "data_SMuBlockH1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/DATA/',
-"data_SMuBlockH2": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/DATA/'
+"data_SMuBlockH2": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/DATA/''''
           }
 #####
 ##   The script itself
@@ -155,9 +155,6 @@ def prepareCshJob(input,output,submitFileName,analyzerpath):
     print >> subFile, "/bin/hostname"
     print >> subFile, "gcc -v"
     print >> subFile, "pwd"
-	#print >> subFile, "cd /publicfs/cms/data/TopQuark/cms13TeV/software/root/bin/"
-	#print >> subFile, "source thisroot.csh"
-	#print >> subFile, "cd /publicfs/cms/user/libh/CMSSW_5_3_9/src/ttH_13Tev"
 	#print >> subFile, "setenv SCRAM_ARCH slc5_amd64_gcc462"
 	#print >> subFile, "source /cvmfs/cms.cern.ch/cmsset_default.csh"
     print >> subFile, "source  /afs/ihep.ac.cn/soft/CMS/64bit/root/profile/rootenv-entry 6.08.02"
@@ -167,27 +164,30 @@ def prepareCshJob(input,output,submitFileName,analyzerpath):
     print >> subFile, "./"+rootplizer+" "+input+" "+output
 
 
-# Loop over all samples you want to run on.
 keys=sample.keys()
+
+# Loop over all samples you want to run on.
 for key,k in sample.iteritems():
-    #print 'Index ' , k
-    # sample[k] gives the full path of root input files.
+
     print 'Dict key = ' , key
     print 'Sample = ', k
     sampleName = key
+
     # Full input path + filename.
-    rootDirectory   = k # +"/"+k    ## you can use your naming convension to set up the inputDirectory
-    outputDirectory = sampleout[key]+"/"+key # you can use your naming convension to set up the outputDirectory
+    rootDirectory   = k # +"/"+k    ## full input path to directory containing '.root' for subset of single individual samples.
+    outputDirectory = sampleout[key]+"/"+key # path to output directory
     print 'output directory = ' , outputDirectory
 
-    # Full paths to samples created: "/afs/ihep.ac.cn/users/j/joshuha/"+analysis+"Analyzer/"+ sample
+    # Make directories used to run analysis and store output.
     AnalyzerSampleDir = AnalyzerDir + "/" + sampleName
-    os.popen('mkdir -p ' +AnalyzerSampleDir)
-    os.popen('mkdir -p ' +sampleout[key])
-    os.popen('mkdir -p '+outputDirectory)
+    os.popen('mkdir -p ' + AnalyzerSampleDir)
+    os.popen('mkdir -p ' + sampleout[key])
+    os.popen('mkdir -p ' + outputDirectory)
     os.chdir(rootDirectory)
-    # glob.glob() is a wrapped around a os.listdir()
+
+    # glob.glob() is a wrapper around a os.listdir()
     roots = glob.glob('*.root')
+
     # Sorted alphanumerically by name:
     roots.sort()
     nroot = len(roots)
@@ -198,18 +198,14 @@ for key,k in sample.iteritems():
         input  = rootDirectory+"/"+roots[iroot]
 
         # Use input files to name output (with edited suffix)
-        #output = outputDirectory+"/"+roots[iroot].replace(".root","_rootplas")
-        #print 'output directory = ' , output
-        #os.popen('mkdir -p '+output)
+        # output = outputDirectory+"/"+roots[iroot].replace(".root","_rootplas")
 
         # Make temp directory in which the analysis is to be performed:
         analyzerpath = AnalyzerSampleDir+"/"+roots[iroot].replace(".root","")
-        #print 'Temp. analysis directory = ', analyzerpath
         os.popen('mkdir -p '+analyzerpath)
 
         # Copy analysis code to analysis Directory
         analysis_code_path = analysis_dir_path+"/"+rootplizer
-        #print "Analysis code path = ", analysis_code_path
         command_cp_cc = 'cp '+ analysis_code_path + " " + analyzerpath
         os.system(command_cp_cc)
 

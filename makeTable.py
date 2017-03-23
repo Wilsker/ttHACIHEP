@@ -24,7 +24,7 @@ import datetime
 workingDir = os.getcwd()
 inputDir = "output"
 #inputFile = 'synch_output_DATA_allRuns_SS.root'
-inputFile = "ttH_synch_SS.root"
+inputFile = "SS_ttH_synch.root"
 #inputFile = "ttjets_synch_SS.root"
 
 if ("ttH" in inputFile): sample=1
@@ -369,10 +369,14 @@ for ev in range(tt.GetEntries()):
 
 
     if (data==True):
-        if(tt.Flag_goodVertices==1 and tt.Flag_globalTightHalo2016Filter==1 and tt.Flag_HBHENoiseFilter==1 and tt.Flag_HBHENoiseIsoFilter==1 and tt.Flag_EcalDeadCellTriggerPrimitiveFilter==1 and tt.Flag_eeBadScFilter==1):# tt.EVENT_filterBadGlobalMuonTagger==1 and tt.EVENT_filtercloneGlobalMuonTagger==1
+        # HACK removed MET filters not in first production
+        #if(tt.Flag_goodVertices==1 and tt.Flag_globalTightHalo2016Filter==1 and tt.Flag_HBHENoiseFilter==1 and tt.Flag_HBHENoiseIsoFilter==1 and tt.Flag_EcalDeadCellTriggerPrimitiveFilter==1 and tt.Flag_eeBadScFilter==1):# tt.EVENT_filterBadGlobalMuonTagger==1 and tt.EVENT_filtercloneGlobalMuonTagger==1
+        if(tt.Flag_goodVertices==1 and tt.Flag_HBHENoiseFilter==1 and tt.Flag_HBHENoiseIsoFilter==1 and tt.Flag_EcalDeadCellTriggerPrimitiveFilter==1 and tt.Flag_eeBadScFilter==1):# tt.EVENT_filterBadGlobalMuonTagger==1 and tt.EVENT_filtercloneGlobalMuonTagger==1
             METFilters=True
     else:
-        if(tt.Flag_goodVertices==1 and tt.Flag_globalTightHalo2016Filter==1 and tt.Flag_HBHENoiseFilter==1 and tt.Flag_HBHENoiseIsoFilter==1 and tt.Flag_EcalDeadCellTriggerPrimitiveFilter==1):# tt.EVENT_filterBadGlobalMuonTagger==1 and tt.EVENT_filtercloneGlobalMuonTagger==1
+        # HACK removed MET filters not in first production
+        #if(tt.Flag_goodVertices==1 and tt.Flag_globalTightHalo2016Filter==1 and tt.Flag_HBHENoiseFilter==1 and tt.Flag_HBHENoiseIsoFilter==1 and tt.Flag_EcalDeadCellTriggerPrimitiveFilter==1):# tt.EVENT_filterBadGlobalMuonTagger==1 and tt.EVENT_filtercloneGlobalMuonTagger==1
+        if(tt.Flag_goodVertices==1 and tt.Flag_HBHENoiseFilter==1 and tt.Flag_HBHENoiseIsoFilter==1 and tt.Flag_EcalDeadCellTriggerPrimitiveFilter==1):# tt.EVENT_filterBadGlobalMuonTagger==1 and tt.EVENT_filtercloneGlobalMuonTagger==1
             METFilters=True
     if(len(SelTightJet_pt)>=4 and nBCSVM_SL>=2):
         jets=True
@@ -762,7 +766,7 @@ for ev in range(tt.GetEntries()):
 
 
     #if(tt.EVENT_filterBadGlobalMuonTagger==True and is_mu==1):
-    if(len(SelLepton_pt)>=1):
+    '''if(len(SelLepton_pt)>=1):
         print '============= MET Filters ============='
         print 'Flag_goodVertices = ', tt.Flag_goodVertices
         print 'Flag_globalTightHalo2016Filter = ', tt.Flag_globalTightHalo2016Filter
@@ -808,15 +812,16 @@ for ev in range(tt.GetEntries()):
 
         print "SingleLeptonEvent = " , SingleLeptonEvent
         print "DoubleLeptonEvent = " , DoubleLeptonEvent
-        print "========================== Next event ==================================="
+        print "========================== Next event ==================================="'''
 
     ttHFCategory = -99
     if(sample!=0):
         ttHFCategory =(tt.ttHFCategory)
-    if(SingleLeptonEvent or DoubleLeptonEvent):
+    #if(SingleLeptonEvent or DoubleLeptonEvent):
         jet_0_pt[0] = jet0_pt
         arr = [int(tt.EVENT_run), int(tt.EVENT_lumiBlock), int(tt.EVENT_event),
-               int(is_e), int(is_mu), int(is_ee), int(is_emu), int(is_mumu),
+               #int(is_e), int(is_mu), int(is_ee), int(is_emu), int(is_mumu),
+               int(tt.is_e), int(tt.is_mu), int(is_ee), int(is_emu), int(is_mumu),
                int(NumberOfJets), int(nBCSVM),
                lep0_pt, lep0_iso, lep0_id,
                lep1_pt, lep1_iso, lep1_id,
