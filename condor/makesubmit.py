@@ -34,12 +34,12 @@ sample={
 #"ttH_nonbb":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ttHToNonbb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_ttHnobb/170216_105930/0000/',
 #"ttjets_incl":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/crab_FullMorV1_TT/170216_130900/0000/',
 #"stop_schan":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_s-channel_4f_leptonDecays_13TeV-amcatnlo-pythia8_TuneCUETP8M1/crab_FullMorV1_STs/170216_132119/0000/',
-"stop_tchan_top":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_t-channel_top_4f_inclusiveDecays_TuneCUETP8M2T4_13TeV-powhegV2-madspin/crab_FullMorV1_STt/170217_064944/0000/',
-"stop_tchan_antitop":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_t-channel_antitop_4f_inclusiveDecays_TuneCUETP8M2T4_13TeV-powhegV2-madspin/crab_FullMorV1_SaTt/170216_132428/0000/'
+#"stop_tchan_top":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_t-channel_top_4f_inclusiveDecays_TuneCUETP8M2T4_13TeV-powhegV2-madspin/crab_FullMorV1_STt/170217_064944/0000/',
+#"stop_tchan_antitop":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_t-channel_antitop_4f_inclusiveDecays_TuneCUETP8M2T4_13TeV-powhegV2-madspin/crab_FullMorV1_SaTt/170216_132428/0000/',
 #"stop_tW_antitop":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M2T4/crab_FullMorV1_SaT/170216_133251/0000/',
 #"stop_tw_top":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M2T4/crab_FullMorV1_ST/170217_065140/0000/',
-#"ttWjets_SL_ext1":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8/crab_FullMorV1_amcTTWJetsToLNuext2/170216_135729/0000/',
-#"ttWjets_SL_ext2":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8/crab_FullMorV1_amcTTWJetsToLNuext1/170216_140120/0000/',
+"ttWjets_SL_ext1":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8/crab_FullMorV1_amcTTWJetsToLNuext2/170216_135729/0000/',
+"ttWjets_SL_ext2":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8/crab_FullMorV1_amcTTWJetsToLNuext1/170216_140120/0000/'
 #"ZZ":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ZZ_TuneCUETP8M1_13TeV-pythia8/crab_FullMorV1_ZZ/170216_134718/0000/',
 #"ZZ_ext":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ZZ_TuneCUETP8M1_13TeV-pythia8/crab_FullMorV1_ZZext1/170216_135129/0000/',
 #"WZ":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/WZ_TuneCUETP8M1_13TeV-pythia8/crab_FullMorV1_WZ/170217_065443/0000/',
@@ -76,12 +76,12 @@ sampleout={
 #"ttH_nonbb": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 #"ttjets_incl": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 #"stop_schan": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
-"stop_tchan_top": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
-"stop_tchan_antitop": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/'
+#"stop_tchan_top": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
+#"stop_tchan_antitop": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 #"stop_tW_antitop": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 #"stop_tw_top": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
-#"ttWjets_SL_ext1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
-#"ttWjets_SL_ext2": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
+"ttWjets_SL_ext1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
+"ttWjets_SL_ext2": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/'
 #"ZZ": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 #"ZZ_ext": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 #"WZ": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
