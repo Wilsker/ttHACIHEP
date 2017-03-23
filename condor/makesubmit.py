@@ -35,8 +35,9 @@ sample={
 "ttjets_incl":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/crab_FullMorV1_TT/170216_130900/0000/',
 "stop_schan":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_s-channel_4f_leptonDecays_13TeV-amcatnlo-pythia8_TuneCUETP8M1/crab_FullMorV1_STs/170216_132119/0000/','''
 "stop_tchan_top":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_t-channel_top_4f_inclusiveDecays_TuneCUETP8M2T4_13TeV-powhegV2-madspin/crab_FullMorV1_STt/170217_064944/0000/',
-"stop_tchan_antitop":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_t-channel_antitop_4f_inclusiveDecays_TuneCUETP8M2T4_13TeV-powhegV2-madspin/crab_FullMorV1_SaTt/170216_132428/0000/'#,
-'''"stop_tW_antitop":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M2T4/crab_FullMorV1_SaT/170216_133251/0000/',
+"stop_tchan_antitop":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_t-channel_antitop_4f_inclusiveDecays_TuneCUETP8M2T4_13TeV-powhegV2-madspin/crab_FullMorV1_SaTt/170216_132428/0000/'
+
+''' "stop_tW_antitop":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M2T4/crab_FullMorV1_SaT/170216_133251/0000/',
 "stop_tw_top":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M2T4/crab_FullMorV1_ST/170217_065140/0000/',
 "ttWjets_SL_ext1":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8/crab_FullMorV1_amcTTWJetsToLNuext2/170216_135729/0000/',
 "ttWjets_SL_ext2":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTWJetsToLNu_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8/crab_FullMorV1_amcTTWJetsToLNuext1/170216_140120/0000/',
@@ -63,7 +64,7 @@ sample={
 "data_SMuBlockF2":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/data/SingleMuon/crab_FullMorV1_SMuBlockF2/170216_135711/0000/',
 "data_SMuBlockG1":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/data/SingleMuon/crab_FullMorV1_SMuBlockG1/170216_140118/0000/',
 "data_SMuBlockH1":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/data/SingleMuon/crab_FullMorV1_SMuBlockH1/170216_140404/0000/',
-"data_SMuBlockH2":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/data/SingleMuon/crab_FullMorV1_SMuBlockH2/170216_140830/0000/' '''
+"data_SMuBlockH2":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/data/SingleMuon/crab_FullMorV1_SMuBlockH2/170216_140830/0000/', '''
        }
 sampleout={
 '''"ttHbb": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
@@ -76,9 +77,11 @@ sampleout={
 "ttH_nonbb": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 "ttjets_incl": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 "stop_schan": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/','''
+
 "stop_tchan_top": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
-"stop_tchan_antitop": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/'#,
-'''"stop_tW_antitop": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
+"stop_tchan_antitop": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/'
+
+''' "stop_tW_antitop": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 "stop_tw_top": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 "ttWjets_SL_ext1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 "ttWjets_SL_ext2": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
@@ -105,7 +108,7 @@ sampleout={
 "data_SMuBlockF2": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/DATA/',
 "data_SMuBlockG1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/DATA/',
 "data_SMuBlockH1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/DATA/',
-"data_SMuBlockH2": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/DATA/' '''
+"data_SMuBlockH2": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/DATA/', '''
           }
 #####
 ##   The script itself
