@@ -506,7 +506,8 @@ void SecondStep::Process(char* inFile, string outDirPath){
   int HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ=0;
 
   int ttHFCategory=0;
-  int EVENT_event,EVENT_run,EVENT_lumiBlock,EVENT_genWeight;
+  int EVENT_event,EVENT_run,EVENT_lumiBlock;
+  double EVENT_genWeight;
   double trueInteractions;
   double EVENT_Q2tthbbWeightUp,EVENT_Q2tthbbWeightDown,EVENT_PDFtthbbWeightUp,EVENT_PDFtthbbWeightDown,PUWeight;
   double Met_type1PF_pt = -99.;
