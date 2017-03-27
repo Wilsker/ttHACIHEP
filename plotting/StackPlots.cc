@@ -48,7 +48,9 @@ const string path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/out
 
 // ==== Samples ====
 //const char *samples[]   = {"TT_2b","TT_bb","TT_b","TT_cc","TT_lf", "ttHTobb", "SLep"};
-const char *samples[]   = {"MC/ttjets_incl/ttjets_incl_Merged_rootplas", "MC/ttHbb/ttHbb_Merged_rootplas", "DATA/combined_SLep"};
+const char *samples[]   = {"/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/output/MC/ttjets_incl/ttjets_incl_Merged_rootplas.root",
+                            "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/output/MC/ttHbb/ttHbb_Merged_rootplas.root",
+                            "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/output/DATA/combined_SLep.root"};
 
 // ==== Selection ====
 const string selection  = "_SL"; //_SingleEle, _SingleMu
