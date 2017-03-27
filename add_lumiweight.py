@@ -34,9 +34,9 @@ workingDir = os.getcwd()
 #====== Uncomment before committing to git -> For running on IHEP farm.
 inputDir = '/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/output/MC/'
 
-inputFiles = ["ttHbb/ttHbb_Merged_rootplas.root"
+inputFiles = [#"ttHbb/ttHbb_Merged_rootplas.root"
               #"ttH_nonbb/ttH_nonbb_Merged_rootplas.root",
-              #"ttjets_incl/ttjets_incl_Merged_rootplas.root",
+              "ttjets_incl/ttjets_incl_Merged_rootplas.root"
               #"ttjets_SL/ttjets_SL_Merged_rootplas.root",
               #"ttjets_DL/ttjets_DL_Merged_rootplas.root",
               #"ttjets_bfilter/ttjets_bfilter_Merged_rootplas.root",
