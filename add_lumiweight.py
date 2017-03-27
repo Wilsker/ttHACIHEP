@@ -136,11 +136,11 @@ for file0 in inputFiles:
     for quick_ev in range(ttree.GetEntries()):
 
         # get the next tree in the chain and verify
-        ientry = nominal_tree.LoadTree( quick_ev )
+        ientry = ttree.LoadTree( quick_ev )
         if ientry < 0:
             break
         # copy next entry into memory and verify
-        nb = nominal_tree.GetEntry( quick_ev )
+        nb = ttree.GetEntry( quick_ev )
         print 'EVENT_genWeight = ', ttree.EVENT_genWeight
         swg += ttree.EVENT_genWeight
         #print 'Sum weights = ', swg
