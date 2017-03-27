@@ -230,8 +230,8 @@ void StackPlots(){
 //   Call TFile to be read
 /////
 TFile* Call_TFile(string rootpla){
-  cout << "Call_TFile() : " << rootpla << endl;
   string file_name = path+rootpla+selection+".root";
+  cout << "Call_TFile() : " << file_name << endl;
   TFile* f = new TFile(file_name.c_str(),"update");
   return f;
 }
