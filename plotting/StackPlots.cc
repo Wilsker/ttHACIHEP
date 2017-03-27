@@ -48,9 +48,9 @@ const string path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/out
 
 // ==== Samples ====
 //const char *samples[]   = {"TT_2b","TT_bb","TT_b","TT_cc","TT_lf", "ttHTobb", "SLep"};
-const char *samples[]   = {"/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/output/MC/ttjets_incl/ttjets_incl_Merged_rootplas.root",
-                            "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/output/MC/ttHbb/ttHbb_Merged_rootplas.root",
-                            "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/output/DATA/combined_SLep.root"};
+const char *samples[]   = {"/MC/ttjets_incl/ttjets_incl_Merged_rootplas",
+                            "/MC/ttHbb/ttHbb_Merged_rootplas",
+                            "/DATA/combined_SLep"};
 
 // ==== Selection ====
 const string selection  = "_SL"; //_SingleEle, _SingleMu
@@ -230,9 +230,10 @@ void StackPlots(){
 //   Call TFile to be read
 /////
 TFile* Call_TFile(string rootpla){
- string file_name = path+rootpla+selection+".root";
- TFile* f = new TFile(file_name.c_str(),"update");
- return f;
+  cout << "Call_TFile() : " << rootpla << endl;
+  string file_name = path+rootpla+selection+".root";
+  TFile* f = new TFile(file_name.c_str(),"update");
+  return f;
 }
 /////
 //   Fill histo with double type
@@ -240,7 +241,7 @@ TFile* Call_TFile(string rootpla){
 TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype){
  //Call tree and variables
  cout << "double_h_var()"<< endl;
- cout << "Open file: " << rootplas << endl;
+ //cout << "Open file: " << rootplas << endl;
  TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
  //vector <double> * curr_var;
  //curr_var = 0;
