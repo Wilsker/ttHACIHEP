@@ -133,7 +133,7 @@ for file0 in inputFiles:
     ttree.SetBranchStatus("*",0)
     ttree.SetBranchStatus("EVENT_genWeight",1)
     swg = 0
-    print 'EVENT_genWeight = ', EVENT_genWeight
+    print 'EVENT_genWeight = ', tt.EVENT_genWeight
     for quick_ev in range(ttree.GetEntries()):
         swg += ttree.EVENT_genWeight
         print 'Sum weights = ', swg
