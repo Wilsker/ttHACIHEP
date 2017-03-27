@@ -175,7 +175,7 @@ void StackPlots(){
    for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) ent_AllBkg[i][j] = 0.;
    for(uint i=0; i<rootplas_size; i++){
      int datatype = 0; //for data
-     if(rootplas[i]=="ttHTobb"){
+     if(rootplas[i]=="ttHbb"){
        datatype = 1; //for signal
      }
      else if(rootplas[i]!="SEle" && rootplas[i]!="SMu" && rootplas[i]!="SLep"){
@@ -189,15 +189,19 @@ void StackPlots(){
      }else if(datatype==1){ h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
      }else{                 h_data_var = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);}
      if(datatype==2){
+       cout << "Background MC" << endl;
        //Put histos in the hstack
        int col = get_col(rootplas[i]);
-       if(rootplas[i].substr(0,2)=="TT"){
+       //if(rootplas[i].substr(0,2)=="ttjets_incl"){
+       if(rootplas[i].find("ttjets_incl") != std::string::npos){
+         cout << "ttjets_incl sample found"<< endl;
          h_var->SetFillColor(kRed+col);
          h_var->SetLineColor(kRed+col);
        }else{
          h_var->SetFillColor(kCyan+col);
          h_var->SetLineColor(kCyan+col);
        }
+       cout << "Adding to stack" << endl;
        hstack->Add(h_var);
        leg->AddEntry(h_var,rootplas[i].c_str(),"F");
        //Sum them for the error
@@ -210,6 +214,7 @@ void StackPlots(){
    }
    cout<<setw(5)<<"Evt"<<setw(15)<<"Bkg"<<setw(15)<<bkgstackintegral<<endl;
    cout<<setw(5)<<"Evt"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral()<<endl;
+   cout << "Drawing histpogram to canvas"<< endl;
    //Draw
    double highestbinval = get_highestbinval(h_data_var,h_sig,hstack,v);
    TCanvas* c1 = new TCanvas(var[v].c_str(),var[v].c_str(),200,200,700,600);
