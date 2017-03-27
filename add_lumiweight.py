@@ -141,9 +141,8 @@ for file0 in inputFiles:
             break
         # copy next entry into memory and verify
         nb = ttree.GetEntry( quick_ev )
-        print 'EVENT_genWeight = ', ttree.EVENT_genWeight
+        #print 'EVENT_genWeight = ', ttree.EVENT_genWeight
         swg += ttree.EVENT_genWeight
-        #print 'Sum weights = ', swg
 
     b_lumiweight = ttree.Branch("lumiweight",lumiweight_, "lumiweight/F")
     ttree.SetBranchStatus("lumiweight",1)
@@ -153,6 +152,7 @@ for file0 in inputFiles:
     BR = 0
     N0 = ttree.GetEntries()
     print '# Entries = ' , N0
+    print 'Sum weights = ', swg
 
     for key,value in XS_dict.iteritems():
         if key in file0:
@@ -172,7 +172,8 @@ for file0 in inputFiles:
             #print 'Moving to next file'
             continue
 
-    W = (XS*BR)/N0
+    #W = (XS*BR)/N0
+    W = (XS*BR)/swg
     print 'Weight for this sample = ', W
     for events in range(ttree.GetEntries()):
         ttree.GetEntry(events)
