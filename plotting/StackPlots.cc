@@ -238,20 +238,25 @@ TFile* Call_TFile(string rootpla){
 TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype){
  //Call tree and variables
  cout << "double_h_var()"<< endl;
+ cout << "Call_TFile()" << endl;
  TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
  //vector <double> * curr_var;
  //curr_var = 0;
  //TBranch *b_curr_var = 0;
  //tree->SetBranchAddress(var.c_str(),&curr_var,&b_curr_var);
+ cout << "Getting variable: " << var.c_str() << endl;
  double curr_var;
  TBranch *b_curr_var = 0;
  tree->SetBranchAddress(var.c_str(),&curr_var,&b_curr_var);
+ cout << "Getting variable: " << "PileupWeight" << endl;
  double PileupWeight;
  TBranch *b_PileupWeight = 0;
  tree->SetBranchAddress("PileupWeight",&PileupWeight,&b_PileupWeight);
+ cout << "Getting variable: " << "lumiweight" << endl;
  double lumi_wgt;
  TBranch *b_lumi_wgt = 0;
  tree->SetBranchAddress("lumiweight",&lumi_wgt,&b_lumi_wgt);
+ cout << "Getting variable: " << "bWeight" << endl;
  double bWeight;
  TBranch *b_bWeight = 0;
  tree->SetBranchAddress("bWeight",&bWeight,&b_bWeight);
