@@ -232,10 +232,10 @@ for file0 in inputFiles:
         if key in file0:
             output_tfile_name = key
 
-    tfile = ROOT.TFile(inputFullPath,'Update')
+    tfile = ROOT.TFile(inputFullPath,'Recreate')
     ttree = tfile.Get("BOOM")
 
-    ttree.SetBranchStatus("*",0)
+    ttree.SetBranchStatus("*",1)
     ttree.SetBranchStatus("EVENT_genWeight",1)
     swg = 0
     for quick_ev in range(ttree.GetEntries()):
