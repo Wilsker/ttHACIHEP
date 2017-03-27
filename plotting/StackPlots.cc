@@ -238,7 +238,7 @@ TFile* Call_TFile(string rootpla){
 TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype){
  //Call tree and variables
  cout << "double_h_var()"<< endl;
- cout << "Call_TFile()" << endl;
+ cout << "Open file: " << rootplas << endl;
  TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
  //vector <double> * curr_var;
  //curr_var = 0;
