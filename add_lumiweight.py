@@ -169,9 +169,11 @@ for file0 in inputFiles:
             #print 'Moving to next file'
             continue
 
+    print 'XS = ' , XS
+    print 'BR = ' , BR
+    print 'Sum weights = ', swg
     #W = (XS*BR)/N0
     W = (XS*BR)/swg
-    print 'Sum weights = ', swg
     print 'Weight for this sample = ', W
     for events in range(ttree.GetEntries()):
         ttree.GetEntry(events)
