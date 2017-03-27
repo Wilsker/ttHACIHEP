@@ -80,8 +80,8 @@ const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 const int    col_size   = 500; //>= highest bin
 
 //Variables
-const unsigned int ini_var = 8;
-const unsigned int fin_var = 9;
+const unsigned int ini_var = 0;
+const unsigned int fin_var = 5;
 const int posvtcr          = 0;
 const char *variables[]         = {
 //"BJetness_num_vetonoipnoiso_leps", "BJetness_num_soft_leps", "BJetness_num_pdgid_leps", "BJetness_num_loosenoipnoiso_leps", "BJetness_npvTrkOVcollTrk", "BJetness_pvTrkOVcollTrk", "BJetness_numjettrksnopv", "BJetness_avsip3d_sig", "BJetness_avip3d_val", "BJetness_avip3d_sig", "BJetness_avip1d_sig", "nBestVtx"
