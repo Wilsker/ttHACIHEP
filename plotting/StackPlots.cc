@@ -47,7 +47,8 @@ using namespace std;
 const string path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/output/";
 
 // ==== Samples ====
-const char *samples[]   = {"TT_2b","TT_bb","TT_b","TT_cc","TT_lf", "ttHTobb", "SLep"};
+//const char *samples[]   = {"TT_2b","TT_bb","TT_b","TT_cc","TT_lf", "ttHTobb", "SLep"};
+const char *samples[]   = {"MC/ttjets_incl/ttjets_incl_Merged_rootplas", "MC/ttHbb/ttHbb_Merged_rootplas", "DATA/combined_SLep"};
 
 // ==== Selection ====
 const string selection  = "_SL"; //_SingleEle, _SingleMu
@@ -137,6 +138,7 @@ void setTDRStyle();
 //   Main function
 /////
 void StackPlots(){
+  cout << "Running StackPlots" << endl;
  setTDRStyle();
  //Loop over all variables
  vector<string> var(variables, variables + sizeof(variables)/sizeof(variables[0]));
@@ -161,8 +163,11 @@ void StackPlots(){
   for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) ent_AllBkg[i][j] = 0.;
   for(uint i=0; i<rootplas_size; i++){
    int datatype = 0; //for data
-   if(rootplas[i]=="ttHTobb"){                                                 datatype = 1; //for signal
-   }else if(rootplas[i]!="SEle" && rootplas[i]!="SMu" && rootplas[i]!="SLep"){ datatype = 2; //for other mc samples
+   if(rootplas[i]=="ttHTobb"){
+     datatype = 1; //for signal
+   }
+   else if(rootplas[i]!="SEle" && rootplas[i]!="SMu" && rootplas[i]!="SLep"){
+     datatype = 2; //for other mc samples
    }
    //Declare histograms for variables
    TH1F *h_var = get_th1f(var[v], v);
@@ -226,7 +231,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
  tree->SetBranchAddress("PileupWeight",&PileupWeight,&b_PileupWeight);
  double lumi_wgt;
  TBranch *b_lumi_wgt = 0;
- tree->SetBranchAddress("lumi_wgt",&lumi_wgt,&b_lumi_wgt);
+ tree->SetBranchAddress("lumiweight",&lumi_wgt,&b_lumi_wgt);
  double bWeight;
  TBranch *b_bWeight = 0;
  tree->SetBranchAddress("bWeight",&bWeight,&b_bWeight);
