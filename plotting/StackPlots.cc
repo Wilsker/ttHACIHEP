@@ -168,7 +168,7 @@ void StackPlots(){
    cout << "rootplas()" << endl;
    vector<string> rootplas(samples, samples + sizeof(samples)/sizeof(samples[0]));
    const uint rootplas_size = rootplas.size();
-   cout << "rootplas_size" << rootplas_size << endl;
+   cout << "rootplas_size = " << rootplas_size << endl;
    double err_AllBkg[rootplas_size][col_size];
    double ent_AllBkg[rootplas_size][col_size];
    for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) err_AllBkg[i][j] = 0.;
@@ -184,6 +184,7 @@ void StackPlots(){
      cout << "Data type = " << datatype << endl;
      //Declare histograms for variables
      TH1F *h_var = get_th1f(var[v], v);
+     cout << "Selecting typ of variables . . . . "<< endl;
      //Choose type of variables
      if(datatype==2){       h_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
      }else if(datatype==1){ h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
@@ -236,6 +237,7 @@ TFile* Call_TFile(string rootpla){
 /////
 TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype){
  //Call tree and variables
+ cout << "double_h_var()"<< endl;
  TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
  //vector <double> * curr_var;
  //curr_var = 0;
@@ -493,10 +495,11 @@ TLegend* get_legend(){
  return leg;
 }
 TH1F* get_th1f(string var, int v){
- TH1F *th1f;
- if(var=="BJetness_num_vetonoipnoiso_leps" && doasym) th1f = new TH1F("","",bin[v],asymbin);
- else                         th1f = new TH1F("","",bin[v],inRange[v],endRange[v]);
- return th1f;
+  cout << "get_th1f"<< endl;
+  TH1F *th1f;
+  if(var=="BJetness_num_vetonoipnoiso_leps" && doasym) th1f = new TH1F("","",bin[v],asymbin);
+  else                         th1f = new TH1F("","",bin[v],inRange[v],endRange[v]);
+  return th1f;
 }
 TH1F* get_datath1f(string var, string title, int v){
  TH1F *datath1f = get_th1f(var, v);
