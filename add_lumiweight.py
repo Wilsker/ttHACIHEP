@@ -34,17 +34,17 @@ workingDir = os.getcwd()
 #====== Uncomment before committing to git -> For running on IHEP farm.
 inputDir = '/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/output/MC/'
 
-inputFiles = ["ttHbb/ttHbb_Merged_rootplas.root",
+inputFiles = [#"ttHbb/ttHbb_Merged_rootplas.root",
               #"ttH_nonbb/ttH_nonbb_Merged_rootplas.root",
               #"ttjets_incl/ttjets_incl_Merged_rootplas.root",
               #"ttjets_SL/ttjets_SL_Merged_rootplas.root",
               #"ttjets_DL/ttjets_DL_Merged_rootplas.root",
               ##"ttjets_bfilter/ttjets_bfilter_Merged_rootplas.root",
-              #"stop_schan/stop_schan_Merged_rootplas.root",
-              "stop_tchan_top/stop_tchan_top_Merged_rootplas.root"
-              #"stop_tchan_antitop/stop_tchan_antitop_Merged_rootplas.root",
-              #"stop_tw_top/stop_tw_top_Merged_rootplas.root",
-              #"stop_tW_antitop/stop_tW_antitop_Merged_rootplas.root",
+              "stop_schan/stop_schan_Merged_rootplas.root",
+              "stop_tchan_top/stop_tchan_top_Merged_rootplas.root",
+              "stop_tchan_antitop/stop_tchan_antitop_Merged_rootplas.root",
+              "stop_tw_top/stop_tw_top_Merged_rootplas.root",
+              "stop_tW_antitop/stop_tW_antitop_Merged_rootplas.root",
               #"ttW/ttW_Merged_rootplas.root",
               #"ttW_SL_ext1/ttW_SL_ext1_Merged_rootplas.root",
               #"ttW_SL_ext2/ttW_SL_ext2_Merged_rootplas.root",
@@ -114,6 +114,7 @@ BR_dict = {
 
 for file0 in inputFiles:
     inputFullPath = os.path.join(inputDir,file0)
+    print '==============================================='
     print 'Input file = ', inputFullPath
     if os.path.isfile(inputFullPath):
         print 'File exists'
