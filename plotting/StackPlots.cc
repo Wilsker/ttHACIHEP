@@ -138,71 +138,82 @@ void setTDRStyle();
 //   Main function
 /////
 void StackPlots(){
-  cout << "Running StackPlots" << endl;
+  cout << "Running StackPlots()" << endl;
+  cout << "setTDRStyle()" << endl;
  setTDRStyle();
+ cout << "var()" << endl;
+
  //Loop over all variables
  vector<string> var(variables, variables + sizeof(variables)/sizeof(variables[0]));
+ cout << "varTitleXaxis()" << endl;
  vector<string> varTitleXaxis(titleXaxis, titleXaxis + sizeof(titleXaxis)/sizeof(titleXaxis[0]));
+ cout << "loop over variables" << endl;
  for(uint v=ini_var; v<fin_var; v++){
-  cout<<var[v]<<endl;
-  //Declare legend and histograms
-  TLegend *leg = get_legend();
-  //MC
-  double bkgstackintegral = 0.;
-  THStack* hstack = new THStack("hstack","hstack");
-  TH1F* h_sum_var = get_th1f(var[v], v); h_sum_var->Sumw2();
-  TH1F* h_sig     = get_th1f(var[v], v);
-  //Data
-  TH1F* h_data_var = get_datath1f(var[v], varTitleXaxis[v], v); h_data_var->Sumw2();
-  //Loop over samples
-  vector<string> rootplas(samples, samples + sizeof(samples)/sizeof(samples[0]));
-  const uint rootplas_size = rootplas.size();
-  double err_AllBkg[rootplas_size][col_size];
-  double ent_AllBkg[rootplas_size][col_size];
-  for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) err_AllBkg[i][j] = 0.;
-  for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) ent_AllBkg[i][j] = 0.;
-  for(uint i=0; i<rootplas_size; i++){
-   int datatype = 0; //for data
-   if(rootplas[i]=="ttHTobb"){
-     datatype = 1; //for signal
+   cout<<var[v]<<endl;
+   //Declare legend and histograms
+   cout << "get_legend()" << endl;
+   TLegend *leg = get_legend();
+
+   //MC
+   double bkgstackintegral = 0.;
+   THStack* hstack = new THStack("hstack","hstack");
+   cout << "get_th1f()" << endl;
+   TH1F* h_sum_var = get_th1f(var[v], v); h_sum_var->Sumw2();
+   TH1F* h_sig     = get_th1f(var[v], v);
+   //Data
+   cout << "get_datath1f()" << endl;
+   TH1F* h_data_var = get_datath1f(var[v], varTitleXaxis[v], v); h_data_var->Sumw2();
+
+   //Loop over samples
+   cout << "rootplas()" << endl;
+   vector<string> rootplas(samples, samples + sizeof(samples)/sizeof(samples[0]));
+   const uint rootplas_size = rootplas.size();
+   double err_AllBkg[rootplas_size][col_size];
+   double ent_AllBkg[rootplas_size][col_size];
+   for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) err_AllBkg[i][j] = 0.;
+   for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) ent_AllBkg[i][j] = 0.;
+   for(uint i=0; i<rootplas_size; i++){
+     int datatype = 0; //for data
+     if(rootplas[i]=="ttHTobb"){
+       datatype = 1; //for signal
+     }
+     else if(rootplas[i]!="SEle" && rootplas[i]!="SMu" && rootplas[i]!="SLep"){
+       datatype = 2; //for other mc samples
+     }
+     //Declare histograms for variables
+     TH1F *h_var = get_th1f(var[v], v);
+     //Choose type of variables
+     if(datatype==2){       h_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
+     }else if(datatype==1){ h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
+     }else{                 h_data_var = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);}
+     if(datatype==2){
+       //Put histos in the hstack
+       int col = get_col(rootplas[i]);
+       if(rootplas[i].substr(0,2)=="TT"){
+         h_var->SetFillColor(kRed+col);
+         h_var->SetLineColor(kRed+col);
+       }else{
+         h_var->SetFillColor(kCyan+col);
+         h_var->SetLineColor(kCyan+col);
+       }
+       hstack->Add(h_var);
+       leg->AddEntry(h_var,rootplas[i].c_str(),"F");
+       //Sum them for the error
+       h_sum_var->Add(h_sum_var,h_var);
+       cout<<setw(5)<<"Evt"<<setw(15)<<rootplas[i]<<setw(15)<<h_var->Integral()<<endl;
+       bkgstackintegral += h_var->Integral();
+     }else if(datatype==0){
+       cout<<setw(5)<<"Evt"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral()<<endl;
+     }
    }
-   else if(rootplas[i]!="SEle" && rootplas[i]!="SMu" && rootplas[i]!="SLep"){
-     datatype = 2; //for other mc samples
-   }
-   //Declare histograms for variables
-   TH1F *h_var = get_th1f(var[v], v);
-   //Choose type of variables
-   if(datatype==2){       h_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
-   }else if(datatype==1){ h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
-   }else{                 h_data_var = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);}
-   if(datatype==2){
-    //Put histos in the hstack
-    int col = get_col(rootplas[i]);
-    if(rootplas[i].substr(0,2)=="TT"){
-     h_var->SetFillColor(kRed+col);
-     h_var->SetLineColor(kRed+col);
-    }else{
-     h_var->SetFillColor(kCyan+col);
-     h_var->SetLineColor(kCyan+col);
-    }
-    hstack->Add(h_var);
-    leg->AddEntry(h_var,rootplas[i].c_str(),"F");
-    //Sum them for the error
-    h_sum_var->Add(h_sum_var,h_var);
-    cout<<setw(5)<<"Evt"<<setw(15)<<rootplas[i]<<setw(15)<<h_var->Integral()<<endl;
-    bkgstackintegral += h_var->Integral();
-   }else if(datatype==0){
-    cout<<setw(5)<<"Evt"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral()<<endl;
-   }
-  }
-  cout<<setw(5)<<"Evt"<<setw(15)<<"Bkg"<<setw(15)<<bkgstackintegral<<endl;
-  cout<<setw(5)<<"Evt"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral()<<endl;
-  //Draw
-  double highestbinval = get_highestbinval(h_data_var,h_sig,hstack,v);
-  TCanvas* c1 = new TCanvas(var[v].c_str(),var[v].c_str(),200,200,700,600);
-  draw_plots(c1,h_sum_var,hstack,h_data_var,h_sig,leg,err_AllBkg,ent_AllBkg,rootplas_size,v,var[v],varTitleXaxis[v],highestbinval);
-  //draw_lines(2,0,2,highestbinval+0.25*highestbinval);
-  save_canvas(c1,var[v]);
+   cout<<setw(5)<<"Evt"<<setw(15)<<"Bkg"<<setw(15)<<bkgstackintegral<<endl;
+   cout<<setw(5)<<"Evt"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral()<<endl;
+   //Draw
+   double highestbinval = get_highestbinval(h_data_var,h_sig,hstack,v);
+   TCanvas* c1 = new TCanvas(var[v].c_str(),var[v].c_str(),200,200,700,600);
+   draw_plots(c1,h_sum_var,hstack,h_data_var,h_sig,leg,err_AllBkg,ent_AllBkg,rootplas_size,v,var[v],varTitleXaxis[v],highestbinval);
+   //draw_lines(2,0,2,highestbinval+0.25*highestbinval);
+   save_canvas(c1,var[v]);
  }
 }
 /////
@@ -433,6 +444,9 @@ void draw_lines(double x1, double y1, double x2, double y2){
  line1->SetLineWidth(3);
  line1->Draw("same");
 }
+
+
+
 int get_col(string name){
  int col;
  if(name=="VV")    col = -10;  //Non main bkg need a different color type
@@ -446,6 +460,8 @@ int get_col(string name){
  if(name=="TT_2b") col = -2;
  return col;
 }
+
+
 double get_highestbinval(TH1F* h_data_var, TH1F* h_sig, THStack* hstack, int v){
  double highestbinval = 0;
  for(int h=1; h<=h_data_var->GetNbinsX(); h++) if(h_data_var->GetBinContent(h)>highestbinval) highestbinval=h_data_var->GetBinContent(h);
