@@ -168,6 +168,7 @@ void StackPlots(){
    cout << "rootplas()" << endl;
    vector<string> rootplas(samples, samples + sizeof(samples)/sizeof(samples[0]));
    const uint rootplas_size = rootplas.size();
+   cout << "rootplas_size" << rootplas_size << endl;
    double err_AllBkg[rootplas_size][col_size];
    double ent_AllBkg[rootplas_size][col_size];
    for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) err_AllBkg[i][j] = 0.;
@@ -180,6 +181,7 @@ void StackPlots(){
      else if(rootplas[i]!="SEle" && rootplas[i]!="SMu" && rootplas[i]!="SLep"){
        datatype = 2; //for other mc samples
      }
+     cout << "Data type = " << datatype << endl;
      //Declare histograms for variables
      TH1F *h_var = get_th1f(var[v], v);
      //Choose type of variables
