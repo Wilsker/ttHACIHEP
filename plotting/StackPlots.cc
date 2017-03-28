@@ -37,7 +37,6 @@ Usually the signal comes just before the data sample
 #include <iostream>
 #include <iomanip>
 #include <iostream>
-#include <istream>
 #include <sstream>
 #include <map>
 using namespace std;
@@ -236,7 +235,8 @@ void StackPlots(){
     hstack->Add(h_var);
 
     string bckg_mc_nickname = "";
-    std::getline(rootplas[i],bckg_mc_nickname,"/");
+    string full_samplename = string(rootplas[i]);
+    bckg_mc_nickname = full_samplename.substr(full_samplename.find("/"));
     cout << "bckg_mc_nickname = " << bckg_mc_nickname << endl;
 
     leg->AddEntry(h_var,rootplas[i].c_str(),"F");
