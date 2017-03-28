@@ -180,7 +180,7 @@ void StackPlots(){
      if(rootplas[i]=="ttHbb"){
        datatype = 1; //for signal
      }
-     else if(rootplas[i]!="SEle" && rootplas[i]!="SMu" && rootplas[i]!="SLep"){
+     else if(rootplas[i]!="SEle" && rootplas[i]!="SMu"){
        datatype = 2; //for other mc samples
      }
      cout << "Data type = " << datatype << endl;
