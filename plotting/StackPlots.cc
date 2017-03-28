@@ -455,7 +455,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   else            h_data_var->Draw("Psame");
 
   gPad->RedrawAxis();
-  hsig->SetMarkerColor(kGreen+4);
+  h_sig->SetMarkerColor(kGreen+4);
   h_sig->SetLineWidth(2);
   h_sig->SetLineColor(kGreen+4);
   h_sig->Draw("same");
