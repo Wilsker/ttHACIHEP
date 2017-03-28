@@ -223,14 +223,17 @@ void StackPlots(){
 
     if(rootplas[i].find("ttjets_incl") != std::string::npos){
       cout << "ttjets_incl sample found"<< endl;
+      h_var->SetMarkerColor(kRed+col);
       h_var->SetFillColor(kRed+col);
       h_var->SetLineColor(kRed+col);
     }else{
+      cout << "Other bckg sample found"<< endl;
+      h_var->SetMarkerColor(kCyan+col);
       h_var->SetFillColor(kCyan+col);
       h_var->SetLineColor(kCyan+col);
     }
 
-    cout << "Adding to stack" << endl;
+    cout << "Adding background to stack" << endl;
     hstack->Add(h_var);
 
     // Create nickname for sample on plots (used in legend)
@@ -490,8 +493,8 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   if(h_data_var->GetEntries()==0) gStyle->SetOptStat(0);
 
   h_data_var->Draw("P");
-  hstack->SetMarkerStyle(6);
-  hstack->SetMarkerColor(2);
+  //hstack->SetMarkerStyle(6);
+  //hstack->SetMarkerColor(2);
   hstack->Draw("same");
 
   if(!normalised) h_data_var->Draw("PEsame");
