@@ -37,6 +37,7 @@ Need to specify
 #include <iostream>
 #include <iomanip>
 #include <iostream>
+#include <sstream>
 using namespace std;
 /////
 //   Declare constants
@@ -442,8 +443,11 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
  }
  //Data and bkg
  TGaxis::SetMaxDigits(4);
+ stringstream Title_ss;
+ Title_ss << "#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L = " << Luminosity <<" fb^{-1}}";
+ string Plot_Title = Title_ss.str();
  if(!show_ratio) h_data_var->GetXaxis()->SetTitle(vartitle.c_str());
- if(show_title)  h_data_var->SetTitle("#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L = 2.2 fb^{-1}}");
+ if(show_title)  h_data_var->SetTitle(Plot_Title);
  if(h_data_var->GetEntries()==0) gStyle->SetOptStat(0);
  h_data_var->Draw("P");
  //hstack->Draw("textsame");
@@ -458,6 +462,8 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
  if(!(h_data_var->GetEntries()==0)) leg->AddEntry(h_data_var,"data","P");
  if(!(h_sig->GetEntries()==0))      leg->AddEntry(h_sig,"TTHbb","L");
  leg->Draw();
+
+
  //Bkg err
  double all_bkg_statErr_x[bin[v]]; double all_bkg_statErr_y[bin[v]]; double all_bkg_statErr_xerr[bin[v]]; double all_bkg_statErr_yerr[bin[v]];
  for(int j=0; j<bin[v]; j++){
