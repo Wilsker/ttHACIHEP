@@ -37,6 +37,7 @@ Usually the signal comes just before the data sample
 #include <iostream>
 #include <iomanip>
 #include <iostream>
+#include <istream>
 #include <sstream>
 #include <map>
 using namespace std;
