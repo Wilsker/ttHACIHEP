@@ -255,10 +255,12 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
  double PUWeight;
  TBranch *b_PUWeight = 0;
  tree->SetBranchAddress("PUWeight",&PUWeight,&b_PUWeight);
- cout << "Getting variable: " << "lumiweight" << endl;
- Float_t lumiweight;
- TBranch *b_lumiweight = 0;
- tree->SetBranchAddress("lumiweight",&lumiweight,&b_lumiweight);
+
+ //Float_t lumiweight;
+ //TBranch *b_lumiweight = 0;
+ //cout << "Getting variable: " << "lumiweight" << endl;
+ //tree->SetBranchAddress("lumiweight",&lumiweight,&b_lumiweight);
+
  cout << "Getting variable: " << "bWeight" << endl;
  double bWeight;
  TBranch *b_bWeight = 0;
@@ -289,19 +291,23 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   b_curr_var->GetEntry(tentry);
   b_PUWeight->GetEntry(tentry);
   b_bWeight->GetEntry(tentry);
-  b_lumiweight->GetEntry(tentry);
   //b_HLT_Ele27_eta2p1_WPTight_Gsf->GetEntry(tentry);
   //b_HLT_IsoMu22->GetEntry(tentry);
   //b_HLT_IsoTkMu22->GetEntry(tentry);
   //if(!(HLT_Ele27_eta2p1_WPTight_Gsf==1 || HLT_IsoMu22==1 || HLT_IsoTkMu22==1)) continue;
   if(datatype!=0){
-   if(LumiNorm) w = w*lumiweight*Luminosity;
-   if(PUcorr)   w = w*PUWeight;
-   if(SF)       w = w*bWeight;
-   if(scale!=0) w = w*scale;
-   if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
-   if(curr_var>=endRange[v])                      {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
-   if(curr_var<=inRange[v])                       {hist->Fill(1.01*inRange[v],w);  hist_err->Fill(1.01*inRange[v],w*w);}
+    Float_t lumiweight;
+    TBranch *b_lumiweight = 0;
+    cout << "Getting variable: " << "lumiweight" << endl;
+    tree->SetBranchAddress("lumiweight",&lumiweight,&b_lumiweight);
+    b_lumiweight->GetEntry(tentry);
+    if(LumiNorm) w = w*lumiweight*Luminosity;
+    if(PUcorr)   w = w*PUWeight;
+    if(SF)       w = w*bWeight;
+    if(scale!=0) w = w*scale;
+    if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
+    if(curr_var>=endRange[v])                      {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
+    if(curr_var<=inRange[v])                       {hist->Fill(1.01*inRange[v],w);  hist_err->Fill(1.01*inRange[v],w*w);}
    //if(inRange[v]<curr_var->at(posvtcr) && curr_var->at(posvtcr)<endRange[v]){hist->Fill(curr_var->at(posvtcr),w);hist_err->Fill(curr_var->at(posvtcr),w*w);}
    //if(curr_var->at(posvtcr)>=endRange[v])                                   {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
    //if(curr_var->at(posvtcr)<=inRange[v])                                    {hist->Fill(1.01*inRange[v],w);  hist_err->Fill(1.01*inRange[v],w*w);}
