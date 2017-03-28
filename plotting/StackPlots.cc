@@ -177,6 +177,7 @@ void StackPlots(){
    for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) ent_AllBkg[i][j] = 0.;
    for(uint i=0; i<rootplas_size; i++){
      int datatype = -999;
+     cout << "rootplas[i] = " << rootplas[i] << endl;
      if(rootplas[i].find("ttHbb_Merged") != std::string::npos){
        datatype=1;
      }
