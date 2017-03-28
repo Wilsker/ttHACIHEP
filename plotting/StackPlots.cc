@@ -87,7 +87,7 @@ const unsigned int fin_var = 5;
 const int posvtcr          = 0;
 const char *variables[]         = {
 //"BJetness_num_vetonoipnoiso_leps", "BJetness_num_soft_leps", "BJetness_num_pdgid_leps", "BJetness_num_loosenoipnoiso_leps", "BJetness_npvTrkOVcollTrk", "BJetness_pvTrkOVcollTrk", "BJetness_numjettrksnopv", "BJetness_avsip3d_sig", "BJetness_avip3d_val", "BJetness_avip3d_sig", "BJetness_avip1d_sig", "nBestVtx"
-"BJetness_avsip3d_sig", "BJetness_avip3d_val", "BJetness_avip3d_sig", "BJetness_avip1d_sig", "BJetness_numleps", "BJetness_jetpt0"
+"BJetness_avsip3dsig", "BJetness_avip3d_val", "BJetness_avip3d_sig", "BJetness_avip1d_sig", "BJetness_numleps", "BJetness_jetpt0"
 };
 const char *titleXaxis[]        = {
 //"Num Veto Lep", "Num Soft Lep", "Num pdgid Lep", "Num loose Lep", "npvTrkOVcollTrk", "pvTrkOVcollTrk", "Num of not PV tracks", "Average Signed IP 3D Sig", "Average IP 3D Val", "Average IP 3D Sig", "Average IP 1D Sig", "Vertices"
@@ -251,14 +251,14 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
  double curr_var;
  TBranch *b_curr_var = 0;
  tree->SetBranchAddress(var.c_str(),&curr_var,&b_curr_var);
- cout << "Getting variable: " << "PileupWeight" << endl;
- double PileupWeight;
- TBranch *b_PileupWeight = 0;
- tree->SetBranchAddress("PileupWeight",&PileupWeight,&b_PileupWeight);
+ cout << "Getting variable: " << "PUWeight" << endl;
+ double PUWeight;
+ TBranch *b_PUWeight = 0;
+ tree->SetBranchAddress("PUWeight",&PUWeight,&b_PUWeight);
  cout << "Getting variable: " << "lumiweight" << endl;
- double lumi_wgt;
- TBranch *b_lumi_wgt = 0;
- tree->SetBranchAddress("lumiweight",&lumi_wgt,&b_lumi_wgt);
+ double lumiweight;
+ TBranch *b_lumiweight = 0;
+ tree->SetBranchAddress("lumiweight",&lumiweight,&b_lumiweight);
  cout << "Getting variable: " << "bWeight" << endl;
  double bWeight;
  TBranch *b_bWeight = 0;
@@ -287,16 +287,16 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   double w = 1.;
   Long64_t tentry = tree->LoadTree(j);
   b_curr_var->GetEntry(tentry);
-  b_PileupWeight->GetEntry(tentry);
+  b_PUWeight->GetEntry(tentry);
   b_bWeight->GetEntry(tentry);
-  b_lumi_wgt->GetEntry(tentry);
+  b_lumiweight->GetEntry(tentry);
   //b_HLT_Ele27_eta2p1_WPTight_Gsf->GetEntry(tentry);
   //b_HLT_IsoMu22->GetEntry(tentry);
   //b_HLT_IsoTkMu22->GetEntry(tentry);
   //if(!(HLT_Ele27_eta2p1_WPTight_Gsf==1 || HLT_IsoMu22==1 || HLT_IsoTkMu22==1)) continue;
   if(datatype!=0){
-   if(LumiNorm) w = w*lumi_wgt*Luminosity;
-   if(PUcorr)   w = w*PileupWeight;
+   if(LumiNorm) w = w*lumiweight*Luminosity;
+   if(PUcorr)   w = w*PUWeight;
    if(SF)       w = w*bWeight;
    if(scale!=0) w = w*scale;
    if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
