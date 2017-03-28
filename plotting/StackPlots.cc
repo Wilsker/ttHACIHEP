@@ -236,7 +236,11 @@ void StackPlots(){
 
     string bckg_mc_nickname = "";
     string full_samplename = string(rootplas[i]);
-    bckg_mc_nickname = full_samplename.substr(full_samplename.find("/"));
+    if(full_samplename.find("/")!=std::string::npos){bckg_mc_nickname = full_samplename.substr(0,full_samplename.find("/"));}
+    else{
+      cout << "Could not find \/ in sample name. Using deafult name for legend!" << endl;
+      bckg_mc_nickname = "<Default bckg name>";
+    }
     cout << "bckg_mc_nickname = " << bckg_mc_nickname << endl;
 
     leg->AddEntry(h_var,rootplas[i].c_str(),"F");
