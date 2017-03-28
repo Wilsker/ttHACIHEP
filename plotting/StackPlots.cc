@@ -176,13 +176,23 @@ void StackPlots(){
    for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) err_AllBkg[i][j] = 0.;
    for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) ent_AllBkg[i][j] = 0.;
    for(uint i=0; i<rootplas_size; i++){
-     int datatype = 0; //for data
-     if(rootplas[i]=="ttHbb"){
+     if(rootplas[i].find("ttHbb_Merged") != std::string::npos){
+       datatype=1;
+     }
+     else if(rootplas[i].find("combined_SLep")){
+       datatype=0;
+     }
+     else{
+       datatype=2
+     }
+     /*int datatype = 0; //for data
+     cout << "rootplas[i] = " << rootplas[i] << endl;
+     if(rootplas[i]=="ttHbb_Merged"){
        datatype = 1; //for signal
      }
      else if(rootplas[i]!="SEle" && rootplas[i]!="SMu"){
        datatype = 2; //for other mc samples
-     }
+     }*/
      cout << "Data type = " << datatype << endl;
      //Declare histograms for variables
      TH1F *h_var = get_th1f(var[v], v);
