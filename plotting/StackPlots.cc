@@ -485,7 +485,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   const char* Plot_Title = (Title_ss.str()).c_str();
   cout << "Plot_Title = " << Plot_Title << endl;
   if(!show_ratio) h_data_var->GetXaxis()->SetTitle(vartitle.c_str());
-  if(show_title)  h_data_var->SetTitle(Plot_Title);
+  if(show_title)  h_data_var->SetTitle(Title_ss.str());
   if(h_data_var->GetEntries()==0) gStyle->SetOptStat(0);
   h_data_var->Draw("P");
   //hstack->Draw("textsame");
