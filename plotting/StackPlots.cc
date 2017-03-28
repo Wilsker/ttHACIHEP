@@ -181,7 +181,7 @@ void StackPlots(){
      if(rootplas[i].find("ttHbb_Merged") != std::string::npos){
        datatype=1;
      }
-     else if(rootplas[i].find("combined_SLep")){
+     else if(rootplas[i].find("combined_SLep")!= std::string::npos){
        datatype=0;
      }
      else{
