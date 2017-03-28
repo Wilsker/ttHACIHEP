@@ -149,37 +149,29 @@ void setTDRStyle();
 //   Main function
 /////
 void StackPlots(){
-  cout << "Running StackPlots()" << endl;
-  cout << "setTDRStyle()" << endl;
+  cout << "Running StackPlots . . . . ." << endl;
   setTDRStyle();
-  cout << "var()" << endl;
 
   //Loop over all variables
   vector<string> var(variables, variables + sizeof(variables)/sizeof(variables[0]));
-  cout << "varTitleXaxis()" << endl;
   vector<string> varTitleXaxis(titleXaxis, titleXaxis + sizeof(titleXaxis)/sizeof(titleXaxis[0]));
   cout << "loop over variables" << endl;
   for(uint v=ini_var; v<fin_var; v++){
     cout<<var[v]<<endl;
     //Declare legend and histograms
-    cout << "get_legend()" << endl;
     TLegend *leg = get_legend();
 
     //MC
     double bkgstackintegral = 0.;
     THStack* hstack = new THStack("hstack","hstack");
-    cout << "get_th1f()" << endl;
     TH1F* h_sum_var = get_th1f(var[v], v); h_sum_var->Sumw2();
     TH1F* h_sig     = get_th1f(var[v], v);
     //Data
-    cout << "get_datath1f()" << endl;
     TH1F* h_data_var = get_datath1f(var[v], varTitleXaxis[v], v); h_data_var->Sumw2();
 
     //Loop over samples
-    cout << "rootplas()" << endl;
     vector<string> rootplas(samples, samples + sizeof(samples)/sizeof(samples[0]));
     const uint rootplas_size = rootplas.size();
-    cout << "rootplas_size = " << rootplas_size << endl;
     double err_AllBkg[rootplas_size][col_size];
     double ent_AllBkg[rootplas_size][col_size];
     for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) err_AllBkg[i][j] = 0.;
@@ -209,14 +201,13 @@ void StackPlots(){
   //Declare histograms for variables
   TH1F *h_var = get_th1f(var[v], v);
 
-  cout << "Selecting type of variables . . . . "<< endl;
   //Choose type of variables
   if(datatype==2){       h_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
   }else if(datatype==1){ h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
   }else{                 h_data_var = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);}
 
   if(datatype==2){
-    cout << "Background MC" << endl;
+    cout << "Found Background MC:" << endl;
 
     //Put histos in the hstack
     int col = get_col(rootplas[i]);
@@ -244,22 +235,20 @@ void StackPlots(){
       cout << "Could not find  in sample name. Using deafult name for legend!" << endl;
       bckg_mc_nickname = "<Default bckg name>";
     }
-    cout << "bckg_mc_nickname = " << bckg_mc_nickname << endl;
 
     leg->AddEntry(h_var,bckg_mc_nickname.c_str(),"F");
 
     //Sum them for the error
     h_sum_var->Add(h_sum_var,h_var);
-    cout<<setw(5)<<"Evt"<<setw(15)<<rootplas[i]<<setw(15)<<h_var->Integral()<<endl;
+    cout<<setw(5)<<"Bckg variable cumulative integral:"<<setw(15)<<rootplas[i]<<setw(15)<<h_var->Integral()<<endl;
     bkgstackintegral += h_var->Integral();
-  }else if(datatype==0){
-    cout<<setw(5)<<"Evt"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral()<<endl;
+  }
+  else if(datatype==0){
+    cout<<setw(5)<<"Data variable cumulative integral:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral()<<endl;
   }
 }
-cout<<setw(5)<<"Evt"<<setw(15)<<"Bkg"<<setw(15)<<bkgstackintegral<<endl;
-cout<<setw(5)<<"Evt"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral()<<endl;
-cout << "Drawing histpogram to canvas"<< endl;
-
+cout<<setw(5)<<"Total Stack Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<bkgstackintegral<<endl;
+cout<<setw(5)<<"Total Signal Historgram Integral:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral()<<endl;
 
 
 //Draw
@@ -276,7 +265,6 @@ save_canvas(c1,var[v]);
 /////
 TFile* Call_TFile(string rootpla){
   string file_name = path+rootpla+".root";
-  cout << "Call_TFile() : " << file_name << endl;
   TFile* f = new TFile(file_name.c_str(),"update");
   return f;
 }
@@ -288,46 +276,26 @@ TFile* Call_TFile(string rootpla){
 /////
 TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype){
   //Call tree and variables
-  cout << "double_h_var()"<< endl;
-  //cout << "Open file: " << rootplas << endl;
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
-  //vector <double> * curr_var;
-  //curr_var = 0;
-  //TBranch *b_curr_var = 0;
-  //tree->SetBranchAddress(var.c_str(),&curr_var,&b_curr_var);
-  cout << "Getting variable: " << var.c_str() << endl;
+
   double curr_var;
   TBranch *b_curr_var = 0;
   tree->SetBranchAddress(var.c_str(),&curr_var,&b_curr_var);
-  cout << "Getting variable: " << "PUWeight" << endl;
   double PUWeight;
   TBranch *b_PUWeight = 0;
   tree->SetBranchAddress("PUWeight",&PUWeight,&b_PUWeight);
-
   Float_t lumiweight;
   TBranch *b_lumiweight = 0;
   if(datatype!=0){
-    cout << "Getting variable: " << "lumiweight" << endl;
     tree->SetBranchAddress("lumiweight",&lumiweight,&b_lumiweight);
   }
   else{lumiweight=1;}
 
-
-  cout << "Getting variable: " << "bWeight" << endl;
   double bWeight;
   TBranch *b_bWeight = 0;
   tree->SetBranchAddress("bWeight",&bWeight,&b_bWeight);
-  /*
-  double HLT_Ele27_eta2p1_WPTight_Gsf;
-  TBranch *b_HLT_Ele27_eta2p1_WPTight_Gsf = 0;
-  tree->SetBranchAddress("HLT_Ele27_eta2p1_WPTight_Gsf",&HLT_Ele27_eta2p1_WPTight_Gsf,&b_HLT_Ele27_eta2p1_WPTight_Gsf);
-  double HLT_IsoMu22;
-  TBranch *b_HLT_IsoMu22 = 0;
-  tree->SetBranchAddress("HLT_IsoMu22",&HLT_IsoMu22,&b_HLT_IsoMu22);
-  double HLT_IsoTkMu22;
-  TBranch *b_HLT_IsoTkMu22 = 0;
-  tree->SetBranchAddress("HLT_IsoTkMu22",&HLT_IsoTkMu22,&b_HLT_IsoTkMu22);
-  */
+
+
   //Fill histo
   TH1F *hist = get_th1f(var, v);
   hist->SetTitle(0); hist->SetMarkerStyle(8); hist->SetMarkerColor(1); hist->SetLineColor(1);
@@ -344,15 +312,9 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
     b_curr_var->GetEntry(tentry);
     b_PUWeight->GetEntry(tentry);
     b_bWeight->GetEntry(tentry);
-    //b_HLT_Ele27_eta2p1_WPTight_Gsf->GetEntry(tentry);
-    //b_HLT_IsoMu22->GetEntry(tentry);
-    //b_HLT_IsoTkMu22->GetEntry(tentry);
-    //if(!(HLT_Ele27_eta2p1_WPTight_Gsf==1 || HLT_IsoMu22==1 || HLT_IsoTkMu22==1)) continue;
+
     if(datatype!=0){
-      //Float_t lumiweight;
-      //TBranch *b_lumiweight = 0;
-      //tree->SetBranchAddress("lumiweight",&lumiweight,&b_lumiweight);
-      //b_lumiweight->GetEntry(tentry);
+
       if(LumiNorm) w = w*lumiweight*Luminosity;
       if(PUcorr)   w = w*PUWeight;
       if(SF)       w = w*bWeight;
@@ -360,16 +322,10 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
       if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
       if(curr_var>=endRange[v])                      {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
       if(curr_var<=inRange[v])                       {hist->Fill(1.01*inRange[v],w);  hist_err->Fill(1.01*inRange[v],w*w);}
-      //if(inRange[v]<curr_var->at(posvtcr) && curr_var->at(posvtcr)<endRange[v]){hist->Fill(curr_var->at(posvtcr),w);hist_err->Fill(curr_var->at(posvtcr),w*w);}
-      //if(curr_var->at(posvtcr)>=endRange[v])                                   {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
-      //if(curr_var->at(posvtcr)<=inRange[v])                                    {hist->Fill(1.01*inRange[v],w);  hist_err->Fill(1.01*inRange[v],w*w);}
     }else{
       if(inRange[v]<curr_var && curr_var<endRange[v]) hist->Fill(curr_var);
       if(curr_var>=endRange[v])                       hist->Fill(0.99*endRange[v]);
       if(curr_var<=inRange[v])                        hist->Fill(1.01*inRange[v]);
-      //if(inRange[v]<curr_var->at(posvtcr) && curr_var->at(posvtcr)<endRange[v]) hist->Fill(curr_var->at(posvtcr));
-      //if(curr_var->at(posvtcr)>=endRange[v])                                    hist->Fill(0.99*endRange[v]);
-      //if(curr_var->at(posvtcr)<=inRange[v])                                     hist->Fill(1.01*inRange[v]);
     }
   }
   //Get errors, normalise
@@ -484,10 +440,8 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   stringstream Title_ss;
   Title_ss << "#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L = " << (Luminosity/1000) <<" fb^{-1}}";
   //string Title_s = Title_ss.string();
-  cout << "Title_ss.str() = " << Title_ss.str() << endl;
   string Title_str = Title_ss.str();
   const char* Plot_Title = Title_str.c_str();
-  cout << "Plot_Title = " << Plot_Title << endl;
   if(!show_ratio) h_data_var->GetXaxis()->SetTitle(vartitle.c_str());
   if(show_title)  h_data_var->SetTitle(Plot_Title);
   if(h_data_var->GetEntries()==0) gStyle->SetOptStat(0);
@@ -501,6 +455,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   else            h_data_var->Draw("Psame");
 
   gPad->RedrawAxis();
+  hsig->SetMarkerColor(kGreen+4);
   h_sig->SetLineWidth(2);
   h_sig->SetLineColor(kGreen+4);
   h_sig->Draw("same");
@@ -588,7 +543,6 @@ TLegend* get_legend(){
 
 
 TH1F* get_th1f(string var, int v){
-  cout << "get_th1f"<< endl;
   TH1F *th1f;
   if(var=="BJetness_num_vetonoipnoiso_leps" && doasym) th1f = new TH1F("","",bin[v],asymbin);
   else                         th1f = new TH1F("","",bin[v],inRange[v],endRange[v]);
