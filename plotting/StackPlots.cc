@@ -183,7 +183,7 @@ void StackPlots(){
        datatype=0;
      }
      else{
-       datatype=2
+       datatype=2;
      }
      /*int datatype = 0; //for data
      cout << "rootplas[i] = " << rootplas[i] << endl;
