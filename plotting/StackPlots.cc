@@ -256,7 +256,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
  TBranch *b_PUWeight = 0;
  tree->SetBranchAddress("PUWeight",&PUWeight,&b_PUWeight);
  cout << "Getting variable: " << "lumiweight" << endl;
- double lumiweight;
+ Float_t lumiweight;
  TBranch *b_lumiweight = 0;
  tree->SetBranchAddress("lumiweight",&lumiweight,&b_lumiweight);
  cout << "Getting variable: " << "bWeight" << endl;
