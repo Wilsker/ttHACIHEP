@@ -445,7 +445,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
  TGaxis::SetMaxDigits(4);
  stringstream Title_ss;
  Title_ss << "#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L = " << Luminosity <<" fb^{-1}}";
- string Plot_Title = Title_ss.c_str();
+ const char* Plot_Title = Title_ss.c_str();
  if(!show_ratio) h_data_var->GetXaxis()->SetTitle(vartitle.c_str());
  if(show_title)  h_data_var->SetTitle(Plot_Title);
  if(h_data_var->GetEntries()==0) gStyle->SetOptStat(0);
