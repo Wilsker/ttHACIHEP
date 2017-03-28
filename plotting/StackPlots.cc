@@ -87,7 +87,7 @@ const unsigned int fin_var = 5;
 const int posvtcr          = 0;
 const char *variables[]         = {
 //"BJetness_num_vetonoipnoiso_leps", "BJetness_num_soft_leps", "BJetness_num_pdgid_leps", "BJetness_num_loosenoipnoiso_leps", "BJetness_npvTrkOVcollTrk", "BJetness_pvTrkOVcollTrk", "BJetness_numjettrksnopv", "BJetness_avsip3d_sig", "BJetness_avip3d_val", "BJetness_avip3d_sig", "BJetness_avip1d_sig", "nBestVtx"
-"BJetness_avsip3dsig", "BJetness_avip3d_val", "BJetness_avip3d_sig", "BJetness_avip1d_sig", "BJetness_numleps", "BJetness_jetpt0"
+"BJetness_avsip3dsig", "BJetness_avip3dval", "BJetness_avip3dsig", "BJetness_avip1dsig", "BJetness_numleps", "BJetness_jetpt0"
 };
 const char *titleXaxis[]        = {
 //"Num Veto Lep", "Num Soft Lep", "Num pdgid Lep", "Num loose Lep", "npvTrkOVcollTrk", "pvTrkOVcollTrk", "Num of not PV tracks", "Average Signed IP 3D Sig", "Average IP 3D Val", "Average IP 3D Sig", "Average IP 1D Sig", "Vertices"
@@ -267,10 +267,14 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
  TBranch *b_PUWeight = 0;
  tree->SetBranchAddress("PUWeight",&PUWeight,&b_PUWeight);
 
- //Float_t lumiweight;
- //TBranch *b_lumiweight = 0;
- //cout << "Getting variable: " << "lumiweight" << endl;
- //tree->SetBranchAddress("lumiweight",&lumiweight,&b_lumiweight);
+ Float_t lumiweight;
+ TBranch *b_lumiweight = 0;
+ if(datatype!=0){
+   cout << "Getting variable: " << "lumiweight" << endl;
+   tree->SetBranchAddress("lumiweight",&lumiweight,&b_lumiweight);
+ }
+ else{lumiweight=1;}
+
 
  cout << "Getting variable: " << "bWeight" << endl;
  double bWeight;
@@ -294,6 +298,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
  if(var=="BJetness_num_vetonoipnoiso_leps" && doasym) hist_err = new TH1F("hist_err","hist_err",bin[v],asymbin);
  else                         hist_err = new TH1F("hist_err","hist_err",bin[v],inRange[v],endRange[v]);
  hist_err->Sumw2();
+
  for(int j=0; j<tree->GetEntries(); j++)
  //for(int j=0; j<10; j++)
  {
@@ -307,11 +312,10 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   //b_HLT_IsoTkMu22->GetEntry(tentry);
   //if(!(HLT_Ele27_eta2p1_WPTight_Gsf==1 || HLT_IsoMu22==1 || HLT_IsoTkMu22==1)) continue;
   if(datatype!=0){
-    Float_t lumiweight;
-    TBranch *b_lumiweight = 0;
-    cout << "Getting variable: " << "lumiweight" << endl;
-    tree->SetBranchAddress("lumiweight",&lumiweight,&b_lumiweight);
-    b_lumiweight->GetEntry(tentry);
+    //Float_t lumiweight;
+    //TBranch *b_lumiweight = 0;
+    //tree->SetBranchAddress("lumiweight",&lumiweight,&b_lumiweight);
+    //b_lumiweight->GetEntry(tentry);
     if(LumiNorm) w = w*lumiweight*Luminosity;
     if(PUcorr)   w = w*PUWeight;
     if(SF)       w = w*bWeight;
