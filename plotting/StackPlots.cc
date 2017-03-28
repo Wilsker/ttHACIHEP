@@ -238,12 +238,12 @@ void StackPlots(){
     string full_samplename = string(rootplas[i]);
     if(full_samplename.find("/")!=std::string::npos){bckg_mc_nickname = full_samplename.substr(0,full_samplename.find("/"));}
     else{
-      cout << "Could not find \/ in sample name. Using deafult name for legend!" << endl;
+      cout << "Could not find  in sample name. Using deafult name for legend!" << endl;
       bckg_mc_nickname = "<Default bckg name>";
     }
     cout << "bckg_mc_nickname = " << bckg_mc_nickname << endl;
 
-    leg->AddEntry(h_var,rootplas[i].c_str(),"F");
+    leg->AddEntry(h_var,bckg_mc_nickname.c_str(),"F");
 
     //Sum them for the error
     h_sum_var->Add(h_sum_var,h_var);
