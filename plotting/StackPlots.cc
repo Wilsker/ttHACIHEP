@@ -203,26 +203,24 @@ void StackPlots(){
       else{
         path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/output/DATA/";
       }
-      /*int datatype = 0; //for data
-      cout << "rootplas[i] = " << rootplas[i] << endl;
-      if(rootplas[i]=="ttHbb_Merged"){
-      datatype = 1; //for signal
-    }
-    else if(rootplas[i]!="SEle" && rootplas[i]!="SMu"){
-    datatype = 2; //for other mc samples
-  }*/
+
   cout << "Data type = " << datatype << endl;
+
   //Declare histograms for variables
   TH1F *h_var = get_th1f(var[v], v);
-  cout << "Selecting typ of variables . . . . "<< endl;
+
+  cout << "Selecting type of variables . . . . "<< endl;
   //Choose type of variables
   if(datatype==2){       h_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
   }else if(datatype==1){ h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
   }else{                 h_data_var = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);}
+
   if(datatype==2){
     cout << "Background MC" << endl;
+
     //Put histos in the hstack
     int col = get_col(rootplas[i]);
+
     if(rootplas[i].find("ttjets_incl") != std::string::npos){
       cout << "ttjets_incl sample found"<< endl;
       h_var->SetFillColor(kRed+col);
@@ -231,9 +229,11 @@ void StackPlots(){
       h_var->SetFillColor(kCyan+col);
       h_var->SetLineColor(kCyan+col);
     }
+
     cout << "Adding to stack" << endl;
     hstack->Add(h_var);
 
+    // Create nickname for sample on plots (used in legend)
     string bckg_mc_nickname = "";
     string full_samplename = string(rootplas[i]);
     if(full_samplename.find("/")!=std::string::npos){bckg_mc_nickname = full_samplename.substr(0,full_samplename.find("/"));}
@@ -256,11 +256,13 @@ void StackPlots(){
 cout<<setw(5)<<"Evt"<<setw(15)<<"Bkg"<<setw(15)<<bkgstackintegral<<endl;
 cout<<setw(5)<<"Evt"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral()<<endl;
 cout << "Drawing histpogram to canvas"<< endl;
+
+
+
 //Draw
 double highestbinval = get_highestbinval(h_data_var,h_sig,hstack,v);
 TCanvas* c1 = new TCanvas(var[v].c_str(),var[v].c_str(),200,200,700,600);
 draw_plots(c1,h_sum_var,hstack,h_data_var,h_sig,leg,err_AllBkg,ent_AllBkg,rootplas_size,v,var[v],varTitleXaxis[v],highestbinval);
-//draw_lines(2,0,2,highestbinval+0.25*highestbinval);
 save_canvas(c1,var[v]);
 }
 }
@@ -398,6 +400,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     c1_1->SetRightMargin(0.01);
     c1_1->SetLeftMargin(0.125);
     //c1_1->SetFillStyle(0);
+
     //Get values
     double dataSUmc_x[bin[v]]; double dataSUmc_y[bin[v]]; double dataSUmc_xerr[bin[v]]; double dataSUmc_yerr[bin[v]];
     for(int j=0; j<bin[v]; j++){
@@ -479,7 +482,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   Title_ss << "#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L = " << Luminosity <<" fb^{-1}}";
   //string Title_s = Title_ss.string();
   cout << "Title_ss.str() = " << Title_ss.str() << endl;
-  const char* Plot_Title = Title_ss.str().c_str();
+  const char* Plot_Title = (Title_ss.str()).c_str();
   cout << "Plot_Title = " << Plot_Title << endl;
   if(!show_ratio) h_data_var->GetXaxis()->SetTitle(vartitle.c_str());
   if(show_title)  h_data_var->SetTitle(Plot_Title);
