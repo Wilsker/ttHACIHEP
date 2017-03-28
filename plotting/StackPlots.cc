@@ -479,7 +479,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   //Data and bkg
   TGaxis::SetMaxDigits(4);
   stringstream Title_ss;
-  Title_ss << "#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L = " << Luminosity <<" fb^{-1}}";
+  Title_ss << "#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L = " << (Luminosity/1000) <<" fb^{-1}}";
   //string Title_s = Title_ss.string();
   cout << "Title_ss.str() = " << Title_ss.str() << endl;
   string Title_str = Title_ss.str();
@@ -488,12 +488,15 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   if(!show_ratio) h_data_var->GetXaxis()->SetTitle(vartitle.c_str());
   if(show_title)  h_data_var->SetTitle(Plot_Title);
   if(h_data_var->GetEntries()==0) gStyle->SetOptStat(0);
+
   h_data_var->Draw("P");
-  //hstack->Draw("textsame");
+  hstack->SetMarkerStyle(6);
+  hstack->SetMarkerColor(2);
   hstack->Draw("same");
+
   if(!normalised) h_data_var->Draw("PEsame");
   else            h_data_var->Draw("Psame");
-  //h_data_var->Draw("text45same");
+
   gPad->RedrawAxis();
   h_sig->SetLineWidth(2);
   h_sig->SetLineColor(kGreen+4);
