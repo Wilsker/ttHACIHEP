@@ -240,6 +240,7 @@ void StackPlots(){
 
         //Get integral for bckg histogram of given variable.
         cout<<setw(5)<<"Bckg Histogram Integral:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
+        int nbins = h_var->GetNbinsX();
         cout<<setw(5)<<"Bckg Histogram integral + overflow:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral(0,nbins+1)<<endl;
         //Add integral to total bckg integral of given variable.
         bkgstackintegral += h_var->Integral();
