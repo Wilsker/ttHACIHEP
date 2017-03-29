@@ -221,7 +221,7 @@ void StackPlots(){
         int col = get_col(bckg_mc_nickname);
 
         if(rootplas[i].find("ttjets_incl") != std::string::npos){
-          h_var->SetMarkerColor(kRed+col);
+          //h_var->SetMarkerColor(kRed+col);
           h_var->SetFillColor(kRed+col);
           h_var->SetLineColor(kRed+col);
         }else{
