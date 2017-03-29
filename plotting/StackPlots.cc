@@ -300,7 +300,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   TH1F *hist = get_th1f(var, v);
 
   hist->SetTitle(0);
-  /*hist->SetMarkerStyle(8); 
+  /*hist->SetMarkerStyle(8);
   hist->SetMarkerColor(1);*/
   hist->SetLineColor(1);
 
