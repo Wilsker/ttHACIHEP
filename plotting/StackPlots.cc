@@ -155,9 +155,8 @@ void StackPlots(){
   //Loop over all variables
   vector<string> var(variables, variables + sizeof(variables)/sizeof(variables[0]));
   vector<string> varTitleXaxis(titleXaxis, titleXaxis + sizeof(titleXaxis)/sizeof(titleXaxis[0]));
-  cout << "loop over variables" << endl;
   for(uint v=ini_var; v<fin_var; v++){
-    cout<<var[v]<<endl;
+    cout<< "Variable = " << var[v]<<endl;
 
 
     //Declare legend
@@ -464,16 +463,16 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   h_sig->SetLineColor(kGreen+4);
 
   //Draw data and bckg MC
-  h_data_var->Draw("");
-  hstack->Draw("same");
-  if(!normalised) h_data_var->Draw("Esame");
+  h_data_var->Draw("P");
+  hstack->Draw("Hsame");
+  if(!normalised) h_data_var->Draw("PEsame");
   else            h_data_var->Draw("same");
 
 
   //
   gPad->RedrawAxis();
-  h_sig->Draw("same");
-  if(!(h_data_var->GetEntries()==0)) leg->AddEntry(h_data_var,"data","L");
+  h_sig->Draw("Hsame");
+  if(!(h_data_var->GetEntries()==0)) leg->AddEntry(h_data_var,"data","P");
   if(!(h_sig->GetEntries()==0))      leg->AddEntry(h_sig,"TTHbb","L");
   leg->Draw();
 
