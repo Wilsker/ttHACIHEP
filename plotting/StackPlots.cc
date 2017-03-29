@@ -102,11 +102,11 @@ const int    bin[numVar]        = {
 };
 const double inRange[numVar]    = {
   //0, 0, 0, 0, 0, 0, 0, -10, 0, 0, 0, 0
-  -200, 0, 0, 0, 0, 0
+  -200, -10, 0, 0, 0, 0
 };
 const double endRange[numVar]   = {
   //8, 8, 8, 8, 1.5, 1.5, 15, 80, 1, 80, 100, 30
-  200, 200, 200, 200, 6, 200
+  200, 10, 200, 200, 6, 200
 };
 /*
 const char *variables[]         = {
