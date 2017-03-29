@@ -86,7 +86,7 @@ const int    col_size   = 500; //>= highest bin
 
 //Variables
 const unsigned int ini_var = 0;
-const unsigned int fin_var = 5;
+const unsigned int fin_var = 6;
 const int posvtcr          = 0;
 const char *variables[]         = {
   //"BJetness_num_vetonoipnoiso_leps", "BJetness_num_soft_leps", "BJetness_num_pdgid_leps", "BJetness_num_loosenoipnoiso_leps", "BJetness_npvTrkOVcollTrk", "BJetness_pvTrkOVcollTrk", "BJetness_numjettrksnopv", "BJetness_avsip3d_sig", "BJetness_avip3d_val", "BJetness_avip3d_sig", "BJetness_avip1d_sig", "nBestVtx"
@@ -98,15 +98,15 @@ const char *titleXaxis[]        = {
 };
 const int    bin[numVar]        = {
   //8, 8, 8, 8, 7, 7, 15, 45, 20, 40, 40, 30
-  30, 20, 40, 40, 7, 40
+  40, 20, 20, 20, 7, 20
 };
 const double inRange[numVar]    = {
   //0, 0, 0, 0, 0, 0, 0, -10, 0, 0, 0, 0
-  -150, -20, 0, -20, -1, -1
+  -200, 0, 0, 0, 0, 0
 };
 const double endRange[numVar]   = {
   //8, 8, 8, 8, 1.5, 1.5, 15, 80, 1, 80, 100, 30
-  150, 1, 80, 100, 6, 300
+  200, 200, 200, 200, 6, 200
 };
 /*
 const char *variables[]         = {
