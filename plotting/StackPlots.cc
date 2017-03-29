@@ -446,10 +446,10 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   if(show_title)  h_data_var->SetTitle(Plot_Title);
   if(h_data_var->GetEntries()==0) gStyle->SetOptStat(0);
 
-  h_data_var->Draw("P");
+  hstack->Draw("L");
+  h_data_var->Draw("Psame");
   //hstack->SetMarkerStyle(6);
   //hstack->SetMarkerColor(2);
-  hstack->Draw("same");
 
   if(!normalised) h_data_var->Draw("PEsame");
   else            h_data_var->Draw("Psame");
