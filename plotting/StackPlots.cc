@@ -69,7 +69,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = true;
+const bool normalised   = false;
 const double normbkg    = 6.96223e+06; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 const double normdata   = 479688;
 const double normsig    = 2.64841e+06;
@@ -540,8 +540,6 @@ void save_canvas(TCanvas* c1, string var){
   namefile = var+selection+".png";
   if(save_plots)  c1->SaveAs(namefile.c_str());
 }
-
-
 
 
 
