@@ -298,7 +298,12 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
 
   //Fill histo
   TH1F *hist = get_th1f(var, v);
-  hist->SetTitle(0); hist->SetMarkerStyle(8); hist->SetMarkerColor(1); hist->SetLineColor(1);
+
+  hist->SetTitle(0);
+  /*hist->SetMarkerStyle(8); 
+  hist->SetMarkerColor(1);*/
+  hist->SetLineColor(1);
+
   TH1F *hist_err;
   if(var=="BJetness_num_vetonoipnoiso_leps" && doasym) hist_err = new TH1F("hist_err","hist_err",bin[v],asymbin);
   else                         hist_err = new TH1F("hist_err","hist_err",bin[v],inRange[v],endRange[v]);
@@ -446,11 +451,11 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   if(show_title)  h_data_var->SetTitle(Plot_Title);
   if(h_data_var->GetEntries()==0) gStyle->SetOptStat(0);
 
-  hstack->Draw("L");
-  h_data_var->Draw("Psame");
+
+  h_data_var->Draw("P");
   //hstack->SetMarkerStyle(6);
   //hstack->SetMarkerColor(2);
-
+  hstack->Draw("same");
   if(!normalised) h_data_var->Draw("PEsame");
   else            h_data_var->Draw("Psame");
 
