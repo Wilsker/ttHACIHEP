@@ -299,9 +299,10 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   tree->SetBranchAddress("bWeight",&bWeight,&b_bWeight);
 
 
-  //Fill histo
+  //Construct histogram
   TH1F *hist = get_th1f(var, v);
 
+  //Dress histogram
   hist->SetTitle(0);
   /*hist->SetMarkerStyle(8);
   hist->SetMarkerColor(1);*/
@@ -458,18 +459,18 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   if(!show_ratio) h_data_var->GetXaxis()->SetTitle(vartitle.c_str());
   if(show_title)  h_data_var->SetTitle(Plot_Title);
   if(h_data_var->GetEntries()==0) gStyle->SetOptStat(0);
-  //h_sig->SetMarkerColor(kGreen+4);
+  h_sig->SetMarkerColor(kGreen+4);
   h_sig->SetLineWidth(2);
   h_sig->SetLineColor(kGreen+4);
 
   //Draw data and bckg MC
   h_data_var->Draw("P");
+
   hstack->Draw("Hsame");
   if(!normalised) h_data_var->Draw("PEsame");
   else            h_data_var->Draw("same");
 
 
-  //
   gPad->RedrawAxis();
   h_sig->Draw("Hsame");
   if(!(h_data_var->GetEntries()==0)) leg->AddEntry(h_data_var,"data","P");
