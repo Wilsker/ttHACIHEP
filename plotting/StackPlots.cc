@@ -98,15 +98,15 @@ const char *titleXaxis[]        = {
 };
 const int    bin[numVar]        = {
   //8, 8, 8, 8, 7, 7, 15, 45, 20, 40, 40, 30
-  40, 20, 20, 20, 7, 20
+  40, 8, 20, 20, 7, 20
 };
 const double inRange[numVar]    = {
   //0, 0, 0, 0, 0, 0, 0, -10, 0, 0, 0, 0
-  -200, -10, 0, 0, 0, 0
+  -200, 0, 0, 0, 0, 0
 };
 const double endRange[numVar]   = {
   //8, 8, 8, 8, 1.5, 1.5, 15, 80, 1, 80, 100, 30
-  200, 10, 200, 200, 6, 200
+  200, 8, 200, 200, 6, 200
 };
 /*
 const char *variables[]         = {
@@ -246,6 +246,8 @@ void StackPlots(){
       else if(datatype==0){
         //Get integral of data histogram for given variable.
         cout<<setw(5)<<"Data Histogram integral:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral()<<endl;
+        int nbins = h_data_var->GetNbinsX();
+        cout<<setw(5)<<"Data Histogram integral + overflow:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral(0,nbins+1)<<endl;
       }
     }
 
