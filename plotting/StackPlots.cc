@@ -71,7 +71,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
 const bool normalised   = false;
 const double normbkg    = 6.96223e+06; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-const double normdata   = 479688;
+const double normdata   = 516742;
 const double normsig    = 2.64841e+06;
 
 // ===== Plots =====
@@ -240,6 +240,7 @@ void StackPlots(){
 
         //Get integral for bckg histogram of given variable.
         cout<<setw(5)<<"Bckg Histogram Integral:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
+        cout<<setw(5)<<"Bckg Histogram integral + overflow:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral(0,nbins+1)<<endl;
         //Add integral to total bckg integral of given variable.
         bkgstackintegral += h_var->Integral();
       }
