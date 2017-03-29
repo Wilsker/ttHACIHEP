@@ -70,7 +70,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
 const bool normalised   = false;
-const double normbkg    = 6.96223e+06; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+const double normbkg    = 7.38548e+06; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 const double normdata   = 516742;
 const double normsig    = 2.64841e+06;
 
@@ -98,15 +98,15 @@ const char *titleXaxis[]        = {
 };
 const int    bin[numVar]        = {
   //8, 8, 8, 8, 7, 7, 15, 45, 20, 40, 40, 30
-  40, 8, 20, 20, 7, 20
+  40, 8, 40, 40, 10, 50
 };
 const double inRange[numVar]    = {
   //0, 0, 0, 0, 0, 0, 0, -10, 0, 0, 0, 0
-  -200, 0, 0, 0, 0, 0
+  -400, 0, 0, 0, 0, 0
 };
 const double endRange[numVar]   = {
   //8, 8, 8, 8, 1.5, 1.5, 15, 80, 1, 80, 100, 30
-  200, 8, 200, 200, 6, 200
+  400, 8, 400, 400, 9, 500
 };
 /*
 const char *variables[]         = {
@@ -255,6 +255,8 @@ void StackPlots(){
 
     //Total background and signal integrals.
     cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<bkgstackintegral<<endl;
+    int nbins_sig = h_sig->GetNbinsX();
+    cout<<setw(5)<<"Total Signal Historgram Integral + overflow:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral(0,nbins_sig+1)<<endl;
     cout<<setw(5)<<"Total Signal Historgram Integral:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral()<<endl;
 
 
