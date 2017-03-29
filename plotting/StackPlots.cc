@@ -158,14 +158,17 @@ void StackPlots(){
   cout << "loop over variables" << endl;
   for(uint v=ini_var; v<fin_var; v++){
     cout<<var[v]<<endl;
-    //Declare legend and histograms
+
+
+    //Declare legend
     TLegend *leg = get_legend();
 
+    //Declare histograms:
     //MC
     double bkgstackintegral = 0.;
     THStack* hstack = new THStack("hstack","hstack");
-    TH1F* h_sum_var = get_th1f(var[v], v); h_sum_var->Sumw2();
-    TH1F* h_sig     = get_th1f(var[v], v);
+    TH1F* h_sum_var = get_th1f(var[v], v); h_sum_var->Sumw2();//Bckg histogram
+    TH1F* h_sig     = get_th1f(var[v], v);//Signal histogram
     //Data
     TH1F* h_data_var = get_datath1f(var[v], varTitleXaxis[v], v); h_data_var->Sumw2();
 
@@ -176,9 +179,9 @@ void StackPlots(){
     double ent_AllBkg[rootplas_size][col_size];
     for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) err_AllBkg[i][j] = 0.;
     for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) ent_AllBkg[i][j] = 0.;
+
     for(uint i=0; i<rootplas_size; i++){
       int datatype = -999;
-      cout << "rootplas[i] = " << rootplas[i] << endl;
       if(rootplas[i].find("ttHbb_Merged") != std::string::npos){
         datatype=1;
       }
@@ -188,7 +191,6 @@ void StackPlots(){
       else{
         datatype=2;
       }
-
       if(datatype!=0){
         path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/output/MC/";
       }
@@ -196,67 +198,69 @@ void StackPlots(){
         path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/output/DATA/";
       }
 
-  cout << "Data type = " << datatype << endl;
+      //For individual background MC, declare temp variable histogram.
+      TH1F *h_var = get_th1f(var[v], v);
 
-  //Declare histograms for variables
-  TH1F *h_var = get_th1f(var[v], v);
+      //Histograms construction, fill, scaling etc.
+      if(datatype==2){       h_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
+      }else if(datatype==1){ h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
+      }else{                 h_data_var = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);}
 
-  //Choose type of variables
-  if(datatype==2){       h_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
-  }else if(datatype==1){ h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
-  }else{                 h_data_var = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);}
+      if(datatype==2){
 
-  if(datatype==2){
-    cout << "Found Background MC:" << endl;
+        // Create nickname for sample on plots (used in legend)
+        string bckg_mc_nickname = "";
+        string full_samplename = string(rootplas[i]);
+        if(full_samplename.find("/")!=std::string::npos){bckg_mc_nickname = full_samplename.substr(0,full_samplename.find("/"));}
+        else{
+          cout << "Could not find  in sample name. Using deafult name for legend!" << endl;
+          bckg_mc_nickname = "<Default bckg name>";
+        }
+        cout << "Bckg nickname: " << bckg_mc_nickname << endl;
 
-    //Put histos in the hstack
-    int col = get_col(rootplas[i]);
+        //Put histos in the hstack
+        int col = get_col(bckg_mc_nickname);
 
-    if(rootplas[i].find("ttjets_incl") != std::string::npos){
-      cout << "ttjets_incl sample found"<< endl;
-      //h_var->SetMarkerColor(kRed+col);
-      h_var->SetFillColor(kRed+col);
-      h_var->SetLineColor(kRed+col);
-    }else{
-      cout << "Other bckg sample found"<< endl;
-      //h_var->SetMarkerColor(kCyan+col);
-      h_var->SetFillColor(kCyan+col);
-      h_var->SetLineColor(kCyan+col);
+        if(rootplas[i].find("ttjets_incl") != std::string::npos){
+          h_var->SetMarkerColor(kRed+col);
+          h_var->SetFillColor(kRed+col);
+          h_var->SetLineColor(kRed+col);
+        }else{
+          h_var->SetMarkerColor(kCyan+col);
+          h_var->SetFillColor(kCyan+col);
+          h_var->SetLineColor(kCyan+col);
+        }
+
+        //Add background to stack
+        hstack->Add(h_var);
+
+        leg->AddEntry(h_var,bckg_mc_nickname.c_str(),"F");
+
+        //Sum them for the error
+        h_sum_var->Add(h_sum_var,h_var);
+
+        //Get integral for bckg histogram of given variable.
+        cout<<setw(5)<<"Bckg Histogram Integral:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
+        //Add integral to total bckg integral of given variable.
+        bkgstackintegral += h_var->Integral();
+      }
+      else if(datatype==0){
+        //Get integral of data histogram for given variable.
+        cout<<setw(5)<<"Data Histogram integral:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral()<<endl;
+      }
     }
 
-    cout << "Adding background to stack" << endl;
-    hstack->Add(h_var);
+    //Total background and signal integrals.
+    cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<bkgstackintegral<<endl;
+    cout<<setw(5)<<"Total Signal Historgram Integral:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral()<<endl;
 
-    // Create nickname for sample on plots (used in legend)
-    string bckg_mc_nickname = "";
-    string full_samplename = string(rootplas[i]);
-    if(full_samplename.find("/")!=std::string::npos){bckg_mc_nickname = full_samplename.substr(0,full_samplename.find("/"));}
-    else{
-      cout << "Could not find  in sample name. Using deafult name for legend!" << endl;
-      bckg_mc_nickname = "<Default bckg name>";
-    }
 
-    leg->AddEntry(h_var,bckg_mc_nickname.c_str(),"F");
-
-    //Sum them for the error
-    h_sum_var->Add(h_sum_var,h_var);
-    cout<<setw(5)<<"Bckg variable cumulative integral:"<<setw(15)<<rootplas[i]<<setw(15)<<h_var->Integral()<<endl;
-    bkgstackintegral += h_var->Integral();
+    //Draw
+    double highestbinval = get_highestbinval(h_data_var,h_sig,hstack,v);
+    TCanvas* c1 = new TCanvas(var[v].c_str(),var[v].c_str(),200,200,700,600);
+    draw_plots(c1,h_sum_var,hstack,h_data_var,h_sig,leg,err_AllBkg,ent_AllBkg,rootplas_size,v,var[v],varTitleXaxis[v],highestbinval);
+    save_canvas(c1,var[v]);
   }
-  else if(datatype==0){
-    cout<<setw(5)<<"Data variable cumulative integral:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral()<<endl;
-  }
-}
-cout<<setw(5)<<"Total Stack Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<bkgstackintegral<<endl;
-cout<<setw(5)<<"Total Signal Historgram Integral:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral()<<endl;
-
-
-//Draw
-double highestbinval = get_highestbinval(h_data_var,h_sig,hstack,v);
-TCanvas* c1 = new TCanvas(var[v].c_str(),var[v].c_str(),200,200,700,600);
-draw_plots(c1,h_sum_var,hstack,h_data_var,h_sig,leg,err_AllBkg,ent_AllBkg,rootplas_size,v,var[v],varTitleXaxis[v],highestbinval);
-save_canvas(c1,var[v]);
-}
 }
 
 
@@ -395,6 +399,8 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
       for(int ar=0; ar<bin[v]; ar++) cout<<dataSUmc_yerr[ar]<<",";
       cout<<"};"<<endl;
     }
+
+
     //Plot values
     TGraphErrors *dataSUmc = new TGraphErrors(bin[v], dataSUmc_x, dataSUmc_y, dataSUmc_xerr, dataSUmc_yerr);
     dataSUmc->SetTitle(0);
@@ -432,6 +438,8 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     c1_2->SetLeftMargin(0.125);
     //c1_2->SetFillStyle(0);
   }
+
+
   //Set maximum Y value
   if(logYscale[v]==0){
     h_data_var->SetMaximum(highestbinval+0.25*highestbinval);
@@ -440,29 +448,30 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     h_data_var->SetMaximum((highestbinval+0.25*highestbinval)*10);
     if(normalised) h_data_var->SetMinimum(0.0001);
   }
-  //Data and bkg
+
+
+  // Histogram titles and dressing
   TGaxis::SetMaxDigits(4);
   stringstream Title_ss;
   Title_ss << "#scale[0.90]{CMS preliminary,   #sqrt{s} = 13 TeV, L = " << (Luminosity/1000) <<" fb^{-1}}";
-  //string Title_s = Title_ss.string();
   string Title_str = Title_ss.str();
   const char* Plot_Title = Title_str.c_str();
   if(!show_ratio) h_data_var->GetXaxis()->SetTitle(vartitle.c_str());
   if(show_title)  h_data_var->SetTitle(Plot_Title);
   if(h_data_var->GetEntries()==0) gStyle->SetOptStat(0);
+  //h_sig->SetMarkerColor(kGreen+4);
+  h_sig->SetLineWidth(2);
+  h_sig->SetLineColor(kGreen+4);
 
-
-  h_data_var->Draw("P");
-  //hstack->SetMarkerStyle(6);
-  //hstack->SetMarkerColor(2);
+  //Draw data and bckg MC
+  h_data_var->Draw("");
   hstack->Draw("same");
   if(!normalised) h_data_var->Draw("PEsame");
   else            h_data_var->Draw("Psame");
 
+
+  //
   gPad->RedrawAxis();
-  h_sig->SetMarkerColor(kGreen+4);
-  h_sig->SetLineWidth(2);
-  h_sig->SetLineColor(kGreen+4);
   h_sig->Draw("same");
   if(!(h_data_var->GetEntries()==0)) leg->AddEntry(h_data_var,"data","P");
   if(!(h_sig->GetEntries()==0))      leg->AddEntry(h_sig,"TTHbb","L");
@@ -488,6 +497,10 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   all_bkg_statErr->SetFillColor(kGray+3);
   all_bkg_statErr->Draw("E2same");
 }
+
+
+
+
 void draw_lines(double x1, double y1, double x2, double y2){
   TLine* line1 = new TLine(x1,y1,x2,y2);
   line1->SetLineColor(kRed);
@@ -496,15 +509,12 @@ void draw_lines(double x1, double y1, double x2, double y2){
 }
 
 
-
-
-
 int get_col(string name){
   int col;
   if(name=="VV")    col = -10;  //Non main bkg need a different color type
   if(name=="VJets") col = -9;   //Possibly with soft intensity
   if(name=="tW")    col = -8;
-  if(name=="TT")    col = -10;
+  if(name=="ttjets_incl")    col = -10;
   if(name=="TT_lf") col = -10; //For main bkg uses same color type with different numbers
   if(name=="TT_cc") col = -8;  //darker for lower bkg (that should come first)
   if(name=="TT_b")  col = -6;  //softer for higher bkg (that should come after)
