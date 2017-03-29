@@ -466,8 +466,8 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   //Draw data and bckg MC
   h_data_var->Draw("P");
 
-  hstack->Draw("Hsame");
-  if(!normalised) h_data_var->Draw("PEsame");
+  hstack->Draw("HIST same");
+  if(!normalised) h_data_var->Draw("PE same");
   else            h_data_var->Draw("same");
   gPad->RedrawAxis();
   h_sig->Draw("HIST same");
