@@ -214,12 +214,12 @@ void StackPlots(){
 
     if(rootplas[i].find("ttjets_incl") != std::string::npos){
       cout << "ttjets_incl sample found"<< endl;
-      h_var->SetMarkerColor(kRed+col);
+      //h_var->SetMarkerColor(kRed+col);
       h_var->SetFillColor(kRed+col);
       h_var->SetLineColor(kRed+col);
     }else{
       cout << "Other bckg sample found"<< endl;
-      h_var->SetMarkerColor(kCyan+col);
+      //h_var->SetMarkerColor(kCyan+col);
       h_var->SetFillColor(kCyan+col);
       h_var->SetLineColor(kCyan+col);
     }
