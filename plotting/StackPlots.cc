@@ -61,7 +61,7 @@ const bool nodata       = false;  //You must always comment data in samples if y
 const bool show_ratio   = true;
 
 // ==== Weights ====
-const double Luminosity = 3590; //pb^-1
+const double Luminosity = 35900; //pb^-1
 const bool   LumiNorm   = false;
 const bool   PUcorr     = false;
 const bool   SF         = true; //For the TTHbb analysis it represents the bWeight factor
