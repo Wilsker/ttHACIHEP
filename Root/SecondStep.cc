@@ -327,6 +327,11 @@ void SecondStep::Process(char* inFile, string outDirPath){
   TBranch *pt_all_jets_over_E_all_jets=newtree->Branch("pt_all_jets_over_E_all_jets",&pt_all_jets_over_E_all_jets_,"pt_all_jets_over_E_all_jets/D");
   TBranch *tagged_dijet_mass_closest_to_125=newtree->Branch("tagged_dijet_mass_closest_to_125",&tagged_dijet_mass_closest_to_125_,"tagged_dijet_mass_closest_to_125/D");
 
+
+  double lead_el_pt_ = -99;
+  TBranch* lead_el_pt = newtree->Branch("lead_el_pt",&lead_el_pt_,"lead_el_pt/D");
+  double lead_mu_pt_ = -99;
+  TBranch* lead_mu_pt = newtree->Branch("lead_mu_pt",&lead_mu_pt_,"lead_mu_pt/D");
   //Selection Variables:
   bool is_e_ = false;
   TBranch* is_e = newtree->Branch("is_e",&is_e_ ,"is_e/O");
@@ -733,38 +738,15 @@ void SecondStep::Process(char* inFile, string outDirPath){
       SelElectronMVA_iso.push_back(patElectron_relIsoRhoEA->at(j));
     }
 
-    //cout << "Event number : " << EVENT_event << endl;
-    //cout << "Run number : " << EVENT_run << endl;
-
     // JET SELECTION:
     // Subleading Jets in event.
     // Leading Jets in event.
     vector<double> SelJet_pt,SelJet_eta,SelJet_phi,SelJet_mass,SelJet_pfCombinedInclusiveSecondaryVertexV2BJetTags;
     vector<double> SelTightJet_pt,SelTightJet_eta,SelTightJet_phi,SelTightJet_mass,SelTightJet_pfCombinedInclusiveSecondaryVertexV2BJetTags;
 
-    //cout << "Gen jet size = " << Jet_genpt->size() << endl;
-    //cout << "Reco jet size = " << Jet_pt->size() << endl;
     for (UInt_t j = 0; j < Jet_pt->size(); ++j){
       //Jet_Uncorr_pt here should be uncorrected Jet_Uncorr_pt from BSMFramework.
-
       double jet_pt = Jet_Uncorr_pt->at(j)*Jet_JesSF->at(j)*Jet_JerSF->at(j);
-      /*TLorentzVector reco_jet;
-      TLorentzVector gen_jet;
-      reco_jet.SetPtEtaPhiE(Jet_Uncorr_pt->at(j)*Jet_JesSF->at(j),Jet_eta->at(j), Jet_phi->at(j),Jet_energy->at(j));
-      gen_jet.SetPtEtaPhiE(Jet_genpt->at(j),Jet_geneta->at(j),Jet_genphi->at(j),Jet_genenergy->at(j));
-      double dR_reco_gen = reco_jet.DeltaR(gen_jet);*/
-
-      /*cout << "Jet Index = " << j << endl;
-      cout << "Reco. uncorrected jet pt = " << Jet_Uncorr_pt->at(j) << endl;
-      cout << "JES SF = " << Jet_JesSF->at(j) << endl;
-      cout << "JER SF = " << Jet_JerSF->at(j) << endl;
-      cout << "Reco. corrected jet pt = " << jet_pt << endl;
-      cout << "Reco. jet eta = " << Jet_eta->at(j) << endl;
-      cout << "Reco. jet csv = " << Jet_pfCombinedInclusiveSecondaryVertexV2BJetTags->at(j) << endl;*/
-      /*cout << "Jet_genpt = " << Jet_genpt->at(j) << endl;
-      cout << "Jet_geneta = " << Jet_geneta->at(j) << endl;
-      cout << "Jet_genphi = " << Jet_genphi->at(j) << endl;
-      cout << "dR(Reco.,Gen.) = " << dR_reco_gen << endl;*/
 
       if(!(jet_pt>20)) continue;
       if(!(fabs(Jet_eta->at(j))<2.4)) continue;
@@ -974,40 +956,6 @@ void SecondStep::Process(char* inFile, string outDirPath){
       }
     }
 
-    /*cout << "# Electrons: " << SelElectronMVA_pt.size() << endl;
-    if(SelElectronMVA_pt.size()>0){
-      for(int x=0; x<SelElectronMVA_pt.size(); x++){
-        cout << "index = " << x << endl;
-        cout << "SelElectronMVA_pt = " << SelElectronMVA_pt.at(x) << endl;
-        cout << "fabs(SelElectronMVA_eta) = " << fabs(SelElectronMVA_eta.at(x)) << endl;
-      }
-    }
-    cout << "# Muons: " << SelMuon_pt.size() << endl;
-    if(SelMuon_pt.size()>0){
-      for(int x=0; x<SelMuon_pt.size(); x++){
-        cout << "Index = " << x << endl;
-        cout << "SelMuon_pt = " << SelMuon_pt.at(x) << endl;
-        cout << "fabs(SelMuon_eta) = " << fabs(SelMuon_eta[x]) << endl;
-        cout << "SelMuon_iso[0] = " << SelMuon_iso[x] << endl;
-      }
-    }
-
-    cout << "# Tight Jets = " << SelTightJet_pt.size() << endl;
-    cout << "# Loose Jets = " << SelJet_pt.size() << endl;
-
-    if(SelTightJet_pt.size()>0){
-      for(int x=0; x<SelTightJet_pt.size(); x++)
-      cout << "SelTightJet_pt = " << SelTightJet_pt.at(x) << endl;
-    }
-    cout << "# SL b-tag = " << nBCSVM_SL << endl;
-    cout << "# DL b-tag = " << nBCSVM_DL << endl;
-    cout << "======== Selection bools ========" << endl;
-    cout << "MUON : " << MUON << endl;
-    cout << "ELECTRON : " << ELECTRON << endl;
-    cout << "ELEL : " << ELEL << endl;
-    cout << "ELMUON : " << ELMUON << endl;
-    cout << "MUONMUON : " << MUONMUON << endl;*/
-
     is_e_ = false;
     is_mu_ = false;
     if(!MUON && !ELECTRON && !ELEL && !MUONMUON && !ELMUON){
@@ -1042,57 +990,6 @@ void SecondStep::Process(char* inFile, string outDirPath){
       continue;
     }
 
-    //cout << "========= Passed selection ===========" << endl;
-    /*if (std::find(eventNums_passed.begin(), eventNums_passed.end(), EVENT_event) != eventNums_passed.end()){
-      cout << " ============== Duplicate event ===================" << endl;
-      cout << "Event number : " << EVENT_event << endl;
-      cout << "Run number : " << EVENT_run << endl;
-      cout << "# Electrons: " << SelElectronMVA_pt.size() << endl;
-      cout << "# Muons: " << SelMuon_pt.size() << endl;
-      cout << "MUON : " << MUON << endl;
-      cout << "ELECTRON : " << ELECTRON << endl;
-      cout << "HLT_IsoMu24 = " << HLT_IsoMu24 << endl;
-      cout << "HLT_IsoTkMu24 = " << HLT_IsoTkMu24 << endl;
-      cout << "HLT_Ele27_eta2p1_WPTight_Gsf = " << HLT_Ele27_eta2p1_WPTight_Gsf << endl;
-      cout << "HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ = " << HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ << endl;
-
-      cout << "HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL = " << HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL << endl;
-      cout << "HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL = " << HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL << endl;
-      cout << "HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ = " << HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ << endl;
-      cout << "HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ = " << HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ << endl;
-      cout << "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL = " << HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL << endl;
-      cout << "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL = " << HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL << endl;
-      cout << "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ = " << HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ << endl;
-      cout << "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ = " << HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ << endl;
-      cout << " ============== Duplicate event ===================" << endl;
-    }
-    else eventNums_passed.push_back(EVENT_event);*/
-
-
-    /*cout << "HLT_IsoMu24 = " << HLT_IsoMu24 << endl;
-    cout << "HLT_IsoTkMu24 = " << HLT_IsoTkMu24 << endl;
-    cout << "HLT_Ele27_eta2p1_WPTight_Gsf = " << HLT_Ele27_eta2p1_WPTight_Gsf << endl;
-
-    cout << "HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ = " << HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ << endl;
-    cout << "HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL = " << HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL << endl;
-    cout << "HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL = " << HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL << endl;
-    cout << "HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ = " << HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ << endl;
-    cout << "HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ = " << HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ << endl;
-    cout << "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL = " << HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL << endl;
-    cout << "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL = " << HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL << endl;
-    cout << "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ = " << HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ << endl;
-    cout << "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ = " << HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ << endl;
-
-    cout << "===== MET Filters =====" << endl;
-    cout << "Flag_HBHENoiseFilter = " << Flag_HBHENoiseFilter << endl;
-    cout << "Flag_HBHENoiseIsoFilter = " << Flag_HBHENoiseIsoFilter << endl;
-    cout << "Flag_EcalDeadCellTriggerPrimitiveFilter = " << Flag_EcalDeadCellTriggerPrimitiveFilter << endl;
-    cout << "Flag_goodVertices = " << Flag_goodVertices << endl;
-    cout << "Flag_globalTightHalo2016Filter = " << Flag_globalTightHalo2016Filter << endl;
-    cout << "Flag_eeBadScFilter = " << Flag_eeBadScFilter << endl;
-    cout << "EVENT_filterBadGlobalMuonTagger = " << EVENT_filterBadGlobalMuonTagger << endl;
-    cout << "EVENT_filtercloneGlobalMuonTagger = " << EVENT_filtercloneGlobalMuonTagger << endl;*/
-
     //!!! BDT VARIABLES !!!
     std::vector<TLorentzVector> selectedLeptonP4;
     std::vector<TLorentzVector> selectedJetP4;
@@ -1114,14 +1011,12 @@ void SecondStep::Process(char* inFile, string outDirPath){
       TLorentzVector prov;
       prov.SetPtEtaPhiM(SelTightJet_pt[j],SelTightJet_eta[j],SelTightJet_phi[j],SelTightJet_mass[j]);
       selectedJetP4.push_back(prov);
-      //selectedJetCSV.push_back(SelTightJet_newpfCombinedInclusiveSecondaryVertexV2BJetTags[j]);
       selectedJetCSV.push_back(SelTightJet_pfCombinedInclusiveSecondaryVertexV2BJetTags[j]);
     }
     for(unsigned int j=0; j<SelJet_pt.size(); j++){
       TLorentzVector prov;
       prov.SetPtEtaPhiM(SelJet_pt[j],SelJet_eta[j],SelJet_phi[j],SelJet_mass[j]);
       looseSelectedJetP4.push_back(prov);
-      //looseSelectedJetCSV.push_back(SelJet_newpfCombinedInclusiveSecondaryVertexV2BJetTags[j]);
       looseSelectedJetCSV.push_back(SelJet_pfCombinedInclusiveSecondaryVertexV2BJetTags[j]);
     }
 
@@ -1389,6 +1284,12 @@ void SecondStep::Process(char* inFile, string outDirPath){
     first_jet_pt_ = First_jet_pt;
     fourth_highest_btag_ = Fourth_highest_btag;
     fourth_jet_pt_ = Fourth_jet_pt;
+    if(SelElectronMVA_pt.size()>0){
+        lead_el_pt_ = SelElectronMVA_pt[0];
+    }
+    if(SelMuon_pt.size()>0){
+      lead_mu_pt_ = SelMuon_pt[0];
+    }
     h0_ = H0;
     h1_ = H1;
     h2_ = H2;
@@ -1419,35 +1320,6 @@ void SecondStep::Process(char* inFile, string outDirPath){
     newtree->Fill();
     neventsfilled = neventsfilled +1;
 
-
-    /*if(EVENT_event==8191792){
-      cout << "================================="<< endl;
-      cout << "Event number : " << EVENT_event << endl;
-      cout << "Run number : " << EVENT_run << endl;
-      cout << "# Electrons: " << SelElectronMVA_pt.size() << endl;
-      cout << "# Muons: " << SelMuon_pt.size() << endl;
-      cout << "MUON : " << MUON << endl;
-      cout << "ELECTRON : " << ELECTRON << endl;
-      cout << "HLT_IsoMu24 = " << HLT_IsoMu24 << endl;
-      cout << "HLT_IsoTkMu24 = " << HLT_IsoTkMu24 << endl;
-      cout << "HLT_Ele27_eta2p1_WPTight_Gsf = " << HLT_Ele27_eta2p1_WPTight_Gsf << endl;
-      cout << "HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ = " << HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ << endl;
-      cout << "HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL = " << HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL << endl;
-      cout << "HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL = " << HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL << endl;
-      cout << "HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ = " << HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ << endl;
-      cout << "HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ = " << HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ << endl;
-      cout << "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL = " << HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL << endl;
-      cout << "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL = " << HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL << endl;
-      cout << "HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ = " << HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ << endl;
-      cout << "HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ = " << HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ << endl;
-
-      cout << "NumberOfJets_ = " << NumberOfJets_ << endl;
-      cout << "NumberOfBJets_ = " << NumberOfBJets_ << endl;
-      cout << "first_jet_pt_ = " << first_jet_pt_ << endl;
-      cout << "second_jet_pt_ = " << second_jet_pt_ << endl;
-      cout << "third_jet_pt_ = " << third_jet_pt_ << endl;
-      cout << "fourth_jet_pt_ = " << fourth_jet_pt_ << endl;
-    }*/
   }
   cout << "events filled : " << neventsfilled << endl;
   std::cout << "SecondStep.cc:: Print and save newtree." << std::endl;

@@ -92,19 +92,19 @@ const int posvtcr          = 0;
 
 // Variables list:
 const char *variables[]         = {
-  "BJetness_avsip3dsig", "BJetness_avip3dval", "BJetness_avip3dsig", "BJetness_avip1dsig", "BJetness_numleps", "BJetness_jetpt0"
+  "BJetness_avsip3dsig", "BJetness_avip3dval", "BJetness_avip3dsig", "BJetness_avip1dsig", "BJetness_numleps", "BJetness_jetpt0", "Jet_pt"
 };
 const char *titleXaxis[]        = {
-  "Average Signed IP 3D Sig", "Average IP 3D Val", "Average IP 3D Sig", "Average IP 1D Sig", "Number of Leptons", "0th Jet Pt"
+  "Average Signed IP 3D Sig", "Average IP 3D Val", "Average IP 3D Sig", "Average IP 1D Sig", "Number of Leptons", "0th BJetness Jet Pt", "Jet pt"
 };
 const int    bin[numVar]        = {
-  90, 20, 40, 40, 6, 50
+  90, 20, 40, 40, 6, 50, 50
 };
 const double inRange[numVar]    = {
-  -10, 0, 0, 0, 0, 0
+  -10, 0, 0, 0, 0, 0, 0
 };
 const double endRange[numVar]   = {
-  80, 1, 80, 80, 5, 300
+  30, 0.6, 20, 20, 5, 300, 300
 };
 
 /////
