@@ -86,7 +86,7 @@ const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
 const unsigned int ini_var = 0;
-const unsigned int fin_var = 6;
+const unsigned int fin_var = 7;
 const int posvtcr          = 0;
 
 
