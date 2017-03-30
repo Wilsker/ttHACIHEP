@@ -84,48 +84,28 @@ const int    numVar     = 40;
 const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 const int    col_size   = 500; //>= highest bin
 
-//Variables
+// Number of variables you want to loop over:
 const unsigned int ini_var = 0;
 const unsigned int fin_var = 6;
 const int posvtcr          = 0;
+
+
+// Variables list:
 const char *variables[]         = {
-  //"BJetness_num_vetonoipnoiso_leps", "BJetness_num_soft_leps", "BJetness_num_pdgid_leps", "BJetness_num_loosenoipnoiso_leps", "BJetness_npvTrkOVcollTrk", "BJetness_pvTrkOVcollTrk", "BJetness_numjettrksnopv", "BJetness_avsip3d_sig", "BJetness_avip3d_val", "BJetness_avip3d_sig", "BJetness_avip1d_sig", "nBestVtx"
   "BJetness_avsip3dsig", "BJetness_avip3dval", "BJetness_avip3dsig", "BJetness_avip1dsig", "BJetness_numleps", "BJetness_jetpt0"
 };
 const char *titleXaxis[]        = {
-  //"Num Veto Lep", "Num Soft Lep", "Num pdgid Lep", "Num loose Lep", "npvTrkOVcollTrk", "pvTrkOVcollTrk", "Num of not PV tracks", "Average Signed IP 3D Sig", "Average IP 3D Val", "Average IP 3D Sig", "Average IP 1D Sig", "Vertices"
   "Average Signed IP 3D Sig", "Average IP 3D Val", "Average IP 3D Sig", "Average IP 1D Sig", "Number of Leptons", "0th Jet Pt"
 };
 const int    bin[numVar]        = {
-  //8, 8, 8, 8, 7, 7, 15, 45, 20, 40, 40, 30
-  40, 8, 40, 40, 10, 50
+  90, 20, 40, 40, 6, 50
 };
 const double inRange[numVar]    = {
-  //0, 0, 0, 0, 0, 0, 0, -10, 0, 0, 0, 0
-  -800, 0, 0, 0, 0, 0
+  -10, 0, 0, 0, 0, 0
 };
 const double endRange[numVar]   = {
-  //8, 8, 8, 8, 1.5, 1.5, 15, 80, 1, 80, 100, 30
-  800, 8, 800, 800, 9, 1000
+  80, 1, 80, 80, 5, 300
 };
-/*
-const char *variables[]         = {
-"BJetness_numjet", "BJetness_numjettrks", "BJetness_numjettrkspv", "BJetness_numjettrksnopv", "BJetness_npvTrkOVcollTrk", "BJetness_npvTrkOVcollTrk", "BJetness_pvTrkOVcollTrk", "BJetness_npvTrkOVpvTrk", "BJetness_npvPtOVcollPt", "BJetness_pvPtOVcollPt", "BJetness_npvPtOVpvPt", "BJetness_avnum2v", "BJetness_avnumno2v", "BJetness_avdca3d", "BJetness_avdca2d", "BJetness_chi2", "BJetness_avip3d_val", "BJetness_avip3d_sig", "BJetness_avip2d_val", "BJetness_avip2d_sig", "BJetness_avip1d_val", "BJetness_avip1d_sig", "BJetness_avsip3d_val", "BJetness_avsip3d_sig", "BJetness_avsip2d_val", "BJetness_avsip2d_sig", "BJetness_avsip1d_val", "BJetness_avsip1d_sig", "BJetness_num_pdgid_leps", "BJetness_num_soft_leps", "BJetness_num_vetonoipnoiso_leps", "BJetness_num_loosenoipnoiso_leps"
-};
-const char *titleXaxis[]        = {
-"BJetness_numjet", "BJetness_numjettrks", "BJetness_numjettrkspv", "BJetness_numjettrksnopv", "BJetness_npvTrkOVcollTrk", "BJetness_npvTrkOVcollTrk", "BJetness_pvTrkOVcollTrk", "BJetness_npvTrkOVpvTrk", "BJetness_npvPtOVcollPt", "BJetness_pvPtOVcollPt", "BJetness_npvPtOVpvPt", "BJetness_avnum2v", "BJetness_avnumno2v", "BJetness_avdca3d", "BJetness_avdca2d", "BJetness_chi2", "BJetness_avip3d_val", "BJetness_avip3d_sig", "BJetness_avip2d_val", "BJetness_avip2d_sig", "BJetness_avip1d_val", "BJetness_avip1d_sig", "BJetness_avsip3d_val", "BJetness_avsip3d_sig", "BJetness_avsip2d_val", "BJetness_avsip2d_sig", "BJetness_avsip1d_val", "BJetness_avsip1d_sig", "BJetness_num_pdgid_leps", "BJetness_num_soft_leps", "BJetness_num_vetonoipnoiso_leps", "BJetness_num_loosenoipnoiso_leps"
-};
-const int    bin[numVar]        = {
-5, 60, 50, 15, 10, 10, 50, 20, 20, 50, 20, 20, 20, 50, 50, 50, 50, 50, 50, 50, 50, 50, 100, 100, 100, 100, 100, 100, 5, 5, 5, 5
-};
-const double inRange[numVar]    = {
-0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.1, -10, -0.1, -10, -0.1, -10, 0, 0, 0, 0
-};
-const double endRange[numVar]   = {
-20, 60, 50, 15, 1, 1, 2, 1, 1, 1, 1, 1, 1, 100, 100, 100, 0.5, 100, 0.5, 100, 0.5, 100, 0.1, 30, 0.1, 30, 0.1, 30, 5, 5, 5, 5
-};
-*/
-
 
 /////
 //   Declare functions
