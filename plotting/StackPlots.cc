@@ -98,13 +98,13 @@ const char *titleXaxis[]        = {
   "Average Signed IP 3D Sig", "Average IP 3D Val", "Average IP 3D Sig", "Average IP 1D Sig", "Number of Leptons", "0th BJetness Jet Pt", "Lead Jet pt"
 };
 const int    bin[numVar]        = {
-  90, 20, 40, 40, 6, 50, 50
+  50, 20, 40, 40, 6, 50, 50
 };
 const double inRange[numVar]    = {
-  -10, 0, 0, 0, 0, 0, 0
+  -5, 0, 0, 0, 0, 0, 0
 };
 const double endRange[numVar]   = {
-  30, 0.6, 20, 20, 5, 300, 300
+  20, 0.6, 20, 20, 5, 300, 300
 };
 
 /////
