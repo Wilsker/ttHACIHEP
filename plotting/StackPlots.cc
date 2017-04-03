@@ -86,25 +86,25 @@ const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
 const unsigned int ini_var = 0;
-const unsigned int fin_var = 7;
+const unsigned int fin_var = 9;
 const int posvtcr          = 0;
 
 
 // Variables list:
 const char *variables[]         = {
-  "BJetness_avsip3dsig", "BJetness_avip3dval", "BJetness_avip3dsig", "BJetness_avip1dsig", "BJetness_numleps", "BJetness_jetpt0", "first_jet_pt"
+  "BJetness_avsip3dsig", "BJetness_avip3dval", "BJetness_avip3dsig", "BJetness_avip1dsig", "BJetness_numleps", "BJetness_jetpt0", "first_jet_pt", "lead_el_pt", "lead_mu_pt"
 };
 const char *titleXaxis[]        = {
-  "Average Signed IP 3D Sig", "Average IP 3D Val", "Average IP 3D Sig", "Average IP 1D Sig", "Number of Leptons", "0th BJetness Jet Pt", "Lead Jet pt"
+  "Average Signed IP 3D Sig", "Average IP 3D Val", "Average IP 3D Sig", "Average IP 1D Sig", "Number of Leptons", "0th BJetness Jet Pt", "Lead Jet pt", "Lead el pt", "Lead mu pt"
 };
 const int    bin[numVar]        = {
-  50, 20, 40, 40, 6, 50, 50
+  50, 20, 40, 40, 6, 50, 50, 50, 50
 };
 const double inRange[numVar]    = {
-  -5, 0, 0, 0, 0, 0, 0
+  -5, 0, 0, 0, 0, 0, 0, 0, 0
 };
 const double endRange[numVar]   = {
-  20, 0.6, 20, 20, 5, 300, 300
+  20, 0.6, 20, 20, 5, 300, 300, 300, 300
 };
 
 /////
