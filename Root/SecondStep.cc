@@ -990,13 +990,13 @@ void SecondStep::Process(char* inFile, string outDirPath){
       }
     }
 
-    cout << " ELECTRON =  " << ELECTRON <<  endl;
-    cout << " MUON " << MUON << endl;
-    cout << " SelTightJet_pt.size() = " <<SelTightJet_pt.size()<< endl;
-    cout << " nBCSVM_SL = " << nBCSVM_SL << endl;
-    cout << "  " << endl;
-    cout << "  " << endl;
-    cout << "  " << endl;
+    //cout << " ELECTRON =  " << ELECTRON <<  endl;
+    //cout << " MUON " << MUON << endl;
+    //cout << " SelTightJet_pt.size() = " <<SelTightJet_pt.size()<< endl;
+    //cout << " nBCSVM_SL = " << nBCSVM_SL << endl;
+    //cout << "  " << endl;
+    //cout << "  " << endl;
+    //cout << "  " << endl;
 
 
     is_e_ = false;
