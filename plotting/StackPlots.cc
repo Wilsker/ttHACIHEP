@@ -86,25 +86,71 @@ const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
 const unsigned int ini_var = 0;
-const unsigned int fin_var = 9;
+const unsigned int fin_var = 20;
 const int posvtcr          = 0;
 
 
 // Variables list:
+// To add:
+//  NumberOfBJets
+//  NumberOfJets
+//  second_jet_pt
+//  third_jet_pt
+//  fourth_jet_pt
 const char *variables[]         = {
-  "BJetness_avsip3dsig", "BJetness_avip3dval", "BJetness_avip3dsig", "BJetness_avip1dsig", "BJetness_numleps", "BJetness_jetpt0", "first_jet_pt", "lead_el_pt", "lead_mu_pt"
+  "BJetness_avsip3dsig",
+  "BJetness_avip3dval",
+  "BJetness_avip3dsig",
+  "BJetness_avip1dsig",
+  "BJetness_numleps",
+  "BJetness_jetpt0",
+  "NumberOfJets",
+  "NumberOfBJets",
+  "first_jet_pt",
+  "second_jet_pt",
+  "Second_highest_btag",
+  "third_jet_pt",
+  "Third_highest_btag",
+  "fourth_jet_pt",
+  "Fourth_highest_btag",
+  "lead_el_pt",
+  "lead_el_eta",
+  "lead_el_phi",
+  "lead_mu_pt",
+  "lead_mu_eta",
+  "lead_mu_phi"
 };
 const char *titleXaxis[]        = {
-  "Average Signed IP 3D Sig", "Average IP 3D Val", "Average IP 3D Sig", "Average IP 1D Sig", "Number of Leptons", "0th BJetness Jet Pt", "Lead Jet pt", "Lead el pt", "Lead mu pt"
+  "Average Signed IP 3D Sig",
+  "Average IP 3D Val",
+  "Average IP 3D Sig",
+  "Average IP 1D Sig",
+  "BJetness Number of Leptons",
+  "0th BJetness Jet Pt",
+  "# Jets",
+  "# BJets",
+  "Lead Jet pt",
+  "Sublead Jet pt",
+  "Second Highest CSV",
+  "Third Jet pt",
+  "Third Highest CSV",
+  "Fourth Jet pt",
+  "Fourth Highest CSV",
+  "Lead el pt",
+  "Lead el eta",
+  "Lead el phi",
+  "Lead mu pt",
+  "Lead mu eta",
+  "Lead mu phi"
 };
 const int    bin[numVar]        = {
-  50, 20, 40, 40, 6, 50, 50, 50, 50
+  50, 20, 40, 40, 6, 50, 10, 8, 50, 50, 10, 50, 10, 50, 50, 10, 10, 50, 10, 10
 };
 const double inRange[numVar]    = {
-  -5, 0, 0, 0, 0, 0, 0, 0, 0
+  -5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -5, -3, 0, -5, -3
 };
 const double endRange[numVar]   = {
-  20, 0.6, 20, 20, 5, 300, 300, 300, 300
+  20, 0.6, 20, 20, 5, 300, 10, 8, 300, 250, 10, 200, 10, 200, 200, 5, 3, 200, 5, 3
 };
 
 /////
