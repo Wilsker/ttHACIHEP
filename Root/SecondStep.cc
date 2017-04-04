@@ -73,6 +73,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
   else{
     cout << "Input file does not fit naming convention!" << endl;
     cout << "Check input file name"<< endl;
+    cout << "Path should contain either \'/mc/\' or \'/data/\'" << endl;
     cout << "Input file name = " << infilename << endl;
     exit(0);
   }
@@ -207,7 +208,9 @@ void SecondStep::Process(char* inFile, string outDirPath){
   //==========================================
   // HACK pvertex_Rho not in first ntuples
   //==========================================
-//  oldtree->SetBranchStatus("pvertex_Rho",1);
+  //oldtree->SetBranchStatus("pvertex_Rho",1);
+  //==========================================
+
   oldtree->SetBranchStatus("Met_type1PF_pt",1);
   oldtree->SetBranchStatus("Met_type1PF_px",1);
   oldtree->SetBranchStatus("Met_type1PF_py",1);
@@ -328,10 +331,24 @@ void SecondStep::Process(char* inFile, string outDirPath){
   TBranch *tagged_dijet_mass_closest_to_125=newtree->Branch("tagged_dijet_mass_closest_to_125",&tagged_dijet_mass_closest_to_125_,"tagged_dijet_mass_closest_to_125/D");
 
 
+  double number_electrons_ = -99;
+  TBranch* number_electrons = newtree->Branch("number_electrons",&number_electrons_,"number_electrons/I");
   double lead_el_pt_ = -99;
   TBranch* lead_el_pt = newtree->Branch("lead_el_pt",&lead_el_pt_,"lead_el_pt/D");
+  double lead_el_eta_ = -99;
+  TBranch* lead_el_eta = newtree->Branch("lead_el_eta",&lead_el_eta_,"lead_el_eta/D");
+  double lead_el_phi_ = -99;
+  TBranch* lead_el_phi = newtree->Branch("lead_el_phi",&lead_el_phi_,"lead_el_phi/D");
+
+  double number_muons_ = -99;
+  TBranch* number_muons = newtree->Branch("number_muons",&number_muons_,"number_muons/I");
   double lead_mu_pt_ = -99;
   TBranch* lead_mu_pt = newtree->Branch("lead_mu_pt",&lead_mu_pt_,"lead_mu_pt/D");
+  double lead_mu_eta_ = -99;
+  TBranch* lead_mu_eta = newtree->Branch("lead_mu_eta",&lead_mu_eta_,"lead_mu_eta/D");
+  double lead_mu_phi_ = -99;
+  TBranch* lead_mu_phi = newtree->Branch("lead_mu_phi",&lead_mu_phi_,"lead_mu_phi/D");
+
   //Selection Variables:
   bool is_e_ = false;
   TBranch* is_e = newtree->Branch("is_e",&is_e_ ,"is_e/O");
@@ -526,7 +543,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
   //==========================================
   // HACK Flag_globalTightHalo2016Filter not in first ntuples
   //==========================================
-  //  int Flag_globalTightHalo2016Filter = -99;
+  int Flag_globalTightHalo2016Filter = -99;
 
   int Flag_HBHENoiseFilter = -99;
   int Flag_HBHENoiseIsoFilter = -99;
@@ -535,8 +552,8 @@ void SecondStep::Process(char* inFile, string outDirPath){
   //==========================================
   // HACK EVENT_filterBadGlobalMuonTagger and EVENT_filtercloneGlobalMuonTagger not in first ntuples
   //==========================================
-  //bool EVENT_filterBadGlobalMuonTagger = 0;
-  //bool EVENT_filtercloneGlobalMuonTagger = 0;
+  bool EVENT_filterBadGlobalMuonTagger = 0;
+  bool EVENT_filtercloneGlobalMuonTagger = 0;
 
   vector<double>* Gen_pt=0;
   vector<double>* Gen_eta=0;
@@ -547,24 +564,33 @@ void SecondStep::Process(char* inFile, string outDirPath){
   //==========================================
   // HACK pvertex_Rho not in first ntuples
   //==========================================
-//  vector<double>* pvertex_Rho=0;
+  vector<double>* pvertex_Rho=0;
+  //==========================================
+
   vector<double>* pvertex_z=0;
   TBranch *b_HLT_IsoMu22,*b_HLT_IsoMu24,*b_HLT_IsoTkMu24,*b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL,*b_HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,*b_HLT_IsoTkMu22,*b_HLT_Ele27_eta2p1_WPTight_Gsf,*b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL,*b_HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ,*b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL,*b_HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ,*b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL,*b_HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL_DZ,*b_HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ,*b_ttHFCategory,*b_EVENT_event,*b_EVENT_run,*b_EVENT_genWeight,*b_EVENT_lumiBlock,*b_Met_type1PF_pt,*b_Met_type1PF_px,*b_Met_type1PF_py,*b_Met_type1PF_phi,*b_EVENT_Q2tthbbWeightUp,*b_EVENT_Q2tthbbWeightDown,*b_EVENT_PDFtthbbWeightUp,*b_EVENT_PDFtthbbWeightDown,*b_PUWeight,*b_Gen_pt,*b_Gen_eta,*b_Gen_phi,*b_Gen_pdg_id,*b_Gen_motherpdg_id,*b_trueInteractions,*b_pvertex_ndof,*b_pvertex_z;
   //==========================================
   // HACK pvertex_Rho not in first ntuples
   //==========================================
-  //,*b_pvertex_Rho;
+  TBranch *b_pvertex_Rho;
+  //==========================================
+
   TBranch *b_Flag_HBHENoiseFilter,*b_Flag_HBHENoiseIsoFilter,*b_Flag_CSCTightHalo2015Filter,*b_Flag_EcalDeadCellTriggerPrimitiveFilter,*b_Flag_goodVertices;
+
   //==========================================
   // HACK Flag_globalTightHalo2016Filter not in first ntuples
   //==========================================
-  //TBranch *b_Flag_globalTightHalo2016Filter;
+  TBranch *b_Flag_globalTightHalo2016Filter;
   TBranch *b_Flag_eeBadScFilter;
+  //==========================================
+
   //==========================================
   // HACK EVENT_filterBadGlobalMuonTagger and EVENT_filtercloneGlobalMuonTagger not in first ntuples
   //==========================================
   //TBranch *b_EVENT_filterBadGlobalMuonTagger;
   //TBranch *b_EVENT_filtercloneGlobalMuonTagger;
+  //==========================================
+
   oldtree->SetBranchAddress("HLT_IsoMu22",&HLT_IsoMu22,&b_HLT_IsoMu22);
   oldtree->SetBranchAddress("HLT_IsoTkMu22",&HLT_IsoTkMu22,&b_HLT_IsoTkMu22);
   oldtree->SetBranchAddress("HLT_IsoMu24",&HLT_IsoMu24,&b_HLT_IsoMu24);
@@ -610,19 +636,25 @@ void SecondStep::Process(char* inFile, string outDirPath){
   //==========================================
   // HACK Flag_globalTightHalo2016Filter not in first ntuples
   //==========================================
-//  oldtree->SetBranchAddress("Flag_globalTightHalo2016Filter",&Flag_globalTightHalo2016Filter,&b_Flag_globalTightHalo2016Filter);
+  //oldtree->SetBranchAddress("Flag_globalTightHalo2016Filter",&Flag_globalTightHalo2016Filter,&b_Flag_globalTightHalo2016Filter);
+  //==========================================
+
   oldtree->SetBranchAddress("Flag_eeBadScFilter",&Flag_eeBadScFilter,&b_Flag_eeBadScFilter);
+
   //==========================================
   // HACK EVENT_filterBadGlobalMuonTagger and EVENT_filtercloneGlobalMuonTagger not in first ntuples
   //==========================================
   //oldtree->SetBranchAddress("EVENT_filterBadGlobalMuonTagger",&EVENT_filterBadGlobalMuonTagger,&b_EVENT_filterBadGlobalMuonTagger);
   //oldtree->SetBranchAddress("EVENT_filtercloneGlobalMuonTagger",&EVENT_filtercloneGlobalMuonTagger,&b_EVENT_filtercloneGlobalMuonTagger);
+  //==========================================
+
   oldtree->SetBranchAddress("pvertex_ndof",&pvertex_ndof,&b_pvertex_ndof);
   oldtree->SetBranchAddress("pvertex_z",&pvertex_z,&b_pvertex_z);
   //==========================================
   // HACK pvertex_Rho not in first ntuples
   //==========================================
   //oldtree->SetBranchAddress("pvertex_Rho",&pvertex_Rho,&b_pvertex_Rho);
+  //==========================================
 
   Int_t nentries = (Int_t)oldtree->GetEntries();
   std::cout << "SecondStep.cc:: Entering event loop with: " << nentries << " entries." << std::endl;
@@ -656,7 +688,8 @@ void SecondStep::Process(char* inFile, string outDirPath){
     }
 
     //DONT FORGET TO REMOVE THIS!!!!!!!
-    //if(EVENT_event!=3222742 && EVENT_event!=3278733 && EVENT_event!=2602188){continue;}
+    //if(EVENT_event!=20838300 && EVENT_event!=2424579171 && EVENT_event!=1761047103){continue;}
+    //cout << "============ Next event ===============" << endl;
     //cout << "EVENT_event = " << EVENT_event << endl;
     //DONT FORGET TO REMOVE THIS!!!!!!!
 
@@ -695,6 +728,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
     //if(pvertex_ndof->at(0)<=4 && abs(pvertex_Rho->at(0))>=24 && abs(pvertex_z->at(0))>=2) {
     //  continue;
     //}
+    //==========================================
     if(pvertex_ndof->at(0)<=4 && abs(pvertex_z->at(0))>=2) {
       continue;
     }
@@ -776,14 +810,12 @@ void SecondStep::Process(char* inFile, string outDirPath){
         SelJet_phi.push_back(Jet_phi->at(j));
         SelJet_mass.push_back(Jet_mass->at(j));
         SelJet_pfCombinedInclusiveSecondaryVertexV2BJetTags.push_back(Jet_pfCombinedInclusiveSecondaryVertexV2BJetTags->at(j));
-        //cout << "Jet passed loose selection" << endl;
         if(!(jet_pt>30)) continue;
         SelTightJet_pt.push_back(jet_pt);
         SelTightJet_eta.push_back(Jet_eta->at(j));
         SelTightJet_phi.push_back(Jet_phi->at(j));
         SelTightJet_mass.push_back(Jet_mass->at(j));
         SelTightJet_pfCombinedInclusiveSecondaryVertexV2BJetTags.push_back(Jet_pfCombinedInclusiveSecondaryVertexV2BJetTags->at(j));
-        //cout << "============== Jet passed tight selection ==============" << endl;
       }
     }
 
@@ -844,6 +876,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
       //==========================================
       //if(Flag_goodVertices==1 && Flag_globalTightHalo2016Filter==1 && Flag_HBHENoiseFilter==1 && Flag_HBHENoiseIsoFilter==1 && Flag_EcalDeadCellTriggerPrimitiveFilter==1 && Flag_eeBadScFilter==1){
       if(Flag_goodVertices==1 && Flag_HBHENoiseFilter==1 && Flag_HBHENoiseIsoFilter==1 && Flag_EcalDeadCellTriggerPrimitiveFilter==1){
+        //==========================================
         //tt.EVENT_filterBadGlobalMuonTagger==1 and tt.EVENT_filtercloneGlobalMuonTagger==1
         METFilters = 1;
       }
@@ -852,8 +885,9 @@ void SecondStep::Process(char* inFile, string outDirPath){
       //==========================================
       // HACK Flag_globalTightHalo2016Filter not in first ntuples
       //==========================================
-      //if(Flag_goodVertices==1 && Flag_globalTightHalo2016Filter==1 && Flag_HBHENoiseFilter==1 && Flag_HBHENoiseIsoFilter==1 && Flag_EcalDeadCellTriggerPrimitiveFilter==1 && Flag_eeBadScFilter==1 && Flag_eeBadScFilter==1){
+      //if(Flag_goodVertices==1 && Flag_globalTightHalo2016Filter==1 && Flag_HBHENoiseFilter==1 && Flag_HBHENoiseIsoFilter==1 && Flag_EcalDeadCellTriggerPrimitiveFilter==1 && Flag_eeBadScFilter==1){
       if(Flag_goodVertices==1 && Flag_HBHENoiseFilter==1 && Flag_HBHENoiseIsoFilter==1 && Flag_EcalDeadCellTriggerPrimitiveFilter==1 && Flag_eeBadScFilter==1 ){
+      //==========================================
         //tt.EVENT_filterBadGlobalMuonTagger==1 and tt.EVENT_filtercloneGlobalMuonTagger==1
         METFilters = 1;
       }
@@ -956,18 +990,27 @@ void SecondStep::Process(char* inFile, string outDirPath){
       }
     }
 
+    cout << " ELECTRON =  " << ELECTRON <<  endl;
+    cout << " MUON " << MUON << endl;
+    cout << " SelTightJet_pt.size() = " <<SelTightJet_pt.size()<< endl;
+    cout << " nBCSVM_SL = " << nBCSVM_SL << endl;
+    cout << "  " << endl;
+    cout << "  " << endl;
+    cout << "  " << endl;
+
+
     is_e_ = false;
     is_mu_ = false;
     if(!MUON && !ELECTRON && !ELEL && !MUONMUON && !ELMUON){
       continue;
     }
-    if(ELECTRON){
+    if(ELECTRON && !MUON){
       if(!(SelTightJet_pt.size()>=4&&nBCSVM_SL>=2)) {
         continue;
       }
       else{is_e_ = true;}
     }
-    else if(MUON){
+    else if(MUON && !ELECTRON){
       if(!(SelTightJet_pt.size()>=4&&nBCSVM_SL>=2)) {
         continue;
       }
@@ -1192,7 +1235,6 @@ void SecondStep::Process(char* inFile, string outDirPath){
     double Second_jet_pt=selectedJetP4.size()>1?selectedJetP4[1].Pt():-99;
     double Third_highest_btag=njets>2?sortedCSV[njets-3]:-1.;
     double Third_jet_pt=selectedJetP4.size()>2?selectedJetP4[2].Pt():-99;
-    //cout<<H0<<" "<<H1<<" "<<H2<<" "<<H3<<" "<<Aplanarity<<" "<<Sphericity<<" "<<bestHiggsMass<<" "<<DEta_fn<<" "<<pt_E_ratio<<" "<<jet_jet_etamax<<" "<<jet_tag_etamax<<" "<<tag_tag_etamax<<" "<<Dr_between_lep_and_closest_jet<<" "<<sum_pt_with_met<<" "<<mht<<" "<<mass_of_everything<<" "<<detaJetsAverage<<" "<<m3<<" "<<avgDrTagged<<" "<<minDrTagged<<" "<<averageCSV_tagged<<" "<<Closest_tagged_dijet_mass<<" "<<csvDev<<" "<<sum_pt_jets<<" "<<Lowest_btag<<" "<<averageCSV_all<<" "<<Fifth_highest_CSV<<" "<<First_jet_pt<<" "<<Fourth_highest_btag<<" "<<Fourth_jet_pt<<" "<<met<<" "<<mlb<<" "<<Second_highest_btag<<" "<<Second_jet_pt<<" "<<Tagged_dijet_mass_closest_to_125<<" "<<Third_highest_btag<<" "<<Third_jet_pt<<endl;
 
     //btagging likelihood ratio
     double eth_blr=-1;
@@ -1286,10 +1328,17 @@ void SecondStep::Process(char* inFile, string outDirPath){
     fourth_jet_pt_ = Fourth_jet_pt;
     if(SelElectronMVA_pt.size()>0){
         lead_el_pt_ = SelElectronMVA_pt[0];
+        lead_el_eta_ = SelElectronMVA_eta[0];
+        lead_el_phi_ = SelElectronMVA_phi[0];
     }
     if(SelMuon_pt.size()>0){
       lead_mu_pt_ = SelMuon_pt[0];
+      lead_mu_eta_ = SelMuon_eta[0];
+      lead_mu_phi_ = SelMuon_phi[0];
     }
+    number_electrons_ = SelElectronMVA_pt.size();
+    number_muons_ = SelMuon_pt.size();
+
     h0_ = H0;
     h1_ = H1;
     h2_ = H2;
