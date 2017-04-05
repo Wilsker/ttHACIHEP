@@ -566,11 +566,6 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
       if(SF)       w = w*bWeight;
       if(scale!=0) w = w*scale;
       if(LeptonSFs) {
-        cout << "Electron_GsfSFval = " << Electron_GsfSFval << endl;
-        cout << "Electron_IDSFval = " << Electron_IDSFval << endl;
-        cout << "Muon_IDSFval = " << Muon_IDSFval << endl;
-        cout << "Muon_IsoSFval = " << Muon_IsoSFval << endl;
-        cout << "Muon_TrkSFval = " << Muon_TrkSFval << endl;
         w = w*Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval;
       }
       if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
