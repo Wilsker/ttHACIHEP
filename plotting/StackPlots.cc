@@ -506,7 +506,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
   TBranch* b_Electron_IDSFval = 0;
   tree->SetBranchAddress("Electron_IDSFval",&Electron_IDSFval,&b_Electron_IDSFval);
   //Muon ID SFs
-  doubel Muon_IDSFval;
+  double Muon_IDSFval;
   TBranch* b_Muon_IDSFval;
   tree->SetBranchAddress("Muon_IDSFval",&Muon_IDSFval,&b_Muon_IDSFval);
   //Muon Iso SFs
