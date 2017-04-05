@@ -435,7 +435,8 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
     if(datatype!=0){
 
       if(LumiNorm) {
-        cout << "LumiNorm = " << LumiNorm << endl;
+        cout << "lumiweight = " << lumiweight << endl;
+        cout << "Luminosity = " << Luminosity << endl;
         w = w*lumiweight*Luminosity;
       }
       if(PUcorr){
