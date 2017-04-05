@@ -308,7 +308,7 @@ union int_or_double{
   int i;
   double d;
   //~int_or_double()
-}
+};
 
 /////
 //   Fill histo with double type
@@ -317,9 +317,6 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   //Call tree and variables
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
 
-  if (var.c_str()=='NumberOfJets'){
-
-  }
   //double curr_var;
   int_or_double curr_var;
   TBranch *b_curr_var = 0;
