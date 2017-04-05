@@ -424,7 +424,8 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   else                         hist_err = new TH1F("hist_err","hist_err",bin[v],inRange[v],endRange[v]);
   hist_err->Sumw2();
 
-  for(int j=0; j<tree->GetEntries(); j++)
+  //for(int j=0; j<tree->GetEntries(); j++)
+  for(int j=0; j<5; j++)
   {
     double w = 1.;
     Long64_t tentry = tree->LoadTree(j);
