@@ -434,10 +434,23 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
 
     if(datatype!=0){
 
-      if(LumiNorm) w = w*lumiweight*Luminosity;
-      if(PUcorr)   w = w*PUWeight;
-      if(SF)       w = w*bWeight;
-      if(scale!=0) w = w*scale;
+      if(LumiNorm) {
+        cout << "LumiNorm = " << LumiNorm << endl;
+        w = w*lumiweight*Luminosity;
+      }
+      if(PUcorr){
+        cout << "PUWeight = " << PUWeight << endl;
+        w = w*PUWeight;
+      }
+      if(SF){
+        cout << "bWeight = " << bWeight << endl;
+        w = w*bWeight;
+      }
+      if(scale!=0){
+        cout<< "scale " << scale << endl;
+        w = w*scale;
+      }
+      cout << "Weight w = " << w << endl;
       if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
       if(curr_var>=endRange[v])                      {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
       if(curr_var<=inRange[v])                       {hist->Fill(1.01*inRange[v],w);  hist_err->Fill(1.01*inRange[v],w*w);}
