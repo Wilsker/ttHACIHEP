@@ -80,13 +80,13 @@ const bool show_title   = true;
 const bool doasym       = false;
 const double asymbin[6] = {0,3,4,9,15,20};
 const int    numVar     = 40;
-//const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+//const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
 const unsigned int ini_var = 0;
-const unsigned int fin_var = 20;
+const unsigned int fin_var = 21;
 const int posvtcr          = 0;
 
 
@@ -144,13 +144,70 @@ const char *titleXaxis[]        = {
   "Lead mu phi"
 };
 const int    bin[numVar]        = {
-  50, 20, 40, 40, 6, 50, 10, 8, 50, 50, 10, 50, 10, 50, 50, 10, 10, 50, 10, 10
+  50,
+  20,
+  40,
+  40,
+  6,
+  50,
+  10,
+  8,
+  50,
+  50,
+  10,
+  50,
+  10,
+  50,
+  50,
+  10,
+  10,
+  50,
+  10,
+  10
 };
 const double inRange[numVar]    = {
-  -5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -5, -3, 0, -5, -3
+  -5,
+  0,
+  0,
+  0,
+  0,
+  0,
+  4,
+  2,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  -3,
+  0,
+  -5,
+  -3
 };
 const double endRange[numVar]   = {
-  20, 0.6, 20, 20, 5, 300, 10, 8, 300, 250, 10, 200, 10, 200, 200, 5, 3, 200, 5, 3
+  20,
+  0.6,
+  20,
+  20,
+  5,
+  300,
+  10,
+  6,
+  300,
+  250,
+  1,
+  200,
+  1,
+  200,
+  1,
+  5,
+  3,
+  200,
+  5,
+  3
 };
 
 /////
