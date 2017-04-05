@@ -64,7 +64,7 @@ const bool show_ratio   = true;
 const double Luminosity = 35900; //pb^-1
 const bool   LumiNorm   = true;
 const bool   PUcorr     = true;
-const bool   SF         = true; //For the TTHbb analysis it represents the bWeight factor
+const bool   SF         = false; //For the TTHbb analysis it represents the bWeight factor
 const double scale      = 0;    //0 means no scaling; any other values means scale histo by the value of scale
 
 // ===== Normalisation of plots =====
@@ -288,27 +288,35 @@ void StackPlots(){
       TH1F *h_var = get_th1f(var[v], v);
 
       //Histograms construction, fill, scaling etc.
+      cout << "var[v] = " << var[v] << endl;
+      cout << "datatype = " << datatype << endl;
       if(datatype==2){
         if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets") {
+          cout << "2: var should be double" << endl;
           h_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else{
+          cout << "2: var should be int" << endl;
           h_var  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
       }
       else if(datatype==1){
         if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets") {
+          cout << "1: var should be double" << endl;
           h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else{
+          cout << "1: var should be int" << endl;
           h_sig  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
       }
       else{
         if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets") {
+          cout << "0; var should be double" << endl;
           h_data_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else{
+          cout << "0: var should be int" << endl;
           h_data_var  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
       }
