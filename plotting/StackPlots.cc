@@ -150,8 +150,8 @@ const int    bin[numVar]        = {
   40,
   6,
   50,
-  10,
-  8,
+  6,
+  4,
   50,
   50,
   10,
@@ -159,9 +159,10 @@ const int    bin[numVar]        = {
   10,
   50,
   50,
+  20,
   10,
   10,
-  50,
+  20,
   10,
   10
 };
@@ -183,8 +184,9 @@ const double inRange[numVar]    = {
   0,
   0,
   -3,
+  -3,
   0,
-  -5,
+  -3,
   -3
 };
 const double endRange[numVar]   = {
@@ -203,10 +205,11 @@ const double endRange[numVar]   = {
   1,
   200,
   1,
-  5,
+  200,
+  3,
   3,
   200,
-  5,
+  3,
   3
 };
 
