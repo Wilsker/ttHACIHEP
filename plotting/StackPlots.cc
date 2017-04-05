@@ -405,8 +405,10 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   TBranch *b_lumiweight = 0;
   if(datatype!=0){
     tree->SetBranchAddress("lumiweight",&lumiweight,&b_lumiweight);
+    cout << "lumiweight = " << lumiweight<< endl;
   }
   else{lumiweight=1;}
+  cout << "lumiweight2 = " << lumiweight<< endl;
 
   double bWeight;
   TBranch *b_bWeight = 0;
