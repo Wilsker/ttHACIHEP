@@ -571,7 +571,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
         cout << "Muon_IDSFval = " << Muon_IDSFval << endl;
         cout << "Muon_IsoSFval = " << Muon_IsoSFval << endl;
         cout << "Muon_TrkSFval = " << Muon_TrkSFval << endl;
-        w = w*Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*b_Muon_TrkSFval;
+        w = w*Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval;
       }
       if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
       if(curr_var>=endRange[v])                      {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
