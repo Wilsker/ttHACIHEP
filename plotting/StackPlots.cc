@@ -62,17 +62,17 @@ const bool show_ratio   = true;
 
 // ==== Weights ====
 const double Luminosity = 35900; //pb^-1
-const bool   LumiNorm   = false;
-const bool   PUcorr     = false;
+const bool   LumiNorm   = true;
+const bool   PUcorr     = true;
 const bool   SF         = true; //For the TTHbb analysis it represents the bWeight factor
 const double scale      = 0;    //0 means no scaling; any other values means scale histo by the value of scale
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = false;
-const double normbkg    = 7.38548e+06; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+const bool normalised   = true;
+const double normbkg    = 7.38942e+06; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 const double normdata   = 516742;
-const double normsig    = 2.84863e+06;
+const double normsig    = 2.84875e+06;
 
 // ===== Plots =====
 const bool save_plots   = true;
