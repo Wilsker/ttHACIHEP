@@ -436,6 +436,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
     b_bWeight->GetEntry(tentry);
 
     if(datatype!=0){
+      b_lumiweight->GetEntry(tentry);
 
       if(LumiNorm) {
         cout << "lumiweight = " << lumiweight << endl;
