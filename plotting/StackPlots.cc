@@ -405,10 +405,8 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   TBranch *b_lumiweight = 0;
   if(datatype!=0){
     tree->SetBranchAddress("lumiweight",&lumiweight,&b_lumiweight);
-    cout << "lumiweight = " << lumiweight<< endl;
   }
   else{lumiweight=1;}
-  cout << "lumiweight2 = " << lumiweight<< endl;
 
   double bWeight;
   TBranch *b_bWeight = 0;
@@ -439,23 +437,17 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
       b_lumiweight->GetEntry(tentry);
 
       if(LumiNorm) {
-        cout << "lumiweight = " << lumiweight << endl;
-        cout << "Luminosity = " << Luminosity << endl;
         w = w*lumiweight*Luminosity;
       }
       if(PUcorr){
-        cout << "PUWeight = " << PUWeight << endl;
         w = w*PUWeight;
       }
       if(SF){
-        cout << "bWeight = " << bWeight << endl;
         w = w*bWeight;
       }
       if(scale!=0){
-        cout<< "scale " << scale << endl;
         w = w*scale;
       }
-      cout << "Weight w = " << w << endl;
       if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
       if(curr_var>=endRange[v])                      {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
       if(curr_var<=inRange[v])                       {hist->Fill(1.01*inRange[v],w);  hist_err->Fill(1.01*inRange[v],w*w);}
