@@ -62,7 +62,7 @@ const bool show_ratio   = true;
 
 // ==== Weights ====
 const double Luminosity = 35900; //pb^-1
-const bool   LumiNorm   = true;
+const bool   LumiNorm   = false;
 const bool   PUcorr     = true;
 const bool   SF         = true; //For the TTHbb analysis it represents the bWeight factor
 const double scale      = 0;    //0 means no scaling; any other values means scale histo by the value of scale
