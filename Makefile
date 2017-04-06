@@ -78,7 +78,7 @@ all: obj/SecondStep.o SecondStep
 #SRCS += ${PWD}/../MEIntegratorStandalone/src/JetLikelihood.cpp
 #SRCS += ${PWD}/../MEIntegratorStandalone/src/Integrand.cpp
 #SRCS += ${PWD}/../MEIntegratorStandalone/src/Parameters.cpp
-SRCS := Root/newPUWeight.cc Root/eleFuncs.cc Root/muFuncs.cc Root/jetFuncs.cc
+SRCS := Root/newPUWeight.cc Root/eleFuncs.cc Root/muFuncs.cc Root/jetFuncs.cc Root/triggerSFs.cc
 #SRCS += Root/bdtVarCalculator.cc
 
 #DEPS := ${PWD}/../CommonClassifier/interface/MEMClassifier.h
@@ -88,7 +88,7 @@ SRCS := Root/newPUWeight.cc Root/eleFuncs.cc Root/muFuncs.cc Root/jetFuncs.cc
 #DEPS += ${PWD}/../MEIntegratorStandalone/interface/JetLikelihood.h
 #DEPS += ${PWD}/../MEIntegratorStandalone/interface/Utils.h
 #DEPS += ${PWD}/../MEIntegratorStandalone/interface/Parameters.h
-DEPS := interface/SecondStep.h interface/newPUWeight.h interface/eleFuncs.h interface/muFuncs.h interface/jetFuncs.h
+DEPS := interface/SecondStep.h interface/newPUWeight.h interface/eleFuncs.h interface/muFuncs.h interface/jetFuncs.h interface/triggerSFs.h
 #DEPS += interface/bdtVarCalculator.h
 
 SecondStep: obj/SecondStep.o $(SRCS)
