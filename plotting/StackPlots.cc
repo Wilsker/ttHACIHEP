@@ -70,10 +70,10 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = false;
-const double normbkg    = 2.99859e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+const bool normalised   = true;
+const double normbkg    = 2.8696e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 const double normdata   = 516742;
-const double normsig    = 18947.3;
+const double normsig    = 18145.1;
 
 // ===== Plots =====
 const bool save_plots   = true;
