@@ -18,10 +18,7 @@
 // To do:
 //        - Update to cut based electron ID and relevant corrections/isolation. Means need to add dz and dxy (were previously included in )
 //        - Update global tags
-//        - Check Marcel code block showing how to apply run dependant JESs corrections for data (BSMFramework).
-//          Uncorrecting and recorrecting JES as global tag may have older correct SFs than we want.
 //        - Using old Electron trigger SFs. May need updating in future => "eleTrig_SF". For now (10/01/2016) it is fine.
-//        - Look into applying a less minimal preselection to speed up code.
 
 #include "../interface/SecondStep.h"
 
@@ -290,10 +287,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
   double avg_dr_tagged_jets_=-99; TBranch *avg_dr_tagged_jets=newtree->Branch("avg_dr_tagged_jets",&avg_dr_tagged_jets_,"avg_dr_tagged_jets/D");
   double best_higgs_mass_=-99;    TBranch *best_higgs_mass=newtree->Branch("best_higgs_mass",&best_higgs_mass_,"best_higgs_mass/D");
   double dEta_fn_=-99;            TBranch *dEta_fn=newtree->Branch("dEta_fn",&dEta_fn_,"dEta_fn/D");
-  double fifth_highest_CSV_=-99;  TBranch *fifth_highest_CSV=newtree->Branch("fifth_highest_CSV",&fifth_highest_CSV_,"fifth_highest_CSV/D");
-  double first_jet_pt_=-99;       TBranch *first_jet_pt=newtree->Branch("first_jet_pt",&first_jet_pt_,"first_jet_pt/D");
-  double fourth_highest_btag_=-99;TBranch *fourth_highest_btag=newtree->Branch("fourth_highest_btag",&fourth_highest_btag_,"fourth_highest_btag/D");
-  double fourth_jet_pt_=-99;      TBranch *fourth_jet_pt=newtree->Branch("fourth_jet_pt",&fourth_jet_pt_,"fourth_jet_pt/D");
+
   double h0_=-99;                 TBranch *h0=newtree->Branch("h0",&h0_,"h0/D");
   double h1_=-99;                 TBranch *h1=newtree->Branch("h1",&h1_,"h1/D");
   double h2_=-99;                 TBranch *h2=newtree->Branch("h2",&h2_,"h2/D");
@@ -308,11 +302,8 @@ void SecondStep::Process(char* inFile, string outDirPath){
   double MET_=-99;                TBranch *MET=newtree->Branch("MET",&MET_,"MET/D");
   double MHT_=-99;                TBranch *MHT=newtree->Branch("MHT",&MHT_,"MHT/D");
   double Mlb_=-99;                TBranch *Mlb=newtree->Branch("Mlb",&Mlb_,"Mlb/D");
-  double second_highest_btag_=-99;TBranch *second_highest_btag=newtree->Branch("second_highest_btag",&second_highest_btag_,"second_highest_btag/D");
-  double second_jet_pt_=-99;      TBranch *second_jet_pt=newtree->Branch("second_jet_pt",&second_jet_pt_,"second_jet_pt/D");
+
   double sphericity_=-99;         TBranch *sphericity=newtree->Branch("sphericity",&sphericity_,"sphericity/D");
-  double third_highest_btag_=-99; TBranch *third_highest_btag=newtree->Branch("third_highest_btag",&third_highest_btag_,"third_highest_btag/D");
-  double third_jet_pt_=-99;       TBranch *third_jet_pt=newtree->Branch("third_jet_pt",&third_jet_pt_,"third_jet_pt/D");
   double Evt_CSV_Average_=-99;    TBranch *Evt_CSV_Average=newtree->Branch("Evt_CSV_Average",&Evt_CSV_Average_,"Evt_CSV_Average/D");
   double blr_=-99;                TBranch *blr=newtree->Branch("blr",&blr_,"blr/D");
   double Evt_Deta_JetsAverage_=-99;
@@ -349,11 +340,36 @@ void SecondStep::Process(char* inFile, string outDirPath){
   double lead_mu_phi_ = -99;
   TBranch* lead_mu_phi = newtree->Branch("lead_mu_phi",&lead_mu_phi_,"lead_mu_phi/D");
 
+  double first_jet_pt_=-99;
+  TBranch *first_jet_pt=newtree->Branch("first_jet_pt",&first_jet_pt_,"first_jet_pt/D");
+  double first_highest_btag_=-99;
+  TBranch *first_highest_btag=newtree->Branch("first_highest_btag",&first_highest_btag_,"first_highest_btag/D");
+
+  double second_jet_pt_=-99;
+  TBranch *second_jet_pt=newtree->Branch("second_jet_pt",&second_jet_pt_,"second_jet_pt/D");
+  double second_highest_btag_=-99;
+  TBranch *second_highest_btag=newtree->Branch("second_highest_btag",&second_highest_btag_,"second_highest_btag/D");
+
+  double third_jet_pt_=-99;
+  TBranch *third_jet_pt=newtree->Branch("third_jet_pt",&third_jet_pt_,"third_jet_pt/D");
+  double third_highest_btag_=-99;
+  TBranch *third_highest_btag=newtree->Branch("third_highest_btag",&third_highest_btag_,"third_highest_btag/D");
+
+  double fourth_jet_pt_=-99;
+  TBranch *fourth_jet_pt=newtree->Branch("fourth_jet_pt",&fourth_jet_pt_,"fourth_jet_pt/D");
+  double fourth_highest_btag_=-99;
+  TBranch *fourth_highest_btag=newtree->Branch("fourth_highest_btag",&fourth_highest_btag_,"fourth_highest_btag/D");
+
+  double fifth_highest_CSV_=-99;
+  TBranch *fifth_highest_CSV=newtree->Branch("fifth_highest_CSV",&fifth_highest_CSV_,"fifth_highest_CSV/D");
   //Selection Variables:
   bool is_e_ = false;
   TBranch* is_e = newtree->Branch("is_e",&is_e_ ,"is_e/O");
   bool is_mu_ = false;
   TBranch* is_mu =newtree->Branch("is_mu",&is_mu_ ,"is_mu/O");
+
+  double trigger_SF_ = 1;
+  TBranch* trigger_SF = newtree->Branch("trigger_SF",&trigger_SF_,"trigger_SF/D");
 
   //MUONS LOAD
   vector<double>* Muon_pt=0;
@@ -688,9 +704,12 @@ void SecondStep::Process(char* inFile, string outDirPath){
     }
 
     //DONT FORGET TO REMOVE THIS!!!!!!!
-    //if(EVENT_event!=20838300 && EVENT_event!=2424579171 && EVENT_event!=1761047103){continue;}
-    //cout << "============ Next event ===============" << endl;
     //cout << "EVENT_event = " << EVENT_event << endl;
+    //if(EVENT_event==2424579171){
+    //  cout << "============ Next event ===============" << endl;
+    //  cout << "EVENT_event = " << EVENT_event << endl;
+    //}
+
     //DONT FORGET TO REMOVE THIS!!!!!!!
 
     if(sample==1 || sample==2){
@@ -990,15 +1009,11 @@ void SecondStep::Process(char* inFile, string outDirPath){
       }
     }
 
-    //cout << " ELECTRON =  " << ELECTRON <<  endl;
-    //cout << " MUON " << MUON << endl;
-    //cout << " SelTightJet_pt.size() = " <<SelTightJet_pt.size()<< endl;
-    //cout << " nBCSVM_SL = " << nBCSVM_SL << endl;
-    //cout << "  " << endl;
-    //cout << "  " << endl;
-    //cout << "  " << endl;
 
 
+
+
+    // Categorise events into analysis channels
     is_e_ = false;
     is_mu_ = false;
     if(!MUON && !ELECTRON && !ELEL && !MUONMUON && !ELMUON){
@@ -1027,7 +1042,6 @@ void SecondStep::Process(char* inFile, string outDirPath){
       cout << "# Muons: " << SelMuon_pt.size() << endl;
     }
 
-
     // HACK Just running SL for now
     if (is_e_ != true && is_mu_ != true){
       continue;
@@ -1039,7 +1053,6 @@ void SecondStep::Process(char* inFile, string outDirPath){
     std::vector<double> selectedJetCSV;
     std::vector<TLorentzVector> looseSelectedJetP4;
     std::vector<double> looseSelectedJetCSV;
-
     for(unsigned int j=0; j<SelMuon_pt.size(); j++){
       TLorentzVector prov;
       prov.SetPtEtaPhiE(SelMuon_pt[j],SelMuon_eta[j],SelMuon_phi[j],SelMuon_energy[j]);
@@ -1081,7 +1094,6 @@ void SecondStep::Process(char* inFile, string outDirPath){
         selectedTaggedJetP4.push_back(selectedJetP4[j]);
       }
     }
-
     double Aplanarity=-99.;
     double Sphericity=-99.;
     // HACK:: BDT been removed to run on IHEP farm
@@ -1115,7 +1127,6 @@ void SecondStep::Process(char* inFile, string outDirPath){
     // HACK:: BDT been removed to run on IHEP farm
     //bdtVarCalc.study_tops_bb_syst(metP4.Pt(), metP4.Phi(), dummy_metv, selectedLeptonP4[0], jets_vvdouble, selectedJetCSV_fixed, minChiStudy, chi2lepW, chi2leptop, chi2hadW, chi2hadtop, mass_lepW, mass_leptop, mass_hadW, mass_hadtop, dRbbStudy, testquant1, testquant2, testquant3, testquant4, testquant5, testquant6, testquant7, b1, b2);
     double DEta_fn=testquant6;
-
     // HACK:: BDT been removed to run on IHEP farm
     double pt_E_ratio = -99;
     //pt_E_ratio = bdtVarCalc.pt_E_ratio_jets(jets_vvdouble);
@@ -1125,7 +1136,6 @@ void SecondStep::Process(char* inFile, string outDirPath){
     //jet_tag_etamax = bdtVarCalc.get_jet_tag_etamax (jets_vvdouble,selectedJetCSV_fixed);
     double tag_tag_etamax = -99;
     //tag_tag_etamax = bdtVarCalc.get_tag_tag_etamax (jets_vvdouble,selectedJetCSV_fixed);
-
     double sum_pt_jets=0;
     double Dr_between_lep_and_closest_jet=99;
     double mht_px=0;
@@ -1226,15 +1236,16 @@ void SecondStep::Process(char* inFile, string outDirPath){
     }
     if(ntags>0) csvDev /= ntags;
     else csvDev=-1.;
+    double met=metP4.Pt();
     double Fifth_highest_CSV=njets>4?sortedCSV[njets-5]:-1.;
-    double First_jet_pt=selectedJetP4.size()>0?selectedJetP4[0].Pt():-99;
     double Fourth_highest_btag=njets>3?sortedCSV[njets-4]:-1.;
     double Fourth_jet_pt=selectedJetP4.size()>3?selectedJetP4[3].Pt():-99;
-    double met=metP4.Pt();
-    double Second_highest_btag=njets>1?sortedCSV[njets-2]:-1.;
-    double Second_jet_pt=selectedJetP4.size()>1?selectedJetP4[1].Pt():-99;
     double Third_highest_btag=njets>2?sortedCSV[njets-3]:-1.;
     double Third_jet_pt=selectedJetP4.size()>2?selectedJetP4[2].Pt():-99;
+    double Second_highest_btag=njets>1?sortedCSV[njets-2]:-1.;
+    double Second_jet_pt=selectedJetP4.size()>1?selectedJetP4[1].Pt():-99;
+    double First_highest_btag=njets>0?sortedCSV[njets-1]:-1.;
+    double First_jet_pt=selectedJetP4.size()>0?selectedJetP4[0].Pt():-99;
 
     //btagging likelihood ratio
     double eth_blr=-1;
@@ -1250,14 +1261,23 @@ void SecondStep::Process(char* inFile, string outDirPath){
     // HACK:: BDT been removed to run on IHEP farm
     double result = -99;
     //result = bdt.GetBDTOutput(selectedLeptonP4,selectedJetP4,selectedJetCSV,looseSelectedJetP4,looseSelectedJetCSV,metP4,eth_blr);
-
     //if(!(eth_blr>=0.0 || eth_blr<0.0)) eth_blr=0.001;
     //eth_blr = TMath::Log(eth_blr/(1-eth_blr));
 
     muFuncs muF;
     PUWTool PileupTool;
+    double trigger_SF=1;
 
-    // AUGMENTED VARIABLES & SFs
+    if(sample!=0){
+      triggerSFs trigSFTool;
+      if(is_e_){
+        trigger_SF = trigSFTool.getEventTriggerSF(is_e_, is_mu_, SelElectronMVA_pt[0], SelElectronMVA_eta[0]);
+      }
+      if(is_mu_){
+        trigger_SF = trigSFTool.getEventTriggerSF(is_e_, is_mu_, SelMuon_pt[0], SelMuon_eta[0]);
+      }
+    }
+
     if(sample!=0){
       PileupTool.newPUWeight(PUWeight, puweight_,puweightUP_,puweightDOWN_);
       if(MUON==true && ELECTRON==false){
@@ -1322,10 +1342,6 @@ void SecondStep::Process(char* inFile, string outDirPath){
     dEta_fn_ = DEta_fn;
     dev_from_avg_disc_btags_ = csvDev;
     dr_between_lep_and_closest_jet_ = Dr_between_lep_and_closest_jet;
-    fifth_highest_CSV_ = Fifth_highest_CSV;
-    first_jet_pt_ = First_jet_pt;
-    fourth_highest_btag_ = Fourth_highest_btag;
-    fourth_jet_pt_ = Fourth_jet_pt;
     if(SelElectronMVA_pt.size()>0){
         lead_el_pt_ = SelElectronMVA_pt[0];
         lead_el_eta_ = SelElectronMVA_eta[0];
@@ -1338,7 +1354,6 @@ void SecondStep::Process(char* inFile, string outDirPath){
     }
     number_electrons_ = SelElectronMVA_pt.size();
     number_muons_ = SelMuon_pt.size();
-
     h0_ = H0;
     h1_ = H1;
     h2_ = H2;
@@ -1355,21 +1370,27 @@ void SecondStep::Process(char* inFile, string outDirPath){
     MHT_ = mht;
     Mlb_ = mlb;
     pt_all_jets_over_E_all_jets_ = pt_E_ratio;
-    second_highest_btag_ = Second_highest_btag;
+    first_jet_pt_ = First_jet_pt;
+    first_highest_btag_ = First_highest_btag;
     second_jet_pt_ = Second_jet_pt;
+    second_highest_btag_ = Second_highest_btag;
+    third_jet_pt_ = Third_jet_pt;
+    third_highest_btag_ = Third_highest_btag;
+    fourth_jet_pt_ = Fourth_jet_pt;
+    fourth_highest_btag_ = Fourth_highest_btag;
+    fifth_highest_CSV_ = Fifth_highest_CSV;
     sphericity_ = Sphericity;
     tagged_dijet_mass_closest_to_125_ = Tagged_dijet_mass_closest_to_125;
-    third_highest_btag_ = Third_highest_btag;
-    third_jet_pt_ = Third_jet_pt;
     Evt_CSV_Average_ = averageCSV_all;
     Evt_Deta_JetsAverage_ = detaJetsAverage;
     blr_ = eth_blr;
-    is_e_ = ELECTRON;
-    is_mu_ = MUON;
+    trigger_SF_ = trigger_SF;
+    //is_e_ = ELECTRON;
+    //is_mu_ = MUON;
+
     newtree->Fill();
     neventsfilled = neventsfilled +1;
-
-  }
+  }//End of event loop
   cout << "events filled : " << neventsfilled << endl;
   std::cout << "SecondStep.cc:: Print and save newtree." << std::endl;
   cout << "SecondStep was run on Input file: " << Input << endl;
