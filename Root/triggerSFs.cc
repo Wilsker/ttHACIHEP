@@ -19,7 +19,8 @@ double triggerSFs::getEventTriggerSF(bool is_el, bool is_mu, double lepton_pt, d
   int Y2;
 
   if(is_el==true && is_mu==false){
-    const char* eleTrigSF_file_path = "SF/eleTrig_SF.root";
+    const char* eleTrigSF_file_path = "/publicfs/cms/user/joshuha/ttHACIHEP/SF/eleTrig_SF.root";
+    //const char* eleTrigSF_file_path = "SF/eleTrig_SF.root";
     const char* eleTrigSF_hist_path =  "h_eleTrig_SF";
     TFile* eleTrigSF_file = TFile::Open(eleTrigSF_file_path);
     if(!eleTrigSF_file->IsOpen()) throw "Error : Unable to open electron trigger SF file!";
@@ -53,8 +54,9 @@ double triggerSFs::getEventTriggerSF(bool is_el, bool is_mu, double lepton_pt, d
   }
 
   else if(is_mu==true && is_el==false){
+    const char* muonTrigSF_file_path = "/publicfs/cms/user/joshuha/ttHACIHEP/SF/SingleMuonTrigger_Z_RunCD_Reco76X_Feb15.root";
 
-    const char* muonTrigSF_file_path = "SF/SingleMuonTrigger_Z_RunCD_Reco76X_Feb15.root";
+    //const char* muonTrigSF_file_path = "SF/SingleMuonTrigger_Z_RunCD_Reco76X_Feb15.root";
     const char* muonTrigSF_hist_path1 = "runD_IsoMu20_OR_IsoTkMu20_HLTv4p2_PtEtaBins/pt_abseta_ratio";
     const char* muonTrigSF_hist_path2 = "runD_IsoMu20_OR_IsoTkMu20_HLTv4p3_PtEtaBins/pt_abseta_ratio";
     TFile* muonTrigSF_file = TFile::Open(muonTrigSF_file_path);
