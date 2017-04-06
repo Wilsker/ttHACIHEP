@@ -21,6 +21,7 @@
 #include "muFuncs.h"
 #include "jetFuncs.h"
 #include "bdtVarCalculator.h"
+#include "triggerSFs.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 using namespace std;
@@ -31,6 +32,7 @@ public:
   SecondStep();
   void Process(char* inFile, string outDirPath);
   void Usage();
+  double lumi_weight(string);
   ~SecondStep();
 
 private:
