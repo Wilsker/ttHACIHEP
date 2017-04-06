@@ -71,7 +71,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
 const bool normalised   = false;
-const double normbkg    = 2.99858e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+const double normbkg    = 2.99859e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 const double normdata   = 516742;
 const double normsig    = 18947.3;
 
@@ -545,7 +545,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
   if(var=="BJetness_num_vetonoipnoiso_leps" && doasym) hist_err = new TH1F("hist_err","hist_err",bin[v],asymbin);
   else                         hist_err = new TH1F("hist_err","hist_err",bin[v],inRange[v],endRange[v]);
   hist_err->Sumw2();
-
+  int tripwire=0;
   for(int j=0; j<tree->GetEntries(); j++)
   {
     double w = 1.;
@@ -566,6 +566,15 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
       if(SF)       w = w*bWeight;
       if(scale!=0) w = w*scale;
       if(LeptonSFs) {
+        if(tripwire<10){
+          cout << "Electron_GsfSFval = " << Electron_GsfSFval << endl;
+          cout << "Electron_IDSFval = " << Electron_IDSFval << endl;
+          cout << "Muon_IDSFval = " << Muon_IDSFval << endl;
+          cout << "Muon_IsoSFval = " << Muon_IsoSFval << endl;
+          cout << "Muon_TrkSFval = " << Muon_TrkSFval << endl;
+          cout << "Combined lepton SF = " << Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval << endl;
+          tripwire = tripwire +1;
+        }
         w = w*Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval;
       }
       if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
