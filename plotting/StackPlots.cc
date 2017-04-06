@@ -410,6 +410,32 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   double PUWeight;
   TBranch *b_PUWeight = 0;
   tree->SetBranchAddress("PUWeight",&PUWeight,&b_PUWeight);
+
+  //====== Lepton SFs ======
+
+  //Electron Reco SFs
+  double Electron_GsfSFval;
+  TBranch* b_Electron_GsfSFval = 0;
+  tree->SetBranchAddress("Electron_GsfSFval",&Electron_GsfSFval,&b_Electron_GsfSFval);
+  //Electron ID SFs
+  double Electron_IDSFval;
+  TBranch* b_Electron_IDSFval = 0;
+  tree->SetBranchAddress("Electron_IDSFval",&Electron_IDSFval,&b_Electron_IDSFval);
+  //Muon ID SFs
+  double Muon_IDSFval;
+  TBranch* b_Muon_IDSFval;
+  tree->SetBranchAddress("Muon_IDSFval",&Muon_IDSFval,&b_Muon_IDSFval);
+  //Muon Iso SFs
+  double Muon_IsoSFval;
+  TBranch* b_Muon_IsoSFval = 0;
+  tree->SetBranchAddress("Muon_IsoSFval",&Muon_IsoSFval,&b_Muon_IsoSFval);
+  //Muon Track SF
+  double Muon_TrkSFval;
+  TBranch* b_Muon_TrkSFval = 0;
+  tree->SetBranchAddress("Muon_TrkSFval",&Muon_TrkSFval,&b_Muon_TrkSFval);
+
+  //=========================
+
   Float_t lumiweight;
   TBranch *b_lumiweight = 0;
   if(datatype!=0){
@@ -441,6 +467,12 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
     b_curr_var->GetEntry(tentry);
     b_PUWeight->GetEntry(tentry);
     b_bWeight->GetEntry(tentry);
+    b_Electron_GsfSFval->GetEntry(tentry);
+    b_Electron_IDSFval->GetEntry(tentry);
+    b_Muon_IDSFval->GetEntry(tentry);
+    b_Muon_IsoSFval->GetEntry(tentry);
+    b_Muon_TrkSFval->GetEntry(tentry);
+
 
     if(datatype!=0){
       b_lumiweight->GetEntry(tentry);
