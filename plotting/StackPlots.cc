@@ -92,12 +92,7 @@ const int posvtcr          = 0;
 
 
 // Variables list:
-// To add:
-//  NumberOfBJets
-//  NumberOfJets
-//  second_jet_pt
-//  third_jet_pt
-//  fourth_jet_pt
+
 const char *variables[]         = {
   "BJetness_avsip3dsig",
   "BJetness_avip3dval",
@@ -159,7 +154,7 @@ const int    bin[numVar]        = {
   50,
   10,
   50,
-  50,
+  10,
   20,
   10,
   10,
