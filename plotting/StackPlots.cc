@@ -284,35 +284,29 @@ void StackPlots(){
       TH1F *h_var = get_th1f(var[v], v);
 
       //Histograms construction, fill, scaling etc.
-      cout << "var[v] = " << var[v] << endl;
+      cout << "Variable name = " << var[v] << endl;
       cout << "datatype = " << datatype << endl;
       if(datatype==2){
         if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets") {
-          cout << "2: var should be double" << endl;
           h_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else{
-          cout << "2: var should be int" << endl;
           h_var  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
       }
       else if(datatype==1){
         if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets") {
-          cout << "1: var should be double" << endl;
           h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else{
-          cout << "1: var should be int" << endl;
           h_sig  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
       }
       else{
         if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets") {
-          cout << "0; var should be double" << endl;
           h_data_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else{
-          cout << "0: var should be int" << endl;
           h_data_var  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
       }
@@ -485,15 +479,6 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
         w = w*scale;
       }
       if(LeptonSFs) {
-        /*if(tripwire<10){
-          cout << "Electron_GsfSFval = " << Electron_GsfSFval << endl;
-          cout << "Electron_IDSFval = " << Electron_IDSFval << endl;
-          cout << "Muon_IDSFval = " << Muon_IDSFval << endl;
-          cout << "Muon_IsoSFval = " << Muon_IsoSFval << endl;
-          cout << "Muon_TrkSFval = " << Muon_TrkSFval << endl;
-          cout << "Combined lepton SF = " << Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval << endl;
-          tripwire = tripwire +1;
-        }*/
         w = w*Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval;
       }
       if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
@@ -604,18 +589,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
       if(PUcorr)   w = w*PUWeight;
       if(SF)       w = w*bWeight;
       if(scale!=0) w = w*scale;
-      if(LeptonSFs) {
-        /*if(tripwire<10){
-          cout << "Electron_GsfSFval = " << Electron_GsfSFval << endl;
-          cout << "Electron_IDSFval = " << Electron_IDSFval << endl;
-          cout << "Muon_IDSFval = " << Muon_IDSFval << endl;
-          cout << "Muon_IsoSFval = " << Muon_IsoSFval << endl;
-          cout << "Muon_TrkSFval = " << Muon_TrkSFval << endl;
-          cout << "Combined lepton SF = " << Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval << endl;
-          tripwire = tripwire +1;
-        }*/
-        w = w*Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval;
-      }
+      if(LeptonSFs) {w = w*Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval;}
       if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
       if(curr_var>=endRange[v])                      {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
       if(curr_var<=inRange[v])                       {hist->Fill(1.01*inRange[v],w);  hist_err->Fill(1.01*inRange[v],w*w);}
