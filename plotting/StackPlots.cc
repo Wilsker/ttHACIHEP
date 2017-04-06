@@ -432,7 +432,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   if(var=="BJetness_num_vetonoipnoiso_leps" && doasym) hist_err = new TH1F("hist_err","hist_err",bin[v],asymbin);
   else                         hist_err = new TH1F("hist_err","hist_err",bin[v],inRange[v],endRange[v]);
   hist_err->Sumw2();
-
+  int tripwire = 0;
   for(int j=0; j<tree->GetEntries(); j++)
   //for(int j=0; j<5; j++)
   {
@@ -456,6 +456,18 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
       }
       if(scale!=0){
         w = w*scale;
+      }
+      if(LeptonSFs) {
+        if(tripwire<10){
+          cout << "Electron_GsfSFval = " << Electron_GsfSFval << endl;
+          cout << "Electron_IDSFval = " << Electron_IDSFval << endl;
+          cout << "Muon_IDSFval = " << Muon_IDSFval << endl;
+          cout << "Muon_IsoSFval = " << Muon_IsoSFval << endl;
+          cout << "Muon_TrkSFval = " << Muon_TrkSFval << endl;
+          cout << "Combined lepton SF = " << Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval << endl;
+          tripwire = tripwire +1;
+        }
+        w = w*Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval;
       }
       if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
       if(curr_var>=endRange[v])                      {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
