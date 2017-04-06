@@ -458,7 +458,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
         w = w*scale;
       }
       if(LeptonSFs) {
-        if(tripwire<10){
+        /*if(tripwire<10){
           cout << "Electron_GsfSFval = " << Electron_GsfSFval << endl;
           cout << "Electron_IDSFval = " << Electron_IDSFval << endl;
           cout << "Muon_IDSFval = " << Muon_IDSFval << endl;
@@ -466,7 +466,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
           cout << "Muon_TrkSFval = " << Muon_TrkSFval << endl;
           cout << "Combined lepton SF = " << Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval << endl;
           tripwire = tripwire +1;
-        }
+        }*/
         w = w*Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval;
       }
       if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
@@ -578,7 +578,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
       if(SF)       w = w*bWeight;
       if(scale!=0) w = w*scale;
       if(LeptonSFs) {
-        if(tripwire<10){
+        /*if(tripwire<10){
           cout << "Electron_GsfSFval = " << Electron_GsfSFval << endl;
           cout << "Electron_IDSFval = " << Electron_IDSFval << endl;
           cout << "Muon_IDSFval = " << Muon_IDSFval << endl;
@@ -586,7 +586,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
           cout << "Muon_TrkSFval = " << Muon_TrkSFval << endl;
           cout << "Combined lepton SF = " << Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval << endl;
           tripwire = tripwire +1;
-        }
+        }*/
         w = w*Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval;
       }
       if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
