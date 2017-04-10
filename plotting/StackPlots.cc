@@ -386,17 +386,18 @@ void StackPlots(){
 
         //Add background to stack
         hstack->Add(h_var);
+        //Get integral for bckg histogram of given variable.
+        int nbins = h_var->GetNbinsX();
+        cout<<setw(5)<<"Bckg Histogram integral + overflow:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral(0,nbins+1)<<endl;
+        //Add integral to total bckg integral of given variable.
+        bkgstackintegral += h_var->Integral(0,nbins+1);
+
 
         leg->AddEntry(h_var,bckg_mc_nickname.c_str(),"F");
 
         //Sum them for the error
         h_sum_var->Add(h_sum_var,h_var);
 
-        //Get integral for bckg histogram of given variable.
-        int nbins = h_var->GetNbinsX();
-        cout<<setw(5)<<"Bckg Histogram integral + overflow:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral(0,nbins+1)<<endl;
-        //Add integral to total bckg integral of given variable.
-        bkgstackintegral += h_var->Integral(0,nbins+1);
       }
       else if(datatype==0){
         //Get integral of data histogram for given variable.
@@ -543,7 +544,12 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
     }
   }
   //Get errors, normalise
+
   if(normalised){
+    cout << "============= normalised ===============" << endl;
+    cout << "normdata = " << normdata << endl;
+    cout << "normsig = " << normsig << endl;
+    cout << "normbkg = " << normbkg << endl;
     if(datatype==0) hist->Scale(1/normdata);
     if(datatype==1) hist->Scale(1/normsig);
     if(datatype==2) hist->Scale(1/normbkg);
@@ -658,6 +664,10 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
   }
   //Get errors, normalise
   if(normalised){
+    cout << "============= normalised ===============" << endl;
+    cout << "normdata = " << normdata << endl;
+    cout << "normsig = " << normsig << endl;
+    cout << "normbkg = " << normbkg << endl;
     if(datatype==0) hist->Scale(1/normdata);
     if(datatype==1) hist->Scale(1/normsig);
     if(datatype==2) hist->Scale(1/normbkg);
@@ -689,7 +699,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     c1_1->SetLeftMargin(0.125);
     //c1_1->SetFillStyle(0);
 
-    //Get values
+    //Get values for ratio plot
     double dataSUmc_x[bin[v]]; double dataSUmc_y[bin[v]]; double dataSUmc_xerr[bin[v]]; double dataSUmc_yerr[bin[v]];
     for(int j=0; j<bin[v]; j++){
       dataSUmc_x[j] = 0; dataSUmc_y[j] = 0; dataSUmc_xerr[j] = 0; dataSUmc_yerr[j] = 0;
@@ -710,18 +720,9 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
         dataSUmc_yerr[j] = 0;
       }
     }
-    if(var=="massVis"){
-      cout<<"Variables is "<<var<<endl;
-      cout<<"const double sf[bin] = {";
-      for(int ar=0; ar<bin[v]; ar++) cout<<dataSUmc_y[ar]<<",";
-      cout<<"};"<<endl;
-      cout<<"const double sferr[bin] = {";
-      for(int ar=0; ar<bin[v]; ar++) cout<<dataSUmc_yerr[ar]<<",";
-      cout<<"};"<<endl;
-    }
 
 
-    //Plot values
+    //Plot values in ratio plot
     TGraphErrors *dataSUmc = new TGraphErrors(bin[v], dataSUmc_x, dataSUmc_y, dataSUmc_xerr, dataSUmc_yerr);
     dataSUmc->SetTitle(0);
     //dataSUmc->SetTitleSize(10);
@@ -784,11 +785,12 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   h_sig->SetLineColor(kGreen+4);
 
   //Draw data and bckg MC
-  cout << "hstack integral = " << hstack->Integral(0,hstack->GetNbinsX()+1) << endl;
-  cout << "h_data_var integral = " << h_data_var->Integral(0,h_data_var->GetNbinsX()+1) << endl;
-  h_data_var->Draw("P");
 
+  cout << "h_data_var integral = " << h_data_var->Integral(0,h_data_var->GetNbinsX()+1) << endl;
+
+  h_data_var->Draw("P");
   hstack->Draw("HIST same");
+
   if(!normalised) h_data_var->Draw("PE same");
   else            h_data_var->Draw("same");
   gPad->RedrawAxis();
