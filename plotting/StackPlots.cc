@@ -406,6 +406,8 @@ void StackPlots(){
       }
     }
 
+
+    cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<h_sum_var->Integral(0,h_sum_var->GetNbinsX()+1)<<endl;
     //Total background and signal integrals.
     cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<bkgstackintegral<<endl;
     int nbins_sig = h_sig->GetNbinsX();
