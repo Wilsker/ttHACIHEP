@@ -65,7 +65,7 @@ const double Luminosity = 35900; //pb^-1
 const bool   LumiNorm   = true;
 const bool   PUcorr     = true;
 const bool   SF         = false; //For the TTHbb analysis it represents the bWeight factor
-const bool   LeptonSFs  = true;
+const bool   LeptonSFs  = false;
 const double scale      = 0;    //0 means no scaling; any other values means scale histo by the value of scale
 
 // ===== Normalisation of plots =====
@@ -509,7 +509,6 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
     b_Muon_IsoSFval->GetEntry(tentry);
     b_Muon_TrkSFval->GetEntry(tentry);
 
-
     if(datatype!=0){
       b_lumiweight->GetEntry(tentry);
 
@@ -522,7 +521,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
       if(SF){
         w = w*bWeight;
       }
-      if(scale!=0){
+      if(scale!=0){ 
         w = w*scale;
       }
       if(LeptonSFs) {
