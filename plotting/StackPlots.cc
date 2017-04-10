@@ -71,7 +71,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = true;
+const bool normalised   = false;
 const double normbkg    = 2.86935e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 const double normdata   = 516742;
 const double normsig    = 18145.8;
@@ -162,7 +162,7 @@ const int    bin[numVar]        = {
   40,
   20,
   20
-};
+};/*
 const double inRange[numVar]    = {
   -5,
   0,
@@ -208,9 +208,9 @@ const double endRange[numVar]   = {
   200,
   3,
   4
-};
+};*/
 
-/*const double inRange[numVar]    = {
+const double inRange[numVar]    = {
   -10,
   0,
   0,
@@ -255,7 +255,7 @@ const double endRange[numVar]   = {
   500,
   10,
   10
-};*/
+};
 
 /////
 //   Declare functions
