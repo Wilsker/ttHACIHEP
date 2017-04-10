@@ -65,7 +65,7 @@ const double Luminosity = 35900; //pb^-1
 const bool   LumiNorm   = true;
 const bool   PUcorr     = true;
 const bool   SF         = false; //For the TTHbb analysis it represents the bWeight factor
-const bool   LeptonSFs  = false;
+const bool   LeptonSFs  = true;
 const double scale      = 0;    //0 means no scaling; any other values means scale histo by the value of scale
 
 // ===== Normalisation of plots =====
