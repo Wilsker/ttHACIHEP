@@ -179,11 +179,11 @@ const double inRange[numVar]    = {
   0,
   0,
   0,
-  -3,
-  -3,
+  -5,
+  -5,
   0,
-  -3,
-  -3
+  -5,
+  -5
 };
 const double endRange[numVar]   = {
   20,
@@ -202,11 +202,11 @@ const double endRange[numVar]   = {
   200,
   1,
   200,
-  3,
-  3,
+  5,
+  5,
   200,
-  3,
-  3
+  5,
+  5
 };
 
 /*const double inRange[numVar]    = {
@@ -521,7 +521,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
       if(SF){
         w = w*bWeight;
       }
-      if(scale!=0){ 
+      if(scale!=0){
         w = w*scale;
       }
       if(LeptonSFs) {
