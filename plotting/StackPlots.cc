@@ -66,6 +66,7 @@ const bool   LumiNorm   = true;
 const bool   PUcorr     = true;
 const bool   SF         = false; //For the TTHbb analysis it represents the bWeight factor
 const bool   LeptonSFs  = true;
+const bool   triggerSFs = true;
 const double scale      = 0;    //0 means no scaling; any other values means scale histo by the value of scale
 
 // ===== Normalisation of plots =====
@@ -472,10 +473,13 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
 
   //=========================
 
+  double trigger_SF;
+  TBranch* b_trigger_SF = 0;
   Float_t lumiweight;
   TBranch *b_lumiweight = 0;
   if(datatype!=0){
     tree->SetBranchAddress("lumiweight",&lumiweight,&b_lumiweight);
+    tree->SetBranchAddress("trigger_SF",&trigger_SF,&b_trigger_SF);
   }
   else{lumiweight=1;}
 
@@ -511,6 +515,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
 
     if(datatype!=0){
       b_lumiweight->GetEntry(tentry);
+      b_trigger_SF->GetEntry(tentry);
 
       if(LumiNorm) {
         w = w*lumiweight*Luminosity;
@@ -526,6 +531,9 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
       }
       if(LeptonSFs) {
         w = w*Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval;
+      }
+      if(triggerSFs){
+        w = w*trigger_SF;
       }
       if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
       if(curr_var>=endRange[v])                      {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
@@ -589,14 +597,13 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
   tree->SetBranchAddress("Muon_TrkSFval",&Muon_TrkSFval,&b_Muon_TrkSFval);
 
   //=========================
-
+  double trigger_SF;
+  TBranch* b_trigger_SF = 0;
   Float_t lumiweight;
   TBranch *b_lumiweight = 0;
-
-
-
   if(datatype!=0){
     tree->SetBranchAddress("lumiweight",&lumiweight,&b_lumiweight);
+    tree->SetBranchAddress("trigger_SF",&trigger_SF,&b_trigger_SF);
   }
   else{lumiweight=1;}
 
@@ -630,12 +637,15 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
     b_Muon_TrkSFval->GetEntry(tentry);
 
     if(datatype!=0){
+      b_trigger_SF->GetEntry(tentry);
+      b_lumiweight->GetEntry(tentry);
 
       if(LumiNorm) w = w*lumiweight*Luminosity;
       if(PUcorr)   w = w*PUWeight;
       if(SF)       w = w*bWeight;
       if(scale!=0) w = w*scale;
       if(LeptonSFs) {w = w*Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval;}
+      if(triggerSFs) w = w*trigger_SF;
       if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
       if(curr_var>=endRange[v])                      {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
       if(curr_var<=inRange[v])                       {hist->Fill(1.01*inRange[v],w);  hist_err->Fill(1.01*inRange[v],w*w);}
