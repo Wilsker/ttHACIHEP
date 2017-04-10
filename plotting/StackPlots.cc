@@ -71,7 +71,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = false;
+const bool normalised   = true;
 const double normbkg    = /*1.11627e+08;*/1.86236e+06; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 const double normdata   = 516742;
 const double normsig    = /*130403;*/388904;
@@ -162,7 +162,7 @@ const int    bin[numVar]        = {
   40,
   20,
   20
-};/*
+};
 const double inRange[numVar]    = {
   -5,
   0,
@@ -208,8 +208,8 @@ const double endRange[numVar]   = {
   200,
   3,
   4
-};*/
-
+};
+/*
 const double inRange[numVar]    = {
   -100,
   -100,
@@ -256,7 +256,7 @@ const double endRange[numVar]   = {
   10,
   10
 };
-
+*/
 /////
 //   Declare functions
 /////
@@ -393,7 +393,6 @@ void StackPlots(){
         h_sum_var->Add(h_sum_var,h_var);
 
         //Get integral for bckg histogram of given variable.
-        //cout<<setw(5)<<"Bckg Histogram Integral:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
         int nbins = h_var->GetNbinsX();
         cout<<setw(5)<<"Bckg Histogram integral + overflow:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral(0,nbins+1)<<endl;
         //Add integral to total bckg integral of given variable.
@@ -401,7 +400,6 @@ void StackPlots(){
       }
       else if(datatype==0){
         //Get integral of data histogram for given variable.
-        //cout<<setw(5)<<"Data Histogram integral:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral()<<endl;
         int nbins = h_data_var->GetNbinsX();
         cout<<setw(5)<<"Data Histogram integral + overflow:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral(0,nbins+1)<<endl;
       }
@@ -411,7 +409,6 @@ void StackPlots(){
     cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<bkgstackintegral<<endl;
     int nbins_sig = h_sig->GetNbinsX();
     cout<<setw(5)<<"Total Signal Historgram Integral + overflow:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral(0,nbins_sig+1)<<endl;
-    //cout<<setw(5)<<"Total Signal Historgram Integral:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral()<<endl;
 
 
     //Draw
@@ -678,6 +675,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
 
 
 void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var, TH1F* h_sig, TLegend* leg, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], uint rootplas_size, int v, string var, string vartitle, double highestbinval){
+  cout << "draw_plots function = " << endl;
   //Canvas
   if(logYscale[v]==1) c1->SetLogy();
   if(show_ratio){
@@ -786,6 +784,8 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   h_sig->SetLineColor(kGreen+4);
 
   //Draw data and bckg MC
+  cout << "hstack integral = " << hstack->Integral(0,hstack->GetNbinsX()+1) << endl;
+  cout << "h_data_var integral = " << h_data_var->Integral(0,h_data_var->GetNbinsX()+1) << endl;
   h_data_var->Draw("P");
 
   hstack->Draw("HIST same");
