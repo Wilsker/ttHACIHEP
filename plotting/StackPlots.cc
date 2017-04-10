@@ -180,11 +180,11 @@ const double inRange[numVar]    = {
   0,
   0,
   0,
-  -5,
-  -5,
+  -3,
+  -4,
   0,
-  -5,
-  -5
+  -3,
+  -4
 };
 const double endRange[numVar]   = {
   20,
@@ -203,11 +203,11 @@ const double endRange[numVar]   = {
   200,
   1,
   200,
-  5,
-  5,
+  3,
+  4,
   200,
-  5,
-  5
+  3,
+  4
 };
 
 /*const double inRange[numVar]    = {
