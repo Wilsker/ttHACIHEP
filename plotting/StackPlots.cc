@@ -156,12 +156,12 @@ const int    bin[numVar]        = {
   10,
   50,
   10,
+  40,
   20,
-  10,
-  10,
   20,
-  10,
-  10
+  40,
+  20,
+  20
 };
 const double inRange[numVar]    = {
   -5,
@@ -533,7 +533,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
         w = w*Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval;
       }
       if(triggerSFs){
-        cout << "triggerSFs = " << trigger_SF << endl;
+        //cout << "triggerSFs = " << trigger_SF << endl;
         w = w*trigger_SF;
       }
       if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
@@ -647,7 +647,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
       if(scale!=0) w = w*scale;
       if(LeptonSFs) {w = w*Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval;}
       if(triggerSFs) {
-        cout << "triggerSFs = " << trigger_SF << endl;
+        //cout << "triggerSFs = " << trigger_SF << endl;
         w = w*trigger_SF;
       }
       if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
