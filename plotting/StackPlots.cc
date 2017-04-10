@@ -533,6 +533,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
         w = w*Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval;
       }
       if(triggerSFs){
+        cout << "triggerSFs = " << trigger_SF << endl;
         w = w*trigger_SF;
       }
       if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
@@ -645,7 +646,10 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
       if(SF)       w = w*bWeight;
       if(scale!=0) w = w*scale;
       if(LeptonSFs) {w = w*Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval;}
-      if(triggerSFs) w = w*trigger_SF;
+      if(triggerSFs) {
+        cout << "triggerSFs = " << trigger_SF << endl;
+        w = w*trigger_SF;
+      }
       if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
       if(curr_var>=endRange[v])                      {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
       if(curr_var<=inRange[v])                       {hist->Fill(1.01*inRange[v],w);  hist_err->Fill(1.01*inRange[v],w*w);}
