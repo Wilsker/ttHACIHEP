@@ -392,7 +392,7 @@ void StackPlots(){
         //cout<<setw(5)<<"Bckg Histogram integral + overflow:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral(0,nbins+1)<<endl;
         cout<<setw(5)<<"Bckg Histogram integral:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
         //Add integral to total bckg integral of given variable.
-        bkgstackintegral += h_var->Integral(0,nbins+1);
+        bkgstackintegral += h_var->Integral();
 
 
         leg->AddEntry(h_var,bckg_mc_nickname.c_str(),"F");
@@ -414,7 +414,7 @@ void StackPlots(){
       }
     }
 
-
+    cout << "========= TOTAL BCKG =========" << endl;
     //cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<h_sum_var->Integral(0,h_sum_var->GetNbinsX()+1)<<endl;
     cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<h_sum_var->Integral()<<endl;
 
