@@ -24,9 +24,9 @@ rootplizer = "SecondStep"
 
 # Python dictionaries map directory of input files to
 sample={
-#"ttHbb":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ttHTobb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_ttHbb/170216_130523/0000/',
+"ttHbb":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ttHTobb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_ttHbb/170216_130523/0000/',
 #"ttH_nonbb":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/ttHToNonbb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_ttHnobb/170216_105930/0000/',
-#"ttjets_incl":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/crab_FullMorV1_TT/170216_130900/0000/',
+"ttjets_incl":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/crab_FullMorV1_TT/170216_130900/0000/',
 #"ttjets_DL":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTTo2L2Nu_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTTo2L2Nu/170216_131744/0000/',
 #"ttjets_SL":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTToSemilepton_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTToSemilepton/170216_131212/0000/',
 #"ttjets_bfilter":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTToSemilepton_ttbbFilter_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTToSemilepton_ttbbFilter/170217_064724/0000/',
@@ -102,9 +102,9 @@ sample={
 "data_SMuBlockH2":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/data/SingleMuon/crab_FullMorV1_SMuBlockH2/170216_140830/0000/'
        }
 sampleout={
-#"ttHbb": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
+"ttHbb": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 #"ttH_nonbb": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
-#"ttjets_incl": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
+"ttjets_incl": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 #"ttjets_DL": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 #"ttjets_SL": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
 #"ttjets_bfilter": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_03/ttHACIHEP/output/MC/',
