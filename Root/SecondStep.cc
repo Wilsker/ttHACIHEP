@@ -340,6 +340,15 @@ void SecondStep::Process(char* inFile, string outDirPath){
   double lead_mu_phi_ = -99;
   TBranch* lead_mu_phi = newtree->Branch("lead_mu_phi",&lead_mu_phi_,"lead_mu_phi/D");
 
+  double number_leptons_ = -99;
+  TBranch* number_leptons = newtree->Branch("number_leptons",&number_leptons_,"number_leptons/I");
+  double lead_lep_pt_ = -99;
+  TBranch* lead_lep_pt = newtree->Branch("lead_lep_pt",&lead_lep_pt_,"lead_lep_pt/D");
+  double lead_lep_eta_ = -99;
+  TBranch* lead_lep_eta = newtree->Branch("lead_lep_eta",&lead_lep_eta_,"lead_lep_eta/D");
+  double lead_lep_phi_ = -99;
+  TBranch* lead_lep_phi = newtree->Branch("lead_lep_phi",&lead_lep_phi_,"lead_lep_phi/D");
+
   double first_jet_pt_=-99;
   TBranch *first_jet_pt=newtree->Branch("first_jet_pt",&first_jet_pt_,"first_jet_pt/D");
   double first_highest_btag_=-99;
@@ -1348,19 +1357,26 @@ void SecondStep::Process(char* inFile, string outDirPath){
         lead_mu_pt_ = -99;
         lead_mu_eta_ = -99;
         lead_mu_phi_ = -99;
+        lead_lep_pt_ = SelElectronMVA_pt[0];
+        lead_lep_eta_ = SelElectronMVA_eta[0];
+        lead_lep_phi_ = SelElectronMVA_phi[0];
     }
-    if(SelMuon_pt.size()==1 && is_mu_ == true){
+    else if(SelMuon_pt.size()==1 && is_mu_ == true){
       lead_mu_pt_ = SelMuon_pt[0];
       lead_mu_eta_ = SelMuon_eta[0];
       lead_mu_phi_ = SelMuon_phi[0];
       lead_el_pt_ = -99;
       lead_el_eta_ = -99;
       lead_el_phi_ = -99;
+      lead_lep_pt_ = SelMuon_pt[0];
+      lead_lep_eta_ = SelMuon_eta[0];
+      lead_lep_phi_ = SelMuon_phi[0];
     }
 
 
     number_electrons_ = SelElectronMVA_pt.size();
     number_muons_ = SelMuon_pt.size();
+    number_leptons_ = SelElectronMVA_pt.size() + SelMuon_pt.size();
     h0_ = H0;
     h1_ = H1;
     h2_ = H2;
