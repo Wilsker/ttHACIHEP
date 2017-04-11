@@ -560,16 +560,22 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   //Get errors, normalise
 
   if(normalised){
-    if(var.find("lead_mu")!=std::string::npos || var.find("lead_el")!=std::string::npos){
-      normdata=397838;
-      normbkg    = 1.67505e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-      normsig    = 10485.3;
+    if(var.find("lead_mu_eta")!=std::string::npos || var.find("lead_mu_phi")!=std::string::npos){
+      normbkg = 1.67505e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normdata= 397838;
+      normsig = 10485.3;
+    }
+    else if(var.find("lead_el_eta")!=std::string::npos || var.find("lead_el_phi")!=std::string::npos){
+      normbkg = 1.14165e+07;
+      normdata= 397899;
+      normsig = 7339;
     }
     else{
-      normbkg    = 2.81681e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-      normdata   = 516742;
-      normsig    = 17824.5;
+      normbkg = 2.81681e+07;
+      normdata= 516742;
+      normsig = 17824.5;
     }
+
     cout << "============= normalised ===============" << endl;
     cout << "var name = " << var << endl;
     cout << "normdata = " << normdata << endl;
