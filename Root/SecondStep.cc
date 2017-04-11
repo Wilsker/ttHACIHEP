@@ -1349,15 +1349,21 @@ void SecondStep::Process(char* inFile, string outDirPath){
     dEta_fn_ = DEta_fn;
     dev_from_avg_disc_btags_ = csvDev;
     dr_between_lep_and_closest_jet_ = Dr_between_lep_and_closest_jet;
-    if(SelElectronMVA_pt.size()>0){
+    if(SelElectronMVA_pt.size()==1 && is_e_ == true){
         lead_el_pt_ = SelElectronMVA_pt[0];
         lead_el_eta_ = SelElectronMVA_eta[0];
         lead_el_phi_ = SelElectronMVA_phi[0];
+        lead_mu_pt_ = -99;
+        lead_mu_eta_ = -99;
+        lead_mu_phi_ = -99;
     }
-    if(SelMuon_pt.size()>0){
+    if(SelMuon_pt.size()==1 && is_mu_ == true){
       lead_mu_pt_ = SelMuon_pt[0];
       lead_mu_eta_ = SelMuon_eta[0];
       lead_mu_phi_ = SelMuon_phi[0];
+      lead_el_pt_ = -99;
+      lead_el_eta_ = -99;
+      lead_el_phi_ = -99;
     }
     cout << "is_e_ = " << is_e_ << endl;
     cout << "lead_el_pt_ = " << lead_el_pt_ << endl;
