@@ -408,6 +408,10 @@ void StackPlots(){
         cout<<setw(5)<<"Data Histogram integral:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral()<<endl;
 
       }
+      else if (datatype==1){
+        //cout<<setw(5)<<"Total Signal Historgram Integral + overflow:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral(0,nbins_sig+1)<<endl;
+        cout<<setw(5)<<"Total Signal Historgram Integral:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral()<<endl;
+      }
     }
 
 
@@ -417,8 +421,7 @@ void StackPlots(){
     //Total background and signal integrals.
     cout<<setw(5)<<"bkgstackintegral :"<<setw(15)<<"Bkg"<<setw(15)<<bkgstackintegral<<endl;
     int nbins_sig = h_sig->GetNbinsX();
-    //cout<<setw(5)<<"Total Signal Historgram Integral + overflow:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral(0,nbins_sig+1)<<endl;
-    cout<<setw(5)<<"Total Signal Historgram Integral:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral()<<endl;
+
 
 
     //Draw
