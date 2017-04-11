@@ -308,7 +308,11 @@ void StackPlots(){
     for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) err_AllBkg[i][j] = 0.;
     for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) ent_AllBkg[i][j] = 0.;
 
+    cout << "======================== NEW VAR =================================" << endl;
+    cout << "Variable name = " << var[v] << endl;
+
     for(uint i=0; i<rootplas_size; i++){
+      cout << "======= Sample : " << rootplas[i] << "========" << endl;
       int datatype = -999;
       if(rootplas[i].find("ttHbb_Merged") != std::string::npos){
         datatype=1;
@@ -330,8 +334,6 @@ void StackPlots(){
       TH1F *h_var = get_th1f(var[v], v);
 
       //Histograms construction, fill, scaling etc.
-      cout << "=========================================================" << endl;
-      cout << "Variable name = " << var[v] << endl;
       cout << "datatype = " << datatype << endl;
       if(datatype==2){
         if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets") {
