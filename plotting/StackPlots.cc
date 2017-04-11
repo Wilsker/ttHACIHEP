@@ -72,10 +72,12 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
 const bool normalised   = true;
-const double normbkg    = /*1.11627e+08;*/1.862e+06; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-double normdata   = 516742;
-const double normsig    = /*130403;*/388861;
-
+//const double normbkg    = 2.81681e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+//const double normdata   = 516742;
+//const double normsig    = 17824.5;
+double normbkg = 1;
+double normdata = 1;
+double normsig = 1;
 // ===== Plots =====
 const bool save_plots   = true;
 const bool show_title   = true;
@@ -560,15 +562,19 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   if(normalised){
     if(var.find("lead_mu")!=std::string::npos || var.find("lead_el")!=std::string::npos){
       normdata=397838;
+      normbkg    = 1.67505e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normsig    = 10485.3;
     }
     else{
-      normdata=516742;
+      normbkg    = 2.81681e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normdata   = 516742;
+      normsig    = 17824.5;
     }
     cout << "============= normalised ===============" << endl;
     cout << "var name = " << var << endl;
-    cout << "1/normdata = " << 1/normdata << endl;
-    cout << "1/normsig = " << 1/normsig << endl;
-    cout << "1/normbkg = " << 1/normbkg << endl;
+    cout << "normdata = " << normdata << endl;
+    cout << "normsig = " << normsig << endl;
+    cout << "normbkg = " << normbkg << endl;
     if(datatype==0) hist->Scale(1/normdata);
     if(datatype==1) hist->Scale(1/normsig);
     if(datatype==2) hist->Scale(1/normbkg);
