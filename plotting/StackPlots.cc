@@ -73,7 +73,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
 const bool normalised   = false;
 const double normbkg    = /*1.11627e+08;*/1.862e+06; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-const double normdata   = 397838;//516742;
+const double normdata   = 516742;
 const double normsig    = /*130403;*/388861;
 
 // ===== Plots =====
@@ -558,6 +558,12 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   //Get errors, normalise
 
   if(normalised){
+    if(var.find("lead_mu")!=std::string::npos || var.find("lead_el")!=std::string::npos){
+      normdata=397838;
+    }
+    else{
+      normdata=516742;
+    }
     cout << "============= normalised ===============" << endl;
     cout << "var name = " << var << endl;
     cout << "1/normdata = " << 1/normdata << endl;
@@ -679,6 +685,12 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
   }
   //Get errors, normalise
   if(normalised){
+    if(var.find("lead_mu")!=std::string::npos || var.find("lead_el")!=std::string::npos){
+      normdata=397838;
+    }
+    else{
+      normdata=516742;
+    }
     cout << "============= normalised ===============" << endl;
     cout << "normdata = " << normdata << endl;
     cout << "normsig = " << normsig << endl;
