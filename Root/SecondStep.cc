@@ -1011,14 +1011,6 @@ void SecondStep::Process(char* inFile, string outDirPath){
     }
 
 
-    cout << "# Electrons: " << SelElectronMVA_pt.size() << endl;
-    cout << "# Muons: " << SelMuon_pt.size() << endl;
-    cout << "ELECTRON = " << ELECTRON << endl;
-    cout << "MUON = " << MUON << endl;
-    cout << "# Jets = " << SelTightJet_pt.size() << endl;
-    cout << "# btgs = " << nBCSVM_SL << endl;
-
-
 
     // Categorise events into analysis channels
     is_e_ = false;
@@ -1365,7 +1357,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
       lead_el_eta_ = -99;
       lead_el_phi_ = -99;
     }
-    
+
 
     number_electrons_ = SelElectronMVA_pt.size();
     number_muons_ = SelMuon_pt.size();
