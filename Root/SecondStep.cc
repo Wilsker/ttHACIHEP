@@ -544,7 +544,8 @@ void SecondStep::Process(char* inFile, string outDirPath){
   int HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ=0;
 
   int ttHFCategory=0;
-  int EVENT_event,EVENT_run,EVENT_lumiBlock;
+  ULong64_t EVENT_event;
+  int EVENT_run,EVENT_lumiBlock;
   double EVENT_genWeight;
   double trueInteractions;
   double EVENT_Q2tthbbWeightUp,EVENT_Q2tthbbWeightDown,EVENT_PDFtthbbWeightUp,EVENT_PDFtthbbWeightDown,PUWeight;
@@ -695,7 +696,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
 
   int firstEvent = 0;
   int neventsfilled = 0;
-  for (Int_t i=firstEvent;i<nentries; i++) {//if(i>10) break;
+  for (Int_t i=firstEvent;i<nentries; i++) {if(i>10) break;
     Long64_t tentry = oldtree->LoadTree(i);
     oldtree->GetEntry(i);
 
@@ -705,10 +706,10 @@ void SecondStep::Process(char* inFile, string outDirPath){
 
     //DONT FORGET TO REMOVE THIS!!!!!!!
     //cout << "EVENT_event = " << EVENT_event << endl;
-    //if(EVENT_event==2424579171){
-    //  cout << "============ Next event ===============" << endl;
-    //  cout << "EVENT_event = " << EVENT_event << endl;
-    //}
+    //if(EVENT_event!=1761047103){continue;}
+    //cout << "============ Next event ===============" << endl;
+    //cout << "EVENT_event = " << EVENT_event << endl;
+
 
     //DONT FORGET TO REMOVE THIS!!!!!!!
 
@@ -1010,6 +1011,12 @@ void SecondStep::Process(char* inFile, string outDirPath){
     }
 
 
+    cout << "# Electrons: " << SelElectronMVA_pt.size() << endl;
+    cout << "# Muons: " << SelMuon_pt.size() << endl;
+    cout << "ELECTRON = " << ELECTRON << endl;
+    cout << "MUON = " << MUON << endl;
+    cout << "# Jets = " << SelTightJet_pt.size() << endl;
+    cout << "# btgs = " << nBCSVM_SL << endl;
 
 
 
@@ -1352,6 +1359,15 @@ void SecondStep::Process(char* inFile, string outDirPath){
       lead_mu_eta_ = SelMuon_eta[0];
       lead_mu_phi_ = SelMuon_phi[0];
     }
+    cout << "is_e_ = " << is_e_ << endl;
+    cout << "lead_el_pt_ = " << lead_el_pt_ << endl;
+    cout << "lead_el_eta_ = " << lead_el_eta_ << endl;
+    cout << "lead_el_phi_ = " << lead_el_phi_ << endl;
+    cout << "is_mu_ = " << is_mu_ << endl;
+    cout << "lead_mu_pt_ = " << lead_mu_pt_ << endl;
+    cout << "lead_mu_eta_ = " << lead_mu_eta_ << endl;
+    cout << "lead_mu_phi_ = " << lead_mu_phi_ << endl;
+
     number_electrons_ = SelElectronMVA_pt.size();
     number_muons_ = SelMuon_pt.size();
     h0_ = H0;
