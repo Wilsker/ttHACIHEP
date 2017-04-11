@@ -211,50 +211,50 @@ const double endRange[numVar]   = {
 };
 /*
 const double inRange[numVar]    = {
-  -100,
-  -100,
-  -100,
-  -100,
-  -100,
-  -100,
-  -100,
-  -100,
-  -100,
-  -100,
-  -100,
-  -100,
-  -100,
-  -100,
-  -100,
-  -100,
-  -100,
-  -100,
-  -100,
-  -100,
-  -100
+  -1000,
+  -1000,
+  -1000,
+  -1000,
+  -1000,
+  -1000,
+  -1000,
+  -1000,
+  -1000,
+  -1000,
+  -1000,
+  -1000,
+  -1000,
+  -1000,
+  -1000,
+  -1000,
+  -1000,
+  -1000,
+  -1000,
+  -1000,
+  -1000
 };
 const double endRange[numVar]   = {
-  20,
-  2,
-  50,
-  50,
-  20,
-  500,
-  30,
-  20,
-  500,
-  500,
-  2,
-  500,
-  2,
-  500,
-  2,
-  500,
-  10,
-  10,
-  500,
-  10,
-  10
+  1000,
+  1000,
+  1000,
+  1000,
+  1000,
+  1000,
+  1000,
+  1000,
+  1000,
+  1000,
+  1000,
+  1000,
+  1000,
+  1000,
+  1000,
+  1000,
+  1000,
+  1000,
+  1000,
+  1000,
+  1000
 };
 */
 /////
@@ -287,8 +287,6 @@ void StackPlots(){
   vector<string> var(variables, variables + sizeof(variables)/sizeof(variables[0]));
   vector<string> varTitleXaxis(titleXaxis, titleXaxis + sizeof(titleXaxis)/sizeof(titleXaxis[0]));
   for(uint v=ini_var; v<fin_var; v++){
-    cout<< "Variable = " << var[v]<<endl;
-
 
     //Declare legend
     TLegend *leg = get_legend();
@@ -388,7 +386,8 @@ void StackPlots(){
         hstack->Add(h_var);
         //Get integral for bckg histogram of given variable.
         int nbins = h_var->GetNbinsX();
-        cout<<setw(5)<<"Bckg Histogram integral + overflow:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral(0,nbins+1)<<endl;
+        //cout<<setw(5)<<"Bckg Histogram integral + overflow:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral(0,nbins+1)<<endl;
+        cout<<setw(5)<<"Bckg Histogram integral + overflow:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
         //Add integral to total bckg integral of given variable.
         bkgstackintegral += h_var->Integral(0,nbins+1);
 
@@ -402,16 +401,21 @@ void StackPlots(){
       else if(datatype==0){
         //Get integral of data histogram for given variable.
         int nbins = h_data_var->GetNbinsX();
-        cout<<setw(5)<<"Data Histogram integral + overflow:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral(0,nbins+1)<<endl;
+        //cout<<setw(5)<<"Data Histogram integral + overflow:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral(0,nbins+1)<<endl;
+        cout<<setw(5)<<"Data Histogram integral + overflow:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral()<<endl;
+
       }
     }
 
 
-    cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<h_sum_var->Integral(0,h_sum_var->GetNbinsX()+1)<<endl;
+    //cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<h_sum_var->Integral(0,h_sum_var->GetNbinsX()+1)<<endl;
+    cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<h_sum_var->Integral()<<endl;
+
     //Total background and signal integrals.
-    cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<bkgstackintegral<<endl;
+    cout<<setw(5)<<"bkgstackintegral :"<<setw(15)<<"Bkg"<<setw(15)<<bkgstackintegral<<endl;
     int nbins_sig = h_sig->GetNbinsX();
-    cout<<setw(5)<<"Total Signal Historgram Integral + overflow:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral(0,nbins_sig+1)<<endl;
+    //cout<<setw(5)<<"Total Signal Historgram Integral + overflow:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral(0,nbins_sig+1)<<endl;
+    cout<<setw(5)<<"Total Signal Historgram Integral + overflow:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral()<<endl;
 
 
     //Draw
