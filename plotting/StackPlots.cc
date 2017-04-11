@@ -89,7 +89,7 @@ const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 15;
+const unsigned int ini_var = 0;
 const unsigned int fin_var = 21;
 const int posvtcr          = 0;
 
@@ -696,13 +696,24 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
     }
   }
   //Get errors, normalise
+
   if(normalised){
-    if(var.find("lead_mu")!=std::string::npos || var.find("lead_el")!=std::string::npos){
-      normdata=397838;
+    if(var.find("lead_mu_eta")!=std::string::npos || var.find("lead_mu_phi")!=std::string::npos){
+      normbkg = 1.67505e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normdata= 397838;
+      normsig = 10485.3;
+    }
+    else if(var.find("lead_el_eta")!=std::string::npos || var.find("lead_el_phi")!=std::string::npos){
+      normbkg = 1.14165e+07;
+      normdata= 397899;
+      normsig = 7339;
     }
     else{
-      normdata=516742;
+      normbkg = 2.81681e+07;
+      normdata= 516742;
+      normsig = 17824.5;
     }
+
     cout << "============= normalised ===============" << endl;
     cout << "normdata = " << normdata << endl;
     cout << "normsig = " << normsig << endl;
