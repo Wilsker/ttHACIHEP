@@ -71,13 +71,13 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = false;
+const bool normalised   = true;
 //const double normbkg    = 2.81681e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 //const double normdata   = 516742;
 //const double normsig    = 17824.5;
-double normbkg = 1;
-double normdata = 1;
-double normsig = 1;
+double normbkg = 2.81678e+07;
+double normdata = 681035;
+double normsig = 17824.3;
 // ===== Plots =====
 const bool save_plots   = true;
 const bool show_title   = true;
@@ -394,7 +394,7 @@ void StackPlots(){
         cout<<setw(5)<<"Bckg Histogram integral + overflow:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral(0,nbins+1)<<endl;
         //cout<<setw(5)<<"Bckg Histogram integral:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
         //Add integral to total bckg integral of given variable.
-        bkgstackintegral += h_var->Integral();
+        bkgstackintegral += h_var->Integral(0,nbins+1);
 
 
         leg->AddEntry(h_var,bckg_mc_nickname.c_str(),"F");
@@ -560,7 +560,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   //Get errors, normalise
 
   if(normalised){
-    if(var.find("lead_mu_eta")!=std::string::npos || var.find("lead_mu_phi")!=std::string::npos){
+    /*if(var.find("lead_mu_eta")!=std::string::npos || var.find("lead_mu_phi")!=std::string::npos){
       normbkg = 1.67505e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata= 397838;
       normsig = 10485.3;
@@ -574,7 +574,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
       normbkg = 2.81681e+07;
       normdata= 516742;
       normsig = 17824.5;
-    }
+    }*/
 
     cout << "============= normalised ===============" << endl;
     cout << "var name = " << var << endl;
@@ -698,7 +698,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
   //Get errors, normalise
 
   if(normalised){
-    if(var.find("lead_mu_eta")!=std::string::npos || var.find("lead_mu_phi")!=std::string::npos){
+    /*if(var.find("lead_mu_eta")!=std::string::npos || var.find("lead_mu_phi")!=std::string::npos){
       normbkg = 1.67505e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata= 397838;
       normsig = 10485.3;
@@ -712,7 +712,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
       normbkg = 2.81681e+07;
       normdata= 516742;
       normsig = 17824.5;
-    }
+    }*/
 
     cout << "============= normalised ===============" << endl;
     cout << "normdata = " << normdata << endl;
