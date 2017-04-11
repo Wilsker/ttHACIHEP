@@ -391,8 +391,8 @@ void StackPlots(){
         hstack->Add(h_var);
         //Get integral for bckg histogram of given variable.
         int nbins = h_var->GetNbinsX();
-        //cout<<setw(5)<<"Bckg Histogram integral + overflow:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral(0,nbins+1)<<endl;
-        cout<<setw(5)<<"Bckg Histogram integral:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
+        cout<<setw(5)<<"Bckg Histogram integral + overflow:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral(0,nbins+1)<<endl;
+        //cout<<setw(5)<<"Bckg Histogram integral:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
         //Add integral to total bckg integral of given variable.
         bkgstackintegral += h_var->Integral();
 
@@ -406,19 +406,19 @@ void StackPlots(){
       else if(datatype==0){
         //Get integral of data histogram for given variable.
         int nbins = h_data_var->GetNbinsX();
-        //cout<<setw(5)<<"Data Histogram integral + overflow:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral(0,nbins+1)<<endl;
-        cout<<setw(5)<<"Data Histogram integral:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral()<<endl;
+        cout<<setw(5)<<"Data Histogram integral + overflow:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral(0,nbins+1)<<endl;
+        //cout<<setw(5)<<"Data Histogram integral:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral()<<endl;
 
       }
       else if (datatype==1){
-        //cout<<setw(5)<<"Total Signal Historgram Integral + overflow:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral(0,nbins_sig+1)<<endl;
-        cout<<setw(5)<<"Total Signal Historgram Integral:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral()<<endl;
+        cout<<setw(5)<<"Total Signal Historgram Integral + overflow:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral(0,nbins_sig+1)<<endl;
+        //cout<<setw(5)<<"Total Signal Historgram Integral:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral()<<endl;
       }
     }
 
     cout << "========= TOTAL BCKG =========" << endl;
-    //cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<h_sum_var->Integral(0,h_sum_var->GetNbinsX()+1)<<endl;
-    cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<h_sum_var->Integral()<<endl;
+    cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<h_sum_var->Integral(0,h_sum_var->GetNbinsX()+1)<<endl;
+    //cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<h_sum_var->Integral()<<endl;
 
     //Total background and signal integrals.
     cout<<setw(5)<<"bkgstackintegral :"<<setw(15)<<"Bkg"<<setw(15)<<bkgstackintegral<<endl;
@@ -824,8 +824,6 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   h_sig->SetLineColor(kGreen+4);
 
   //Draw data and bckg MC
-
-  cout << "h_data_var integral = " << h_data_var->Integral() << endl;
 
   h_data_var->Draw("P");
   hstack->Draw("HIST same");
