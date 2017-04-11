@@ -549,12 +549,15 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
 
   if(normalised){
     cout << "============= normalised ===============" << endl;
-    cout << "normdata = " << normdata << endl;
-    cout << "normsig = " << normsig << endl;
-    cout << "normbkg = " << normbkg << endl;
+    cout << "var name = " << var << endl;
+    cout << "1/normdata = " << 1/normdata << endl;
+    cout << "1/normsig = " << 1/normsig << endl;
+    cout << "1/normbkg = " << 1/normbkg << endl;
     if(datatype==0) hist->Scale(1/normdata);
     if(datatype==1) hist->Scale(1/normsig);
     if(datatype==2) hist->Scale(1/normbkg);
+    cout << "hist integral " << hist->Integral() << endl;
+    cout << "========================================" << endl;
   }
   if(datatype==2){
     for(int j=0; j<bin[v]; j++){
@@ -687,7 +690,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
 
 
 void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var, TH1F* h_sig, TLegend* leg, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], uint rootplas_size, int v, string var, string vartitle, double highestbinval){
-  cout << "draw_plots function = " << endl;
+  cout << "====== StackPlots::draw_plots() ======" << endl;
   //Canvas
   if(logYscale[v]==1) c1->SetLogy();
   if(show_ratio){
