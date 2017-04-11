@@ -696,7 +696,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
 
   int firstEvent = 0;
   int neventsfilled = 0;
-  for (Int_t i=firstEvent;i<nentries; i++) {if(i>100) break;
+  for (Int_t i=firstEvent;i<nentries; i++) {//if(i>100) break;
     Long64_t tentry = oldtree->LoadTree(i);
     oldtree->GetEntry(i);
 
@@ -1365,14 +1365,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
       lead_el_eta_ = -99;
       lead_el_phi_ = -99;
     }
-    cout << "is_e_ = " << is_e_ << endl;
-    cout << "lead_el_pt_ = " << lead_el_pt_ << endl;
-    cout << "lead_el_eta_ = " << lead_el_eta_ << endl;
-    cout << "lead_el_phi_ = " << lead_el_phi_ << endl;
-    cout << "is_mu_ = " << is_mu_ << endl;
-    cout << "lead_mu_pt_ = " << lead_mu_pt_ << endl;
-    cout << "lead_mu_eta_ = " << lead_mu_eta_ << endl;
-    cout << "lead_mu_phi_ = " << lead_mu_phi_ << endl;
+    
 
     number_electrons_ = SelElectronMVA_pt.size();
     number_muons_ = SelMuon_pt.size();
