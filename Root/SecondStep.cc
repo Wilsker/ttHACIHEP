@@ -696,7 +696,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
 
   int firstEvent = 0;
   int neventsfilled = 0;
-  for (Int_t i=firstEvent;i<nentries; i++) {if(i>10) break;
+  for (Int_t i=firstEvent;i<nentries; i++) {if(i>100) break;
     Long64_t tentry = oldtree->LoadTree(i);
     oldtree->GetEntry(i);
 
