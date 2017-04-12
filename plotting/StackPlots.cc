@@ -204,7 +204,7 @@ const double inRange[numVar]    = {
 };
 const double endRange[numVar]   = {
   10,
-  0.1,
+  0.05,
   10,
   20,
   3,
