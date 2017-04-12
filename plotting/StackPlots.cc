@@ -151,7 +151,7 @@ const char *titleXaxis[]        = {
 };
 const int    bin[numVar]        = {
   50,
-  20,
+  10,
   40,
   40,
   6,
@@ -204,7 +204,7 @@ const double inRange[numVar]    = {
 };
 const double endRange[numVar]   = {
   20,
-  0.6,
+  0.1,
   20,
   20,
   5,
