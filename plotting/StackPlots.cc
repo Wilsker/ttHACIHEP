@@ -408,6 +408,11 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   //Call tree and variables
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
 
+  normbkg = 2.81678e+07;
+  normdata = 681035;
+  normsig = 17824.3;
+
+  
   double curr_var;
   TBranch *b_curr_var = 0;
   tree->SetBranchAddress(var.c_str(),&curr_var,&b_curr_var);
@@ -514,21 +519,6 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   //Get errors, normalise
 
   if(normalised){
-    if(var.find("BJetness")!=std::string::npos){
-      normbkg = 1.67505e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-      normdata= 397838;
-      normsig = 10485.3;
-    }/*
-    else if(var.find("lead_el_eta")!=std::string::npos || var.find("lead_el_phi")!=std::string::npos){
-      normbkg = 1.14165e+07;
-      normdata= 397899;
-      normsig = 7339;
-    }
-    else{
-      normbkg = 2.81681e+07;
-      normdata= 516742;
-      normsig = 17824.5;
-    }*/
 
     cout << "============= normalised ===============" << endl;
     cout << "var name = " << var << endl;
@@ -557,7 +547,9 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
   //Call tree and variables
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
 
-
+  normbkg = 2.81678e+07;
+  normdata = 681035;
+  normsig = 17824.3;
 
   int curr_var;
   TBranch *b_curr_var = 0;
@@ -654,21 +646,6 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
   //Get errors, normalise
 
   if(normalised){
-    /*if(var.find("lead_mu_eta")!=std::string::npos || var.find("lead_mu_phi")!=std::string::npos){
-      normbkg = 1.67505e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-      normdata= 397838;
-      normsig = 10485.3;
-    }
-    else if(var.find("lead_el_eta")!=std::string::npos || var.find("lead_el_phi")!=std::string::npos){
-      normbkg = 1.14165e+07;
-      normdata= 397899;
-      normsig = 7339;
-    }
-    else{
-      normbkg = 2.81681e+07;
-      normdata= 516742;
-      normsig = 17824.5;
-    }*/
 
     cout << "============= normalised ===============" << endl;
     cout << "normdata = " << normdata << endl;
@@ -706,9 +683,6 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
   tree->SetBranchAddress(var.c_str(),&var_vals,&b_var_vals);
 
   double curr_var;
-
-  //TBranch *b_curr_var = 0;
-  //tree->SetBranchAddress(var.c_str(),&curr_var,&b_curr_var);
 
   double PUWeight;
   TBranch *b_PUWeight = 0;
@@ -781,9 +755,6 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
 
     if(var_vals->size()==0) continue;
     for(int k =0; k<var_vals->size(); k++){
-      //for(int k =0; k<var_vals->size(); k++){
-      //  cout << "var_vals @ k = " << var_vals->at(k) << endl;
-      //}
 
       curr_var = var_vals->at(k);
 
@@ -823,21 +794,16 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
   //Get errors, normalise
 
   if(normalised){
-    /*if(var.find("lead_mu_eta")!=std::string::npos || var.find("lead_mu_phi")!=std::string::npos){
+    if(var.find("BJetness")!=std::string::npos){
       normbkg = 1.67505e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-      normdata= 397838;
-      normsig = 10485.3;
-    }
-    else if(var.find("lead_el_eta")!=std::string::npos || var.find("lead_el_phi")!=std::string::npos){
-      normbkg = 1.14165e+07;
-      normdata= 397899;
-      normsig = 7339;
+      normdata= 2.76786e+07;
+      normsig =17824.5;
     }
     else{
-      normbkg = 2.81681e+07;
-      normdata= 516742;
-      normsig = 17824.5;
-    }*/
+      normbkg = 2.81678e+07;
+      normdata = 681035;
+      normsig = 17824.3;
+    }
 
     cout << "============= normalised ===============" << endl;
     cout << "var name = " << var << endl;
