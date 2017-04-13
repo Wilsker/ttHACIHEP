@@ -467,7 +467,6 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   hist_err->Sumw2();
   int tripwire = 0;
   for(int j=0; j<tree->GetEntries(); j++)
-  //for(int j=0; j<5; j++)
   {
     double w = 1.;
     Long64_t tentry = tree->LoadTree(j);
@@ -515,11 +514,11 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   //Get errors, normalise
 
   if(normalised){
-    /*if(var.find("lead_mu_eta")!=std::string::npos || var.find("lead_mu_phi")!=std::string::npos){
+    if(var.find("BJetness")!=std::string::npos){
       normbkg = 1.67505e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata= 397838;
       normsig = 10485.3;
-    }
+    }/*
     else if(var.find("lead_el_eta")!=std::string::npos || var.find("lead_el_phi")!=std::string::npos){
       normbkg = 1.14165e+07;
       normdata= 397899;
@@ -781,42 +780,44 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
     b_Muon_TrkSFval->GetEntry(tentry);
 
     if(var_vals->size()==0) continue;
-    //for(int k =0; k<var_vals->size(); k++){
-    //  cout << "var_vals @ k = " << var_vals->at(k) << endl;
-    //}
+    for(int k =0; k<var_vals->size(); k++){
+      //for(int k =0; k<var_vals->size(); k++){
+      //  cout << "var_vals @ k = " << var_vals->at(k) << endl;
+      //}
 
-    curr_var = var_vals->at(0);
+      curr_var = var_vals->at(k);
 
-    if(datatype!=0){
-      b_lumiweight->GetEntry(tentry);
-      b_trigger_SF->GetEntry(tentry);
+      if(datatype!=0){
+        b_lumiweight->GetEntry(tentry);
+        b_trigger_SF->GetEntry(tentry);
 
-      if(LumiNorm) {
-        w = w*lumiweight*Luminosity;
+        if(LumiNorm) {
+          w = w*lumiweight*Luminosity;
+        }
+        if(PUcorr){
+          w = w*PUWeight;
+        }
+        if(SF){
+          w = w*bWeight;
+        }
+        if(scale!=0){
+          w = w*scale;
+        }
+        if(LeptonSFs) {
+          w = w*Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval;
+        }
+        if(triggerSFs){
+          //cout << "triggerSFs = " << trigger_SF << endl;
+          w = w*trigger_SF;
+        }
+        if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
+        if(curr_var>=endRange[v])                      {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
+        if(curr_var<=inRange[v])                       {hist->Fill(1.01*inRange[v],w);  hist_err->Fill(1.01*inRange[v],w*w);}
+      }else{
+        if(inRange[v]<curr_var && curr_var<endRange[v]) hist->Fill(curr_var);
+        if(curr_var>=endRange[v])                       hist->Fill(0.99*endRange[v]);
+        if(curr_var<=inRange[v])                        hist->Fill(1.01*inRange[v]);
       }
-      if(PUcorr){
-        w = w*PUWeight;
-      }
-      if(SF){
-        w = w*bWeight;
-      }
-      if(scale!=0){
-        w = w*scale;
-      }
-      if(LeptonSFs) {
-        w = w*Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval;
-      }
-      if(triggerSFs){
-        //cout << "triggerSFs = " << trigger_SF << endl;
-        w = w*trigger_SF;
-      }
-      if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
-      if(curr_var>=endRange[v])                      {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
-      if(curr_var<=inRange[v])                       {hist->Fill(1.01*inRange[v],w);  hist_err->Fill(1.01*inRange[v],w*w);}
-    }else{
-      if(inRange[v]<curr_var && curr_var<endRange[v]) hist->Fill(curr_var);
-      if(curr_var>=endRange[v])                       hist->Fill(0.99*endRange[v]);
-      if(curr_var<=inRange[v])                        hist->Fill(1.01*inRange[v]);
     }
   }
   //Get errors, normalise
