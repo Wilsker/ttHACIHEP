@@ -210,6 +210,7 @@ const double endRange[numVar]   = {
 TFile* Call_TFile(string rootpla);
 TH1F* double_h_var(unsigned int v, string var, string vaT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype);
 TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype);
+TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype);
 void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var, TH1F* h_sig, TLegend* leg, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], uint rootplas_size, int v, string var, string vartitle, double highestbinval);
 void draw_lines(double x1, double y1, double x2, double y2);
 int      get_col(string name);
@@ -283,8 +284,11 @@ void StackPlots(){
       //Histograms construction, fill, scaling etc.
       cout << "datatype = " << datatype << endl;
       if(datatype==2){
-        if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets") {
+        if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets" && var[v]!="BJetness_num_pdgid_eles") {
           h_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
+        }
+        else if (var[v]=="BJetness_num_pdgid_eles"){
+          h_var = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else{
           h_var  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
@@ -294,6 +298,9 @@ void StackPlots(){
         if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets") {
           h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
+        else if (var[v]=="BJetness_num_pdgid_eles"){
+          h_sig = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
+        }
         else{
           h_sig  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
@@ -301,6 +308,9 @@ void StackPlots(){
       else{
         if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets") {
           h_data_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
+        }
+        else if (var[v]=="BJetness_num_pdgid_eles"){
+          h_data_var = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else{
           h_data_var  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
@@ -548,6 +558,12 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
   //Call tree and variables
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
 
+  if(var.c_str()==)
+  //vector <double> * curr_var;
+  //curr_var = 0;
+  //TBranch *b_curr_var = 0;
+  //tree->SetBranchAddress(var.c_str(),&curr_var,&b_curr_var);
+
   int curr_var;
   TBranch *b_curr_var = 0;
   tree->SetBranchAddress(var.c_str(),&curr_var,&b_curr_var);
@@ -677,6 +693,170 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
   delete tree;
   return hist;
 }
+
+
+
+
+//Vector<doubles>
+/////
+//   Fill histo with vector<double> type
+/////
+TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype){
+  //Call tree and variables
+  TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
+  vector <double> * curr_var;
+  curr_var = 0;
+  TBranch *b_curr_var = 0;
+  tree->SetBranchAddress(var.c_str(),&curr_var,&b_curr_var);
+
+  //double curr_var;
+  //TBranch *b_curr_var = 0;
+  //tree->SetBranchAddress(var.c_str(),&curr_var,&b_curr_var);
+
+  double PUWeight;
+  TBranch *b_PUWeight = 0;
+  tree->SetBranchAddress("PUWeight",&PUWeight,&b_PUWeight);
+
+  //====== Lepton SFs ======
+
+  //Electron Reco SFs
+  double Electron_GsfSFval;
+  TBranch* b_Electron_GsfSFval = 0;
+  tree->SetBranchAddress("Electron_GsfSFval",&Electron_GsfSFval,&b_Electron_GsfSFval);
+  //Electron ID SFs
+  double Electron_IDSFval;
+  TBranch* b_Electron_IDSFval = 0;
+  tree->SetBranchAddress("Electron_IDSFval",&Electron_IDSFval,&b_Electron_IDSFval);
+  //Muon ID SFs
+  double Muon_IDSFval;
+  TBranch* b_Muon_IDSFval;
+  tree->SetBranchAddress("Muon_IDSFval",&Muon_IDSFval,&b_Muon_IDSFval);
+  //Muon Iso SFs
+  double Muon_IsoSFval;
+  TBranch* b_Muon_IsoSFval = 0;
+  tree->SetBranchAddress("Muon_IsoSFval",&Muon_IsoSFval,&b_Muon_IsoSFval);
+  //Muon Track SF
+  double Muon_TrkSFval;
+  TBranch* b_Muon_TrkSFval = 0;
+  tree->SetBranchAddress("Muon_TrkSFval",&Muon_TrkSFval,&b_Muon_TrkSFval);
+
+  //=========================
+
+  double trigger_SF;
+  TBranch* b_trigger_SF = 0;
+  Float_t lumiweight;
+  TBranch *b_lumiweight = 0;
+  if(datatype!=0){
+    tree->SetBranchAddress("lumiweight",&lumiweight,&b_lumiweight);
+    tree->SetBranchAddress("trigger_SF",&trigger_SF,&b_trigger_SF);
+  }
+  else{lumiweight=1;}
+
+  double bWeight;
+  TBranch *b_bWeight = 0;
+  tree->SetBranchAddress("bWeight",&bWeight,&b_bWeight);
+
+  //Construct histogram
+  TH1F *hist = get_th1f(var, v);
+
+  //Dress histogram
+  hist->SetTitle(0);
+  hist->SetLineColor(1);
+
+  TH1F *hist_err;
+  if(var=="BJetness_num_vetonoipnoiso_leps" && doasym) hist_err = new TH1F("hist_err","hist_err",bin[v],asymbin);
+  else                         hist_err = new TH1F("hist_err","hist_err",bin[v],inRange[v],endRange[v]);
+  hist_err->Sumw2();
+  int tripwire = 0;
+  for(int j=0; j<tree->GetEntries(); j++)
+  //for(int j=0; j<5; j++)
+  {
+    double w = 1.;
+    Long64_t tentry = tree->LoadTree(j);
+    b_curr_var->GetEntry(tentry);
+    b_PUWeight->GetEntry(tentry);
+    b_bWeight->GetEntry(tentry);
+    b_Electron_GsfSFval->GetEntry(tentry);
+    b_Electron_IDSFval->GetEntry(tentry);
+    b_Muon_IDSFval->GetEntry(tentry);
+    b_Muon_IsoSFval->GetEntry(tentry);
+    b_Muon_TrkSFval->GetEntry(tentry);
+
+    if(datatype!=0){
+      b_lumiweight->GetEntry(tentry);
+      b_trigger_SF->GetEntry(tentry);
+
+      if(LumiNorm) {
+        w = w*lumiweight*Luminosity;
+      }
+      if(PUcorr){
+        w = w*PUWeight;
+      }
+      if(SF){
+        w = w*bWeight;
+      }
+      if(scale!=0){
+        w = w*scale;
+      }
+      if(LeptonSFs) {
+        w = w*Electron_GsfSFval*Electron_IDSFval*Muon_IDSFval*Muon_IsoSFval*Muon_TrkSFval;
+      }
+      if(triggerSFs){
+        //cout << "triggerSFs = " << trigger_SF << endl;
+        w = w*trigger_SF;
+      }
+      if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
+      if(curr_var>=endRange[v])                      {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
+      if(curr_var<=inRange[v])                       {hist->Fill(1.01*inRange[v],w);  hist_err->Fill(1.01*inRange[v],w*w);}
+    }else{
+      if(inRange[v]<curr_var && curr_var<endRange[v]) hist->Fill(curr_var);
+      if(curr_var>=endRange[v])                       hist->Fill(0.99*endRange[v]);
+      if(curr_var<=inRange[v])                        hist->Fill(1.01*inRange[v]);
+    }
+  }
+  //Get errors, normalise
+
+  if(normalised){
+    /*if(var.find("lead_mu_eta")!=std::string::npos || var.find("lead_mu_phi")!=std::string::npos){
+      normbkg = 1.67505e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normdata= 397838;
+      normsig = 10485.3;
+    }
+    else if(var.find("lead_el_eta")!=std::string::npos || var.find("lead_el_phi")!=std::string::npos){
+      normbkg = 1.14165e+07;
+      normdata= 397899;
+      normsig = 7339;
+    }
+    else{
+      normbkg = 2.81681e+07;
+      normdata= 516742;
+      normsig = 17824.5;
+    }*/
+
+    cout << "============= normalised ===============" << endl;
+    cout << "var name = " << var << endl;
+    cout << "normdata = " << normdata << endl;
+    cout << "normsig = " << normsig << endl;
+    cout << "normbkg = " << normbkg << endl;
+    if(datatype==0) hist->Scale(1/normdata);
+    if(datatype==1) hist->Scale(1/normsig);
+    if(datatype==2) hist->Scale(1/normbkg);
+    cout << "hist integral " << hist->Integral() << endl;
+    cout << "========================================" << endl;
+  }
+  if(datatype==2){
+    for(int j=0; j<bin[v]; j++){
+      ent_AllBkg[i][j] = hist->GetBinContent(j+1);
+      err_AllBkg[i][j] = sqrt(hist_err->GetBinContent(j+1));
+      if(normalised)   err_AllBkg[i][j] = err_AllBkg[i][j]/normbkg;
+    }
+  }
+  delete tree;
+  return hist;
+}
+
+
+
 
 
 void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var, TH1F* h_sig, TLegend* leg, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], uint rootplas_size, int v, string var, string vartitle, double highestbinval){
