@@ -558,11 +558,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
   //Call tree and variables
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
 
-  if(var.c_str()==)
-  //vector <double> * curr_var;
-  //curr_var = 0;
-  //TBranch *b_curr_var = 0;
-  //tree->SetBranchAddress(var.c_str(),&curr_var,&b_curr_var);
+
 
   int curr_var;
   TBranch *b_curr_var = 0;
