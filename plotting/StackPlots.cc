@@ -295,7 +295,7 @@ void StackPlots(){
         }
       }
       else if(datatype==1){
-        if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets") {
+        if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets"&& var[v]!="BJetness_num_pdgid_eles") {
           h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else if (var[v]=="BJetness_num_pdgid_eles"){
@@ -306,7 +306,7 @@ void StackPlots(){
         }
       }
       else{
-        if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets") {
+        if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets"&& var[v]!="BJetness_num_pdgid_eles") {
           h_data_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else if (var[v]=="BJetness_num_pdgid_eles"){
