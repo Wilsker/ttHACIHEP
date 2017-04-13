@@ -71,7 +71,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = true;
+const bool normalised   = false;
 //const double normbkg    = 2.81681e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 //const double normdata   = 516742;
 //const double normsig    = 17824.5;
@@ -83,8 +83,8 @@ const bool save_plots   = true;
 const bool show_title   = true;
 const bool doasym       = false;
 const double asymbin[6] = {0,3,4,9,15,20};
-const int    numVar     = 19;
-const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+const int    numVar     = 38;
+const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 //const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 const int    col_size   = 500; //>= highest bin
 
@@ -98,6 +98,25 @@ const int posvtcr          = 0;
 
 const char *variables[]         = {
   "BJetness_num_pdgid_eles",
+  "BJetness_num_soft_eles",
+  "BJetness_num_vetonoipnoiso_eles",
+  "BJetness_num_loosenoipnoiso_eles",
+  "BJetness_num_veto_eles",
+  "BJetness_num_loose_eles",
+  "BJetness_num_medium_eles",
+  "BJetness_num_tight_eles",
+  "BJetness_num_mvatrig_eles",
+  "BJetness_num_mvanontrig_eles",
+  "BJetness_num_mvatrigwp90_eles",
+  "BJetness_num_mvanontrigwp90_eles",
+  "BJetness_num_heep_eles",
+  "BJetness_num_pdgid_mus",
+  "BJetness_num_loose_mus",
+  "BJetness_num_soft_mus",
+  "BJetness_num_medium_mus",
+  "BJetness_num_tight_mus",
+  "BJetness_num_highpt_mus",
+  "BJetness_num_POGisGood_mus",
   "NumberOfJets",
   "NumberOfBJets",
   "first_jet_pt",
@@ -119,6 +138,25 @@ const char *variables[]         = {
 };
 const char *titleXaxis[]        = {
   "BJetness # pdgid el",
+  "BJetness_num_soft_eles",
+  "BJetness_num_vetonoipnoiso_eles",
+  "BJetness_num_loosenoipnoiso_eles",
+  "BJetness_num_veto_eles",
+  "BJetness_num_loose_eles",
+  "BJetness_num_medium_eles",
+  "BJetness_num_tight_eles",
+  "BJetness_num_mvatrig_eles",
+  "BJetness_num_mvanontrig_eles",
+  "BJetness_num_mvatrigwp90_eles",
+  "BJetness_num_mvanontrigwp90_eles",
+  "BJetness_num_heep_eles",
+  "BJetness_num_pdgid_mus",
+  "BJetness_num_loose_mus",
+  "BJetness_num_soft_mus",
+  "BJetness_num_medium_mus",
+  "BJetness_num_tight_mus",
+  "BJetness_num_highpt_mus",
+  "BJetness_num_POGisGood_mus",
   "# Jets",
   "# BJets",
   "Lead Jet pt",
@@ -142,6 +180,25 @@ const char *titleXaxis[]        = {
 const int    bin[numVar]        = {
   6,
   6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
   4,
   50,
   50,
@@ -163,6 +220,25 @@ const int    bin[numVar]        = {
 };
 const double inRange[numVar]    = {
   0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
   4,
   2,
   0,
@@ -183,6 +259,25 @@ const double inRange[numVar]    = {
   -4
 };
 const double endRange[numVar]   = {
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
   6,
   10,
   6,
