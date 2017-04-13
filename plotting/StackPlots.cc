@@ -412,7 +412,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   normdata = 681035;
   normsig = 17824.3;
 
-  
+
   double curr_var;
   TBranch *b_curr_var = 0;
   tree->SetBranchAddress(var.c_str(),&curr_var,&b_curr_var);
@@ -795,9 +795,9 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
 
   if(normalised){
     if(var.find("BJetness")!=std::string::npos){
-      normbkg = 1.67505e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-      normdata= 2.76786e+07;
-      normsig =17824.5;
+      normbkg = 2.76786e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normdata= 660109;
+      normsig = 17518.3;
     }
     else{
       normbkg = 2.81678e+07;
