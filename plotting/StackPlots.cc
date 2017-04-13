@@ -71,7 +71,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = true;
+const bool normalised   = false;
 //const double normbkg    = 2.81681e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 //const double normdata   = 516742;
 //const double normsig    = 17824.5;
@@ -83,26 +83,21 @@ const bool save_plots   = true;
 const bool show_title   = true;
 const bool doasym       = false;
 const double asymbin[6] = {0,3,4,9,15,20};
-const int    numVar     = 24;
-const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+const int    numVar     = 19;
+const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 //const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
 const unsigned int ini_var = 0;
-const unsigned int fin_var = 24;
+const unsigned int fin_var = 19;
 const int posvtcr          = 0;
 
 
 // Variables list:
 
 const char *variables[]         = {
-  "BJetness_avsip3dsig",
-  "BJetness_avip3dval",
-  "BJetness_avip3dsig",
-  "BJetness_avip1dsig",
-  "BJetness_numleps",
-  "BJetness_jetpt0",
+  "BJetness_num_pdgid_eles",
   "NumberOfJets",
   "NumberOfBJets",
   "first_jet_pt",
@@ -123,12 +118,7 @@ const char *variables[]         = {
   "lead_lep_phi"
 };
 const char *titleXaxis[]        = {
-  "Average Signed IP 3D Sig",
-  "Average IP 3D Val",
-  "Average IP 3D Sig",
-  "Average IP 1D Sig",
-  "BJetness Number of Leptons",
-  "0th BJetness Jet Pt",
+  "BJetness # pdgid el",
   "# Jets",
   "# BJets",
   "Lead Jet pt",
@@ -150,12 +140,7 @@ const char *titleXaxis[]        = {
 
 };
 const int    bin[numVar]        = {
-  50,
-  10,
-  40,
-  40,
-  3,
-  50,
+  6,
   6,
   4,
   50,
@@ -177,11 +162,6 @@ const int    bin[numVar]        = {
 
 };
 const double inRange[numVar]    = {
-  -2,
-  0,
-  0,
-  0,
-  0,
   0,
   4,
   2,
@@ -203,12 +183,7 @@ const double inRange[numVar]    = {
   -4
 };
 const double endRange[numVar]   = {
-  10,
-  0.05,
-  10,
-  20,
-  3,
-  300,
+  6,
   10,
   6,
   300,
@@ -228,54 +203,7 @@ const double endRange[numVar]   = {
   3,
   4
 };
-/*
-const double inRange[numVar]    = {
-  -1000,
-  -1000,
-  -1000,
-  -1000,
-  -1000,
-  -1000,
-  -1000,
-  -1000,
-  -1000,
-  -1000,
-  -1000,
-  -1000,
-  -1000,
-  -1000,
-  -1000,
-  -1000,
-  -1000,
-  -1000,
-  -1000,
-  -1000,
-  -1000
-};
-const double endRange[numVar]   = {
-  1000,
-  1000,
-  1000,
-  1000,
-  1000,
-  1000,
-  1000,
-  1000,
-  1000,
-  1000,
-  1000,
-  1000,
-  1000,
-  1000,
-  1000,
-  1000,
-  1000,
-  1000,
-  1000,
-  1000,
-  1000
-};
-*/
+
 /////
 //   Declare functions
 /////
