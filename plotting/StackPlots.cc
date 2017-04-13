@@ -700,12 +700,13 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
 TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype){
   //Call tree and variables
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
-  vector <double> * curr_var;
-  curr_var = 0;
-  TBranch *b_curr_var = 0;
-  tree->SetBranchAddress(var.c_str(),&curr_var,&b_curr_var);
+  vector <double> * var_vals;
+  var_vals = 0;
+  TBranch *b_var_vals = 0;
+  tree->SetBranchAddress(var.c_str(),&var_vals,&b_var_vals);
 
-  //double curr_var;
+  double curr_var;
+
   //TBranch *b_curr_var = 0;
   //tree->SetBranchAddress(var.c_str(),&curr_var,&b_curr_var);
 
@@ -769,7 +770,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
   {
     double w = 1.;
     Long64_t tentry = tree->LoadTree(j);
-    b_curr_var->GetEntry(tentry);
+    b_var_vals->GetEntry(tentry);
     b_PUWeight->GetEntry(tentry);
     b_bWeight->GetEntry(tentry);
     b_Electron_GsfSFval->GetEntry(tentry);
@@ -777,6 +778,11 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
     b_Muon_IDSFval->GetEntry(tentry);
     b_Muon_IsoSFval->GetEntry(tentry);
     b_Muon_TrkSFval->GetEntry(tentry);
+
+    for(int k =0; k<var_vals.size(); k++){
+      cout << "var_vals @ k = " << var_vals[k] << endl;
+    }
+    curr_var = var_vals[0];
 
     if(datatype!=0){
       b_lumiweight->GetEntry(tentry);
