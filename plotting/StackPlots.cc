@@ -379,33 +379,33 @@ void StackPlots(){
       //Histograms construction, fill, scaling etc.
       cout << "datatype = " << datatype << endl;
       if(datatype==2){
-        if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets" && var[v]!="BJetness_num_pdgid_eles") {
-          h_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
-        }
-        else if (var[v]=="BJetness_num_pdgid_eles"){
+        if(var[v].find("BJetness")!=std::string::npos){
           h_var = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
+        }
+        else if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets") {
+          h_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else{
           h_var  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
       }
       else if(datatype==1){
-        if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets"&& var[v]!="BJetness_num_pdgid_eles") {
-          h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
-        }
-        else if (var[v]=="BJetness_num_pdgid_eles"){
+        if(var[v].find("BJetness")!=std::string::npos){
           h_sig = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
+        }
+        else if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets") {
+          h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else{
           h_sig  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
       }
       else{
-        if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets"&& var[v]!="BJetness_num_pdgid_eles") {
-          h_data_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
-        }
-        else if (var[v]=="BJetness_num_pdgid_eles"){
+        if(var[v].find("BJetness")!=std::string::npos){
           h_data_var = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
+        }
+        else if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets") {
+          h_data_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else{
           h_data_var  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
