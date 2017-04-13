@@ -700,8 +700,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
 TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype){
   //Call tree and variables
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
-  vector <double> * var_vals;
-  var_vals = 0;
+  vector <double> * var_vals =0;
   TBranch *b_var_vals = 0;
   tree->SetBranchAddress(var.c_str(),&var_vals,&b_var_vals);
 
@@ -779,10 +778,10 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
     b_Muon_IsoSFval->GetEntry(tentry);
     b_Muon_TrkSFval->GetEntry(tentry);
 
-    for(int k =0; k<var_vals.size(); k++){
-      cout << "var_vals @ k = " << var_vals[k] << endl;
+    for(int k =0; k<var_vals->size(); k++){
+      cout << "var_vals @ k = " << var_vals->at(k) << endl;
     }
-    curr_var = var_vals[0];
+    curr_var = var_vals->at(0);
 
     if(datatype!=0){
       b_lumiweight->GetEntry(tentry);
