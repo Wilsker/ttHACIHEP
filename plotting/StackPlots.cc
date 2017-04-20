@@ -83,7 +83,7 @@ const bool save_plots   = true;
 const bool show_title   = true;
 const bool doasym       = false;
 const double asymbin[6] = {0,3,4,9,15,20};
-const int    numVar     = 70;
+const int    numVar     = 7;
 const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 //const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 const int    col_size   = 500; //>= highest bin
@@ -366,7 +366,7 @@ const double inRange[numVar]    = {
   -4,
   0,
   0,
-  0,//
+  0,
   0,
   0,
   0,
