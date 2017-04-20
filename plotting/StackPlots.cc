@@ -289,9 +289,9 @@ const int    bin[numVar]        = {
   20,
   20,
   10,
-  6,
-  6,
-  6,
+  22,//BJetness_numjettrks
+  25,//BJetness_numjettrksnopv
+  30,//BJetness_numjettrkspv
   6,
   6,
   6,
@@ -360,9 +360,9 @@ const double inRange[numVar]    = {
   10,
   -3,
   -4,
-  0,
-  0,
-  0,
+  8,//BJetness_numjettrks
+  0,//BJetness_numjettrksnopv
+  2,//BJetness_numjettrkspv
   0,
   0,
   0,
@@ -432,9 +432,9 @@ const double endRange[numVar]   = {
   200,
   3,
   4,
-  20,
-  20,
-  20,
+  30,//BJetness_numjettrks
+  25,//BJetness_numjettrksnopv
+  30,//BJetness_numjettrkspv
   6,
   6,
   6,
