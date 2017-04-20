@@ -89,9 +89,18 @@ const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 0;
-const unsigned int fin_var = 70;
+const unsigned int ini_var = 37;
+const unsigned int fin_var = 43;
 const int posvtcr          = 0;
+
+// ======= Variables map ======= ???
+// Key: const char *variables
+// Value: vector< const char *titleXaxis, const int    bin, const double inRange, const double endRange >
+// Description: Each variable has an entry in the map. The entry contains a 4D vector:
+//              - 1st vector element contains the x-axis title.
+//              - 2nd vector element contains # bins.
+//              - 3rd vector element contains x-axis minimum
+//              - 4th vector element contains x-axis maximum
 
 
 // Variables list:
@@ -207,7 +216,7 @@ const char *titleXaxis[]        = {
   "Lead lepton pt",
   "Lead lepton eta",
   "Lead lepton phi",
-  "BJetness_numjettrks",
+  "BJetness # jet trks",
   "BJetness_numjettrkspv",
   "BJetness_numjettrksnopv",
   "BJetness_pvTrkOVcollTrk",
@@ -279,7 +288,7 @@ const int    bin[numVar]        = {
   40,
   20,
   20,
-  6,
+  10,
   6,
   6,
   6,
@@ -357,7 +366,7 @@ const double inRange[numVar]    = {
   -4,
   0,
   0,
-  0,
+  0,//
   0,
   0,
   0,
@@ -430,9 +439,9 @@ const double endRange[numVar]   = {
   200,
   3,
   4,
-  6,
-  6,
-  6,
+  20,
+  20,
+  20,
   6,
   6,
   6,
