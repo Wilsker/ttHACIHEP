@@ -83,14 +83,14 @@ const bool save_plots   = true;
 const bool show_title   = true;
 const bool doasym       = false;
 const double asymbin[6] = {0,3,4,9,15,20};
-const int    numVar     = 72;
-const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,};
+const int    numVar     = 70;
+const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 //const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
 const unsigned int ini_var = 0;
-const unsigned int fin_var = 72;
+const unsigned int fin_var = 70;
 const int posvtcr          = 0;
 
 
@@ -136,37 +136,37 @@ const char *variables[]         = {
   "lead_lep_eta",
   "lead_lep_phi",
   "BJetness_numjettrks",
-"BJetness_numjettrkspv",
-"BJetness_numjettrksnopv",
-"BJetness_pvTrkOVcollTrk",
-"BJetness_npvTrkOVpvTrk",
-"BJetness_npvPtOVcollPt",
-"BJetness_pvPtOVcollPt",
-"BJetness_npvPtOVpvPt",
-"BJetness_avprel",
-"BJetness_avppar",
-"BJetness_avetarel",
-"BJetness_avetapar",
-"BJetness_avdr",
-"BJetness_avpreljetpt",
-"BJetness_avpreljeten",
-"BJetness_avpparjetpt",
-"BJetness_avpparjeten",
-"BJetness_avnum2v",
-"BJetness_avnumno2v",
-"BJetness_avdca3d2t",
-"BJetness_avdca3dno2t",
-"BJetness_avdca3d",
-"BJetness_avdca2d2t",
-"BJetness_avdca2dno2t",
-"BJetness_avdca2d",
-"BJetness_chi2",
-"BJetness_avip3d_val",
-"BJetness_avip3d_sig",
-"BJetness_avsip3d_val",
-"BJetness_avsip3d_sig",
-"BJetness_numip3dpos",
-"BJetness_numip3dneg"
+  "BJetness_numjettrkspv",
+  "BJetness_numjettrksnopv",
+  "BJetness_pvTrkOVcollTrk",
+  "BJetness_npvTrkOVpvTrk",
+  "BJetness_npvPtOVcollPt",
+  "BJetness_pvPtOVcollPt",
+  "BJetness_npvPtOVpvPt",
+  "BJetness_avprel",
+  "BJetness_avppar",
+  "BJetness_avetarel",
+  "BJetness_avetapar",
+  "BJetness_avdr",
+  "BJetness_avpreljetpt",
+  "BJetness_avpreljeten",
+  "BJetness_avpparjetpt",
+  "BJetness_avpparjeten",
+  "BJetness_avnum2v",
+  "BJetness_avnumno2v",
+  "BJetness_avdca3d2t",
+  "BJetness_avdca3dno2t",
+  "BJetness_avdca3d",
+  "BJetness_avdca2d2t",
+  "BJetness_avdca2dno2t",
+  "BJetness_avdca2d",
+  "BJetness_chi2",
+  "BJetness_avip3d_val",
+  "BJetness_avip3d_sig",
+  "BJetness_avsip3d_val",
+  "BJetness_avsip3d_sig",
+  "BJetness_numip3dpos",
+  "BJetness_numip3dneg"
 };
 const char *titleXaxis[]        = {
   "BJetness # pdgid el",
@@ -312,6 +312,7 @@ const int    bin[numVar]        = {
   6,
   6,
   6,
+  6,
   6
 
 };
@@ -354,6 +355,7 @@ const double inRange[numVar]    = {
   10,
   -3,
   -4,
+  0,
   0,
   0,
   0,
@@ -461,6 +463,7 @@ const double endRange[numVar]   = {
   6,
   6,
   6,
+  6,
   6
 };
 
@@ -517,7 +520,8 @@ void StackPlots(){
     for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) ent_AllBkg[i][j] = 0.;
 
     cout << "======================== NEW VAR =================================" << endl;
-    cout << "Variable name = " << var[v] << endl;
+
+    cout << "Variable " << v << " name = " << var[v] << endl;
 
     for(uint i=0; i<rootplas_size; i++){
       cout << "======= Sample : " << rootplas[i] << "========" << endl;
@@ -1065,7 +1069,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normsig = 17824.3;
     }
 
-    cout << "============= normalised ===============" << endl;
+    cout << "normalisation " << endl;
     cout << "var name = " << var << endl;
     cout << "normdata = " << normdata << endl;
     cout << "normsig = " << normsig << endl;
@@ -1074,7 +1078,6 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
     if(datatype==1) hist->Scale(1/normsig);
     if(datatype==2) hist->Scale(1/normbkg);
     cout << "hist integral " << hist->Integral() << endl;
-    cout << "========================================" << endl;
   }
   if(datatype==2){
     for(int j=0; j<bin[v]; j++){
