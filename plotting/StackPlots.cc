@@ -83,14 +83,14 @@ const bool save_plots   = true;
 const bool show_title   = true;
 const bool doasym       = false;
 const double asymbin[6] = {0,3,4,9,15,20};
-const int    numVar     = 38;
-const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+const int    numVar     = 72;
+const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,};
 //const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
 const unsigned int ini_var = 0;
-const unsigned int fin_var = 38;
+const unsigned int fin_var = 72;
 const int posvtcr          = 0;
 
 
@@ -134,7 +134,39 @@ const char *variables[]         = {
   "lead_mu_phi",
   "lead_lep_pt",
   "lead_lep_eta",
-  "lead_lep_phi"
+  "lead_lep_phi",#
+  "BJetness_numjettrks",
+"BJetness_numjettrkspv",
+"BJetness_numjettrksnopv",
+"BJetness_pvTrkOVcollTrk",
+"BJetness_npvTrkOVpvTrk",
+"BJetness_npvPtOVcollPt",
+"BJetness_pvPtOVcollPt",
+"BJetness_npvPtOVpvPt",
+"BJetness_avprel",
+"BJetness_avppar",
+"BJetness_avetarel",
+"BJetness_avetapar",
+"BJetness_avdr",
+"BJetness_avpreljetpt",
+"BJetness_avpreljeten",
+"BJetness_avpparjetpt",
+"BJetness_avpparjeten",
+"BJetness_avnum2v",
+"BJetness_avnumno2v",
+"BJetness_avdca3d2t",
+"BJetness_avdca3dno2t",
+"BJetness_avdca3d",
+"BJetness_avdca2d2t",
+"BJetness_avdca2dno2t",
+"BJetness_avdca2d",
+"BJetness_chi2",
+"BJetness_avip3d_val",
+"BJetness_avip3d_sig",
+"BJetness_avsip3d_val",
+"BJetness_avsip3d_sig",
+"BJetness_numip3dpos",
+"BJetness_numip3dneg"
 };
 const char *titleXaxis[]        = {
   "BJetness # pdgid el",
@@ -174,8 +206,39 @@ const char *titleXaxis[]        = {
   "Lead mu phi",
   "Lead lepton pt",
   "Lead lepton eta",
-  "Lead lepton phi"
-
+  "Lead lepton phi",
+  "BJetness_numjettrks",
+  "BJetness_numjettrkspv",
+  "BJetness_numjettrksnopv",
+  "BJetness_pvTrkOVcollTrk",
+  "BJetness_npvTrkOVpvTrk",
+  "BJetness_npvPtOVcollPt",
+  "BJetness_pvPtOVcollPt",
+  "BJetness_npvPtOVpvPt",
+  "BJetness_avprel",
+  "BJetness_avppar",
+  "BJetness_avetarel",
+  "BJetness_avetapar",
+  "BJetness_avdr",
+  "BJetness_avpreljetpt",
+  "BJetness_avpreljeten",
+  "BJetness_avpparjetpt",
+  "BJetness_avpparjeten",
+  "BJetness_avnum2v",
+  "BJetness_avnumno2v",
+  "BJetness_avdca3d2t",
+  "BJetness_avdca3dno2t",
+  "BJetness_avdca3d",
+  "BJetness_avdca2d2t",
+  "BJetness_avdca2dno2t",
+  "BJetness_avdca2d",
+  "BJetness_chi2",
+  "BJetness_avip3d_val",
+  "BJetness_avip3d_sig",
+  "BJetness_avsip3d_val",
+  "BJetness_avsip3d_sig",
+  "BJetness_numip3dpos",
+  "BJetness_numip3dneg"
 };
 const int    bin[numVar]        = {
   6,
@@ -215,7 +278,41 @@ const int    bin[numVar]        = {
   20,
   40,
   20,
-  20
+  20,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6
 
 };
 const double inRange[numVar]    = {
@@ -256,7 +353,41 @@ const double inRange[numVar]    = {
   -4,
   10,
   -3,
-  -4
+  -4,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0
 };
 const double endRange[numVar]   = {
   6,
@@ -296,7 +427,41 @@ const double endRange[numVar]   = {
   4,
   200,
   3,
-  4
+  4,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6
 };
 
 /////
