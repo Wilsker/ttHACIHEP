@@ -290,12 +290,12 @@ const int    bin[numVar]        = {
   20,
   10,
   22,//BJetness_numjettrks
-  25,//BJetness_numjettrkspv
+  30,//BJetness_numjettrkspv
   30,//BJetness_numjettrksnopv
-  20,//BJetness_pvTrkOVcollTrk
-  30,//BJetness_npvTrkOVpvTrk
-  20,//BJetness_npvPtOVcollPt
-  20,//BJetness_pvPtOVcollPt
+  10,//BJetness_pvTrkOVcollTrk
+  20,//BJetness_npvTrkOVpvTrk
+  10,//BJetness_npvPtOVcollPt
+  10,//BJetness_pvPtOVcollPt
   6,//BJetness_npvPtOVpvPt
   6,
   6,
@@ -433,12 +433,12 @@ const double endRange[numVar]   = {
   3,
   4,
   30,//BJetness_numjettrks
-  25,//BJetness_numjettrkspv
+  30,//BJetness_numjettrkspv
   30,//BJetness_numjettrksnopv
-  2,//BJetness_pvTrkOVcollTrk
-  3,//BJetness_npvTrkOVpvTrk
-  2,//BJetness_npvPtOVcollPt
-  2,//BJetness_pvPtOVcollPt
+  1,//BJetness_pvTrkOVcollTrk
+  2,//BJetness_npvTrkOVpvTrk
+  1,//BJetness_npvPtOVcollPt
+  1,//BJetness_pvPtOVcollPt
   6,//BJetness_npvPtOVpvPt
   6,
   6,
