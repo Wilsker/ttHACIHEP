@@ -250,49 +250,48 @@ const char *titleXaxis[]        = {
   "BJetness_numip3dneg"
 };
 const int    bin[numVar]        = {
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  4,
-  50,
-  50,
-  10,
-  50,
-  10,
-  50,
-  10,
-  40,
-  20,
-  20,
-  40,
-  20,
-  20,
-  40,
-  20,
-  20,
-  10,
-  22,//BJetness_numjettrks
+  6,//BJetness_num_pdgid_eles
+  6,//BJetness_num_soft_eles
+  6,//BJetness_num_vetonoipnoiso_eles
+  6,//BJetness_num_loosenoipnoiso_eles
+  6,//BJetness_num_veto_eles
+  6,//BJetness_num_loose_eles
+  6,//BJetness_num_medium_eles
+  6,//BJetness_num_tight_eles
+  6,//BJetness_num_mvatrig_eles
+  6,//BJetness_num_mvanontrig_eles
+  6,//BJetness_num_mvatrigwp90_eles
+  6,//BJetness_num_mvanontrigwp90_eles
+  6,//BJetness_num_heep_eles
+  6,//BJetness_num_pdgid_mus
+  6,//BJetness_num_loose_mus
+  6,//BJetness_num_soft_mus
+  6,//BJetness_num_medium_mus
+  6,//BJetness_num_tight_mus
+  6,//BJetness_num_highpt_mus
+  6,//BJetness_num_POGisGood_mus
+  6,//NumberOfJets
+  4,//NumberOfBJets
+  50,//first_jet_pt
+  50,//second_jet_pt
+  10,//second_highest_btag
+  50,//third_jet_pt
+  10,//third_highest_btag
+  50,//fourth_jet_pt
+  10,//fourth_highest_btag
+  40,//lead_el_pt
+  20,//lead_el_eta
+  20,//lead_el_phi
+  40,//lead_mu_pt
+  20,//lead_mu_eta
+  20,//lead_mu_phi
+  40,//lead_lep_pt
+  20,//lead_lep_eta
+  20,//lead_lep_phi
+  10,//BJetness_numjettrks
   30,//BJetness_numjettrkspv
   30,//BJetness_numjettrksnopv
-  10,//BJetness_pvTrkOVcollTrk
+  8,//BJetness_pvTrkOVcollTrk
   20,//BJetness_npvTrkOVpvTrk
   10,//BJetness_npvPtOVcollPt
   10,//BJetness_pvPtOVcollPt
@@ -322,48 +321,48 @@ const int    bin[numVar]        = {
   6
 };
 const double inRange[numVar]    = {
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  4,
-  2,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  10,
-  -3,
-  -4,
-  10,
-  -3,
-  -4,
-  10,
-  -3,
-  -4,
+  0,//BJetness_num_pdgid_eles
+  0,//BJetness_num_soft_eles
+  0,//BJetness_num_vetonoipnoiso_eles
+  0,//BJetness_num_loosenoipnoiso_eles
+  0,//BJetness_num_veto_eles
+  0,//BJetness_num_loose_eles
+  0,//BJetness_num_medium_eles
+  0,//BJetness_num_tight_eles
+  0,//BJetness_num_mvatrig_eles
+  0,//BJetness_num_mvanontrig_eles
+  0,//BJetness_num_mvatrigwp90_eles
+  0,//BJetness_num_mvanontrigwp90_eles
+  0,//BJetness_num_heep_eles
+  0,//BJetness_num_pdgid_mus
+  0,//BJetness_num_loose_mus
+  0,//BJetness_num_soft_mus
+  0,//BJetness_num_medium_mus
+  0,//BJetness_num_tight_mus
+  0,//BJetness_num_highpt_mus
+  0,//BJetness_num_POGisGood_mus
+  4,//NumberOfJets
+  2,//NumberOfBJets
+  0,//first_jet_pt
+  0,//second_jet_pt
+  0,//second_highest_btag
+  0,//third_jet_pt
+  0,//third_highest_btag
+  0,//fourth_jet_pt
+  0,//fourth_highest_btag
+  10,//lead_el_pt
+  -3,//lead_el_eta
+  -4,//lead_el_phi
+  10,//lead_mu_pt
+  -3,//lead_mu_eta
+  -4,//lead_mu_phi
+  10,//lead_lep_pt
+  -3,//lead_lep_eta
+  -4,//lead_lep_phi
   8,//BJetness_numjettrks
   0,//BJetness_numjettrkspv
-  2,//BJetness_numjettrksnopv
-  0,//BJetness_pvTrkOVcollTrk
+  0,//BJetness_numjettrksnopv
+  0.2,//BJetness_pvTrkOVcollTrk
   0,//BJetness_npvTrkOVpvTrk
   0,//BJetness_npvPtOVcollPt
   0,//BJetness_pvPtOVcollPt
@@ -394,45 +393,45 @@ const double inRange[numVar]    = {
   0
 };
 const double endRange[numVar]   = {
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  10,
-  6,
-  300,
-  250,
-  1,
-  200,
-  1,
-  200,
-  1,
-  200,
-  3,
-  4,
-  200,
-  3,
-  4,
-  200,
-  3,
-  4,
-  30,//BJetness_numjettrks
+  6,//BJetness_num_pdgid_eles
+  6,//BJetness_num_soft_eles
+  6,//BJetness_num_vetonoipnoiso_eles
+  6,//BJetness_num_loosenoipnoiso_eles
+  6,//BJetness_num_veto_eles
+  6,//BJetness_num_loose_eles
+  6,//BJetness_num_medium_eles
+  6,//BJetness_num_tight_eles
+  6,//BJetness_num_mvatrig_eles
+  6,//BJetness_num_mvanontrig_eles
+  6,//BJetness_num_mvatrigwp90_eles
+  6,//BJetness_num_mvanontrigwp90_eles
+  6,//BJetness_num_heep_eles
+  6,//BJetness_num_pdgid_mus
+  6,//BJetness_num_loose_mus
+  6,//BJetness_num_soft_mus
+  6,//BJetness_num_medium_mus
+  6,//BJetness_num_tight_mus
+  6,//BJetness_num_highpt_mus
+  6,//BJetness_num_POGisGood_mus
+  10,//NumberOfJets
+  6,//NumberOfBJets
+  300,//first_jet_pt
+  250,//second_jet_pt
+  1,//second_highest_btag
+  200,//third_jet_pt
+  1,//third_highest_btag
+  200,//fourth_jet_pt
+  1,//fourth_highest_btag
+  200,//lead_el_pt
+  3,//lead_el_eta
+  4,//lead_el_phi
+  200,//lead_mu_pt
+  3,//lead_mu_eta
+  4,//lead_mu_phi
+  200,//lead_lep_pt
+  3,//lead_lep_eta
+  4,//lead_lep_phi
+  10,//BJetness_numjettrks
   30,//BJetness_numjettrkspv
   30,//BJetness_numjettrksnopv
   1,//BJetness_pvTrkOVcollTrk
@@ -521,6 +520,7 @@ void StackPlots(){
     cout << "======================== NEW VAR =================================" << endl;
 
     cout << "Variable " << v << " name = " << var[v] << endl;
+    cout << "Variable title = " << varTitleXaxis[v] << endl;
 
     for(uint i=0; i<rootplas_size; i++){
       cout << "======= Sample : " << rootplas[i] << "========" << endl;
@@ -939,7 +939,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
 TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype){
   //Call tree and variables
   cout << "============== vector_double_h_var =============="<<endl;
-  cout << "variable = " << var << endl;
+  //cout << "variable = " << var << endl;
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
   vector <double> * var_vals =0;
   TBranch *b_var_vals = 0;
@@ -1068,8 +1068,8 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normsig = 17824.3;
     }
 
-    cout << "normalisation " << endl;
-    cout << "var name = " << var << endl;
+
+
     cout << "normdata = " << normdata << endl;
     cout << "normsig = " << normsig << endl;
     cout << "normbkg = " << normbkg << endl;
