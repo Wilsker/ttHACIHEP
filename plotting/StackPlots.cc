@@ -250,26 +250,26 @@ const char *titleXaxis[]        = {
   "BJetness_numip3dneg"
 };
 const int    bin[numVar]        = {
-  6,//BJetness_num_pdgid_eles
-  6,//BJetness_num_soft_eles
-  6,//BJetness_num_vetonoipnoiso_eles
-  6,//BJetness_num_loosenoipnoiso_eles
+  4,//BJetness_num_pdgid_eles
+  4,//BJetness_num_soft_eles
+  3,//BJetness_num_vetonoipnoiso_eles
+  3,//BJetness_num_loosenoipnoiso_eles
   6,//BJetness_num_veto_eles
   6,//BJetness_num_loose_eles
   6,//BJetness_num_medium_eles
   6,//BJetness_num_tight_eles
-  6,//BJetness_num_mvatrig_eles
-  6,//BJetness_num_mvanontrig_eles
-  6,//BJetness_num_mvatrigwp90_eles
-  6,//BJetness_num_mvanontrigwp90_eles
+  3,//BJetness_num_mvatrig_eles
+  3,//BJetness_num_mvanontrig_eles
+  3,//BJetness_num_mvatrigwp90_eles
+  3,//BJetness_num_mvanontrigwp90_eles
   6,//BJetness_num_heep_eles
-  6,//BJetness_num_pdgid_mus
-  6,//BJetness_num_loose_mus
-  6,//BJetness_num_soft_mus
-  6,//BJetness_num_medium_mus
+  4,//BJetness_num_pdgid_mus
+  4,//BJetness_num_loose_mus
+  4,//BJetness_num_soft_mus
+  4,//BJetness_num_medium_mus
   6,//BJetness_num_tight_mus
-  6,//BJetness_num_highpt_mus
-  6,//BJetness_num_POGisGood_mus
+  4,//BJetness_num_highpt_mus
+  4,//BJetness_num_POGisGood_mus
   6,//NumberOfJets
   4,//NumberOfBJets
   50,//first_jet_pt
@@ -288,38 +288,38 @@ const int    bin[numVar]        = {
   40,//lead_lep_pt
   20,//lead_lep_eta
   20,//lead_lep_phi
-  10,//BJetness_numjettrks
+  30,//BJetness_numjettrks
   40,//BJetness_numjettrkspv
   30,//BJetness_numjettrksnopv
   8,//BJetness_pvTrkOVcollTrk
-  20,//BJetness_npvTrkOVpvTrk
+  6,//BJetness_npvTrkOVpvTrk
   10,//BJetness_npvPtOVcollPt
   10,//BJetness_pvPtOVcollPt
-  5,//BJetness_npvPtOVpvPt
+  10,//BJetness_npvPtOVpvPt
   20,//BJetness_avprel
-  10,//BJetness_avppar
-  10,//BJetness_avetarel
-  5,//BJetness_avetapar
-  6,//BJetness_avdr
-  10,//BJetness_avpreljetpt
-  10,//BJetness_avpreljeten
+  20,//BJetness_avppar
+  20,//BJetness_avetarel
+  30,//BJetness_avetapar
+  20,//BJetness_avdr
+  20,//BJetness_avpreljetpt
+  20,//BJetness_avpreljeten
   20,//BJetness_avpparjetpt
   10,//BJetness_avpparjeten
-  10,//BJetness_avnum2v
-  10,//BJetness_avnumno2v
-  10,//BJetness_avdca3d2t
-  10,//BJetness_avdca3dno2t
-  10,//BJetness_avdca3d
-  10,//BJetness_avdca2d2t
-  10,//BJetness_avdca2dno2t
-  10,//BJetness_avdca2d
-  6,//BJetness_chi2
-  2,//BJetness_avip3d_val
-  10,//BJetness_avip3d_sig
-  20,//BJetness_avsip3d_val
-  20,//BJetness_avsip3d_sig
-  6,//BJetness_numip3dpos
-  6//BJetness_numip3dneg
+  20,//BJetness_avnum2v
+  20,//BJetness_avnumno2v
+  200,//BJetness_avdca3d2t
+  200,//BJetness_avdca3dno2t
+  200,//BJetness_avdca3d
+  200,//BJetness_avdca2d2t
+  200,//BJetness_avdca2dno2t
+  200,//BJetness_avdca2d
+  15,//BJetness_chi2
+  10,//BJetness_avip3d_val
+  30,//BJetness_avip3d_sig
+  10,//BJetness_avsip3d_val
+  30,//BJetness_avsip3d_sig
+  10,//BJetness_numip3dpos
+  10//BJetness_numip3dneg
 };
 const double inRange[numVar]    = {
   0,//BJetness_num_pdgid_eles
@@ -360,7 +360,7 @@ const double inRange[numVar]    = {
   10,//lead_lep_pt
   -3,//lead_lep_eta
   -4,//lead_lep_phi
-  8,//BJetness_numjettrks
+  0,//BJetness_numjettrks
   0,//BJetness_numjettrkspv
   0,//BJetness_numjettrksnopv
   0.2,//BJetness_pvTrkOVcollTrk
@@ -370,50 +370,50 @@ const double inRange[numVar]    = {
   0,//BJetness_npvPtOVpvPt
   0,//BJetness_avprel
   0,//BJetness_avppar
-  0,//BJetness_avetarel
-  0,//BJetness_avetapar
-  0,//BJetness_avdr
-  0,//BJetness_avpreljetpt
-  0,//BJetness_avpreljeten
+  -0.2,//BJetness_avetarel
+  2,//BJetness_avetapar
+  -1,//BJetness_avdr
+  -0.1,//BJetness_avpreljetpt
+  -0.1,//BJetness_avpreljeten
   0,//BJetness_avpparjetpt
   0,//BJetness_avpparjeten
-  0,//BJetness_avnum2v
-  0,//BJetness_avnumno2v
-  0,//BJetness_avdca3d2t
-  0,//BJetness_avdca3dno2t
-  0,//BJetness_avdca3d
-  0,//BJetness_avdca2d2t
-  0,//BJetness_avdca2dno2t
-  0,//BJetness_avdca2d
-  0,//BJetness_chi2
+  -0.1,//BJetness_avnum2v
+  -0.1,//BJetness_avnumno2v
+  -10,//BJetness_avdca3d2t
+  -10,//BJetness_avdca3dno2t
+  -10,//BJetness_avdca3d
+  -10,//BJetness_avdca2d2t
+  -10,//BJetness_avdca2dno2t
+  -10,//BJetness_avdca2d
+  5,//BJetness_chi2
   0,//BJetness_avip3d_val
   0,//BJetness_avip3d_sig
   0,//BJetness_avsip3d_val
   -10,//BJetness_avsip3d_sig
-  0,//BJetness_numip3dpos
-  0//BJetness_numip3dneg
+  5,//BJetness_numip3dpos
+  5//BJetness_numip3dneg
 };
 const double endRange[numVar]   = {
-  6,//BJetness_num_pdgid_eles
-  6,//BJetness_num_soft_eles
-  6,//BJetness_num_vetonoipnoiso_eles
-  6,//BJetness_num_loosenoipnoiso_eles
+  4,//BJetness_num_pdgid_eles
+  4,//BJetness_num_soft_eles
+  3,//BJetness_num_vetonoipnoiso_eles
+  3,//BJetness_num_loosenoipnoiso_eles
   6,//BJetness_num_veto_eles
   6,//BJetness_num_loose_eles
   6,//BJetness_num_medium_eles
   6,//BJetness_num_tight_eles
-  6,//BJetness_num_mvatrig_eles
-  6,//BJetness_num_mvanontrig_eles
-  6,//BJetness_num_mvatrigwp90_eles
-  6,//BJetness_num_mvanontrigwp90_eles
+  3,//BJetness_num_mvatrig_eles
+  3,//BJetness_num_mvanontrig_eles
+  3,//BJetness_num_mvatrigwp90_eles
+  3,//BJetness_num_mvanontrigwp90_eles
   6,//BJetness_num_heep_eles
-  6,//BJetness_num_pdgid_mus
-  6,//BJetness_num_loose_mus
-  6,//BJetness_num_soft_mus
-  6,//BJetness_num_medium_mus
+  4,//BJetness_num_pdgid_mus
+  4,//BJetness_num_loose_mus
+  4,//BJetness_num_soft_mus
+  4,//BJetness_num_medium_mus
   6,//BJetness_num_tight_mus
-  6,//BJetness_num_highpt_mus
-  6,//BJetness_num_POGisGood_mus
+  4,//BJetness_num_highpt_mus
+  4,//BJetness_num_POGisGood_mus
   10,//NumberOfJets
   6,//NumberOfBJets
   300,//first_jet_pt
@@ -432,38 +432,38 @@ const double endRange[numVar]   = {
   200,//lead_lep_pt
   3,//lead_lep_eta
   4,//lead_lep_phi
-  10,//BJetness_numjettrks
+  30,//BJetness_numjettrks
   40,//BJetness_numjettrkspv
   30,//BJetness_numjettrksnopv
   1,//BJetness_pvTrkOVcollTrk
-  2,//BJetness_npvTrkOVpvTrk
+  1.2,//BJetness_npvTrkOVpvTrk
   1,//BJetness_npvPtOVcollPt
   1,//BJetness_pvPtOVcollPt
-  5,//BJetness_npvPtOVpvPt
-  2,//BJetness_avprel
-  10,//BJetness_avppar
-  1,//BJetness_avetarel
+  3,//BJetness_npvPtOVpvPt
+  1,//BJetness_avprel
+  20,//BJetness_avppar
+  0.2,//BJetness_avetarel
   5,//BJetness_avetapar
-  6,//BJetness_avdr
-  1,//BJetness_avpreljetpt
-  1,//BJetness_avpreljeten
+  1,//BJetness_avdr
+  0.1,//BJetness_avpreljetpt
+  0.1,//BJetness_avpreljeten
   2,//BJetness_avpparjetpt
   1,//BJetness_avpparjeten
-  1,//BJetness_avnum2v
-  1,//BJetness_avnumno2v
-  1,//BJetness_avdca3d2t
-  1,//BJetness_avdca3dno2t
-  1,//BJetness_avdca3d
-  1,//BJetness_avdca2d2t
-  1,//BJetness_avdca2dno2t
-  1,//BJetness_avdca2d
-  6,//BJetness_chi2
-  20,//BJetness_avip3d_val
-  10,//BJetness_avip3d_sig
-  2,//BJetness_avsip3d_val
-  10,//BJetness_avsip3d_sig
-  6,//BJetness_numip3dpos
-  6//BJetness_numip3dneg
+  0.1,//BJetness_avnum2v
+  0.1,//BJetness_avnumno2v
+  10,//BJetness_avdca3d2t
+  10,//BJetness_avdca3dno2t
+  10,//BJetness_avdca3d
+  10,//BJetness_avdca2d2t
+  10,//BJetness_avdca2dno2t
+  10,//BJetness_avdca2d
+  20,//BJetness_chi2
+  10,//BJetness_avip3d_val
+  30,//BJetness_avip3d_sig
+  0.5,//BJetness_avsip3d_val
+  20,//BJetness_avsip3d_sig
+  10,//BJetness_numip3dpos
+  10//BJetness_numip3dneg
 };
 
 /////
