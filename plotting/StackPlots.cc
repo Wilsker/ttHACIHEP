@@ -289,36 +289,37 @@ const int    bin[numVar]        = {
   20,//lead_lep_eta
   20,//lead_lep_phi
   10,//BJetness_numjettrks
-  30,//BJetness_numjettrkspv
+  40,//BJetness_numjettrkspv
   30,//BJetness_numjettrksnopv
   8,//BJetness_pvTrkOVcollTrk
   20,//BJetness_npvTrkOVpvTrk
   10,//BJetness_npvPtOVcollPt
   10,//BJetness_pvPtOVcollPt
-  6,//BJetness_npvPtOVpvPt
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6
+  5,//BJetness_npvPtOVpvPt
+  20,//BJetness_avprel
+  10,//BJetness_avppar
+  10,//BJetness_avetarel
+  5,//BJetness_avetapar
+  6,//BJetness_avdr
+  10,//BJetness_avpreljetpt
+  10,//BJetness_avpreljeten
+  20,//BJetness_avpparjetpt
+  10,//BJetness_avpparjeten
+  10,//BJetness_avnum2v
+  10,//BJetness_avnumno2v
+  10,//BJetness_avdca3d2t
+  10,//BJetness_avdca3dno2t
+  10,//BJetness_avdca3d
+  10,//BJetness_avdca2d2t
+  10,//BJetness_avdca2dno2t
+  10,//BJetness_avdca2d
+  6,//BJetness_chi2
+  2,//BJetness_avip3d_val
+  10,//BJetness_avip3d_sig
+  20,//BJetness_avsip3d_val
+  20,//BJetness_avsip3d_sig
+  6,//BJetness_numip3dpos
+  6//BJetness_numip3dneg
 };
 const double inRange[numVar]    = {
   0,//BJetness_num_pdgid_eles
@@ -367,30 +368,30 @@ const double inRange[numVar]    = {
   0,//BJetness_npvPtOVcollPt
   0,//BJetness_pvPtOVcollPt
   0,//BJetness_npvPtOVpvPt
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0,
-  0
+  0,//BJetness_avprel
+  0,//BJetness_avppar
+  0,//BJetness_avetarel
+  0,//BJetness_avetapar
+  0,//BJetness_avdr
+  0,//BJetness_avpreljetpt
+  0,//BJetness_avpreljeten
+  0,//BJetness_avpparjetpt
+  0,//BJetness_avpparjeten
+  0,//BJetness_avnum2v
+  0,//BJetness_avnumno2v
+  0,//BJetness_avdca3d2t
+  0,//BJetness_avdca3dno2t
+  0,//BJetness_avdca3d
+  0,//BJetness_avdca2d2t
+  0,//BJetness_avdca2dno2t
+  0,//BJetness_avdca2d
+  0,//BJetness_chi2
+  0,//BJetness_avip3d_val
+  0,//BJetness_avip3d_sig
+  0,//BJetness_avsip3d_val
+  -10,//BJetness_avsip3d_sig
+  0,//BJetness_numip3dpos
+  0//BJetness_numip3dneg
 };
 const double endRange[numVar]   = {
   6,//BJetness_num_pdgid_eles
@@ -432,37 +433,37 @@ const double endRange[numVar]   = {
   3,//lead_lep_eta
   4,//lead_lep_phi
   10,//BJetness_numjettrks
-  30,//BJetness_numjettrkspv
+  40,//BJetness_numjettrkspv
   30,//BJetness_numjettrksnopv
   1,//BJetness_pvTrkOVcollTrk
   2,//BJetness_npvTrkOVpvTrk
   1,//BJetness_npvPtOVcollPt
   1,//BJetness_pvPtOVcollPt
-  6,//BJetness_npvPtOVpvPt
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6,
-  6
+  5,//BJetness_npvPtOVpvPt
+  2,//BJetness_avprel
+  10,//BJetness_avppar
+  1,//BJetness_avetarel
+  5,//BJetness_avetapar
+  6,//BJetness_avdr
+  1,//BJetness_avpreljetpt
+  1,//BJetness_avpreljeten
+  2,//BJetness_avpparjetpt
+  1,//BJetness_avpparjeten
+  1,//BJetness_avnum2v
+  1,//BJetness_avnumno2v
+  1,//BJetness_avdca3d2t
+  1,//BJetness_avdca3dno2t
+  1,//BJetness_avdca3d
+  1,//BJetness_avdca2d2t
+  1,//BJetness_avdca2dno2t
+  1,//BJetness_avdca2d
+  6,//BJetness_chi2
+  20,//BJetness_avip3d_val
+  10,//BJetness_avip3d_sig
+  2,//BJetness_avsip3d_val
+  10,//BJetness_avsip3d_sig
+  6,//BJetness_numip3dpos
+  6//BJetness_numip3dneg
 };
 
 /////
