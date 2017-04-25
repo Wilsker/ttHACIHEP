@@ -288,7 +288,7 @@ const int    bin[numVar]        = {
   40,//lead_lep_pt
   20,//lead_lep_eta
   20,//lead_lep_phi
-  30,//BJetness_numjettrks
+  50,//BJetness_numjettrks
   40,//BJetness_numjettrkspv
   30,//BJetness_numjettrksnopv
   8,//BJetness_pvTrkOVcollTrk
@@ -313,12 +313,12 @@ const int    bin[numVar]        = {
   200,//BJetness_avdca2d2t
   200,//BJetness_avdca2dno2t
   200,//BJetness_avdca2d
-  15,//BJetness_chi2
+  100,//BJetness_chi2
   10,//BJetness_avip3d_val
-  30,//BJetness_avip3d_sig
-  10,//BJetness_avsip3d_val
-  30,//BJetness_avsip3d_sig
-  10,//BJetness_numip3dpos
+  50,//BJetness_avip3d_sig
+  30,//BJetness_avsip3d_val
+  60,//BJetness_avsip3d_sig
+  20,//BJetness_numip3dpos
   10//BJetness_numip3dneg
 };
 const double inRange[numVar]    = {
@@ -370,27 +370,27 @@ const double inRange[numVar]    = {
   0,//BJetness_npvPtOVpvPt
   0,//BJetness_avprel
   0,//BJetness_avppar
-  -0.2,//BJetness_avetarel
+  0,//BJetness_avetarel
   2,//BJetness_avetapar
-  -1,//BJetness_avdr
-  -0.1,//BJetness_avpreljetpt
-  -0.1,//BJetness_avpreljeten
+  -0.1,//BJetness_avdr
+  0,//BJetness_avpreljetpt
+  0,//BJetness_avpreljeten
   0,//BJetness_avpparjetpt
   0,//BJetness_avpparjeten
-  -0.1,//BJetness_avnum2v
-  -0.1,//BJetness_avnumno2v
-  -10,//BJetness_avdca3d2t
-  -10,//BJetness_avdca3dno2t
-  -10,//BJetness_avdca3d
-  -10,//BJetness_avdca2d2t
-  -10,//BJetness_avdca2dno2t
-  -10,//BJetness_avdca2d
-  5,//BJetness_chi2
+  0,//BJetness_avnum2v
+  0,//BJetness_avnumno2v
+  0,//BJetness_avdca3d2t
+  0,//BJetness_avdca3dno2t
+  0,//BJetness_avdca3d
+  0,//BJetness_avdca2d2t
+  0,//BJetness_avdca2dno2t
+  0,//BJetness_avdca2d
+  0,//BJetness_chi2
   0,//BJetness_avip3d_val
   0,//BJetness_avip3d_sig
   0,//BJetness_avsip3d_val
   -10,//BJetness_avsip3d_sig
-  5,//BJetness_numip3dpos
+  0,//BJetness_numip3dpos
   5//BJetness_numip3dneg
 };
 const double endRange[numVar]   = {
@@ -432,7 +432,7 @@ const double endRange[numVar]   = {
   200,//lead_lep_pt
   3,//lead_lep_eta
   4,//lead_lep_phi
-  30,//BJetness_numjettrks
+  50,//BJetness_numjettrks
   40,//BJetness_numjettrkspv
   30,//BJetness_numjettrksnopv
   1,//BJetness_pvTrkOVcollTrk
@@ -441,10 +441,10 @@ const double endRange[numVar]   = {
   1,//BJetness_pvPtOVcollPt
   3,//BJetness_npvPtOVpvPt
   1,//BJetness_avprel
-  20,//BJetness_avppar
+  30,//BJetness_avppar
   0.2,//BJetness_avetarel
   5,//BJetness_avetapar
-  1,//BJetness_avdr
+  0.1,//BJetness_avdr
   0.1,//BJetness_avpreljetpt
   0.1,//BJetness_avpreljeten
   2,//BJetness_avpparjetpt
@@ -457,12 +457,12 @@ const double endRange[numVar]   = {
   10,//BJetness_avdca2d2t
   10,//BJetness_avdca2dno2t
   10,//BJetness_avdca2d
-  20,//BJetness_chi2
-  10,//BJetness_avip3d_val
-  30,//BJetness_avip3d_sig
-  0.5,//BJetness_avsip3d_val
-  20,//BJetness_avsip3d_sig
-  10,//BJetness_numip3dpos
+  100,//BJetness_chi2
+  1,//BJetness_avip3d_val
+  50,//BJetness_avip3d_sig
+  0.3,//BJetness_avsip3d_val
+  50,//BJetness_avsip3d_sig
+  20,//BJetness_numip3dpos
   10//BJetness_numip3dneg
 };
 
