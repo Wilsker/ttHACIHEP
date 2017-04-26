@@ -351,10 +351,10 @@ const double inRange[numVar]    = {
   0,//third_highest_btag
   0,//fourth_jet_pt
   0,//fourth_highest_btag
-  10,//lead_el_pt
+  20,//lead_el_pt
   -3,//lead_el_eta
   -4,//lead_el_phi
-  10,//lead_mu_pt
+  20,//lead_mu_pt
   -3,//lead_mu_eta
   -4,//lead_mu_phi
   10,//lead_lep_pt
@@ -1285,8 +1285,8 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   h_sig->SetLineColor(kGreen+4);
 
   //Draw data and bckg MC
-  h_data_var->ClearUnderflowAndOverflow();
-  h_sig->ClearUnderflowAndOverflow();
+  //h_data_var->ClearUnderflowAndOverflow();
+  //h_sig->ClearUnderflowAndOverflow();
   h_data_var->Draw("P");
   hstack->Draw("HIST same");
 
