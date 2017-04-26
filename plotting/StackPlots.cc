@@ -89,8 +89,8 @@ const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 28;
-const unsigned int fin_var = 30;
+const unsigned int ini_var = 32;
+const unsigned int fin_var = 34;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -1062,6 +1062,11 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normbkg = 2.76786e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata= 660109;
       normsig = 17518.3;
+    }
+    if(var.find("lead_el")!=std::string::npos){
+      normbkg = 2.81566e+07;
+      normdata = 681035;
+      normsig = 17824.4;
     }
     else{
       normbkg = 2.81678e+07;
