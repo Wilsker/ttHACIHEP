@@ -319,7 +319,7 @@ const int    bin[numVar]        = {
   20,//BJetness_avsip3d_val
   100,//BJetness_avsip3d_sig
   20,//BJetness_numip3dpos
-  5//BJetness_numip3dneg
+  15//BJetness_numip3dneg
 };
 const double inRange[numVar]    = {
   0,//BJetness_num_pdgid_eles
@@ -387,9 +387,9 @@ const double inRange[numVar]    = {
   0,//BJetness_avdca2d*/
   995,//BJetness_chi2
   0,//BJetness_avip3d_val
-  -100,//BJetness_avip3d_sig
+  -1,//BJetness_avip3d_sig
   -0.2,//BJetness_avsip3d_val
-  -400,//BJetness_avsip3d_sig
+  -50,//BJetness_avsip3d_sig
   0,//BJetness_numip3dpos
   5//BJetness_numip3dneg
 };
@@ -459,11 +459,11 @@ const double endRange[numVar]   = {
   10,//BJetness_avdca2d*/
   1000,//BJetness_chi2
   1,//BJetness_avip3d_val
-  500,//BJetness_avip3d_sig
+  60,//BJetness_avip3d_sig
   0.4,//BJetness_avsip3d_val
-  400,//BJetness_avsip3d_sig
+  50,//BJetness_avsip3d_sig
   40,//BJetness_numip3dpos
-  10//BJetness_numip3dneg
+  20//BJetness_numip3dneg
 };
 
 /////
