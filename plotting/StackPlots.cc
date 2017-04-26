@@ -825,12 +825,12 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
       normdata= 660109;
       normsig = 17518.3;
     }
-    if(var.find("lead_el")!=std::string::npos){
+    else if(var.find("lead_el")!=std::string::npos){
       normbkg = 1.14165e+07;
       normdata = 302739;
       normsig = 7339;
     }
-    if(var.find("lead_mu")!=std::string::npos){
+    else if(var.find("lead_mu")!=std::string::npos){
       normbkg = 1.67503e+07;
       normdata = 378296;
       normsig = 10485.3;
@@ -972,12 +972,12 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
       normdata= 660109;
       normsig = 17518.3;
     }
-    if(var.find("lead_el")!=std::string::npos){
+    else if(var.find("lead_el")!=std::string::npos){
       normbkg = 1.14165e+07;
       normdata = 302739;
       normsig = 7339;
     }
-    if(var.find("lead_mu")!=std::string::npos){
+    else if(var.find("lead_mu")!=std::string::npos){
       normbkg = 1.67503e+07;
       normdata = 378296;
       normsig = 10485.3;
@@ -1141,12 +1141,12 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normdata= 660109;
       normsig = 17518.3;
     }
-    if(var.find("lead_el")!=std::string::npos){
+    else if(var.find("lead_el")!=std::string::npos){
       normbkg = 1.14165e+07;
       normdata = 302739;
       normsig = 7339;
     }
-    if(var.find("lead_mu")!=std::string::npos){
+    else if(var.find("lead_mu")!=std::string::npos){
       normbkg = 1.67503e+07;
       normdata = 378296;
       normsig = 10485.3;
