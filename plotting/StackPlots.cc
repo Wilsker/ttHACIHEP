@@ -83,14 +83,14 @@ const bool save_plots   = true;
 const bool show_title   = true;
 const bool doasym       = false;
 const double asymbin[6] = {0,3,4,9,15,20};
-const int    numVar     = 70;
-const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+const int    numVar     = 62;
+const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 //const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
 const unsigned int ini_var = 0;
-const unsigned int fin_var = 70;
+const unsigned int fin_var = 62;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -161,14 +161,14 @@ const char *variables[]         = {
   "BJetness_avpreljeten",
   "BJetness_avpparjetpt",
   "BJetness_avpparjeten",
-  "BJetness_avnum2v",
-  "BJetness_avnumno2v",
-  "BJetness_avdca3d2t",
-  "BJetness_avdca3dno2t",
-  "BJetness_avdca3d",
-  "BJetness_avdca2d2t",
-  "BJetness_avdca2dno2t",
-  "BJetness_avdca2d",
+  /*"BJetness_avnum2v",//Deprecated
+  "BJetness_avnumno2v",//Deprecated
+  "BJetness_avdca3d2t",//Deprecated
+  "BJetness_avdca3dno2t",//Deprecated
+  "BJetness_avdca3d",//Deprecated
+  "BJetness_avdca2d2t",//Deprecated
+  "BJetness_avdca2dno2t",//Deprecated
+  "BJetness_avdca2d",//Deprecated*/
   "BJetness_chi2",
   "BJetness_avip3d_val",
   "BJetness_avip3d_sig",
@@ -233,14 +233,14 @@ const char *titleXaxis[]        = {
   "BJetness_avpreljeten",
   "BJetness_avpparjetpt",
   "BJetness_avpparjeten",
-  "BJetness_avnum2v",
+  /*"BJetness_avnum2v",
   "BJetness_avnumno2v",
   "BJetness_avdca3d2t",
   "BJetness_avdca3dno2t",
   "BJetness_avdca3d",
   "BJetness_avdca2d2t",
   "BJetness_avdca2dno2t",
-  "BJetness_avdca2d",
+  "BJetness_avdca2d",*/
   "BJetness_chi2",
   "BJetness_avip3d_val",
   "BJetness_avip3d_sig",
@@ -288,9 +288,9 @@ const int    bin[numVar]        = {
   40,//lead_lep_pt
   20,//lead_lep_eta
   20,//lead_lep_phi
-  50,//BJetness_numjettrks
-  40,//BJetness_numjettrkspv
-  30,//BJetness_numjettrksnopv
+  20,//BJetness_numjettrks
+  20,//BJetness_numjettrkspv
+  10,//BJetness_numjettrksnopv
   8,//BJetness_pvTrkOVcollTrk
   6,//BJetness_npvTrkOVpvTrk
   10,//BJetness_npvPtOVcollPt
@@ -305,21 +305,21 @@ const int    bin[numVar]        = {
   20,//BJetness_avpreljeten
   20,//BJetness_avpparjetpt
   10,//BJetness_avpparjeten
-  20,//BJetness_avnum2v
+  /*20,//BJetness_avnum2v
   20,//BJetness_avnumno2v
   200,//BJetness_avdca3d2t
   200,//BJetness_avdca3dno2t
   200,//BJetness_avdca3d
   200,//BJetness_avdca2d2t
   200,//BJetness_avdca2dno2t
-  200,//BJetness_avdca2d
-  100,//BJetness_chi2
+  200,//BJetness_avdca2d*/
+  200,//BJetness_chi2
   10,//BJetness_avip3d_val
   50,//BJetness_avip3d_sig
-  30,//BJetness_avsip3d_val
+  20,//BJetness_avsip3d_val
   60,//BJetness_avsip3d_sig
   20,//BJetness_numip3dpos
-  10//BJetness_numip3dneg
+  5//BJetness_numip3dneg
 };
 const double inRange[numVar]    = {
   0,//BJetness_num_pdgid_eles
@@ -372,23 +372,23 @@ const double inRange[numVar]    = {
   0,//BJetness_avppar
   0,//BJetness_avetarel
   2,//BJetness_avetapar
-  -0.1,//BJetness_avdr
+  0,//BJetness_avdr
   0,//BJetness_avpreljetpt
   0,//BJetness_avpreljeten
   0,//BJetness_avpparjetpt
   0,//BJetness_avpparjeten
-  0,//BJetness_avnum2v
+  /*0,//BJetness_avnum2v
   0,//BJetness_avnumno2v
   0,//BJetness_avdca3d2t
   0,//BJetness_avdca3dno2t
   0,//BJetness_avdca3d
   0,//BJetness_avdca2d2t
   0,//BJetness_avdca2dno2t
-  0,//BJetness_avdca2d
-  0,//BJetness_chi2
+  0,//BJetness_avdca2d*/
+  900,//BJetness_chi2
   0,//BJetness_avip3d_val
   0,//BJetness_avip3d_sig
-  0,//BJetness_avsip3d_val
+  -1,//BJetness_avsip3d_val
   -10,//BJetness_avsip3d_sig
   0,//BJetness_numip3dpos
   5//BJetness_numip3dneg
@@ -432,8 +432,8 @@ const double endRange[numVar]   = {
   200,//lead_lep_pt
   3,//lead_lep_eta
   4,//lead_lep_phi
-  50,//BJetness_numjettrks
-  40,//BJetness_numjettrkspv
+  100,//BJetness_numjettrks
+  60,//BJetness_numjettrkspv
   30,//BJetness_numjettrksnopv
   1,//BJetness_pvTrkOVcollTrk
   1.2,//BJetness_npvTrkOVpvTrk
@@ -444,25 +444,25 @@ const double endRange[numVar]   = {
   30,//BJetness_avppar
   0.2,//BJetness_avetarel
   5,//BJetness_avetapar
-  0.1,//BJetness_avdr
+  0.2,//BJetness_avdr
   0.1,//BJetness_avpreljetpt
   0.1,//BJetness_avpreljeten
   2,//BJetness_avpparjetpt
   1,//BJetness_avpparjeten
-  0.1,//BJetness_avnum2v
+  /*0.1,//BJetness_avnum2v
   0.1,//BJetness_avnumno2v
   10,//BJetness_avdca3d2t
   10,//BJetness_avdca3dno2t
   10,//BJetness_avdca3d
   10,//BJetness_avdca2d2t
   10,//BJetness_avdca2dno2t
-  10,//BJetness_avdca2d
-  100,//BJetness_chi2
+  10,//BJetness_avdca2d*/
+  1100,//BJetness_chi2
   1,//BJetness_avip3d_val
   50,//BJetness_avip3d_sig
-  0.3,//BJetness_avsip3d_val
+  1,//BJetness_avsip3d_val
   50,//BJetness_avsip3d_sig
-  20,//BJetness_numip3dpos
+  40,//BJetness_numip3dpos
   10//BJetness_numip3dneg
 };
 
