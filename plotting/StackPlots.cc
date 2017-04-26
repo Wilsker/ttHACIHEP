@@ -783,6 +783,26 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   //Get errors, normalise
 
   if(normalised){
+    if(var.find("BJetness")!=std::string::npos){
+      normbkg = 2.76786e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normdata= 660109;
+      normsig = 17518.3;
+    }
+    if(var.find("lead_el")!=std::string::npos){
+      normbkg = 2.81566e+07;
+      normdata = 681035;
+      normsig = 17824.4;
+    }
+    if(var.find("lead_mu")!=std::string::npos){
+      normbkg = 2.81679e+07;
+      normdata = 681035;
+      normsig = 17824.4;
+    }
+    else{
+      normbkg = 2.81678e+07;
+      normdata = 681035;
+      normsig = 17824.3;
+    }
 
     cout << "============= normalised ===============" << endl;
     cout << "var name = " << var << endl;
@@ -910,6 +930,27 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
   //Get errors, normalise
 
   if(normalised){
+    if(var.find("BJetness")!=std::string::npos){
+      normbkg = 2.76786e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normdata= 660109;
+      normsig = 17518.3;
+    }
+    if(var.find("lead_el")!=std::string::npos){
+      normbkg = 2.81566e+07;
+      normdata = 681035;
+      normsig = 17824.4;
+    }
+    if(var.find("lead_mu")!=std::string::npos){
+      normbkg = 2.81679e+07;
+      normdata = 681035;
+      normsig = 17824.4;
+    }
+    else{
+      normbkg = 2.81678e+07;
+      normdata = 681035;
+      normsig = 17824.3;
+    }
+
 
     cout << "============= normalised ===============" << endl;
     cout << "normdata = " << normdata << endl;
@@ -1065,6 +1106,11 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
     }
     if(var.find("lead_el")!=std::string::npos){
       normbkg = 2.81566e+07;
+      normdata = 681035;
+      normsig = 17824.4;
+    }
+    if(var.find("lead_mu")!=std::string::npos){
+      normbkg = 2.81679e+07;
       normdata = 681035;
       normsig = 17824.4;
     }
