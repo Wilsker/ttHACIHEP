@@ -612,10 +612,10 @@ void StackPlots(){
         int nbins = h_var->GetNbinsX();
 
 
-        if(var.find("lead_el")!=std::string::npos){
+        if(var[v].find("lead_el")!=std::string::npos){
           cout<<setw(5)<<"Bckg Histogram integral + overflow:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
         }
-        if(var.find("lead_mu")!=std::string::npos){
+        if(var[v].find("lead_mu")!=std::string::npos){
           cout<<setw(5)<<"Bckg Histogram integral + overflow:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
         }
         else{
@@ -636,10 +636,10 @@ void StackPlots(){
       else if(datatype==0){
         //Get integral of data histogram for given variable.
         int nbins = h_data_var->GetNbinsX();
-        if(var.find("lead_el")!=std::string::npos){
+        if(var[v].find("lead_el")!=std::string::npos){
           cout<<setw(5)<<"Data Histogram integral + overflow:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral()<<endl;
         }
-        if(var.find("lead_mu")!=std::string::npos){
+        if(var[v].find("lead_mu")!=std::string::npos){
           cout<<setw(5)<<"Data Histogram integral + overflow:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral()<<endl;
         }
         else{
@@ -652,10 +652,10 @@ void StackPlots(){
       }
       else if (datatype==1){
         int nbins_sig = h_sig->GetNbinsX();
-        if(var.find("lead_el")!=std::string::npos){
+        if(var[v].find("lead_el")!=std::string::npos){
           cout<<setw(5)<<"Total Signal Historgram Integral + overflow:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral()<<endl;
         }
-        if(var.find("lead_mu")!=std::string::npos){
+        if(var[v].find("lead_mu")!=std::string::npos){
           cout<<setw(5)<<"Total Signal Historgram Integral + overflow:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral()<<endl;
         }
         else{
@@ -666,10 +666,10 @@ void StackPlots(){
     }
 
     cout << "========= TOTAL BCKG =========" << endl;
-    if(var.find("lead_el")!=std::string::npos){
+    if(var[v].find("lead_el")!=std::string::npos){
       cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<h_sum_var->Integral()<<endl;
     }
-    if(var.find("lead_mu")!=std::string::npos){
+    if(var[v].find("lead_mu")!=std::string::npos){
       cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<h_sum_var->Integral()<<endl;
     }
     else{
