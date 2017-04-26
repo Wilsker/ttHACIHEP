@@ -1285,7 +1285,8 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   h_sig->SetLineColor(kGreen+4);
 
   //Draw data and bckg MC
-
+  h_data_var->ClearUnderflowAndOverflow();
+  h_sig->ClearUnderflowAndOverflow();
   h_data_var->Draw("P");
   hstack->Draw("HIST same");
 
