@@ -89,7 +89,7 @@ const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 52;
+const unsigned int ini_var = 0;
 const unsigned int fin_var = 62;
 const int posvtcr          = 0;
 
@@ -319,7 +319,7 @@ const int    bin[numVar]        = {
   20,//BJetness_avsip3d_val
   100,//BJetness_avsip3d_sig
   20,//BJetness_numip3dpos
-  15//BJetness_numip3dneg
+  26//BJetness_numip3dneg
 };
 const double inRange[numVar]    = {
   0,//BJetness_num_pdgid_eles
@@ -389,9 +389,9 @@ const double inRange[numVar]    = {
   0,//BJetness_avip3d_val
   -1,//BJetness_avip3d_sig
   -0.2,//BJetness_avsip3d_val
-  -50,//BJetness_avsip3d_sig
+  -30,//BJetness_avsip3d_sig
   0,//BJetness_numip3dpos
-  5//BJetness_numip3dneg
+  4//BJetness_numip3dneg
 };
 const double endRange[numVar]   = {
   4,//BJetness_num_pdgid_eles
@@ -461,9 +461,9 @@ const double endRange[numVar]   = {
   1,//BJetness_avip3d_val
   60,//BJetness_avip3d_sig
   0.4,//BJetness_avsip3d_val
-  50,//BJetness_avsip3d_sig
+  30,//BJetness_avsip3d_sig
   40,//BJetness_numip3dpos
-  20//BJetness_numip3dneg
+  30//BJetness_numip3dneg
 };
 
 /////
