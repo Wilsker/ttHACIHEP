@@ -71,7 +71,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = false;
+const bool normalised   = true;
 //const double normbkg    = 2.81681e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 //const double normdata   = 516742;
 //const double normsig    = 17824.5;
@@ -615,7 +615,7 @@ void StackPlots(){
         if(var[v].find("lead_el")!=std::string::npos){
           cout<<setw(5)<<"Bckg Histogram integral:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
         }
-        if(var[v].find("lead_mu")!=std::string::npos){
+        else if(var[v].find("lead_mu")!=std::string::npos){
           cout<<setw(5)<<"Bckg Histogram integral:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
         }
         else{
@@ -669,7 +669,7 @@ void StackPlots(){
     if(var[v].find("lead_el")!=std::string::npos){
       cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<h_sum_var->Integral()<<endl;
     }
-    if(var[v].find("lead_mu")!=std::string::npos){
+    else if(var[v].find("lead_mu")!=std::string::npos){
       cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<h_sum_var->Integral()<<endl;
     }
     else{
@@ -826,14 +826,14 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
       normsig = 17518.3;
     }
     if(var.find("lead_el")!=std::string::npos){
-      normbkg = 2.81566e+07;
-      normdata = 681035;
-      normsig = 17824.4;
+      normbkg = 1.14165e+07;
+      normdata = 302739;
+      normsig = 7339;
     }
     if(var.find("lead_mu")!=std::string::npos){
-      normbkg = 2.81679e+07;
-      normdata = 681035;
-      normsig = 17824.4;
+      normbkg = 1.67503e+07;
+      normdata = 378296;
+      normsig = 10485.3;
     }
     else{
       normbkg = 2.81678e+07;
@@ -973,14 +973,14 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
       normsig = 17518.3;
     }
     if(var.find("lead_el")!=std::string::npos){
-      normbkg = 2.81566e+07;
-      normdata = 681035;
-      normsig = 17824.4;
+      normbkg = 1.14165e+07;
+      normdata = 302739;
+      normsig = 7339;
     }
     if(var.find("lead_mu")!=std::string::npos){
-      normbkg = 2.81679e+07;
-      normdata = 681035;
-      normsig = 17824.4;
+      normbkg = 1.67503e+07;
+      normdata = 378296;
+      normsig = 10485.3;
     }
     else{
       normbkg = 2.81678e+07;
@@ -1142,14 +1142,14 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normsig = 17518.3;
     }
     if(var.find("lead_el")!=std::string::npos){
-      normbkg = 2.81566e+07;
-      normdata = 681035;
-      normsig = 17824.4;
+      normbkg = 1.14165e+07;
+      normdata = 302739;
+      normsig = 7339;
     }
     if(var.find("lead_mu")!=std::string::npos){
-      normbkg = 2.81679e+07;
-      normdata = 681035;
-      normsig = 17824.4;
+      normbkg = 1.67503e+07;
+      normdata = 378296;
+      normsig = 10485.3;
     }
     else{
       normbkg = 2.81678e+07;
