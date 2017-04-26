@@ -315,7 +315,7 @@ const int    bin[numVar]        = {
   200,//BJetness_avdca2d*/
   20,//BJetness_chi2
   10,//BJetness_avip3d_val
-  50,//BJetness_avip3d_sig
+  100,//BJetness_avip3d_sig
   20,//BJetness_avsip3d_val
   100,//BJetness_avsip3d_sig
   20,//BJetness_numip3dpos
@@ -387,7 +387,7 @@ const double inRange[numVar]    = {
   0,//BJetness_avdca2d*/
   995,//BJetness_chi2
   0,//BJetness_avip3d_val
-  0,//BJetness_avip3d_sig
+  -100,//BJetness_avip3d_sig
   -0.2,//BJetness_avsip3d_val
   -400,//BJetness_avsip3d_sig
   0,//BJetness_numip3dpos
@@ -444,7 +444,7 @@ const double endRange[numVar]   = {
   30,//BJetness_avppar
   0.2,//BJetness_avetarel
   5,//BJetness_avetapar
-  0.2,//BJetness_avdr
+  0.4,//BJetness_avdr
   0.1,//BJetness_avpreljetpt
   0.1,//BJetness_avpreljeten
   2,//BJetness_avpparjetpt
@@ -459,7 +459,7 @@ const double endRange[numVar]   = {
   10,//BJetness_avdca2d*/
   1000,//BJetness_chi2
   1,//BJetness_avip3d_val
-  50,//BJetness_avip3d_sig
+  500,//BJetness_avip3d_sig
   0.4,//BJetness_avsip3d_val
   400,//BJetness_avsip3d_sig
   40,//BJetness_numip3dpos
