@@ -785,6 +785,11 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
     b_Muon_IsoSFval->GetEntry(tentry);
     b_Muon_TrkSFval->GetEntry(tentry);
 
+    cout << var << " = " << curr_var << endl;
+    if (var.find("lead_el")!=std::string::npos || var.find("lead_mu")!=std::string::npos ){
+      if (curr_var<15){continue;}
+    }
+
     if(datatype!=0){
       b_lumiweight->GetEntry(tentry);
       b_trigger_SF->GetEntry(tentry);
@@ -941,11 +946,6 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
     b_Muon_IDSFval->GetEntry(tentry);
     b_Muon_IsoSFval->GetEntry(tentry);
     b_Muon_TrkSFval->GetEntry(tentry);
-
-    cout << var << " = " << curr_var << endl;
-    if (var.find("lead_el")!=std::string::npos || var.find("lead_mu")!=std::string::npos ){
-      if (curr_var<15){continue;}
-    }
 
     if(datatype!=0){
       b_trigger_SF->GetEntry(tentry);
