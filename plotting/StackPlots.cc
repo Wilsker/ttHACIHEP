@@ -785,9 +785,9 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
     b_Muon_IsoSFval->GetEntry(tentry);
     b_Muon_TrkSFval->GetEntry(tentry);
 
-    if (var.find("lead_el")!=std::string::npos || var.find("lead_mu")!=std::string::npos ){
+    if (var.find("lead_el_pt")!=std::string::npos || var.find("lead_mu_pt")!=std::string::npos ){
       cout << var << " = " << curr_var << endl;
-      if (curr_var<15){continue;}
+      if (curr_var<0){continue;}
     }
 
     if(datatype!=0){
