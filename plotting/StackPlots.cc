@@ -551,33 +551,33 @@ void StackPlots(){
         if(var[v].find("BJetness")!=std::string::npos){
           h_var = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
-        else if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets") {
-          h_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
+        else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets") {
+          h_var  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else{
-          h_var  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
+          h_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
       }
       else if(datatype==1){
         if(var[v].find("BJetness")!=std::string::npos){
           h_sig = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
-        else if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets") {
-          h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
+        else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets") {
+          h_sig  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else{
-          h_sig  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
+          h_sig  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
       }
       else{
         if(var[v].find("BJetness")!=std::string::npos){
           h_data_var = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
-        else if (var[v]!="NumberOfJets" && var[v]!="NumberOfBJets") {
-          h_data_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
+        else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets") {
+          h_data_var  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else{
-          h_data_var  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
+          h_data_var  = double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
       }
 
@@ -942,6 +942,10 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
     b_Muon_IsoSFval->GetEntry(tentry);
     b_Muon_TrkSFval->GetEntry(tentry);
 
+    if (var.find("lead_el")!=std::string::npos || var.find("lead_mu")!=std::string::npos ){
+      if (curr_var<15){continue;}
+    }
+
     if(datatype!=0){
       b_trigger_SF->GetEntry(tentry);
       b_lumiweight->GetEntry(tentry);
@@ -1285,8 +1289,6 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   h_sig->SetLineColor(kGreen+4);
 
   //Draw data and bckg MC
-  h_data_var->ClearUnderflowAndOverflow();
-  h_sig->ClearUnderflowAndOverflow();
 
   h_data_var->Draw("P");
   hstack->Draw("HIST same");
