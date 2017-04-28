@@ -83,14 +83,14 @@ const bool save_plots   = true;
 const bool show_title   = true;
 const bool doasym       = false;
 const double asymbin[6] = {0,3,4,9,15,20};
-const int    numVar     = 62;
-const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+const int    numVar     = 73;
+const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 //const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
 const unsigned int ini_var = 0;
-const unsigned int fin_var = 62;
+const unsigned int fin_var = 73;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -175,7 +175,18 @@ const char *variables[]         = {
   "BJetness_avsip3d_val",
   "BJetness_avsip3d_sig",
   "BJetness_numip3dpos",
-  "BJetness_numip3dneg"
+  "BJetness_numip3dneg",//
+  "BJetness_jetschpvass",
+  "BJetness_jetschfrompv",
+  "BJetness_jetschip3dval",
+  "BJetness_jetschip3dsig",
+  "BJetness_jetschip2dval",
+  "BJetness_jetschip2dsig",
+  "BJetness_jetschisgoodtrk",
+  "BJetness_jetschtrkpur",
+  "BJetness_jetschpt",
+  "BJetness_jetscheta",
+  "BJetness_jetschen"
 };
 const char *titleXaxis[]        = {
   "BJetness # pdgid el",
@@ -247,7 +258,18 @@ const char *titleXaxis[]        = {
   "BJetness_avsip3d_val",
   "BJetness_avsip3d_sig",
   "BJetness_numip3dpos",
-  "BJetness_numip3dneg"
+  "BJetness_numip3dneg",//
+  "BJetness_jetschpvass",
+  "BJetness_jetschfrompv",
+  "BJetness_jetschip3dval",
+  "BJetness_jetschip3dsig",
+  "BJetness_jetschip2dval",
+  "BJetness_jetschip2dsig",
+  "BJetness_jetschisgoodtrk",
+  "BJetness_jetschtrkpur",
+  "BJetness_jetschpt",
+  "BJetness_jetscheta",
+  "BJetness_jetschen"
 };
 const int    bin[numVar]        = {
   4,//BJetness_num_pdgid_eles
@@ -319,7 +341,18 @@ const int    bin[numVar]        = {
   20,//BJetness_avsip3d_val
   100,//BJetness_avsip3d_sig
   20,//BJetness_numip3dpos
-  26//BJetness_numip3dneg
+  26,//BJetness_numip3dneg///////////
+  8,//BJetness_jetschpvass
+  4,//BJetness_jetschfrompv
+  4,//BJetness_jetschip3dval
+  100,//BJetness_jetschip3dsig
+  10,//BJetness_jetschip2dval
+  10,//BJetness_jetschip2dsig
+  1,//BJetness_jetschisgoodtrk
+  1,//BJetness_jetschtrkpur
+  50,//BJetness_jetschpt
+  6,//BJetness_jetscheta
+  60,//BJetness_jetschen
 };
 const double inRange[numVar]    = {
   0,//BJetness_num_pdgid_eles
@@ -391,7 +424,18 @@ const double inRange[numVar]    = {
   -0.2,//BJetness_avsip3d_val
   -30,//BJetness_avsip3d_sig
   0,//BJetness_numip3dpos
-  4//BJetness_numip3dneg
+  4,//BJetness_numip3dneg
+  0,//BJetness_jetschpvass
+  0,//BJetness_jetschfrompv
+  0,//BJetness_jetschip3dval
+  0,//BJetness_jetschip3dsig
+  0,//BJetness_jetschip2dval
+  0,//BJetness_jetschip2dsig
+  0,//BJetness_jetschisgoodtrk
+  0,//BJetness_jetschtrkpur
+  0,//BJetness_jetschpt
+  -3,//BJetness_jetscheta
+  0//BJetness_jetschen
 };
 const double endRange[numVar]   = {
   4,//BJetness_num_pdgid_eles
@@ -463,7 +507,18 @@ const double endRange[numVar]   = {
   0.4,//BJetness_avsip3d_val
   30,//BJetness_avsip3d_sig
   40,//BJetness_numip3dpos
-  30//BJetness_numip3dneg
+  30,//BJetness_numip3dneg
+  8,//BJetness_jetschpvass
+  4,//BJetness_jetschfrompv
+  4,//BJetness_jetschip3dval
+  500,//BJetness_jetschip3dsig
+  10,//BJetness_jetschip2dval
+  10,//BJetness_jetschip2dsig
+  1,//BJetness_jetschisgoodtrk
+  1,//BJetness_jetschtrkpur
+  100,//BJetness_jetschpt
+  3,//BJetness_jetscheta
+  120//BJetness_jetschen
 };
 
 /////
