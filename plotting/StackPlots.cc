@@ -1077,7 +1077,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
 TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype){
   //Call tree and variables
   cout << "============== vector_double_h_var =============="<<endl;
-  //cout << "variable = " << var << endl;
+  cout << "variable = " << var << endl;
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
   vector <double> * var_vals =0;
   TBranch *b_var_vals = 0;
@@ -1159,6 +1159,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
 
       curr_var = var_vals->at(k);
 
+      cout "curr_var = " << curr_var << endl;
       if(datatype!=0){
         b_lumiweight->GetEntry(tentry);
         b_trigger_SF->GetEntry(tentry);
@@ -1221,6 +1222,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
     cout << "normdata = " << normdata << endl;
     cout << "normsig = " << normsig << endl;
     cout << "normbkg = " << normbkg << endl;
+    cout << "hist integral (pre-scaling): " << hist->Integral() << endl;
     if(datatype==0) hist->Scale(1/normdata);
     if(datatype==1) hist->Scale(1/normsig);
     if(datatype==2) hist->Scale(1/normbkg);
