@@ -1159,7 +1159,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
 
       curr_var = var_vals->at(k);
 
-      cout "curr_var = " << curr_var << endl;
+      cout << "curr_var = " << curr_var << endl;
       if(datatype!=0){
         b_lumiweight->GetEntry(tentry);
         b_trigger_SF->GetEntry(tentry);
