@@ -691,6 +691,10 @@ void StackPlots(){
       else if(datatype==0){
         //Get integral of data histogram for given variable.
         int nbins = h_data_var->GetNbinsX();
+        cout << "nbins = " << nbins << endl;
+        for(int x=0;x<nbins;x++){
+          cout << "h_data_var " << x << " bin content = " << h_data_var->GetBinContent(x)<< endl;
+        }
         if(var[v].find("lead_el")!=std::string::npos){
           cout<<setw(5)<<"Data Histogram integral:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral()<<endl;
         }
@@ -707,6 +711,9 @@ void StackPlots(){
       }
       else if (datatype==1){
         int nbins_sig = h_sig->GetNbinsX();
+        for(int x=0;x<nbins_sig;x++){
+          cout << "h_sig " << x << " bin content = " << h_sig->GetBinContent(x)<< endl;
+        }
         if(var[v].find("lead_el")!=std::string::npos){
           cout<<setw(5)<<"Total Signal Historgram Integral:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral()<<endl;
         }
@@ -1196,6 +1203,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
           //cout << "triggerSFs = " << trigger_SF << endl;
           w = w*trigger_SF;
         }
+        cout << "weight = " << w << endl;
         if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
         if(curr_var>=endRange[v])                      {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
         if(curr_var<=inRange[v])                       {hist->Fill(1.01*inRange[v],w);  hist_err->Fill(1.01*inRange[v],w*w);}
