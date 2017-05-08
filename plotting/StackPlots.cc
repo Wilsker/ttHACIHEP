@@ -90,7 +90,7 @@ const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
 const unsigned int ini_var = 62;
-const unsigned int fin_var = 63;
+const unsigned int fin_var = 73;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -1198,7 +1198,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
           //cout << "triggerSFs = " << trigger_SF << endl;
           w = w*trigger_SF;
         }
-    
+
         if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
         if(curr_var>=endRange[v])                      {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
         if(curr_var<=inRange[v])                       {hist->Fill(1.01*inRange[v],w);  hist_err->Fill(1.01*inRange[v],w*w);}
