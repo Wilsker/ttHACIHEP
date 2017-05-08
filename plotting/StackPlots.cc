@@ -175,7 +175,7 @@ const char *variables[]         = {
   "BJetness_avsip3d_val",
   "BJetness_avsip3d_sig",
   "BJetness_numip3dpos",
-  "BJetness_numip3dneg",//
+  "BJetness_numip3dneg",
   "BJetness_jetschpvass",
   "BJetness_jetschfrompv",
   "BJetness_jetschip3dval",
@@ -258,7 +258,7 @@ const char *titleXaxis[]        = {
   "BJetness_avsip3d_val",
   "BJetness_avsip3d_sig",
   "BJetness_numip3dpos",
-  "BJetness_numip3dneg",//
+  "BJetness_numip3dneg",
   "BJetness_jetschpvass",
   "BJetness_jetschfrompv",
   "BJetness_jetschip3dval",
@@ -341,8 +341,8 @@ const int    bin[numVar]        = {
   20,//BJetness_avsip3d_val
   100,//BJetness_avsip3d_sig
   20,//BJetness_numip3dpos
-  26,//BJetness_numip3dneg///////////
-  8,//BJetness_jetschpvass
+  26,//BJetness_numip3dneg
+  7,//BJetness_jetschpvass
   4,//BJetness_jetschfrompv
   4,//BJetness_jetschip3dval
   100,//BJetness_jetschip3dsig
@@ -508,7 +508,7 @@ const double endRange[numVar]   = {
   30,//BJetness_avsip3d_sig
   40,//BJetness_numip3dpos
   30,//BJetness_numip3dneg
-  8,//BJetness_jetschpvass
+  7,//BJetness_jetschpvass
   4,//BJetness_jetschfrompv
   4,//BJetness_jetschip3dval
   500,//BJetness_jetschip3dsig
@@ -662,6 +662,9 @@ void StackPlots(){
         //Get integral for bckg histogram of given variable.
         int nbins = h_var->GetNbinsX();
         cout << "nbins = " << nbins << endl;
+        for(int x=0;x<nbins;x++){
+          cout << "h_var " << x << " bin content = " << h_var->GetBinContent(x)<< endl;
+        }
 
         if(var[v].find("lead_el")!=std::string::npos){
           cout<<setw(5)<<"Bckg Histogram integral (lead_el) :"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
