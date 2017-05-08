@@ -1158,7 +1158,6 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
   for(int j=0; j<tree->GetEntries(); j++)
   //for(int j=0; j<5; j++)
   {
-    tripwire = tripwire+1;
     double w = 1.;
     Long64_t tentry = tree->LoadTree(j);
     b_var_vals->GetEntry(tentry);
@@ -1174,11 +1173,9 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
 
 
     for(int k =0; k<var_vals->size(); k++){
+      tripwire = tripwire+1;
 
       curr_var = var_vals->at(k);
-      if (curr_var>100){
-        cout << "curr_var = " << curr_var << endl;
-      }
 
       //cout << "curr_var = " << curr_var << endl;
       if(datatype!=0){
