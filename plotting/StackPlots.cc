@@ -733,7 +733,9 @@ void StackPlots(){
     cout<<setw(5)<<"bkgstackintegral :"<<setw(15)<<"Bkg"<<setw(15)<<bkgstackintegral<<endl;
 
 
-
+    if (curr_var>100){
+      cout << "curr_var = " << curr_var << endl;
+    }
     //Draw
     double highestbinval = get_highestbinval(h_data_var,h_sig,hstack,v);
     cout << "highestbinval = " << highestbinval << endl;
