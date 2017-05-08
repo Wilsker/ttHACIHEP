@@ -736,7 +736,7 @@ void StackPlots(){
 
     //Draw
     double highestbinval = get_highestbinval(h_data_var,h_sig,hstack,v);
-    cout << "get_highestbinval = " << get_highestbinval << endl;
+    cout << "highestbinval = " << highestbinval << endl;
     TCanvas* c1 = new TCanvas(var[v].c_str(),var[v].c_str(),200,200,700,600);
     draw_plots(c1,h_sum_var,hstack,h_data_var,h_sig,leg,err_AllBkg,ent_AllBkg,rootplas_size,v,var[v],varTitleXaxis[v],highestbinval);
     save_canvas(c1,var[v]);
