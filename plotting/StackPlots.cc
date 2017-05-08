@@ -657,14 +657,14 @@ void StackPlots(){
 
         //Add background to stack
         h_var->Print();
-        cout << "Hist mean = " << h_var->GetMean() << endl;
+        //cout << "Hist mean = " << h_var->GetMean() << endl;
         hstack->Add(h_var);
         //Get integral for bckg histogram of given variable.
         int nbins = h_var->GetNbinsX();
-        cout << "nbins = " << nbins << endl;
+        /*cout << "nbins = " << nbins << endl;
         for(int x=0;x<nbins;x++){
           cout << "h_var " << x << " bin content = " << h_var->GetBinContent(x)<< endl;
-        }
+        }*/
 
         if(var[v].find("lead_el")!=std::string::npos){
           cout<<setw(5)<<"Bckg Histogram integral (lead_el) :"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
@@ -704,9 +704,6 @@ void StackPlots(){
         else{
           cout<<setw(5)<<"Data Histogram integral + overflow:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral(0,nbins+1)<<endl;
         }
-
-        //cout<<setw(5)<<"Data Histogram integral + overflow:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral(0,nbins+1)<<endl;
-        //cout<<setw(5)<<"Data Histogram integral:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral()<<endl;
 
       }
       else if (datatype==1){
@@ -762,8 +759,6 @@ TFile* Call_TFile(string rootpla){
   TFile* f = new TFile(file_name.c_str(),"update");
   return f;
 }
-
-
 
 /////
 //   Fill histo with double type
@@ -913,11 +908,15 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
     cout << "normdata = " << normdata << endl;
     cout << "normsig = " << normsig << endl;
     cout << "normbkg = " << normbkg << endl;
+    cout << "hist integral (pre-scaling): " << hist->Integral() << endl;
     if(datatype==0) hist->Scale(1/normdata);
     if(datatype==1) hist->Scale(1/normsig);
     if(datatype==2) hist->Scale(1/normbkg);
     cout << "Check hist integral (should ==1): " << hist->Integral() << endl;
     cout << "========================================" << endl;
+  }
+  else{
+    cout << "hist integral (pre-scaling): " << hist->Integral() << endl;
   }
   if(datatype==2){
     for(int j=0; j<bin[v]; j++){
@@ -1236,6 +1235,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
 
 
     cout << "============= normalised ===============" << endl;
+    cout << "var name = " << var << endl;
     cout << "normdata = " << normdata << endl;
     cout << "normsig = " << normsig << endl;
     cout << "normbkg = " << normbkg << endl;
