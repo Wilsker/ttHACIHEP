@@ -675,11 +675,9 @@ void StackPlots(){
           cout<<setw(5)<<"Bckg Histogram integral :"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
           cout<<setw(5)<<"Bckg Histogram integral + overflow :"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral(0,nbins+1)<<endl;
         }
-        //cout<<setw(5)<<"Bckg Histogram integral + overflow:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral(0,nbins+1)<<endl;
-        //cout<<setw(5)<<"Bckg Histogram integral:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
+
         //Add integral to total bckg integral of given variable.
         bkgstackintegral += h_var->Integral(0,nbins+1);
-
 
         leg->AddEntry(h_var,bckg_mc_nickname.c_str(),"F");
 
@@ -738,6 +736,7 @@ void StackPlots(){
 
     //Draw
     double highestbinval = get_highestbinval(h_data_var,h_sig,hstack,v);
+    cout << "get_highestbinval = " << get_highestbinval << endl;
     TCanvas* c1 = new TCanvas(var[v].c_str(),var[v].c_str(),200,200,700,600);
     draw_plots(c1,h_sum_var,hstack,h_data_var,h_sig,leg,err_AllBkg,ent_AllBkg,rootplas_size,v,var[v],varTitleXaxis[v],highestbinval);
     save_canvas(c1,var[v]);
