@@ -1082,9 +1082,11 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
 TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype){
   //Call tree and variables
   cout << "============== vector_double_h_var =============="<<endl;
+  cout << "rootplas = " << rootplas << endl;
   cout << "variable = " << var << endl;
   cout << "inRange[v] = " << inRange[v] << endl;
   cout << "endRange[v] = " << endRange[v] << endl;
+
 
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
   vector <double> * var_vals =0;
