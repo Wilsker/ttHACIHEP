@@ -573,13 +573,8 @@ void StackPlots(){
     for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) err_AllBkg[i][j] = 0.;
     for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) ent_AllBkg[i][j] = 0.;
 
-    cout << "======================== NEW VAR =================================" << endl;
-
-    cout << "Variable " << v << " name = " << var[v] << endl;
-    cout << "Variable title = " << varTitleXaxis[v] << endl;
-
     for(uint i=0; i<rootplas_size; i++){
-      cout << "======= Sample : " << rootplas[i] << "========" << endl;
+      cout << "Sample : " << rootplas[i] << endl;
       int datatype = -999;
       if(rootplas[i].find("ttHbb_Merged") != std::string::npos){
         datatype=1;
@@ -646,7 +641,6 @@ void StackPlots(){
           cout << "Could not find  in sample name. Using deafult name for legend!" << endl;
           bckg_mc_nickname = "<Default bckg name>";
         }
-        cout << "Bckg nickname: " << bckg_mc_nickname << endl;
 
         //Put histos in the hstack
         int col = get_col(bckg_mc_nickname);
@@ -663,11 +657,11 @@ void StackPlots(){
 
         //Add background to stack
         h_var->Print();
+        cout << "Hist mean = " << h_var->GetMean() << endl;
         hstack->Add(h_var);
         //Get integral for bckg histogram of given variable.
         int nbins = h_var->GetNbinsX();
         cout << "nbins = " << nbins << endl;
-
 
         if(var[v].find("lead_el")!=std::string::npos){
           cout<<setw(5)<<"Bckg Histogram integral (lead_el) :"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
