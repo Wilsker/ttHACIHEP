@@ -661,10 +661,6 @@ void StackPlots(){
         hstack->Add(h_var);
         //Get integral for bckg histogram of given variable.
         int nbins = h_var->GetNbinsX();
-        /*cout << "nbins = " << nbins << endl;
-        for(int x=0;x<nbins;x++){
-          cout << "h_var " << x << " bin content = " << h_var->GetBinContent(x)<< endl;
-        }*/
 
         if(var[v].find("lead_el")!=std::string::npos){
           cout<<setw(5)<<"Bckg Histogram integral (lead_el) :"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
@@ -691,10 +687,7 @@ void StackPlots(){
       else if(datatype==0){
         //Get integral of data histogram for given variable.
         int nbins = h_data_var->GetNbinsX();
-        cout << "nbins = " << nbins << endl;
-        for(int x=0;x<nbins;x++){
-          cout << "h_data_var " << x << " bin content = " << h_data_var->GetBinContent(x)<< endl;
-        }
+
         if(var[v].find("lead_el")!=std::string::npos){
           cout<<setw(5)<<"Data Histogram integral:"<<setw(15)<<rootplas[i]<<setw(15)<<h_data_var->Integral()<<endl;
         }
@@ -708,9 +701,7 @@ void StackPlots(){
       }
       else if (datatype==1){
         int nbins_sig = h_sig->GetNbinsX();
-        for(int x=0;x<nbins_sig;x++){
-          cout << "h_sig " << x << " bin content = " << h_sig->GetBinContent(x)<< endl;
-        }
+
         if(var[v].find("lead_el")!=std::string::npos){
           cout<<setw(5)<<"Total Signal Historgram Integral:"<<setw(15)<<"Sig"<<setw(15)<<h_sig->Integral()<<endl;
         }
