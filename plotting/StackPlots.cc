@@ -1157,6 +1157,9 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
     b_Muon_TrkSFval->GetEntry(tentry);
 
     if(var_vals->size()==0) continue;
+    cout << "inRange[v] = " << inRange[v] << endl;
+    cout << "endRange[v] = " << endRange[v] << endl;
+    
     for(int k =0; k<var_vals->size(); k++){
 
       curr_var = var_vals->at(k);
