@@ -1201,6 +1201,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
           //cout << "triggerSFs = " << trigger_SF << endl;
           w = w*trigger_SF;
         }
+        /*cout << "tripwire = " << tripwire << endl;
         if(tripwire<10){
           cout << "lumiweight = " <<lumiweight << endl;
           cout << "Luminosity  = " << Luminosity << endl;
@@ -1211,7 +1212,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
           cout << "Muon_IsoSFval = " << Muon_IsoSFval << endl;
           cout << "Muon_TrkSFval = " << Muon_TrkSFval << endl;
           cout << "weight = " << w << endl;
-        }
+        }*/
         if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
         if(curr_var>=endRange[v])                      {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
         if(curr_var<=inRange[v])                       {hist->Fill(1.01*inRange[v],w);  hist_err->Fill(1.01*inRange[v],w*w);}
@@ -1221,7 +1222,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
         if(curr_var<=inRange[v])                        hist->Fill(1.01*inRange[v]);
       }
     }
-    tripwire=0;
+    //tripwire=0;
   }
   //Get errors, normalise
 
