@@ -71,7 +71,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = false;
+const bool normalised   = true;
 //const double normbkg    = 2.81681e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 //const double normdata   = 516742;
 //const double normsig    = 17824.5;
@@ -747,7 +747,6 @@ void StackPlots(){
 
     //Draw
     double highestbinval = get_highestbinval(h_data_var,h_sig,hstack,v);
-    cout << "highestbinval = " << highestbinval << endl;
     TCanvas* c1 = new TCanvas(var[v].c_str(),var[v].c_str(),200,200,700,600);
     draw_plots(c1,h_sum_var,hstack,h_data_var,h_sig,leg,err_AllBkg,ent_AllBkg,rootplas_size,v,var[v],varTitleXaxis[v],highestbinval);
     save_canvas(c1,var[v]);
@@ -1088,8 +1087,6 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
   cout << "============== vector_double_h_var =============="<<endl;
   cout << "rootplas = " << rootplas << endl;
   cout << "variable = " << var << endl;
-  cout << "inRange[v] = " << inRange[v] << endl;
-  cout << "endRange[v] = " << endRange[v] << endl;
 
 
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
@@ -1201,18 +1198,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
           //cout << "triggerSFs = " << trigger_SF << endl;
           w = w*trigger_SF;
         }
-        /*cout << "tripwire = " << tripwire << endl;
-        if(tripwire<10){
-          cout << "lumiweight = " <<lumiweight << endl;
-          cout << "Luminosity  = " << Luminosity << endl;
-          cout << "PUWeight = " << PUWeight << endl;
-          cout << "Electron_GsfSFval = " << Electron_GsfSFval << endl;
-          cout << "Electron_IDSFval = " << Electron_IDSFval << endl;
-          cout << "Muon_IDSFval = " << Muon_IDSFval << endl;
-          cout << "Muon_IsoSFval = " << Muon_IsoSFval << endl;
-          cout << "Muon_TrkSFval = " << Muon_TrkSFval << endl;
-          cout << "weight = " << w << endl;
-        }*/
+    
         if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
         if(curr_var>=endRange[v])                      {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
         if(curr_var<=inRange[v])                       {hist->Fill(1.01*inRange[v],w);  hist_err->Fill(1.01*inRange[v],w*w);}
