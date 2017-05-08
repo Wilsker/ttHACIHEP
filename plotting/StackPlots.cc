@@ -343,10 +343,10 @@ const int    bin[numVar]        = {
   20,//BJetness_numip3dpos
   26,//BJetness_numip3dneg
   7,//BJetness_jetschpvass
-  4,//BJetness_jetschfrompv
+  6,//BJetness_jetschfrompv
   4,//BJetness_jetschip3dval
-  100,//BJetness_jetschip3dsig
-  10,//BJetness_jetschip2dval
+  50,//BJetness_jetschip3dsig
+  4,//BJetness_jetschip2dval
   10,//BJetness_jetschip2dsig
   1,//BJetness_jetschisgoodtrk
   1,//BJetness_jetschtrkpur
@@ -427,12 +427,12 @@ const double inRange[numVar]    = {
   4,//BJetness_numip3dneg
   0,//BJetness_jetschpvass
   0,//BJetness_jetschfrompv
-  0,//BJetness_jetschip3dval
+  -2,//BJetness_jetschip3dval
   0,//BJetness_jetschip3dsig
   0,//BJetness_jetschip2dval
   0,//BJetness_jetschip2dsig
   0,//BJetness_jetschisgoodtrk
-  0,//BJetness_jetschtrkpur
+  -1,//BJetness_jetschtrkpur
   0,//BJetness_jetschpt
   -3,//BJetness_jetscheta
   0//BJetness_jetschen
@@ -509,16 +509,16 @@ const double endRange[numVar]   = {
   40,//BJetness_numip3dpos
   30,//BJetness_numip3dneg
   7,//BJetness_jetschpvass
-  4,//BJetness_jetschfrompv
-  4,//BJetness_jetschip3dval
-  500,//BJetness_jetschip3dsig
-  10,//BJetness_jetschip2dval
+  6,//BJetness_jetschfrompv
+  2,//BJetness_jetschip3dval
+  50,//BJetness_jetschip3dsig
+  4,//BJetness_jetschip2dval
   10,//BJetness_jetschip2dsig
   1,//BJetness_jetschisgoodtrk
-  1,//BJetness_jetschtrkpur
-  100,//BJetness_jetschpt
+  10,//BJetness_jetschtrkpur
+  50,//BJetness_jetschpt
   3,//BJetness_jetscheta
-  120//BJetness_jetschen
+  60//BJetness_jetschen
 };
 
 /////
