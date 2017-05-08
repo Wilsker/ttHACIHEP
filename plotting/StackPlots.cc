@@ -670,13 +670,16 @@ void StackPlots(){
 
 
         if(var[v].find("lead_el")!=std::string::npos){
-          cout<<setw(5)<<"Bckg Histogram integral:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
+          cout<<setw(5)<<"Bckg Histogram integral (lead_el) :"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
+          cout<<setw(5)<<"Bckg Histogram integral + overflow (lead_el) :"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral(0,nbins+1)<<endl;
         }
         else if(var[v].find("lead_mu")!=std::string::npos){
-          cout<<setw(5)<<"Bckg Histogram integral:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
+          cout<<setw(5)<<"Bckg Histogram integral (lead_mu) :"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
+          cout<<setw(5)<<"Bckg Histogram integral + overflow (lead_mu) :"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral(0,nbins+1)<<endl;
         }
         else{
-          cout<<setw(5)<<"Bckg Histogram integral + overflow:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral(0,nbins+1)<<endl;
+          cout<<setw(5)<<"Bckg Histogram integral :"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
+          cout<<setw(5)<<"Bckg Histogram integral + overflow :"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral(0,nbins+1)<<endl;
         }
         //cout<<setw(5)<<"Bckg Histogram integral + overflow:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral(0,nbins+1)<<endl;
         //cout<<setw(5)<<"Bckg Histogram integral:"<<setw(15)<<bckg_mc_nickname<<setw(15)<<h_var->Integral()<<endl;
