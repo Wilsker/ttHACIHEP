@@ -733,9 +733,8 @@ void StackPlots(){
     cout<<setw(5)<<"bkgstackintegral :"<<setw(15)<<"Bkg"<<setw(15)<<bkgstackintegral<<endl;
 
 
-    if (curr_var>100){
-      cout << "curr_var = " << curr_var << endl;
-    }
+
+
     //Draw
     double highestbinval = get_highestbinval(h_data_var,h_sig,hstack,v);
     cout << "highestbinval = " << highestbinval << endl;
@@ -1166,6 +1165,9 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
     for(int k =0; k<var_vals->size(); k++){
 
       curr_var = var_vals->at(k);
+      if (curr_var>100){
+        cout << "curr_var = " << curr_var << endl;
+      }
 
       //cout << "curr_var = " << curr_var << endl;
       if(datatype!=0){
