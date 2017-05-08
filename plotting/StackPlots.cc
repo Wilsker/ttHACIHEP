@@ -1158,6 +1158,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
   for(int j=0; j<tree->GetEntries(); j++)
   //for(int j=0; j<5; j++)
   {
+    tripwire = tripwire+1;
     double w = 1.;
     Long64_t tentry = tree->LoadTree(j);
     b_var_vals->GetEntry(tentry);
@@ -1203,7 +1204,17 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
           //cout << "triggerSFs = " << trigger_SF << endl;
           w = w*trigger_SF;
         }
-        cout << "weight = " << w << endl;
+        if(tripwire<10){
+          cout << "lumiweight = " <<lumiweight << endl;
+          cout << "Luminosity  = " << Luminosity << endl;
+          cout << "PUWeight = " << PUWeight << endl;
+          cout << "Electron_GsfSFval = " << Electron_GsfSFval << endl;
+          cout << "Electron_IDSFval = " << Electron_IDSFval << endl;
+          cout << "Muon_IDSFval = " << Muon_IDSFval << endl;
+          cout << "Muon_IsoSFval = " << Muon_IsoSFval << endl;
+          cout << "Muon_TrkSFval = " << Muon_TrkSFval << endl;
+          cout << "weight = " << w << endl;
+        }
         if(inRange[v]<curr_var && curr_var<endRange[v]){hist->Fill(curr_var,w);         hist_err->Fill(curr_var,w*w);}
         if(curr_var>=endRange[v])                      {hist->Fill(0.99*endRange[v],w); hist_err->Fill(0.99*endRange[v],w*w);}
         if(curr_var<=inRange[v])                       {hist->Fill(1.01*inRange[v],w);  hist_err->Fill(1.01*inRange[v],w*w);}
@@ -1213,6 +1224,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
         if(curr_var<=inRange[v])                        hist->Fill(1.01*inRange[v]);
       }
     }
+    tripwire=0;
   }
   //Get errors, normalise
 
