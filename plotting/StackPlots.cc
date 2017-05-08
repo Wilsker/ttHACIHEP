@@ -1174,7 +1174,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
 
     for(int k =0; k<var_vals->size(); k++){
       tripwire = tripwire+1;
-
+      w=1;
       curr_var = var_vals->at(k);
 
       //cout << "curr_var = " << curr_var << endl;
