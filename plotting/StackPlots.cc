@@ -662,9 +662,11 @@ void StackPlots(){
         }
 
         //Add background to stack
+        h_var->Print();
         hstack->Add(h_var);
         //Get integral for bckg histogram of given variable.
         int nbins = h_var->GetNbinsX();
+        cout << "nbins = " << nbins << endl;
 
 
         if(var[v].find("lead_el")!=std::string::npos){
