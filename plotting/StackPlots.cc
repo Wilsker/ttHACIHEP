@@ -71,7 +71,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = false;
+const bool normalised   = true;
 //const double normbkg    = 2.81681e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 //const double normdata   = 516742;
 //const double normsig    = 17824.5;
@@ -873,7 +873,12 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   //Get errors, normalise
 
   if(normalised){
-    if(var.find("BJetness")!=std::string::npos){
+    if(var.find("BJetness_jetsch")!=std::string::npos){
+      normbkg = 7.70852e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normdata= 1.72775e+07;
+      normsig = 612247;
+    }
+    else if(var.find("BJetness")!=std::string::npos){
       normbkg = 2.76786e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata= 660109;
       normsig = 17518.3;
