@@ -1080,6 +1080,9 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
   //Call tree and variables
   cout << "============== vector_double_h_var =============="<<endl;
   cout << "variable = " << var << endl;
+  cout << "inRange[v] = " << inRange[v] << endl;
+  cout << "endRange[v] = " << endRange[v] << endl;
+
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
   vector <double> * var_vals =0;
   TBranch *b_var_vals = 0;
@@ -1142,6 +1145,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
   else                         hist_err = new TH1F("hist_err","hist_err",bin[v],inRange[v],endRange[v]);
   hist_err->Sumw2();
   int tripwire = 0;
+
   for(int j=0; j<tree->GetEntries(); j++)
   //for(int j=0; j<5; j++)
   {
@@ -1157,9 +1161,8 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
     b_Muon_TrkSFval->GetEntry(tentry);
 
     if(var_vals->size()==0) continue;
-    cout << "inRange[v] = " << inRange[v] << endl;
-    cout << "endRange[v] = " << endRange[v] << endl;
-    
+
+
     for(int k =0; k<var_vals->size(); k++){
 
       curr_var = var_vals->at(k);
@@ -1233,7 +1236,9 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
     if(datatype==2) hist->Scale(1/normbkg);
     cout << "Check hist integral (should ==1): " << hist->Integral() << endl;
     cout << "========================================" << endl;
-
+  }
+  else{
+    cout << "hist integral (pre-scaling): " << hist->Integral() << endl;
   }
   if(datatype==2){
     for(int j=0; j<bin[v]; j++){
@@ -1412,9 +1417,6 @@ int get_col(string name){
 }
 
 
-
-
-
 double get_highestbinval(TH1F* h_data_var, TH1F* h_sig, THStack* hstack, int v){
   double highestbinval = 0;
   for(int h=1; h<=h_data_var->GetNbinsX(); h++) if(h_data_var->GetBinContent(h)>highestbinval) highestbinval=h_data_var->GetBinContent(h);
@@ -1428,7 +1430,6 @@ void save_canvas(TCanvas* c1, string var){
   namefile = var+selection+".png";
   if(save_plots)  c1->SaveAs(namefile.c_str());
 }
-
 
 
 /////
