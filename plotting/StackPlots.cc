@@ -1208,7 +1208,12 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
   //Get errors, normalise
 
   if(normalised){
-    if(var.find("BJetness")!=std::string::npos){
+    if(var.find("BJetness_jetsch")!=std::string::npos){
+      normbkg = 7.70852e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normdata= 1.72775e+07;
+      normsig = 612247;
+    }
+    else if(var.find("BJetness")!=std::string::npos){
       normbkg = 2.76786e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata= 660109;
       normsig = 17518.3;
