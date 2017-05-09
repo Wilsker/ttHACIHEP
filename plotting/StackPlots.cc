@@ -89,7 +89,7 @@ const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 64;
+const unsigned int ini_var = 62;
 const unsigned int fin_var = 67;
 const int posvtcr          = 0;
 
@@ -1447,19 +1447,27 @@ void save_canvas(TCanvas* c1, string var){
 //   Get legends and histos
 /////
 TLegend* get_legend(string varname){
-  TLegend *leg;
+  double x1;
+  double x2;
+  double y1;
+  double y2;
+
   if(varname!="BJetness_jetschisgoodtrk" && varname!="BJetness_jetschtrkpur"){
-    TLegend *leg = new TLegend(0.75, 0.75, 0.95, 0.95);
-    leg->SetHeader("Samples");
-    leg->SetBorderSize(0);
-    leg->SetTextSize(0.03);
+    x1 = 0.75;
+    x2 = 0.75;
+    y1 = 0.95;
+    y2 = 0.95;
   }
   if(varname=="BJetness_jetschisgoodtrk" || varname=="BJetness_jetschtrkpur"){
-    TLegend *leg = new TLegend(0.15, 0.75, 0.35, 0.95);
-    leg->SetHeader("Samples");
-    leg->SetBorderSize(0);
-    leg->SetTextSize(0.03);
+    x1 = 0.75;
+    x2 = 0.75;
+    y1 = 0.95;
+    y2 = 0.95;
   }
+  TLegend *leg = new TLegend(x1,y1,x2,y2);
+  leg->SetHeader("Samples");
+  leg->SetBorderSize(0);
+  leg->SetTextSize(0.03);
   return leg;
 }
 
