@@ -90,7 +90,7 @@ const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
 const unsigned int ini_var = 62;
-const unsigned int fin_var = 73;
+const unsigned int fin_var = 63;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -1460,7 +1460,7 @@ TLegend* get_legend(string varname){
     x2 = 0.95;
     y2 = 0.95;
   }
-  if(varname=="BJetness_jetschisgoodtrk" || varname=="BJetness_jetschtrkpur" && varname!="BJetness_jetschpvass"){
+  if(varname=="BJetness_jetschisgoodtrk" || varname=="BJetness_jetschtrkpur" && varname=="BJetness_jetschpvass"){
     cout << "Change TLegened position" << endl;
     x1 = 0.2;
     y1 = 0.70;
