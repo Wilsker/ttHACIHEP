@@ -1447,10 +1447,10 @@ void save_canvas(TCanvas* c1, string var){
 //   Get legends and histos
 /////
 TLegend* get_legend(){
-  TLegend *leg = new TLegend(0.75, 0.60, 0.95, 0.95);
+  TLegend *leg = new TLegend(0.75, 0.75, 0.95, 0.95);
   leg->SetHeader("Samples");
   leg->SetBorderSize(0);
-  leg->SetTextSize(0.05);
+  leg->SetTextSize(0.03);
   return leg;
 }
 
