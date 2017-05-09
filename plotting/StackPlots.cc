@@ -89,7 +89,7 @@ const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 62;
+const unsigned int ini_var = 65;
 const unsigned int fin_var = 67;
 const int posvtcr          = 0;
 
@@ -510,9 +510,9 @@ const double endRange[numVar]   = {
   30,//BJetness_numip3dneg
   7,//BJetness_jetschpvass
   6,//BJetness_jetschfrompv
-  1,//BJetness_jetschip3dval
+  0.2,//BJetness_jetschip3dval
   30,//BJetness_jetschip3dsig
-  1,//BJetness_jetschip2dval
+  0.2,//BJetness_jetschip2dval
   10,//BJetness_jetschip2dsig
   1,//BJetness_jetschisgoodtrk
   1,//BJetness_jetschtrkpur
@@ -552,6 +552,7 @@ void StackPlots(){
   vector<string> var(variables, variables + sizeof(variables)/sizeof(variables[0]));
   vector<string> varTitleXaxis(titleXaxis, titleXaxis + sizeof(titleXaxis)/sizeof(titleXaxis[0]));
   for(uint v=ini_var; v<fin_var; v++){
+    cout << "Variable number: " << v << endl;
 
     //Declare legend
     TLegend *leg = get_legend();
