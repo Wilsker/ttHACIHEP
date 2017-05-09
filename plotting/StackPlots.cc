@@ -533,7 +533,7 @@ void draw_lines(double x1, double y1, double x2, double y2);
 int      get_col(string name);
 double   get_highestbinval(TH1F* h_data_var, TH1F* h_sig, THStack* hstack, int v);
 void save_canvas(TCanvas* c1, string var);
-TLegend* get_legend(string varnam);
+TLegend* get_legend(string varname);
 TH1F*    get_th1f(string var, int v);
 TH1F*    get_datath1f(string var, string title, int v);
 void setTDRStyle();
@@ -553,6 +553,7 @@ void StackPlots(){
   vector<string> varTitleXaxis(titleXaxis, titleXaxis + sizeof(titleXaxis)/sizeof(titleXaxis[0]));
   for(uint v=ini_var; v<fin_var; v++){
     cout << "Variable number: " << v << endl;
+    cout << "var[v] = " << var[v] << endl
 
     //Declare legend
     TLegend *leg = get_legend(var[v]);
@@ -1447,6 +1448,7 @@ void save_canvas(TCanvas* c1, string var){
 //   Get legends and histos
 /////
 TLegend* get_legend(string varname){
+  cout << "varname = " << varname << endl;
   double x1;
   double x2;
   double y1;
@@ -1464,6 +1466,7 @@ TLegend* get_legend(string varname){
     y1 = 0.95;
     y2 = 0.95;
   }
+  cout << "x1 = " << x1 << endl;
   TLegend *leg = new TLegend(x1,y1,x2,y2);
   leg->SetHeader("Samples");
   leg->SetBorderSize(0);
