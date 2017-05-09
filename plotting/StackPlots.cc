@@ -310,9 +310,9 @@ const int    bin[numVar]        = {
   40,//lead_lep_pt
   20,//lead_lep_eta
   20,//lead_lep_phi
-  20,//BJetness_numjettrks
-  20,//BJetness_numjettrkspv
-  10,//BJetness_numjettrksnopv
+  100,//BJetness_numjettrks
+  60,//BJetness_numjettrkspv
+  30,//BJetness_numjettrksnopv
   8,//BJetness_pvTrkOVcollTrk
   6,//BJetness_npvTrkOVpvTrk
   10,//BJetness_npvPtOVcollPt
