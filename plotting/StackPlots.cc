@@ -553,7 +553,7 @@ void StackPlots(){
   vector<string> varTitleXaxis(titleXaxis, titleXaxis + sizeof(titleXaxis)/sizeof(titleXaxis[0]));
   for(uint v=ini_var; v<fin_var; v++){
     cout << "Variable number: " << v << endl;
-    cout << "var[v] = " << var[v] << endl
+    cout << "var[v] = " << var[v] << endl;
 
     //Declare legend
     TLegend *leg = get_legend(var[v]);
