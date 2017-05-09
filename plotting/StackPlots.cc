@@ -90,7 +90,7 @@ const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
 const unsigned int ini_var = 62;
-const unsigned int fin_var = 73;
+const unsigned int fin_var = 67;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -510,9 +510,9 @@ const double endRange[numVar]   = {
   30,//BJetness_numip3dneg
   7,//BJetness_jetschpvass
   6,//BJetness_jetschfrompv
-  5,//BJetness_jetschip3dval
+  1,//BJetness_jetschip3dval
   30,//BJetness_jetschip3dsig
-  5,//BJetness_jetschip2dval
+  1,//BJetness_jetschip2dval
   10,//BJetness_jetschip2dsig
   1,//BJetness_jetschisgoodtrk
   1,//BJetness_jetschtrkpur
