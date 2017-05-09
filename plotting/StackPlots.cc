@@ -1456,14 +1456,14 @@ TLegend* get_legend(string varname){
 
   if(varname!="BJetness_jetschisgoodtrk" && varname!="BJetness_jetschtrkpur"){
     x1 = 0.75;
-    x2 = 0.75;
-    y1 = 0.95;
+    y1 = 0.75;
+    x2 = 0.95;
     y2 = 0.95;
   }
   if(varname=="BJetness_jetschisgoodtrk" || varname=="BJetness_jetschtrkpur"){
-    x1 = 0.75;
-    x2 = 0.75;
-    y1 = 0.95;
+    x1 = 0.1;
+    y1 = 0.75;
+    x2 = 0.35;
     y2 = 0.95;
   }
   cout << "x1 = " << x1 << endl;
