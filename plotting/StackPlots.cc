@@ -533,7 +533,7 @@ void draw_lines(double x1, double y1, double x2, double y2);
 int      get_col(string name);
 double   get_highestbinval(TH1F* h_data_var, TH1F* h_sig, THStack* hstack, int v);
 void save_canvas(TCanvas* c1, string var);
-TLegend* get_legend();
+TLegend* get_legend(string varnam);
 TH1F*    get_th1f(string var, int v);
 TH1F*    get_datath1f(string var, string title, int v);
 void setTDRStyle();
@@ -555,7 +555,7 @@ void StackPlots(){
     cout << "Variable number: " << v << endl;
 
     //Declare legend
-    TLegend *leg = get_legend();
+    TLegend *leg = get_legend(var[v]);
 
     //Declare histograms:
     //MC
@@ -1446,11 +1446,20 @@ void save_canvas(TCanvas* c1, string var){
 /////
 //   Get legends and histos
 /////
-TLegend* get_legend(){
-  TLegend *leg = new TLegend(0.75, 0.75, 0.95, 0.95);
-  leg->SetHeader("Samples");
-  leg->SetBorderSize(0);
-  leg->SetTextSize(0.03);
+TLegend* get_legend(string varname){
+  TLegend *leg;
+  if(varname!="BJetness_jetschisgoodtrk" && varname!="BJetness_jetschtrkpur"){
+    TLegend *leg = new TLegend(0.75, 0.75, 0.95, 0.95);
+    leg->SetHeader("Samples");
+    leg->SetBorderSize(0);
+    leg->SetTextSize(0.03);
+  }
+  if(varname=="BJetness_jetschisgoodtrk" || varname=="BJetness_jetschtrkpur"){
+    TLegend *leg = new TLegend(0.15, 0.75, 0.35, 0.95);
+    leg->SetHeader("Samples");
+    leg->SetBorderSize(0);
+    leg->SetTextSize(0.03);
+  }
   return leg;
 }
 
