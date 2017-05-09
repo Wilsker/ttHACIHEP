@@ -1460,12 +1460,12 @@ TLegend* get_legend(string varname){
     x2 = 0.95;
     y2 = 0.95;
   }
-  if(varname=="BJetness_jetschisgoodtrk" || varname=="BJetness_jetschtrkpur" && varname=="BJetness_jetschpvass"){
+  if(varname=="BJetness_jetschisgoodtrk" || varname=="BJetness_jetschtrkpur" || varname=="BJetness_jetschpvass"){
     cout << "Change TLegened position" << endl;
     x1 = 0.2;
-    y1 = 0.70;
+    y1 = 0.65;
     x2 = 0.45;
-    y2 = 0.95;
+    y2 = 0.90;
   }
   cout << "x1 = " << x1 << endl;
   TLegend *leg = new TLegend(x1,y1,x2,y2);
