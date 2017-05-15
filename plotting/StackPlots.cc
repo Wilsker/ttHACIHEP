@@ -911,7 +911,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
     }
   }
   //Get errors, normalise
-
+  int nbins = hist->GetNbinsX();
   if(normalised){
     if(var.find("BJetness_jetsch")!=std::string::npos){
       normbkg = 7.70852e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
@@ -948,7 +948,6 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
     if(datatype==0) hist->Scale(1/normdata);
     if(datatype==1) hist->Scale(1/normsig);
     if(datatype==2) hist->Scale(1/normbkg);
-    int nbins = hist->GetNbinsX();
     cout << "Check hist integral (should ==1): " << hist->Integral(0,nbins+1) << endl;
     cout << "========================================" << endl;
   }
