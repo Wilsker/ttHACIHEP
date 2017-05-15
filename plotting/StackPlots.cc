@@ -948,7 +948,8 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
     if(datatype==0) hist->Scale(1/normdata);
     if(datatype==1) hist->Scale(1/normsig);
     if(datatype==2) hist->Scale(1/normbkg);
-    cout << "Check hist integral (should ==1): " << hist->Integral() << endl;
+    int nbins = hist->GetNbinsX();
+    cout << "Check hist integral (should ==1): " << hist->Integral(0,nbins+1) << endl;
     cout << "========================================" << endl;
   }
   else{
