@@ -337,7 +337,7 @@ const int    bin[numVar]        = {
   200,//BJetness_avdca2dno2t
   200,//BJetness_avdca2d*/
   20,//BJetness_chi2
-  20,//BJetness_avip3d_val
+  30,//BJetness_avip3d_val
   60,//BJetness_avip3d_sig
   20,//BJetness_avsip3d_val
   40,//BJetness_avsip3d_sig
