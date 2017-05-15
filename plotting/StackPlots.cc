@@ -83,14 +83,14 @@ const bool save_plots   = true;
 const bool show_title   = true;
 const bool doasym       = false;
 const double asymbin[6] = {0,3,4,9,15,20};
-const int    numVar     = 73;
-const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+const int    numVar     = 81;
+const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 //const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 57;
-const unsigned int fin_var = 62;
+const unsigned int ini_var = 73;
+const unsigned int fin_var = 81;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -186,7 +186,16 @@ const char *variables[]         = {
   "BJetness_jetschtrkpur",
   "BJetness_jetschpt",
   "BJetness_jetscheta",
-  "BJetness_jetschen"
+  "BJetness_jetschen",
+  "BJetness_avip1d_val",
+  "BJetness_avip1d_sig",
+  "BJetness_avsip1d_val",
+  "BJetness_avsip1d_sig",
+  "BJetness_avip2d_val",
+  "BJetness_avip2d_sig",
+  "BJetness_avsip2d_val",
+  "BJetness_avsip2d_sig"
+
 };
 const char *titleXaxis[]        = {
   "BJetness # pdgid el",
@@ -269,7 +278,15 @@ const char *titleXaxis[]        = {
   "BJetness_jetschtrkpur",
   "BJetness_jetschpt",
   "BJetness_jetscheta",
-  "BJetness_jetschen"
+  "BJetness_jetschen",
+  "BJetness_avip1d_val",
+  "BJetness_avip1d_sig",
+  "BJetness_avsip1d_val",
+  "BJetness_avsip1d_sig",
+  "BJetness_avip2d_val",
+  "BJetness_avip2d_sig",
+  "BJetness_avsip2d_val",
+  "BJetness_avsip2d_sig"
 };
 const int    bin[numVar]        = {
   4,//BJetness_num_pdgid_eles
@@ -336,10 +353,10 @@ const int    bin[numVar]        = {
   200,//BJetness_avdca2dno2t
   200,//BJetness_avdca2d*/
   20,//BJetness_chi2
-  10,//BJetness_avip3d_val
-  100,//BJetness_avip3d_sig
+  20,//BJetness_avip3d_val
+  60,//BJetness_avip3d_sig
   20,//BJetness_avsip3d_val
-  100,//BJetness_avsip3d_sig
+  40,//BJetness_avsip3d_sig
   20,//BJetness_numip3dpos
   26,//BJetness_numip3dneg
   7,//BJetness_jetschpvass
@@ -352,7 +369,15 @@ const int    bin[numVar]        = {
   2,//BJetness_jetschtrkpur
   50,//BJetness_jetschpt
   6,//BJetness_jetscheta
-  30//BJetness_jetschen
+  30,//BJetness_jetschen
+  20,//BJetness_avip1d_val
+  40,//BJetness_avip1d_sig
+  40//BJetness_avsip1d_val
+  40,//BJetness_avsip1d_sig
+  20,//BJetness_avip2d_val
+  40,//BJetness_avip2d_sig
+  40,//BJetness_avsip2d_val
+  40//BJetness_avsip2d_sig
 };
 const double inRange[numVar]    = {
   0,//BJetness_num_pdgid_eles
@@ -420,9 +445,9 @@ const double inRange[numVar]    = {
   0,//BJetness_avdca2d*/
   995,//BJetness_chi2
   0,//BJetness_avip3d_val
-  -1,//BJetness_avip3d_sig
+  0,//BJetness_avip3d_sig
   -0.2,//BJetness_avsip3d_val
-  -30,//BJetness_avsip3d_sig
+  -10,//BJetness_avsip3d_sig
   0,//BJetness_numip3dpos
   4,//BJetness_numip3dneg
   0,//BJetness_jetschpvass
@@ -435,7 +460,15 @@ const double inRange[numVar]    = {
   0,//BJetness_jetschtrkpur
   0,//BJetness_jetschpt
   -3,//BJetness_jetscheta
-  0//BJetness_jetschen
+  0,//BJetness_jetschen
+  0,//BJetness_avip1d_val
+  0,//BJetness_avip1d_sig
+  -10,//BJetness_avsip1d_val
+  -10,//BJetness_avsip1d_sig
+  0,//BJetness_avip2d_val
+  0,//BJetness_avip2d_sig
+  -10,//BJetness_avsip2d_val
+  -10//BJetness_avsip2d_sig
 };
 const double endRange[numVar]   = {
   4,//BJetness_num_pdgid_eles
@@ -505,7 +538,7 @@ const double endRange[numVar]   = {
   1,//BJetness_avip3d_val
   60,//BJetness_avip3d_sig
   0.4,//BJetness_avsip3d_val
-  30,//BJetness_avsip3d_sig
+  80,//BJetness_avsip3d_sig
   40,//BJetness_numip3dpos
   30,//BJetness_numip3dneg
   7,//BJetness_jetschpvass
@@ -518,7 +551,14 @@ const double endRange[numVar]   = {
   1,//BJetness_jetschtrkpur
   50,//BJetness_jetschpt
   3,//BJetness_jetscheta
-  30//BJetness_jetschen
+  30,//BJetness_jetschen
+  1,//BJetness_avip1d_val
+  100,//BJetness_avip1d_sig
+  1,//BJetness_avsip1d_val
+  80,//BJetness_avsip1d_sig
+  1,//BJetness_avip2d_val
+  100,//BJetness_avip2d_sig
+  80//BJetness_avsip2d_val
 };
 
 /////
@@ -537,8 +577,6 @@ TLegend* get_legend(string varname);
 TH1F*    get_th1f(string var, int v);
 TH1F*    get_datath1f(string var, string title, int v);
 void setTDRStyle();
-
-
 
 
 /////
