@@ -89,8 +89,8 @@ const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 0;
-const unsigned int fin_var = 81;
+const unsigned int ini_var = 56;
+const unsigned int fin_var = 57;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -1343,8 +1343,8 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     dataSUmc->GetYaxis()->SetLabelSize(0.075);
     dataSUmc->GetYaxis()->SetTitleSize(0.15);
     dataSUmc->GetYaxis()->SetTitleOffset(0.35);
-    dataSUmc->SetMinimum(0.75);
-    dataSUmc->SetMaximum(1.25);
+    dataSUmc->SetMinimum(0.5);
+    dataSUmc->SetMaximum(1.5);
     dataSUmc->GetXaxis()->SetRangeUser(inRange[v],endRange[v]);
     dataSUmc->GetXaxis()->SetLimits(inRange[v],endRange[v]);
     dataSUmc->Draw("APZ");
@@ -1426,8 +1426,6 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
   all_bkg_statErr->SetFillColor(kGray+3);
   all_bkg_statErr->Draw("E2same");
 }
-
-
 
 
 void draw_lines(double x1, double y1, double x2, double y2){
