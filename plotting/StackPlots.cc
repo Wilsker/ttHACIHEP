@@ -372,7 +372,7 @@ const int    bin[numVar]        = {
   30,//BJetness_jetschen
   20,//BJetness_avip1d_val
   40,//BJetness_avip1d_sig
-  40//BJetness_avsip1d_val
+  40,//BJetness_avsip1d_val
   40,//BJetness_avsip1d_sig
   20,//BJetness_avip2d_val
   40,//BJetness_avip2d_sig
