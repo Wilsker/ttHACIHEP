@@ -944,7 +944,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
     cout << "normdata = " << normdata << endl;
     cout << "normsig = " << normsig << endl;
     cout << "normbkg = " << normbkg << endl;
-    cout << "hist integral (pre-scaling): " << hist->Integral() << endl;
+    cout << "hist integral (pre-scaling): " << hist->Integral(0,nbins+1) << endl;
     if(datatype==0) hist->Scale(1/normdata);
     if(datatype==1) hist->Scale(1/normsig);
     if(datatype==2) hist->Scale(1/normbkg);
@@ -953,7 +953,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
     cout << "========================================" << endl;
   }
   else{
-    cout << "hist integral (pre-scaling): " << hist->Integral() << endl;
+    cout << "hist integral (pre-scaling): " << hist->Integral(0,nbins+1) << endl;
   }
   if(datatype==2){
     for(int j=0; j<bin[v]; j++){
@@ -1068,6 +1068,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
     }
   }
   //Get errors, normalise
+  int nbins = hist->GetNbinsX();
 
   if(normalised){
     if(var.find("BJetness")!=std::string::npos){
@@ -1247,6 +1248,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
     //tripwire=0;
   }
   //Get errors, normalise
+  int nbins = hist->GetNbinsX();
 
   if(normalised){
     if(var.find("BJetness_jetsch")!=std::string::npos){
@@ -1281,15 +1283,15 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
     cout << "normdata = " << normdata << endl;
     cout << "normsig = " << normsig << endl;
     cout << "normbkg = " << normbkg << endl;
-    cout << "hist integral (pre-scaling): " << hist->Integral() << endl;
+    cout << "hist integral (pre-scaling): " << hist->Integral(0,nbins+1) << endl;
     if(datatype==0) hist->Scale(1/normdata);
     if(datatype==1) hist->Scale(1/normsig);
     if(datatype==2) hist->Scale(1/normbkg);
-    cout << "Check hist integral (should ==1): " << hist->Integral() << endl;
+    cout << "Check hist integral (should ==1): " << hist->Integral(0,nbins+1) << endl;
     cout << "========================================" << endl;
   }
   else{
-    cout << "hist integral (pre-scaling): " << hist->Integral() << endl;
+    cout << "hist integral (pre-scaling): " << hist->Integral(0,nbins+1) << endl;
   }
   if(datatype==2){
     for(int j=0; j<bin[v]; j++){
