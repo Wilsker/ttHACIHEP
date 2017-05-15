@@ -71,7 +71,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = false;
+const bool normalised   = true;
 //const double normbkg    = 2.81681e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 //const double normdata   = 516742;
 //const double normsig    = 17824.5;
@@ -620,7 +620,7 @@ void StackPlots(){
       TH1F *h_var = get_th1f(var[v], v);
 
       //Histograms construction, fill, scaling etc.
-      cout << "datatype = " << datatype << endl;
+
       if(datatype==2){
         if(var[v].find("BJetness")!=std::string::npos){
           h_var = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
@@ -1096,8 +1096,6 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
 }
 
 
-
-
 //Vector<doubles>
 /////
 //   Fill histo with vector<double> type
@@ -1240,9 +1238,9 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normsig = 612247;
     }
     else if(var.find("BJetness")!=std::string::npos){
-      normbkg = 2.76786e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normbkg = 1.09062e+08;//2.76786e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata= 660109;
-      normsig = 17518.3;
+      normsig = 127047;//17518.3;
     }
     else if(var.find("lead_el")!=std::string::npos){
       normbkg = 1.14165e+07;
