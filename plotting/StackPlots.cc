@@ -88,8 +88,8 @@ const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 31;
-const unsigned int fin_var = 36;
+const unsigned int ini_var = 0;
+const unsigned int fin_var = 81;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
