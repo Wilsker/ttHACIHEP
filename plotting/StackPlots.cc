@@ -1288,7 +1288,14 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
           mc = mc*normbkg;
         }
         double test_data_error = h_data_var->GetBinError(j+1);
-        double test_error = (rd/mc) * sqrt(pow(test_data_error/rd,2)+ (mc_err/pow(mc,2)) );
+        double test_mc_error = sqrt(mc_err);
+        cout << "(rd/mc) = " << (rd/mc) << endl;
+        cout << "test_data_error = " << test_data_error << endl;
+        cout << "test_mc_error = " << test_mc_error << endl;
+        cout << "test_data_error/rd = " << test_data_error/rd << endl;
+        cout << "test_mc_error/mc = " << test_mc_error/mc << endl;
+
+        double test_error = (rd/mc) * sqrt( pow(test_data_error/rd,2) + pow(test_mc_error/mc,2) );
         cout << "My test error = " << test_error << endl;
         dataSUmc_yerr[j] = sqrt(pow(sqrt(rd)/mc,2) + pow((rd*sqrt(mc_err))/(mc*mc),2));
         cout << "data SU mc yerr = " << sqrt(pow(sqrt(rd)/mc,2) + pow((rd*sqrt(mc_err))/(mc*mc),2)) << endl;
