@@ -72,12 +72,11 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
 const bool normalised   = false;
-//const double normbkg    = 2.81681e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-//const double normdata   = 516742;
-//const double normsig    = 17824.5;
-double normbkg = 2.81678e+07;
-double normdata = 681035;
-double normsig = 17824.3;
+//normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+double normbkg;
+double normdata;
+double normsig;
+
 // ===== Plots =====
 const bool save_plots   = true;
 const bool show_title   = true;
@@ -550,8 +549,8 @@ void StackPlots(){
   vector<string> var(variables, variables + sizeof(variables)/sizeof(variables[0]));
   vector<string> varTitleXaxis(titleXaxis, titleXaxis + sizeof(titleXaxis)/sizeof(titleXaxis[0]));
   for(uint v=ini_var; v<fin_var; v++){
-    cout << "Variable number: " << v << endl;
-    cout << "var[v] = " << var[v] << endl;
+    cout << "============ Variable index = " << v << "=============" << endl;
+    cout << "variable = " << var[v] << endl;
 
     //Declare legend
     TLegend *leg = get_legend(var[v]);
@@ -574,7 +573,7 @@ void StackPlots(){
     for(uint i=0; i<rootplas_size; i++) for(int j=0; j<bin[v]; j++) ent_AllBkg[i][j] = 0.;
 
     for(uint i=0; i<rootplas_size; i++){
-      cout << "Sample : " << rootplas[i] << endl;
+      cout << ">>>> Sample : " << rootplas[i] << "<<<<" << endl;
       int datatype = -999;
       if(rootplas[i].find("ttHbb_Merged") != std::string::npos){
         datatype=1;
@@ -656,8 +655,7 @@ void StackPlots(){
         }
 
         //Add background to stack
-        h_var->Print();
-        //cout << "Hist mean = " << h_var->GetMean() << endl;
+
         hstack->Add(h_var);
         //Get integral for bckg histogram of given variable.
         int nbins = h_var->GetNbinsX();
@@ -757,11 +755,6 @@ TFile* Call_TFile(string rootpla){
 TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype){
   //Call tree and variables
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
-
-  normbkg = 2.81678e+07;
-  normdata = 681035;
-  normsig = 17824.3;
-
 
   double curr_var;
   TBranch *b_curr_var = 0;
@@ -894,13 +887,12 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
       normsig = 10485.3;
     }
     else{
-      normbkg = 2.81678e+07;
+      normbkg = 1.11657e+08;
       normdata = 681035;
-      normsig = 17824.3;
+      normsig = 130404;
     }
 
     cout << "============= normalised ===============" << endl;
-    cout << "var name = " << var << endl;
     cout << "normdata = " << normdata << endl;
     cout << "normsig = " << normsig << endl;
     cout << "normbkg = " << normbkg << endl;
@@ -929,10 +921,6 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
 TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype){
   //Call tree and variables
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
-
-  normbkg = 2.81678e+07;
-  normdata = 681035;
-  normsig = 17824.3;
 
   int curr_var;
   TBranch *b_curr_var = 0;
@@ -1046,9 +1034,9 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
       normsig = 10485.3;
     }
     else{
-      normbkg = 2.81678e+07;
+      normbkg = 1.11657e+08;
       normdata = 681035;
-      normsig = 17824.3;
+      normsig = 130404;
     }
 
 
@@ -1080,8 +1068,6 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
   //Call tree and variables
   cout << "============== vector_double_h_var =============="<<endl;
   cout << "rootplas = " << rootplas << endl;
-  cout << "variable = " << var << endl;
-
 
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
   vector <double> * var_vals =0;
@@ -1229,14 +1215,13 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normsig = 10485.3;
     }
     else{
-      normbkg = 2.81678e+07;
+      normbkg = 1.11657e+08;
       normdata = 681035;
-      normsig = 17824.3;
+      normsig = 130404;
     }
 
 
     cout << "============= normalised ===============" << endl;
-    cout << "var name = " << var << endl;
     cout << "normdata = " << normdata << endl;
     cout << "normsig = " << normsig << endl;
     cout << "normbkg = " << normbkg << endl;
@@ -1444,7 +1429,6 @@ void save_canvas(TCanvas* c1, string var){
 //   Get legends and histos
 /////
 TLegend* get_legend(string varname){
-  cout << "varname = " << varname << endl;
   double x1;
   double x2;
   double y1;
