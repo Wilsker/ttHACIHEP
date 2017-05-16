@@ -328,14 +328,6 @@ const int    bin[numVar]        = {
   20,//BJetness_avpreljeten
   20,//BJetness_avpparjetpt
   10,//BJetness_avpparjeten
-  /*20,//BJetness_avnum2v
-  20,//BJetness_avnumno2v
-  200,//BJetness_avdca3d2t
-  200,//BJetness_avdca3dno2t
-  200,//BJetness_avdca3d
-  200,//BJetness_avdca2d2t
-  200,//BJetness_avdca2dno2t
-  200,//BJetness_avdca2d*/
   20,//BJetness_chi2
   30,//BJetness_avip3d_val
   60,//BJetness_avip3d_sig
@@ -419,14 +411,6 @@ const double inRange[numVar]    = {
   0,//BJetness_avpreljeten
   0,//BJetness_avpparjetpt
   0,//BJetness_avpparjeten
-  /*0,//BJetness_avnum2v
-  0,//BJetness_avnumno2v
-  0,//BJetness_avdca3d2t
-  0,//BJetness_avdca3dno2t
-  0,//BJetness_avdca3d
-  0,//BJetness_avdca2d2t
-  0,//BJetness_avdca2dno2t
-  0,//BJetness_avdca2d*/
   995,//BJetness_chi2
   0,//BJetness_avip3d_val
   0,//BJetness_avip3d_sig
@@ -510,14 +494,6 @@ const double endRange[numVar]   = {
   0.1,//BJetness_avpreljeten
   2,//BJetness_avpparjetpt
   1,//BJetness_avpparjeten
-  /*0.1,//BJetness_avnum2v
-  0.1,//BJetness_avnumno2v
-  10,//BJetness_avdca3d2t
-  10,//BJetness_avdca3dno2t
-  10,//BJetness_avdca3d
-  10,//BJetness_avdca2d2t
-  10,//BJetness_avdca2dno2t
-  10,//BJetness_avdca2d*/
   1000,//BJetness_chi2
   1,//BJetness_avip3d_val
   60,//BJetness_avip3d_sig
