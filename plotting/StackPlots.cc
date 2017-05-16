@@ -1275,7 +1275,8 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     double dataSUmc_x[bin[v]]; double dataSUmc_y[bin[v]]; double dataSUmc_xerr[bin[v]]; double dataSUmc_yerr[bin[v]];
     for(int j=0; j<bin[v]; j++){
       dataSUmc_x[j] = 0; dataSUmc_y[j] = 0; dataSUmc_xerr[j] = 0; dataSUmc_yerr[j] = 0;
-      dataSUmc_x[j] = h_sum_var->GetBinCenter(j+1);  dataSUmc_xerr[j] = 0;
+      dataSUmc_x[j] = h_sum_var->GetBinCenter(j+1);
+      dataSUmc_xerr[j] = 0;
       double mc_err = 0;
       for(uint i=0; i<rootplas_size; i++) mc_err += err_AllBkg[i][j]*err_AllBkg[i][j];
       if(h_sum_var->GetBinContent(j+1)!=0){
@@ -1286,7 +1287,11 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
           rd = rd*normdata;
           mc = mc*normbkg;
         }
+        double test_data_error = h_data_var->GetBinError(j+1);
+        double test_error = (rd/mc)( ((test_data_error/rd)^2) + (mc_err/(mc^2)) ) )^(0.5);
+        cout << "My test error = " << test_error << endl;
         dataSUmc_yerr[j] = sqrt(pow(sqrt(rd)/mc,2) + pow((rd*sqrt(mc_err))/(mc*mc),2));
+        cout << "data SU mc yerr = " << sqrt(pow(sqrt(rd)/mc,2) + pow((rd*sqrt(mc_err))/(mc*mc),2)) << endl;
       }else{
         dataSUmc_y[j]    = -1000000;
         dataSUmc_yerr[j] = 0;
@@ -1297,10 +1302,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     //Plot values in ratio plot
     TGraphErrors *dataSUmc = new TGraphErrors(bin[v], dataSUmc_x, dataSUmc_y, dataSUmc_xerr, dataSUmc_yerr);
     dataSUmc->SetTitle(0);
-    //dataSUmc->SetTitleSize(10);
-    dataSUmc->SetMarkerStyle(8);
-    //dataSUmc->SetMarkerColor(1);
-    //dataSUmc->SetLineColor(1);
+    dataSUmc->SetMarkerStyle(2);
     dataSUmc->GetXaxis()->SetRangeUser(inRange[v],endRange[v]);
     dataSUmc->GetXaxis()->SetTitle(vartitle.c_str());
     dataSUmc->GetXaxis()->SetTitleSize(0.2);
