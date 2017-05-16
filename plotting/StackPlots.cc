@@ -71,7 +71,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = true;
+const bool normalised   = false;
 //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 double normbkg;
 double normdata;
@@ -89,7 +89,7 @@ const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
 const unsigned int ini_var = 0;
-const unsigned int fin_var = 81;
+const unsigned int fin_var = 1;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -430,11 +430,11 @@ const double inRange[numVar]    = {
   0,//BJetness_jetschen
   0,//BJetness_avip1d_val
   0,//BJetness_avip1d_sig
-  -10,//BJetness_avsip1d_val
+  -1,//BJetness_avsip1d_val
   -10,//BJetness_avsip1d_sig
   0,//BJetness_avip2d_val
   0,//BJetness_avip2d_sig
-  -10,//BJetness_avsip2d_val
+  -1,//BJetness_avsip2d_val
   -10//BJetness_avsip2d_sig
 };
 const double endRange[numVar]   = {
@@ -516,8 +516,9 @@ const double endRange[numVar]   = {
   1,//BJetness_avsip1d_val
   80,//BJetness_avsip1d_sig
   1,//BJetness_avip2d_val
-  100,//BJetness_avip2d_sig
-  80//BJetness_avsip2d_val
+  80,//BJetness_avip2d_sig
+  1,//BJetness_avip2d_val
+  80//BJetness_avsip2d_sig
 };
 
 /////
@@ -762,6 +763,9 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   double PUWeight;
   TBranch *b_PUWeight = 0;
   tree->SetBranchAddress("PUWeight",&PUWeight,&b_PUWeight);
+  double bWeight;
+  TBranch *b_bWeight = 0;
+  tree->SetBranchAddress("bWeight",&bWeight,&b_bWeight);
 
   //====== Lepton SFs ======
 
@@ -797,10 +801,6 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
     tree->SetBranchAddress("trigger_SF",&trigger_SF,&b_trigger_SF);
   }
   else{lumiweight=1;}
-
-  double bWeight;
-  TBranch *b_bWeight = 0;
-  tree->SetBranchAddress("bWeight",&bWeight,&b_bWeight);
 
   //Construct histogram
   TH1F *hist = get_th1f(var, v);
