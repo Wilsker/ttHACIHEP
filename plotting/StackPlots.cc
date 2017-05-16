@@ -89,7 +89,7 @@ const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
 const unsigned int ini_var = 56;
-const unsigned int fin_var = 81;
+const unsigned int fin_var = 57;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
