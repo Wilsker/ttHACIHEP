@@ -71,7 +71,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = false;
+const bool normalised   = true;
 //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 double normbkg;
 double normdata;
@@ -882,7 +882,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
       normsig = 7339;
     }
     else if(var.find("lead_mu")!=std::string::npos){
-      normbkg = 2.81677e+07;
+      normbkg = 1.67503e+07;
       normdata = 378296;
       normsig = 10485.3;
     }
@@ -1034,7 +1034,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
       normsig = 7339;
     }
     else if(var.find("lead_mu")!=std::string::npos){
-      normbkg = 2.81677e+07;
+      normbkg = 1.67503e+07;
       normdata = 378296;
       normsig = 10485.3;
     }
@@ -1215,7 +1215,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normsig = 7339;
     }
     else if(var.find("lead_mu")!=std::string::npos){
-      normbkg = 2.81677e+07;
+      normbkg = 1.67503e+07;
       normdata = 378296;
       normsig = 10485.3;
     }
