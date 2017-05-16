@@ -88,8 +88,8 @@ const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 62;
-const unsigned int fin_var = 63;
+const unsigned int ini_var = 31;
+const unsigned int fin_var = 36;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -867,9 +867,9 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   int nbins = hist->GetNbinsX();
   if(normalised){
     if(var.find("BJetness_jetsch")!=std::string::npos){
-      normbkg = 3.10897e+09; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normbkg = 7.60378e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata= 1.72775e+07;
-      normsig = 4.78979e+06;
+      normsig = 6328776;
     }
     else if(var.find("BJetness")!=std::string::npos){
       normbkg = 2.76786e+07;
@@ -1019,9 +1019,9 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
 
   if(normalised){
     if(var.find("BJetness_jetsch")!=std::string::npos){
-      normbkg = 3.10897e+09; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normbkg = 7.60378e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata= 1.72775e+07;
-      normsig = 4.78979e+06;
+      normsig = 632877;
     }
     else if(var.find("BJetness")!=std::string::npos){
       normbkg = 2.76786e+07;
@@ -1200,9 +1200,9 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
 
   if(normalised){
     if(var.find("BJetness_jetsch")!=std::string::npos){
-      normbkg = 3.10897e+09; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normbkg = 7.60378e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata= 1.72775e+07;
-      normsig = 4.78979e+06;
+      normsig = 632877;
     }
     else if(var.find("BJetness")!=std::string::npos){
       normbkg = 2.76786e+07;
