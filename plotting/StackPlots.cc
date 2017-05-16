@@ -88,8 +88,8 @@ const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 30;
-const unsigned int fin_var = 31;
+const unsigned int ini_var = 33;
+const unsigned int fin_var = 34;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -727,7 +727,7 @@ void StackPlots(){
     //cout<<setw(5)<<"Total Bckg Histogram Integral:"<<setw(15)<<"Bkg"<<setw(15)<<h_sum_var->Integral(0,h_sum_var->GetNbinsX()+1)<<endl;
 
     //Total background and signal integrals.
-    cout<<setw(5)<<"bkgstackintegral :"<<setw(15)<<"Bkg"<<setw(15)<<bkgstackintegral<<endl;
+    //cout<<setw(5)<<"bkgstackintegral :"<<setw(15)<<"Bkg"<<setw(15)<<bkgstackintegral<<endl;
 
 
 
@@ -877,9 +877,9 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
       normsig = 17518.3;
     }
     else if(var.find("lead_el")!=std::string::npos){
-      normbkg = 2.81566e+07;
+      normbkg = 1.14165e+07;
       normdata = 302739;
-      normsig = 17824.4;
+      normsig = 7339;
     }
     else if(var.find("lead_mu")!=std::string::npos){
       normbkg = 2.81677e+07;
@@ -1029,9 +1029,9 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
       normsig = 17518.3;
     }
     else if(var.find("lead_el")!=std::string::npos){
-      normbkg = 2.81566e+07;
+      normbkg = 1.14165e+07;
       normdata = 302739;
-      normsig = 17824.4;
+      normsig = 7339;
     }
     else if(var.find("lead_mu")!=std::string::npos){
       normbkg = 2.81677e+07;
@@ -1210,9 +1210,9 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normsig = 17518.3;
     }
     else if(var.find("lead_el")!=std::string::npos){
-      normbkg = 2.81566e+07;
+      normbkg = 1.14165e+07;
       normdata = 302739;
-      normsig = 17824.4;
+      normsig = 7339;
     }
     else if(var.find("lead_mu")!=std::string::npos){
       normbkg = 2.81677e+07;
