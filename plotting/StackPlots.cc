@@ -71,7 +71,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = true;
+const bool normalised   = false;
 //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 double normbkg;
 double normdata;
@@ -88,8 +88,8 @@ const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 29;
-const unsigned int fin_var = 30;
+const unsigned int ini_var = 32;
+const unsigned int fin_var = 33;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -1018,15 +1018,20 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
   int nbins = hist->GetNbinsX();
 
   if(normalised){
-    if(var.find("BJetness")!=std::string::npos){
+    if(var.find("BJetness_jetsch")!=std::string::npos){
+      normbkg = 7.70852e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normdata= 1.72775e+07;
+      normsig = 612247;
+    }
+    else if(var.find("BJetness")!=std::string::npos){
       normbkg = 1.09064e+08;
       normdata= 660109;
       normsig = 127047;
     }
     else if(var.find("lead_el")!=std::string::npos){
-      normbkg = 1.14165e+07;
+      normbkg = 4.58177e+07;
       normdata = 302739;
-      normsig = 7339;
+      normsig = 54549.9;
     }
     else if(var.find("lead_mu")!=std::string::npos){
       normbkg = 1.67503e+07;
@@ -1205,9 +1210,9 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normsig = 127047;
     }
     else if(var.find("lead_el")!=std::string::npos){
-      normbkg = 1.14165e+07;
+      normbkg = 4.58177e+07;
       normdata = 302739;
-      normsig = 7339;
+      normsig = 54549.9;
     }
     else if(var.find("lead_mu")!=std::string::npos){
       normbkg = 1.67503e+07;
