@@ -1126,6 +1126,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
 
   //Construct histogram
   TH1F *hist = get_th1f(var, v);
+  hist->Sumw2();
 
   //Dress histogram
   hist->SetTitle(0);
@@ -1357,10 +1358,10 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
 
   //Draw data and bckg MC
 
-  h_data_var->Draw("P");
+  h_data_var->Draw("PE0");
   hstack->Draw("HIST same");
 
-  if(!normalised) h_data_var->Draw("PE same");
+  if(!normalised) h_data_var->Draw("PE0 same");
   else            h_data_var->Draw("same");
   gPad->RedrawAxis();
   h_sig->Draw("HIST same");
