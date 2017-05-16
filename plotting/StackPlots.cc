@@ -71,7 +71,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = false;
+const bool normalised   = true;
 //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 double normbkg;
 double normdata;
@@ -872,9 +872,9 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
       normsig = 612247;
     }
     else if(var.find("BJetness")!=std::string::npos){
-      normbkg = 2.76786e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normbkg = 1.09064e+08;
       normdata= 660109;
-      normsig = 17518.3;
+      normsig = 127047;
     }
     else if(var.find("lead_el")!=std::string::npos){
       normbkg = 1.14165e+07;
@@ -1019,9 +1019,9 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
 
   if(normalised){
     if(var.find("BJetness")!=std::string::npos){
-      normbkg = 2.76786e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normbkg = 1.09064e+08;
       normdata= 660109;
-      normsig = 17518.3;
+      normsig = 127047;
     }
     else if(var.find("lead_el")!=std::string::npos){
       normbkg = 1.14165e+07;
@@ -1200,9 +1200,9 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normsig = 612247;
     }
     else if(var.find("BJetness")!=std::string::npos){
-      normbkg = 1.09062e+08;//2.76786e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normbkg = 1.09064e+08;
       normdata= 660109;
-      normsig = 127047;//17518.3;
+      normsig = 127047;
     }
     else if(var.find("lead_el")!=std::string::npos){
       normbkg = 1.14165e+07;
