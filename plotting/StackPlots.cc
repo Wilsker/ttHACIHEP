@@ -329,7 +329,7 @@ const int    bin[numVar]        = {
   10,//BJetness_avpparjeten
   20,//BJetness_chi2
   10,//BJetness_avip3d_val
-  60,//BJetness_avip3d_sig
+  20,//BJetness_avip3d_sig
   20,//BJetness_avsip3d_val
   40,//BJetness_avsip3d_sig
   20,//BJetness_numip3dpos
@@ -346,11 +346,11 @@ const int    bin[numVar]        = {
   6,//BJetness_jetscheta
   30,//BJetness_jetschen
   10,//BJetness_avip1d_val
-  40,//BJetness_avip1d_sig
+  20,//BJetness_avip1d_sig
   40,//BJetness_avsip1d_val
   40,//BJetness_avsip1d_sig
   10,//BJetness_avip2d_val
-  40,//BJetness_avip2d_sig
+  20,//BJetness_avip2d_sig
   40,//BJetness_avsip2d_val
   40//BJetness_avsip2d_sig
 };
