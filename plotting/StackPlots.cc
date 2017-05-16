@@ -88,8 +88,8 @@ const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 0;
-const unsigned int fin_var = 1;
+const unsigned int ini_var = 62;
+const unsigned int fin_var = 63;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -872,9 +872,9 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
       normsig = 4.78979e+06;
     }
     else if(var.find("BJetness")!=std::string::npos){
-      normbkg = 1.09064e+08;
+      normbkg = 2.76786e+07;
       normdata= 660109;
-      normsig = 127047;
+      normsig = 17518.3;
     }
     else if(var.find("lead_el")!=std::string::npos){
       normbkg = 4.58177e+07;
@@ -1024,9 +1024,9 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
       normsig = 4.78979e+06;
     }
     else if(var.find("BJetness")!=std::string::npos){
-      normbkg = 1.09064e+08;
+      normbkg = 2.76786e+07;
       normdata= 660109;
-      normsig = 127047;
+      normsig = 17518.3;
     }
     else if(var.find("lead_el")!=std::string::npos){
       normbkg = 4.58177e+07;
@@ -1205,9 +1205,9 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normsig = 4.78979e+06;
     }
     else if(var.find("BJetness")!=std::string::npos){
-      normbkg = 1.09064e+08;
+      normbkg = 2.76786e+07;
       normdata= 660109;
-      normsig = 127047;
+      normsig = 17518.3;
     }
     else if(var.find("lead_el")!=std::string::npos){
       normbkg = 4.58177e+07;
