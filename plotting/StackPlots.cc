@@ -71,7 +71,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = false;
+const bool normalised   = true;
 //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 double normbkg;
 double normdata;
@@ -887,9 +887,9 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
       normsig = 10485.3;
     }
     else{
-      normbkg = 2.81664e+07;
+      normbkg = 1.11653e+08;//2.81664e+07;
       normdata = 681035;
-      normsig = 17824.3;
+      normsig = 130404;//17824.3;
     }
 
     cout << "============= normalised ===============" << endl;
@@ -1287,7 +1287,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
           rd = rd*normdata;
           mc = mc*normbkg;
         }
-        
+
         double test_data_error = h_data_var->GetBinError(j+1);
         double test_mc_error = sqrt(mc_err);
         double test_error = (rd/mc) * sqrt( pow(test_data_error/rd,2) + pow(test_mc_error/mc,2) );
