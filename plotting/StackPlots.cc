@@ -1336,17 +1336,20 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     TH1F* ratio_plot = (TH1F*)temp_data->Clone("ratio_plot");
     ratio_plot->SetTitle(0);
     ratio_plot->SetMarkerStyle(2);
-    ratio_plot->SetMaximum(endRange[v]);
-    ratio_plot->SetMinimum(inRange[v]);
+    ratio_plot->SetMaximum(1.5);
+    ratio_plot->SetMinimum(0.5);
     ratio_plot->Sumw2();
     ratio_plot->SetStats(0);
     ratio_plot->Divide(temp_bkg);
     cout << "ratio_plot bin 1 size = " << ratio_plot->GetBinContent(10) << endl;
+    ratio_plot->Draw("E");
     ratio_plot->SetTitle("");
     ratio_plot->GetYaxis()->SetTitle("Data/MC");
-    ratio_plot->GetYaxis()->SetTitleSize(20);
-    ratio_plot->Draw("E");
-
+    ratio_plot->GetYaxis()->SetTitleSize(10);
+    ratio_plot->GetYaxis()->SetTitleFont(43);
+    ratio_plot->GetYaxis()->SetTitleOffset(1.55);
+    ratio_plot->GetYaxis()->SetLabelFont(43);
+    ratio_plot->GetYaxis()->SetLabelSize(15);
 
     TLine* line = new TLine(inRange[v],1,endRange[v],1);
     line->SetLineColor(kRed);
