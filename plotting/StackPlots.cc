@@ -64,14 +64,14 @@ const bool show_ratio   = true;
 const double Luminosity = 35900; //pb^-1
 const bool   LumiNorm   = true;
 const bool   PUcorr     = true;
-const bool   SF         = false; //For the TTHbb analysis it represents the bWeight factor
+const bool   SF         = true; //For the TTHbb analysis it represents the bWeight factor
 const bool   LeptonSFs  = true;
 const bool   triggerSFs = true;
 const double scale      = 0;    //0 means no scaling; any other values means scale histo by the value of scale
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = true;
+const bool normalised   = false;
 //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 double normbkg;
 double normdata;
