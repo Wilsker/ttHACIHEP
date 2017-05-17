@@ -1323,9 +1323,14 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     TH1F* temp_bkg = (TH1F*)h_sum_var->Clone("temp_bkg");
     temp_data->Sumw2();
     temp_bkg->Sumw2();
+    cout << "temp_data bin 1 size = " << temp_data->GetBinContent(1) << endl;
+    cout << "temp_bkg bin 1 size = " << temp_bkg->GetBinContent(1) << endl;
     if(normalised){
+      cout << "Scaling histos" << endl;
         temp_data->Scale(1/normdata);
         temp_bkg->Scale(1/normbkg);
+        cout << "temp_data bin 1 size after scaling = " <<temp_data->GetBinContent(1) << endl;
+        cout << "temp_bkg bin 1 size after scaling = " << temp_bkg->GetBinContent(1)<< endl;
     }
     TH1F* ratio_plot = (TH1F*)temp_data->Clone("ratio_plot");
     ratio_plot->SetTitle(0);
@@ -1335,9 +1340,12 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     ratio_plot->Sumw2();
     ratio_plot->SetStats(0);
     ratio_plot->Divide(temp_bkg);
+    cout << "ratio_plot bin 1 size = " << ratio_plot->GetBinContent(1) << endl;
     ratio_plot->SetTitle("");
-    ratio_plot->Draw("ep");
-    //ratio_plot->GetYaxis()->SetNdivisions(505);
+    ratio_plot->GetYaxis()->SetTitle("Data/MC");
+    ratio_plot->GetYaxis()->SetTitleSize(20);
+    ratio_plot->Draw("E");
+
 
     TLine* line = new TLine(inRange[v],1,endRange[v],1);
     line->SetLineColor(kRed);
