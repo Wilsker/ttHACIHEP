@@ -1321,6 +1321,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
 
     TH1F* temp_data = (TH1F*)h_data_var->Clone("temp_data");
     TH1F* temp_bkg = (TH1F*)h_sum_var->Clone("temp_bkg");
+    temp_data->Print();
     temp_data->Sumw2();
     temp_bkg->Sumw2();
     cout << "temp_data bin 1 size = " << temp_data->GetBinContent(5) << endl;
