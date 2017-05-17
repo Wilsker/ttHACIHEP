@@ -1345,9 +1345,9 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     ratio_plot->Draw("E");
     ratio_plot->SetTitle("");
     ratio_plot->GetYaxis()->SetTitle("Data/MC");
-    ratio_plot->GetYaxis()->SetTitleSize(10);
+    ratio_plot->GetYaxis()->SetTitleSize(30);
     ratio_plot->GetYaxis()->SetTitleFont(43);
-    ratio_plot->GetYaxis()->SetTitleOffset(1.55);
+    ratio_plot->GetYaxis()->SetTitleOffset(3);
     ratio_plot->GetYaxis()->SetLabelFont(43);
     ratio_plot->GetYaxis()->SetLabelSize(15);
 
