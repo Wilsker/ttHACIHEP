@@ -1271,6 +1271,9 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     c1_1->SetLeftMargin(0.125);
     //c1_1->SetFillStyle(0);
 
+    h_data_var->Sumw2();
+    h_sum_var->Sumw2();
+
     //Get values for ratio plot
     double dataSUmc_x[bin[v]]; double dataSUmc_y[bin[v]]; double dataSUmc_xerr[bin[v]]; double dataSUmc_yerr[bin[v]];
     for(int j=0; j<bin[v]; j++){
@@ -1280,8 +1283,6 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
       double mc_err = 0;
       for(uint i=0; i<rootplas_size; i++) mc_err += err_AllBkg[i][j]*err_AllBkg[i][j];
       if(h_sum_var->GetBinContent(j+1)!=0){
-        h_data_var->Sumw2();
-        h_sum_var->Sumw2();
         double rd = h_data_var->GetBinContent(j+1);
         double mc = h_sum_var->GetBinContent(j+1);
         dataSUmc_y[j]    = rd/mc;
@@ -1313,13 +1314,36 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     dataSUmc->SetMaximum(1.5);
     dataSUmc->GetXaxis()->SetRangeUser(inRange[v],endRange[v]);
     dataSUmc->GetXaxis()->SetLimits(inRange[v],endRange[v]);
-    dataSUmc->Draw("APZE0");
+    //dataSUmc->Draw("APZ");
     dataSUmc->GetXaxis()->SetRangeUser(inRange[v],endRange[v]);
     dataSUmc->GetXaxis()->SetLimits(inRange[v],endRange[v]);
+
+
+    TH1F* temp_data = (TH1F*)h_data_var->Clone("temp_data");
+    TH1F* temp_bkg = (TH1F*)h_sum_var->Clone("temp_bkg");
+    temp_data->Sumw2();
+    temp_bkg->Sumw2();
+    if(normalised){
+        temp_data->Scale(1/normdata);
+        temp_bkg->Scale(1/normbkg);
+    }
+    TH1F* ratio_plot = (TH1F*)temp_data->Clone("ratio_plot");
+    ratio_plot->SetTitle(0);
+    ratio_plot->SetMarkerStyle(2);
+    ratio_plot->SetMaximum(endRange[v]);
+    ratio_plot->SetMinimum(inRange[v]);
+    ratio_plot->Sumw2();
+    ratio_plot->SetStats(0);
+    ratio_plot->Divide(temp_bkg);
+    ratio_plot->SetTitle("");
+    ratio_plot->Draw("ep");
+    //ratio_plot->GetYaxis()->SetNdivisions(505);
+
     TLine* line = new TLine(inRange[v],1,endRange[v],1);
     line->SetLineColor(kRed);
     line->SetLineWidth(2);
     line->Draw("same");
+
     //Top plots
     c1->cd();
     TPad *c1_2 = new TPad("c1_2", "newpad",0.01,0.33,0.99,0.99);
