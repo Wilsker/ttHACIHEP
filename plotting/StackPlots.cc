@@ -430,7 +430,7 @@ const double inRange[numVar]    = {
   0,//BJetness_jetschen
   0,//BJetness_avip1d_val
   0,//BJetness_avip1d_sig
-  -0.1,//BJetness_avsip1d_val
+  -0.04,//BJetness_avsip1d_val
   -10,//BJetness_avsip1d_sig
   0,//BJetness_avip2d_val
   0,//BJetness_avip2d_sig
@@ -513,8 +513,8 @@ const double endRange[numVar]   = {
   30,//BJetness_jetschen
   0.2,//BJetness_avip1d_val
   100,//BJetness_avip1d_sig
-  0.1,//BJetness_avsip1d_val
-  80,//BJetness_avsip1d_sig
+  0.06,//BJetness_avsip1d_val
+  30,//BJetness_avsip1d_sig
   0.3,//BJetness_avip2d_val
   80,//BJetness_avip2d_sig
   0.2,//BJetness_avsip2d_val
@@ -1333,6 +1333,11 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
         cout << "temp_data bin 1 size after scaling = " <<temp_data->GetBinContent(10) << endl;
         cout << "temp_bkg bin 1 size after scaling = " << temp_bkg->GetBinContent(10)<< endl;
     }*/
+    TLine* line = new TLine(inRange[v],1,endRange[v],1);
+    line->SetLineColor(kRed);
+    line->SetLineWidth(2);
+    line->Draw();
+
     TH1F* ratio_plot = (TH1F*)temp_data->Clone("ratio_plot");
     ratio_plot->SetTitle(0);
     ratio_plot->SetMarkerStyle(7);
@@ -1354,11 +1359,6 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     ratio_plot->GetXaxis()->SetTitleFont(43);
     ratio_plot->GetXaxis()->SetTitleOffset(2);
 
-
-    TLine* line = new TLine(inRange[v],1,endRange[v],1);
-    line->SetLineColor(kRed);
-    line->SetLineWidth(2);
-    line->Draw("same");
 
     //Top plots
     c1->cd();
