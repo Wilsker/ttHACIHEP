@@ -1326,13 +1326,13 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     temp_bkg->Sumw2();
     cout << "temp_data bin 1 size = " << temp_data->GetBinContent(10) << endl;
     cout << "temp_bkg bin 1 size = " << temp_bkg->GetBinContent(10) << endl;
-    if(normalised){
+    /*if(normalised){
       cout << "Scaling histos" << endl;
         temp_data->Scale(1/normdata);
         temp_bkg->Scale(1/normbkg);
         cout << "temp_data bin 1 size after scaling = " <<temp_data->GetBinContent(10) << endl;
         cout << "temp_bkg bin 1 size after scaling = " << temp_bkg->GetBinContent(10)<< endl;
-    }
+    }*/
     TH1F* ratio_plot = (TH1F*)temp_data->Clone("ratio_plot");
     ratio_plot->SetTitle(0);
     ratio_plot->SetMarkerStyle(2);
