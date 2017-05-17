@@ -185,7 +185,9 @@ const char *variables[]         = {
   "BJetness_avip2d_val",
   "BJetness_avip2d_sig",
   "BJetness_avsip2d_val",
-  "BJetness_avsip2d_sig"
+  "BJetness_avsip2d_sig",
+  "trueInteractions",
+  "pvertex_ndof"
 
 };
 const char *titleXaxis[]        = {
@@ -269,7 +271,9 @@ const char *titleXaxis[]        = {
   "BJetness Av. IP 2D Val.",
   "BJetness Av. IP 2D Sig.",
   "BJetness Av. Signed IP 2D Val.",
-  "BJetness Av. Signed IP 2D Sig."
+  "BJetness Av. Signed IP 2D Sig.",
+  "# Interactions",
+  "pvertex ndof"
 };
 const int    bin[numVar]        = {
   4,//BJetness_num_pdgid_eles
@@ -352,7 +356,9 @@ const int    bin[numVar]        = {
   10,//BJetness_avip2d_val
   20,//BJetness_avip2d_sig
   40,//BJetness_avsip2d_val
-  40//BJetness_avsip2d_sig
+  40,//BJetness_avsip2d_sig
+  50,//trueInteractions
+  50//pvertex_ndof
 };
 const double inRange[numVar]    = {
   0,//BJetness_num_pdgid_eles
@@ -435,7 +441,9 @@ const double inRange[numVar]    = {
   0,//BJetness_avip2d_val
   0,//BJetness_avip2d_sig
   -0.1,//BJetness_avsip2d_val
-  -10//BJetness_avsip2d_sig
+  -10,//BJetness_avsip2d_sig
+  0,//trueInteractions
+  0//pvertex_ndof
 };
 const double endRange[numVar]   = {
   4,//BJetness_num_pdgid_eles
@@ -518,7 +526,9 @@ const double endRange[numVar]   = {
   0.3,//BJetness_avip2d_val
   80,//BJetness_avip2d_sig
   0.2,//BJetness_avsip2d_val
-  80//BJetness_avsip2d_sig
+  80,//BJetness_avsip2d_sig
+  50,//trueInteractions
+  50//pvertex_ndof
 };
 
 /////
@@ -1360,7 +1370,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     line->SetLineColor(kRed);
     line->SetLineWidth(2);
     line->Draw();
-    
+
     //Top plots
     c1->cd();
     TPad *c1_2 = new TPad("c1_2", "newpad",0.01,0.33,0.99,0.99);
