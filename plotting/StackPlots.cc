@@ -88,8 +88,8 @@ const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 0;
-const unsigned int fin_var = 81;
+const unsigned int ini_var = 22;
+const unsigned int fin_var = 24;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -1302,7 +1302,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     //Plot values in ratio plot
     TGraphErrors *dataSUmc = new TGraphErrors(bin[v], dataSUmc_x, dataSUmc_y, dataSUmc_xerr, dataSUmc_yerr);
     dataSUmc->SetTitle(0);
-    dataSUmc->SetMarkerStyle(2);
+    dataSUmc->SetMarkerStyle(1);
     dataSUmc->GetXaxis()->SetRangeUser(inRange[v],endRange[v]);
     dataSUmc->GetXaxis()->SetTitle(vartitle.c_str());
     dataSUmc->GetXaxis()->SetTitleSize(0.2);
@@ -1342,7 +1342,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     ratio_plot->SetStats(0);
     ratio_plot->Divide(temp_bkg);
     cout << "ratio_plot bin 1 size = " << ratio_plot->GetBinContent(10) << endl;
-    ratio_plot->Draw("E");
+    ratio_plot->Draw("E0");
     ratio_plot->SetTitle("");
     ratio_plot->GetYaxis()->SetTitle("Data/MC");
     ratio_plot->GetYaxis()->SetTitleSize(20);
