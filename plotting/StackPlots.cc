@@ -334,7 +334,7 @@ const int    bin[numVar]        = {
   40,//BJetness_avsip3d_sig
   20,//BJetness_numip3dpos
   26,//BJetness_numip3dneg
-  7,//BJetness_jetschpvass
+  8,//BJetness_jetschpvass
   7,//BJetness_jetschfrompv
   20,//BJetness_jetschip3dval
   30,//BJetness_jetschip3dsig
@@ -500,7 +500,7 @@ const double endRange[numVar]   = {
   80,//BJetness_avsip3d_sig
   40,//BJetness_numip3dpos
   30,//BJetness_numip3dneg
-  7,//BJetness_jetschpvass
+  8,//BJetness_jetschpvass
   7,//BJetness_jetschfrompv
   0.1,//BJetness_jetschip3dval
   30,//BJetness_jetschip3dsig
