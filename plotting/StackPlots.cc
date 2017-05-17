@@ -1333,10 +1333,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
         cout << "temp_data bin 1 size after scaling = " <<temp_data->GetBinContent(10) << endl;
         cout << "temp_bkg bin 1 size after scaling = " << temp_bkg->GetBinContent(10)<< endl;
     }*/
-    TLine* line = new TLine(inRange[v],1,endRange[v],1);
-    line->SetLineColor(kRed);
-    line->SetLineWidth(2);
-    line->Draw();
+
 
     TH1F* ratio_plot = (TH1F*)temp_data->Clone("ratio_plot");
     ratio_plot->SetTitle(0);
@@ -1359,7 +1356,11 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     ratio_plot->GetXaxis()->SetTitleFont(43);
     ratio_plot->GetXaxis()->SetTitleOffset(2);
 
-
+    TLine* line = new TLine(inRange[v],1,endRange[v],1);
+    line->SetLineColor(kRed);
+    line->SetLineWidth(2);
+    line->Draw();
+    
     //Top plots
     c1->cd();
     TPad *c1_2 = new TPad("c1_2", "newpad",0.01,0.33,0.99,0.99);
