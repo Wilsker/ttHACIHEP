@@ -1335,7 +1335,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     }*/
     TH1F* ratio_plot = (TH1F*)temp_data->Clone("ratio_plot");
     ratio_plot->SetTitle(0);
-    ratio_plot->SetMarkerStyle(2);
+    ratio_plot->SetMarkerStyle(1);
     ratio_plot->SetMaximum(1.5);
     ratio_plot->SetMinimum(0.5);
     ratio_plot->Sumw2();
