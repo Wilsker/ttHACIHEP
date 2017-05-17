@@ -304,6 +304,9 @@ void SecondStep::Process(char* inFile, string outDirPath){
   oldtree->SetBranchStatus("trueInteractions",1);
   oldtree->SetBranchStatus("pvertex_ndof",1);
   oldtree->SetBranchStatus("pvertex_z",1);
+  oldtree->SetBranchStatus("npuVertices",1);
+  oldtree->SetBranchStatus("npuVerticesm1",1);
+  oldtree->SetBranchStatus("npuVerticesp1",1);
   //==========================================
   // HACK pvertex_Rho not in first ntuples
   //==========================================
