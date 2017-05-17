@@ -64,7 +64,7 @@ const bool show_ratio   = true;
 const double Luminosity = 35900; //pb^-1
 const bool   LumiNorm   = true;
 const bool   PUcorr     = true;
-const bool   SF         = true; //For the TTHbb analysis it represents the bWeight factor
+const bool   SF         = false; //For the TTHbb analysis it represents the bWeight factor
 const bool   LeptonSFs  = true;
 const bool   triggerSFs = true;
 const double scale      = 0;    //0 means no scaling; any other values means scale histo by the value of scale
@@ -887,9 +887,9 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
       normsig = 10485.3;
     }
     else{
-      normbkg = 1.11653e+08;//2.81664e+07;
+      normbkg = 2.81664e+07;
       normdata = 681035;
-      normsig = 130404;//17824.3;
+      normsig = 17824.3;
     }
 
     cout << "============= normalised ===============" << endl;
@@ -1321,7 +1321,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     dataSUmc->SetMaximum(1.5);
     dataSUmc->GetXaxis()->SetRangeUser(inRange[v],endRange[v]);
     dataSUmc->GetXaxis()->SetLimits(inRange[v],endRange[v]);
-    dataSUmc->Draw("APZ");
+    dataSUmc->Draw("APZE0");
     dataSUmc->GetXaxis()->SetRangeUser(inRange[v],endRange[v]);
     dataSUmc->GetXaxis()->SetLimits(inRange[v],endRange[v]);
     TLine* line = new TLine(inRange[v],1,endRange[v],1);
