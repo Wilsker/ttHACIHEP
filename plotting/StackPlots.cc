@@ -1348,7 +1348,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     ratio_plot->GetYaxis()->SetTitleSize(20);
     ratio_plot->GetYaxis()->SetTitleFont(43);
     ratio_plot->GetYaxis()->SetTitleOffset(1.55);
-    ratio_plot->GetYaxis()->SetLabelSize(20);
+    ratio_plot->GetYaxis()->SetLabelSize(10);
     ratio_plot->GetYaxis()->SetLabelFont(43);
 
     TLine* line = new TLine(inRange[v],1,endRange[v],1);
