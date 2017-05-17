@@ -1341,7 +1341,6 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     ratio_plot->Sumw2();
     ratio_plot->SetStats(0);
     ratio_plot->Divide(temp_bkg);
-    ratio_plot->GetXaxis()->SetTitle(vartitle.c_str());
     ratio_plot->Draw("E0");
     ratio_plot->SetTitle("");
     ratio_plot->GetYaxis()->SetTitle("Data/MC");
@@ -1350,10 +1349,11 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     ratio_plot->GetYaxis()->SetTitleOffset(1.55);
     ratio_plot->GetYaxis()->SetLabelSize(10);
     ratio_plot->GetYaxis()->SetLabelFont(43);
+    ratio_plot->GetXaxis()->SetTitle(vartitle.c_str());
     ratio_plot->GetXaxis()->SetTitleSize(20);
     ratio_plot->GetXaxis()->SetTitleFont(43);
     ratio_plot->GetXaxis()->SetTitleOffset(1.55);
-    
+
 
     TLine* line = new TLine(inRange[v],1,endRange[v],1);
     line->SetLineColor(kRed);
