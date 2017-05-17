@@ -608,7 +608,7 @@ void StackPlots(){
       //Histograms construction, fill, scaling etc.
 
       if(datatype==2){
-        if(var[v].find("BJetness")!=std::string::npos){
+        if(var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos){
           h_var = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets") {
@@ -619,7 +619,7 @@ void StackPlots(){
         }
       }
       else if(datatype==1){
-        if(var[v].find("BJetness")!=std::string::npos){
+        if(var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos){
           h_sig = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets") {
@@ -630,7 +630,7 @@ void StackPlots(){
         }
       }
       else{
-        if(var[v].find("BJetness")!=std::string::npos){
+        if(var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos){
           h_data_var = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets") {
@@ -1149,7 +1149,6 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
   int tripwire = 0;
 
   for(int j=0; j<tree->GetEntries(); j++)
-  //for(int j=0; j<5; j++)
   {
     double w = 1.;
     Long64_t tentry = tree->LoadTree(j);
