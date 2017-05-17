@@ -88,8 +88,8 @@ const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 56;
-const unsigned int fin_var = 57;
+const unsigned int ini_var = 20;
+const unsigned int fin_var = 24;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -413,7 +413,7 @@ const double inRange[numVar]    = {
   995,//BJetness_chi2
   0,//BJetness_avip3d_val
   0,//BJetness_avip3d_sig
-  -0.2,//BJetness_avsip3d_val
+  -0.1,//BJetness_avsip3d_val
   -10,//BJetness_avsip3d_sig
   0,//BJetness_numip3dpos
   4,//BJetness_numip3dneg
@@ -430,11 +430,11 @@ const double inRange[numVar]    = {
   0,//BJetness_jetschen
   0,//BJetness_avip1d_val
   0,//BJetness_avip1d_sig
-  -1,//BJetness_avsip1d_val
+  -0.1,//BJetness_avsip1d_val
   -10,//BJetness_avsip1d_sig
   0,//BJetness_avip2d_val
   0,//BJetness_avip2d_sig
-  -1,//BJetness_avsip2d_val
+  -0.1,//BJetness_avsip2d_val
   -10//BJetness_avsip2d_sig
 };
 const double endRange[numVar]   = {
@@ -496,7 +496,7 @@ const double endRange[numVar]   = {
   1000,//BJetness_chi2
   0.3,//BJetness_avip3d_val
   60,//BJetness_avip3d_sig
-  0.4,//BJetness_avsip3d_val
+  0.2,//BJetness_avsip3d_val
   80,//BJetness_avsip3d_sig
   40,//BJetness_numip3dpos
   30,//BJetness_numip3dneg
@@ -513,11 +513,11 @@ const double endRange[numVar]   = {
   30,//BJetness_jetschen
   0.2,//BJetness_avip1d_val
   100,//BJetness_avip1d_sig
-  1,//BJetness_avsip1d_val
+  0.1,//BJetness_avsip1d_val
   80,//BJetness_avsip1d_sig
   0.3,//BJetness_avip2d_val
   80,//BJetness_avip2d_sig
-  1,//BJetness_avsip2d_val
+  0.2,//BJetness_avsip2d_val
   80//BJetness_avsip2d_sig
 };
 
