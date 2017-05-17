@@ -88,8 +88,8 @@ const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 0;
-const unsigned int fin_var = 81;
+const unsigned int ini_var = 22;
+const unsigned int fin_var = 23;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -1341,7 +1341,7 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     ratio_plot->Sumw2();
     ratio_plot->SetStats(0);
     ratio_plot->Divide(temp_bkg);
-    cout << "ratio_plot bin 1 size = " << ratio_plot->GetBinContent(10) << endl;
+    ratio_plot->GetXaxis()->SetTitle(vartitle.c_str());
     ratio_plot->Draw("E0");
     ratio_plot->SetTitle("");
     ratio_plot->GetYaxis()->SetTitle("Data/MC");
