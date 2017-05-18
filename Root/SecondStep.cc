@@ -183,7 +183,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
   oldtree->SetBranchStatus("BJetness_numjettrks",1);
   oldtree->SetBranchStatus("BJetness_numjettrkspv",1);
   oldtree->SetBranchStatus("BJetness_numjettrksnopv",1);
-  //oldtree->SetBranchStatus("BJetness_npvTrkOVcollTrk",1);
+  oldtree->SetBranchStatus("BJetness_npvTrkOVcollTrk",1);
   oldtree->SetBranchStatus("BJetness_pvTrkOVcollTrk",1);
   oldtree->SetBranchStatus("BJetness_npvTrkOVpvTrk",1);
   oldtree->SetBranchStatus("BJetness_npvPtOVcollPt",1);
