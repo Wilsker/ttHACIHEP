@@ -616,7 +616,7 @@ void StackPlots(){
         if(var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos){
           h_var = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
-        else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets") {
+        else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets" || var[v]=="npuVertices") {
           h_var  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else{
@@ -627,7 +627,7 @@ void StackPlots(){
         if(var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos){
           h_sig = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
-        else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets") {
+        else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets"|| var[v]=="npuVertices") {
           h_sig  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else{
@@ -638,7 +638,7 @@ void StackPlots(){
         if(var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos){
           h_data_var = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
-        else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets") {
+        else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets"|| var[v]=="npuVertices") {
           h_data_var  = int_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else{
