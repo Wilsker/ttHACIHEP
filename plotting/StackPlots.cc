@@ -53,7 +53,7 @@ string path = "";
 /*const char *samples[]   = {"/MC/ttjets_incl/ttjets_incl_Merged_rootplas",
 "/MC/ttHbb/ttHbb_Merged_rootplas",
 "/DATA/combined_SLep"};*/
-const char *samples[]   = {"WJets_combined", "stop_schan/stop_schan_Merged_rootplas", "ttjets_incl/ttjets_incl_Merged_rootplas", "ttHbb/ttHbb_Merged_rootplas", "combined_SLep"};
+const char *samples[]   = {"WJets_combined/WJets_combined", "stop_schan/stop_schan_Merged_rootplas", "ttjets_incl/ttjets_incl_Merged_rootplas", "ttHbb/ttHbb_Merged_rootplas", "combined_SLep"};
 
 // ==== Selection ====
 const string selection  = "_SL"; //_SingleEle, _SingleMu
@@ -902,7 +902,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
       normsig = 10485.3;
     }
     else{
-      normbkg = 2.82041e+07;//2.81664e+07;
+      normbkg = 2.36241e+08;//2.82041e+07;//2.81664e+07;
       normdata = 681035;
       normsig = 17824.3;
     }
@@ -1054,7 +1054,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
       normsig = 10485.3;
     }
     else{
-      normbkg = 2.82041e+07;;//2.81664e+07;
+      normbkg = 2.36241e+08;//2.82041e+07;;//2.81664e+07;
       normdata = 681035;
       normsig = 17824.3;
     }
@@ -1235,7 +1235,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normsig = 10485.3;
     }
     else{
-      normbkg = 2.82041e+07;//2.81664e+07;
+      normbkg = 2.36241e+08;//2.82041e+07;//2.81664e+07;
       normdata = 681035;
       normsig = 17824.3;
     }
