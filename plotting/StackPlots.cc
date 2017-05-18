@@ -53,7 +53,7 @@ string path = "";
 /*const char *samples[]   = {"/MC/ttjets_incl/ttjets_incl_Merged_rootplas",
 "/MC/ttHbb/ttHbb_Merged_rootplas",
 "/DATA/combined_SLep"};*/
-const char *samples[]   = {"ttjets_incl/ttjets_incl_Merged_rootplas", "ttHbb/ttHbb_Merged_rootplas", "combined_SLep"};
+const char *samples[]   = {"stop_schan/stop_schan_Merged_rootplas", "ttjets_incl/ttjets_incl_Merged_rootplas", "ttHbb/ttHbb_Merged_rootplas", "combined_SLep"};
 
 // ==== Selection ====
 const string selection  = "_SL"; //_SingleEle, _SingleMu
