@@ -187,7 +187,8 @@ const char *variables[]         = {
   "BJetness_avsip2d_val",
   "BJetness_avsip2d_sig",
   "trueInteractions",
-  "pvertex_ndof"
+  "pvertex_ndof",
+  "npuVertices"
 
 };
 const char *titleXaxis[]        = {
@@ -273,7 +274,8 @@ const char *titleXaxis[]        = {
   "BJetness Av. Signed IP 2D Val.",
   "BJetness Av. Signed IP 2D Sig.",
   "# Interactions",
-  "pvertex ndof"
+  "pvertex ndof",
+  "npuVertices"
 };
 const int    bin[numVar]        = {
   4,//BJetness_num_pdgid_eles
@@ -358,7 +360,8 @@ const int    bin[numVar]        = {
   40,//BJetness_avsip2d_val
   40,//BJetness_avsip2d_sig
   50,//trueInteractions
-  50//pvertex_ndof
+  50,//pvertex_ndof
+  50//npuVertices
 };
 const double inRange[numVar]    = {
   0,//BJetness_num_pdgid_eles
@@ -443,7 +446,8 @@ const double inRange[numVar]    = {
   -0.1,//BJetness_avsip2d_val
   -10,//BJetness_avsip2d_sig
   0,//trueInteractions
-  0//pvertex_ndof
+  0,//pvertex_ndof
+  0//npuVertices
 };
 const double endRange[numVar]   = {
   4,//BJetness_num_pdgid_eles
@@ -528,7 +532,8 @@ const double endRange[numVar]   = {
   0.2,//BJetness_avsip2d_val
   80,//BJetness_avsip2d_sig
   50,//trueInteractions
-  50//pvertex_ndof
+  50,//pvertex_ndof
+  50//npuVertices
 };
 
 /////
