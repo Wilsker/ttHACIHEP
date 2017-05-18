@@ -659,7 +659,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
   vector<double>* BJetness_numjettrks = 0;
   vector<double>* BJetness_numjettrkspv = 0;
   vector<double>* BJetness_numjettrksnopv = 0;
-  //double BJetness_npvTrkOVcollTrk = 0;
+  vector<double>* BJetness_npvTrkOVcollTrk = 0;
   vector<double>* BJetness_pvTrkOVcollTrk = 0;
   vector<double>* BJetness_npvTrkOVpvTrk = 0;
   vector<double>* BJetness_npvPtOVcollPt = 0;
@@ -757,7 +757,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
   TBranch *b_BJetness_numjettrks;
   TBranch *b_BJetness_numjettrkspv;
   TBranch *b_BJetness_numjettrksnopv;
-  //TBranch *b_BJetness_npvTrkOVcollTrk;
+  TBranch *b_BJetness_npvTrkOVcollTrk;
   TBranch *b_BJetness_pvTrkOVcollTrk;
   TBranch *b_BJetness_npvTrkOVpvTrk;
   TBranch *b_BJetness_npvPtOVcollPt;
@@ -862,7 +862,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
   oldtree->SetBranchAddress("BJetness_numjettrks",&BJetness_numjettrks,&b_BJetness_numjettrks);
   oldtree->SetBranchAddress("BJetness_numjettrkspv",&BJetness_numjettrkspv,&b_BJetness_numjettrkspv);
   oldtree->SetBranchAddress("BJetness_numjettrksnopv",&BJetness_numjettrksnopv,&b_BJetness_numjettrksnopv);
-  //oldtree->SetBranchAddress("BJetness_npvTrkOVcollTrk",&BJetness_npvTrkOVcollTrk,&b_BJetness_npvTrkOVcollTrk);
+  oldtree->SetBranchAddress("BJetness_npvTrkOVcollTrk",&BJetness_npvTrkOVcollTrk,&b_BJetness_npvTrkOVcollTrk);
   oldtree->SetBranchAddress("BJetness_pvTrkOVcollTrk",&BJetness_pvTrkOVcollTrk,&b_BJetness_pvTrkOVcollTrk);
   oldtree->SetBranchAddress("BJetness_npvTrkOVpvTrk",&BJetness_npvTrkOVpvTrk,&b_BJetness_npvTrkOVpvTrk);
   oldtree->SetBranchAddress("BJetness_npvPtOVcollPt",&BJetness_npvPtOVcollPt,&b_BJetness_npvPtOVcollPt);
@@ -1766,9 +1766,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
     number_electrons_ = SelElectronMVA_pt.size();
     number_muons_ = SelMuon_pt.size();
     number_leptons_ = SelElectronMVA_pt.size() + SelMuon_pt.size();
-    cout << "number_electrons = " << number_electrons_ << endl;
-    cout << "number_muons_ = " << number_muons_ << endl;
-    cout << "number_leptons_ = " << number_leptons_ << endl;
+
     h0_ = H0;
     h1_ = H1;
     h2_ = H2;
