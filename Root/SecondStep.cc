@@ -1102,8 +1102,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
     job_percentage_complete = (d_i/nentries)*100;
 
     if(i % 1000 == 0){
-      cout << "nentries: " << nentries << endl;
-      cout << "Entry: " << i << " percentage complete = " << job_percentage_complete << endl;
+      cout << "Entry: " << i << " = " << job_percentage_complete << "% complete." << endl;
     }
 
     //DONT FORGET TO REMOVE THIS!!!!!!!
