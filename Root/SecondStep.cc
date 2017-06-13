@@ -1098,10 +1098,11 @@ void SecondStep::Process(char* inFile, string outDirPath){
   for (Int_t i=firstEvent;i<nentries; i++) {//if(i>100) break;
     Long64_t tentry = oldtree->LoadTree(i);
     oldtree->GetEntry(i);
-    cout << "nentries: " << nentries << endl;
+
     job_percentage_complete = (i/nentries)*100;
 
     if(i % 1000 == 0){
+      cout << "nentries: " << nentries << endl;
       cout << "Entry: " << i << " percentage complete = " << job_percentage_complete << endl;
     }
 
