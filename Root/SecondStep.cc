@@ -1098,7 +1098,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
   for (Int_t i=firstEvent;i<nentries; i++) {//if(i>100) break;
     Long64_t tentry = oldtree->LoadTree(i);
     oldtree->GetEntry(i);
-
+    double d_i = (double)i;
     job_percentage_complete = (i/nentries)*100;
 
     if(i % 1000 == 0){
