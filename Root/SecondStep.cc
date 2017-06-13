@@ -1101,8 +1101,8 @@ void SecondStep::Process(char* inFile, string outDirPath){
     double d_i = (double)i;
     job_percentage_complete = (d_i/nentries)*100;
 
-    if(job_percentage_complete % 5 == 0){
-      cout << "Entry: " << i << " = " << job_percentage_complete << "% complete." << endl;
+    if(i % 1000 == 0){
+      cout << "Entry: " << i << " = " << roundf(job_percentage_complete) << "% complete." << endl;
     }
 
     //DONT FORGET TO REMOVE THIS!!!!!!!
