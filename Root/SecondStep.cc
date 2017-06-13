@@ -412,10 +412,17 @@ void SecondStep::Process(char* inFile, string outDirPath){
 
 
   //
+  // On the fly averaged IPs
   double BJetness_avjetschip2dval_=-99;                TBranch *BJetness_avjetschip2dval=newtree->Branch("BJetness_avjetschip2dval",&BJetness_avjetschip2dval_,"BJetness_avjetschip2dval/D");
   double BJetness_avjetschip2dsig_=-99;                TBranch *BJetness_avjetschip2dsig=newtree->Branch("BJetness_avjetschip2dsig",&BJetness_avjetschip2dsig_,"BJetness_avjetschip2dsig/D");
   double BJetness_avjetschip3dval_=-99;                TBranch *BJetness_avjetschip3dval=newtree->Branch("BJetness_avjetschip3dval",&BJetness_avjetschip3dval_,"BJetness_avjetschip3dval/D");
   double BJetness_avjetschip3dsig_=-99;                TBranch *BJetness_avjetschip3dsig=newtree->Branch("BJetness_avjetschip3dsig",&BJetness_avjetschip3dsig_,"BJetness_avjetschip3dsig/D");
+
+  // On the fly cumulative sum IPs
+  double BJetness_sumjetschip2dval_=-99;                TBranch *BJetness_sumjetschip2dval=newtree->Branch("BJetness_sumjetschip2dval",&BJetness_sumjetschip2dval_,"BJetness_sumjetschip2dval/D");
+  double BJetness_sumjetschip2dsig_=-99;                TBranch *BJetness_sumjetschip2dsig=newtree->Branch("BJetness_sumjetschip2dsig",&BJetness_sumjetschip2dsig_,"BJetness_sumjetschip2dsig/D");
+  double BJetness_sumjetschip3dval_=-99;                TBranch *BJetness_sumjetschip3dval=newtree->Branch("BJetness_sumjetschip3dval",&BJetness_sumjetschip3dval_,"BJetness_sumjetschip3dval/D");
+  double BJetness_sumjetschip3dsig_=-99;                TBranch *BJetness_sumjetschip3dsig=newtree->Branch("BJetness_sumjetschip3dsig",&BJetness_sumjetschip3dsig_,"BJetness_sumjetschip3dsig/D");
   //
 
 
@@ -1655,63 +1662,53 @@ void SecondStep::Process(char* inFile, string outDirPath){
     //eth_blr = TMath::Log(eth_blr/(1-eth_blr));
 
     //Calculate av. IP 3d val.
-    double sum_ip3dval = 0;
-    double av_ip3dval = -99;
-    int max_numtrcks = 0;
+    double sum_ip3dval = -999;
+    double av_ip3dval = -999;
+    int max_numtrcks = 5;
+
     std::sort(BJetness_jetschip3dval->rbegin(),BJetness_jetschip3dval->rend());
-    if(BJetness_jetschip3dval->size()>=5){max_numtrcks=5;}
-    else{max_numtrcks = BJetness_jetschip3dval->size();}
-    for(int ip=0; ip<max_numtrcks; ip++){
-      sum_ip3dval = sum_ip3dval + BJetness_jetschip3dval->at(ip);
+    if(BJetness_jetschip3dval->size()>=5){
+      for(int ip=0; ip<max_numtrcks; ip++){
+        sum_ip3dval = sum_ip3dval + BJetness_jetschip3dval->at(ip);
+      }
+      av_ip3dval = sum_ip3dval/5;
     }
-    av_ip3dval = sum_ip3dval/5;
 
     //Calculate av. IP 3d significance.
-    double sum_ip3dsig = 0;
-    double av_ip3dsig = -99;
-    max_numtrcks = 0;
+    double sum_ip3dsig = -999;
+    double av_ip3dsig = -999;
     std::sort(BJetness_jetschip3dsig->rbegin(),BJetness_jetschip3dsig->rend());
-    if(BJetness_jetschip3dsig->size()>=5){max_numtrcks=5;}
-    else{max_numtrcks = BJetness_jetschip3dsig->size();}
-    for(int ip=0; ip<max_numtrcks; ip++){
-      sum_ip3dsig = sum_ip3dsig + BJetness_jetschip3dsig->at(ip);
+    if(BJetness_jetschip3dsig->size()>=5){
+      max_numtrcks=5;
+      for(int ip=0; ip<max_numtrcks; ip++){
+        sum_ip3dsig = sum_ip3dsig + BJetness_jetschip3dsig->at(ip);
+      }
+      av_ip3dsig = sum_ip3dsig/5;
     }
-    av_ip3dsig = sum_ip3dsig/5;
-
 
     //BJetness_jetschip2dval
-    double sum_ip2dval = 0;
-    double av_ip2dval = -99;
-    max_numtrcks = 0;
+    double sum_ip2dval = -999;
+    double av_ip2dval = -999;
     std::sort(BJetness_jetschip2dval->rbegin(),BJetness_jetschip2dval->rend());
-    if(BJetness_jetschip2dval->size()>=5){max_numtrcks=5;}
-    else{max_numtrcks = BJetness_jetschip2dval->size();}
-    for(int ip=0; ip<max_numtrcks; ip++){
-      sum_ip2dval = sum_ip2dval + BJetness_jetschip2dval->at(ip);
+    if(BJetness_jetschip2dval->size()>=5){
+      max_numtrcks=5;
+      for(int ip=0; ip<max_numtrcks; ip++){
+        sum_ip2dval = sum_ip2dval + BJetness_jetschip2dval->at(ip);
+      }
+      av_ip2dval = sum_ip2dval/5;
     }
-    av_ip2dval = sum_ip2dval/5;
-
 
     //BJetness_jetschip2dsig
-    double sum_ip2dsig = 0;
-    double av_ip2dsig = 0;
-    max_numtrcks = 0;
+    double sum_ip2dsig = -999;
+    double av_ip2dsig = -999;
     std::sort(BJetness_jetschip2dsig->rbegin(),BJetness_jetschip2dsig->rend());
-    if(BJetness_jetschip2dsig->size()>=5){max_numtrcks=5;}
-    else{max_numtrcks = BJetness_jetschip2dsig->size();}
-    for(int ip=0; ip<max_numtrcks; ip++){
-      sum_ip2dsig = sum_ip2dsig + BJetness_jetschip2dsig->at(ip);
+    if(BJetness_jetschip2dsig->size()>=5){
+      max_numtrcks=5;
+      for(int ip=0; ip<max_numtrcks; ip++){
+        sum_ip2dsig = sum_ip2dsig + BJetness_jetschip2dsig->at(ip);
+      }
+      av_ip2dsig = sum_ip2dsig/5;
     }
-    av_ip2dsig = sum_ip2dsig/5;
-
-
-    //BJetness_avip1d_val
-    //BJetness_avip1d_sig
-    //BJetness_avsip1d_val
-    //BJetness_avsip1d_sig
-
-    cout << "=======================================" << endl;
-
 
     muFuncs muF;
     PUWTool PileupTool;
@@ -1854,6 +1851,12 @@ void SecondStep::Process(char* inFile, string outDirPath){
     BJetness_avjetschip2dsig_ = av_ip2dsig;
     BJetness_avjetschip3dval_ = av_ip3dval;
     BJetness_avjetschip3dsig_ = av_ip3dsig;
+
+    BJetness_sumjetschip2dval_ = sum_ip2dval;
+    BJetness_sumjetschip2dsig_ = sum_ip2dsig;
+    BJetness_sumjetschip3dval_ = sum_ip3dval;
+    BJetness_sumjetschip3dsig_ = sum_ip3dsig;
+
     //is_e_ = ELECTRON;
     //is_mu_ = MUON;
 
