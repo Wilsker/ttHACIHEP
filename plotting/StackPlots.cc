@@ -551,9 +551,9 @@ const double endRange[numVar]   = {
   50,//pvertex_ndof
   50,//npuVertices
   1,//BJetness_avjetschip2dval
-  80,//BJetness_avjetschip2dsig
+  100,//BJetness_avjetschip2dsig
   1,//BJetness_avjetschip3dval
-  80//BJetness_avjetschip3dsig
+  100//BJetness_avjetschip3dsig
 };
 
 /////
@@ -1059,6 +1059,11 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
       normdata= 1.72775e+07;
       normsig = 632877;
     }
+    if(var.find("BJetness_avjetschip")!=std::string::npos){
+      normbkg = 2.81673e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normdata= 516742;
+      normsig = 17824.4;
+    }
     else if(var.find("BJetness")!=std::string::npos){
       normbkg = 2.76786e+07;
       normdata= 660109;
@@ -1359,8 +1364,8 @@ void draw_plots(TCanvas* c1, TH1F* h_sum_var, THStack* hstack, TH1F* h_data_var,
     temp_data->Print();
     temp_data->Sumw2();
     temp_bkg->Sumw2();
-    cout << "temp_data bin 1 size = " << temp_data->GetBinContent(10) << endl;
-    cout << "temp_bkg bin 1 size = " << temp_bkg->GetBinContent(10) << endl;
+    //cout << "temp_data bin 1 size = " << temp_data->GetBinContent(10) << endl;
+    //cout << "temp_bkg bin 1 size = " << temp_bkg->GetBinContent(10) << endl;
     /*if(normalised){
       cout << "Scaling histos" << endl;
         temp_data->Scale(1/normdata);
