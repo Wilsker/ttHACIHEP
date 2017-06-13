@@ -631,9 +631,13 @@ void StackPlots(){
       TH1F *h_var = get_th1f(var[v], v);
 
       //Histograms construction, fill, scaling etc.
+      BJetness_avjetschip2dval
+    BJetness_avjetschip2dsig
+    BJetness_avjetschip3dval
+    BJetness_avjetschip3dsig
 
       if(datatype==2){
-        if(var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos){
+        if(var[v].find("BJetness_avjetschip")==std::string::npos && (var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos)){
           h_var = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets" || var[v]=="npuVertices") {
@@ -644,7 +648,7 @@ void StackPlots(){
         }
       }
       else if(datatype==1){
-        if(var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos){
+        if(var[v].find("BJetness_avjetschip")==std::string::npos && (var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos)){
           h_sig = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets"|| var[v]=="npuVertices") {
@@ -655,7 +659,7 @@ void StackPlots(){
         }
       }
       else{
-        if(var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos){
+        if(var[v].find("BJetness_avjetschip")==std::string::npos && (var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos)){
           h_data_var = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets"|| var[v]=="npuVertices") {
