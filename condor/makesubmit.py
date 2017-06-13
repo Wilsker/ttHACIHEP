@@ -1,4 +1,4 @@
-2017_06_v3import sys
+import sys
 import os
 import glob
 import string
