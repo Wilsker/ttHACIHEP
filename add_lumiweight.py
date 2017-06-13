@@ -32,11 +32,11 @@ workingDir = os.getcwd()
 #ttjets_HF_filter = '/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTToSemilepton_ttbbFilter_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTToSemilepton_ttbbFilter/170217_064724/0000/'
 
 #====== Uncomment before committing to git -> For running on IHEP farm.
-inputDir = '/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/output/MC/'
+inputDir = '/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_06_v2/ttHACIHEP/output/MC/'
 
-inputFiles = [#"ttHbb/ttHbb_Merged_rootplas.root",
+inputFiles = ["ttHbb/ttHbb_Merged_rootplas.root",
               #"ttH_nonbb/ttH_nonbb_Merged_rootplas.root",
-              #"ttjets_incl/ttjets_incl_Merged_rootplas.root"
+              "ttjets_incl/ttjets_incl_Merged_rootplas.root"
               #"ttjets_SL/ttjets_SL_Merged_rootplas.root",
               #"ttjets_DL/ttjets_DL_Merged_rootplas.root",
               #"ttjets_bfilter/ttjets_bfilter_Merged_rootplas.root",
@@ -63,35 +63,35 @@ inputFiles = [#"ttHbb/ttHbb_Merged_rootplas.root",
               #"DY_M-50_HT-200to400_ext1/DY_M-50_HT-200to400_ext1_Merged_rootplas.root",
               #"DY_M-50_HT-2500toInf/DY_M-50_HT-2500toInf_Merged_rootplas.root",
               #"DY_M-50_HT-400to600/DY_M-50_HT-400to600_Merged_rootplas.root",
-              "WJetsToLNu_HT-100To200/WJetsToLNu_HT-100To200_Merged_rootplas.root",
+              #"WJetsToLNu_HT-100To200/WJetsToLNu_HT-100To200_Merged_rootplas.root",
               #"DY_M-50_HT-400to600_ext1/DY_M-50_HT-400to600_ext1_Merged_rootplas.root",
-              "WJetsToLNu_HT-100To200_ext1/WJetsToLNu_HT-100To200_ext1_Merged_rootplas.root",
+              #"WJetsToLNu_HT-100To200_ext1/WJetsToLNu_HT-100To200_ext1_Merged_rootplas.root",
               #"DY_M-50_HT-600to800_v2/DY_M-50_HT-600to800_v2_Merged_rootplas.root",
-              "WJetsToLNu_HT-100To200_ext2/WJetsToLNu_HT-100To200_ext2_Merged_rootplas.root",
+              #"WJetsToLNu_HT-100To200_ext2/WJetsToLNu_HT-100To200_ext2_Merged_rootplas.root",
               #"DY_M-50_HT-70to100/DY_M-50_HT-70to100_Merged_rootplas.root",
-              "WJetsToLNu_HT-1200To2500/WJetsToLNu_HT-1200To2500_Merged_rootplas.root",
+              #"WJetsToLNu_HT-1200To2500/WJetsToLNu_HT-1200To2500_Merged_rootplas.root",
               #"DY_M-50_HT-800to1200/DY_M-50_HT-800to1200_Merged_rootplas.root",
-              "WJetsToLNu_HT-1200To2500_ext1/WJetsToLNu_HT-1200To2500_ext1_Merged_rootplas.root",
+              #"WJetsToLNu_HT-1200To2500_ext1/WJetsToLNu_HT-1200To2500_ext1_Merged_rootplas.root",
               #"DY_M-5to50_HT-100to200/DY_M-5to50_HT-100to200_Merged_rootplas.root",
-              "WJetsToLNu_HT-200To400/WJetsToLNu_HT-200To400_Merged_rootplas.root",
+              #"WJetsToLNu_HT-200To400/WJetsToLNu_HT-200To400_Merged_rootplas.root",
               #"DY_M-5to50_HT-100to200_ext1/DY_M-5to50_HT-100to200_ext1_Merged_rootplas.root",
-              "WJetsToLNu_HT-200To400_ext1/WJetsToLNu_HT-200To400_ext1_Merged_rootplas.root",
+              #"WJetsToLNu_HT-200To400_ext1/WJetsToLNu_HT-200To400_ext1_Merged_rootplas.root",
               #"DY_M-5to50_HT-200to400/DY_M-5to50_HT-200to400_Merged_rootplas.root",
-              "WJetsToLNu_HT-200To400_ext2/WJetsToLNu_HT-200To400_ext2_Merged_rootplas.root",
+              #"WJetsToLNu_HT-200To400_ext2/WJetsToLNu_HT-200To400_ext2_Merged_rootplas.root",
               #"DY_M-5to50_HT-200to400_ext1/DY_M-5to50_HT-200to400_ext1_Merged_rootplas.root",
-              "WJetsToLNu_HT-2500ToInf/WJetsToLNu_HT-2500ToInf_Merged_rootplas.root",
+              #"WJetsToLNu_HT-2500ToInf/WJetsToLNu_HT-2500ToInf_Merged_rootplas.root",
               #"DY_M-5to50_HT-400to600/DY_M-5to50_HT-400to600_Merged_rootplas.root",
-              "WJetsToLNu_HT-2500ToInf_ext1/WJetsToLNu_HT-2500ToInf_ext1_Merged_rootplas.root",
+              #"WJetsToLNu_HT-2500ToInf_ext1/WJetsToLNu_HT-2500ToInf_ext1_Merged_rootplas.root",
               #"DY_M-5to50_HT-400to600_ext1/DY_M-5to50_HT-400to600_ext1_Merged_rootplas.root",
-              "WJetsToLNu_HT-400To600/WJetsToLNu_HT-400To600_Merged_rootplas.root",
+              #"WJetsToLNu_HT-400To600/WJetsToLNu_HT-400To600_Merged_rootplas.root",
               #"DY_M-5to50_HT-600toInf/DY_M-5to50_HT-600toInf_Merged_rootplas.root",
-              "WJetsToLNu_HT-400To600_ext1/WJetsToLNu_HT-400To600_ext1_Merged_rootplas.root",
+              #"WJetsToLNu_HT-400To600_ext1/WJetsToLNu_HT-400To600_ext1_Merged_rootplas.root",
               #"DY_M-5to50_HT-600toInf_ext1/DY_M-5to50_HT-600toInf_ext1_Merged_rootplas.root",
-              "WJetsToLNu_HT-600To800/WJetsToLNu_HT-600To800_Merged_rootplas.root",
-              "WJetsToLNu_HT-600To800_ext1/WJetsToLNu_HT-600To800_ext1_Merged_rootplas.root",
-              "WJetsToLNu_HT-70To100/WJetsToLNu_HT-70To100_Merged_rootplas.root",
-              "WJetsToLNu_HT-800To1200/WJetsToLNu_HT-800To1200_Merged_rootplas.root",
-              "WJetsToLNu_HT-800To1200_ext1/WJetsToLNu_HT-800To1200_ext1_Merged_rootplas.root"
+              #"WJetsToLNu_HT-600To800/WJetsToLNu_HT-600To800_Merged_rootplas.root",
+              #"WJetsToLNu_HT-600To800_ext1/WJetsToLNu_HT-600To800_ext1_Merged_rootplas.root",
+              #"WJetsToLNu_HT-70To100/WJetsToLNu_HT-70To100_Merged_rootplas.root",
+              #"WJetsToLNu_HT-800To1200/WJetsToLNu_HT-800To1200_Merged_rootplas.root",
+              #"WJetsToLNu_HT-800To1200_ext1/WJetsToLNu_HT-800To1200_ext1_Merged_rootplas.root"
               ]
 
 #========= Uncomment here for testing on lxplus
