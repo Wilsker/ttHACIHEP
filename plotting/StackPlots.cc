@@ -53,7 +53,8 @@ string path = "";
 /*const char *samples[]   = {"/MC/ttjets_incl/ttjets_incl_Merged_rootplas",
 "/MC/ttHbb/ttHbb_Merged_rootplas",
 "/DATA/combined_SLep"};*/
-const char *samples[]   = {"WJets_combined/WJets_combined", "stop_schan/stop_schan_Merged_rootplas", "ttjets_incl/ttjets_incl_Merged_rootplas", "ttHbb/ttHbb_Merged_rootplas", "combined_SLep"};
+//const char *samples[]   = {"WJets_combined/WJets_combined", "stop_schan/stop_schan_Merged_rootplas", "ttjets_incl/ttjets_incl_Merged_rootplas", "ttHbb/ttHbb_Merged_rootplas", "combined_SLep"};
+const char *samples[]   = {"ttjets_incl/ttjets_incl_Merged_rootplas", "ttHbb/ttHbb_Merged_rootplas", "combined_SLep"};
 
 // ==== Selection ====
 const string selection  = "_SL"; //_SingleEle, _SingleMu
@@ -82,14 +83,14 @@ const bool save_plots   = true;
 const bool show_title   = true;
 const bool doasym       = false;
 const double asymbin[6] = {0,3,4,9,15,20};
-const int    numVar     = 84;
-const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+const int    numVar     = 88;
+const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 //const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 35;
-const unsigned int fin_var = 36;
+const unsigned int ini_var = 84;
+const unsigned int fin_var = 88;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -188,8 +189,11 @@ const char *variables[]         = {
   "BJetness_avsip2d_sig",
   "trueInteractions",
   "pvertex_ndof",
-  "npuVertices"
-
+  "npuVertices",
+  "BJetness_avjetschip2dval",
+  "BJetness_avjetschip2dsig",
+  "BJetness_avjetschip3dval",
+  "BJetness_avjetschip3dsig"
 };
 const char *titleXaxis[]        = {
   "BJetness # pdg ID el",
@@ -275,7 +279,11 @@ const char *titleXaxis[]        = {
   "BJetness Av. Signed IP 2D Sig.",
   "# Interactions",
   "pvertex ndof",
-  "npuVertices"
+  "npuVertices",
+  "BJetness_avjetschip2dval",
+  "BJetness_avjetschip2dsig",
+  "BJetness_avjetschip3dval",
+  "BJetness_avjetschip3dsig"
 };
 const int    bin[numVar]        = {
   4,//BJetness_num_pdgid_eles
@@ -361,7 +369,11 @@ const int    bin[numVar]        = {
   40,//BJetness_avsip2d_sig
   50,//trueInteractions
   50,//pvertex_ndof
-  50//npuVertices
+  50,//npuVertices
+  40,//BJetness_avjetschip2dval
+  40,//BJetness_avjetschip2dsig
+  40,//BJetness_avjetschip3dval
+  40//BJetness_avjetschip3dsig
 };
 const double inRange[numVar]    = {
   0,//BJetness_num_pdgid_eles
@@ -447,7 +459,11 @@ const double inRange[numVar]    = {
   -10,//BJetness_avsip2d_sig
   0,//trueInteractions
   0,//pvertex_ndof
-  0//npuVertices
+  0,//npuVertices
+  0,//BJetness_avjetschip2dval
+  0,//BJetness_avjetschip2dsig
+  0,//BJetness_avjetschip3dval
+  0//BJetness_avjetschip3dsig
 };
 const double endRange[numVar]   = {
   4,//BJetness_num_pdgid_eles
@@ -533,7 +549,11 @@ const double endRange[numVar]   = {
   80,//BJetness_avsip2d_sig
   50,//trueInteractions
   50,//pvertex_ndof
-  50//npuVertices
+  50,//npuVertices
+  1,//BJetness_avjetschip2dval
+  80,//BJetness_avjetschip2dsig
+  1,//BJetness_avjetschip3dval
+  80//BJetness_avjetschip3dsig
 };
 
 /////
@@ -601,10 +621,10 @@ void StackPlots(){
         datatype=2;
       }
       if(datatype!=0){
-        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/output/MC/";
+        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_06_v2/ttHACIHEP/output/MC/";
       }
       else{
-        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_03/ttHACIHEP/output/DATA/";
+        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_06_v2/ttHACIHEP/output/DATA/";
       }
 
       //For individual background MC, declare temp variable histogram.
