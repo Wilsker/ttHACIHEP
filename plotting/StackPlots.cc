@@ -631,10 +631,7 @@ void StackPlots(){
       TH1F *h_var = get_th1f(var[v], v);
 
       //Histograms construction, fill, scaling etc.
-      BJetness_avjetschip2dval
-    BJetness_avjetschip2dsig
-    BJetness_avjetschip3dval
-    BJetness_avjetschip3dsig
+
 
       if(datatype==2){
         if(var[v].find("BJetness_avjetschip")==std::string::npos && (var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos)){
