@@ -32,7 +32,7 @@ workingDir = os.getcwd()
 #ttjets_HF_filter = '/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/mc/TTToSemilepton_ttbbFilter_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/crab_FullMorV1_TTToSemilepton_ttbbFilter/170217_064724/0000/'
 
 #====== Uncomment before committing to git -> For running on IHEP farm.
-inputDir = '/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_06_v2/ttHACIHEP/output/MC/'
+inputDir = '/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_06_v3/ttHACIHEP/output/MC/'
 
 inputFiles = ["ttHbb/ttHbb_Merged_rootplas.root",
               #"ttH_nonbb/ttH_nonbb_Merged_rootplas.root",
