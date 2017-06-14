@@ -1665,7 +1665,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
     //eth_blr = TMath::Log(eth_blr/(1-eth_blr));
 
     //Calculate av. IP 3d val.
-    double sum_ip3dval = -999;
+    double sum_ip3dval = 0;
     double av_ip3dval = -999;
     int max_numtrcks = 5;
 
@@ -1676,9 +1676,10 @@ void SecondStep::Process(char* inFile, string outDirPath){
       }
       av_ip3dval = sum_ip3dval/5;
     }
+    else{sum_ip3dval=-999;}
 
     //Calculate av. IP 3d significance.
-    double sum_ip3dsig = -999;
+    double sum_ip3dsig = 0;
     double av_ip3dsig = -999;
     std::sort(BJetness_jetschip3dsig->rbegin(),BJetness_jetschip3dsig->rend());
     if(BJetness_jetschip3dsig->size()>=5){
@@ -1688,9 +1689,10 @@ void SecondStep::Process(char* inFile, string outDirPath){
       }
       av_ip3dsig = sum_ip3dsig/5;
     }
+    else{sum_ip3dsig=-999;}
 
     //BJetness_jetschip2dval
-    double sum_ip2dval = -999;
+    double sum_ip2dval = 0;
     double av_ip2dval = -999;
     std::sort(BJetness_jetschip2dval->rbegin(),BJetness_jetschip2dval->rend());
     if(BJetness_jetschip2dval->size()>=5){
@@ -1700,9 +1702,12 @@ void SecondStep::Process(char* inFile, string outDirPath){
       }
       av_ip2dval = sum_ip2dval/5;
     }
-
+    else{sum_ip2dval=-999;}
+    cout << "sum_ip2dval = " << sum_ip2dval << endl;
+    cout << "av_ip2dval = " << av_ip2dval << endl;
+    
     //BJetness_jetschip2dsig
-    double sum_ip2dsig = -999;
+    double sum_ip2dsig = 0;
     double av_ip2dsig = -999;
     std::sort(BJetness_jetschip2dsig->rbegin(),BJetness_jetschip2dsig->rend());
     if(BJetness_jetschip2dsig->size()>=5){
@@ -1712,6 +1717,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
       }
       av_ip2dsig = sum_ip2dsig/5;
     }
+    else{sum_ip2dsig=-999;}
 
     muFuncs muF;
     PUWTool PileupTool;
