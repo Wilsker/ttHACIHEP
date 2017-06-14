@@ -928,10 +928,10 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
       normdata= 1.72775e+07;
       normsig = 632877;
     }
-    else if(var.find("BJetness_avjetschip")!=std::string::npos){
-      normbkg = 2.81673e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-      normdata= 516742;
-      normsig = 17824.4;
+    else if(var.find("BJetness_avjetschip")!=std::string::npos || var.find("BJetness_sumjetschip")!=std::string::npos){
+      normbkg = 2.62913e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normdata= 528948;
+      normsig = 17017.5;
     }
     else if(var.find("BJetness")!=std::string::npos){
       normbkg = 2.76786e+07;
