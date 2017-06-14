@@ -571,10 +571,10 @@ const double endRange[numVar]   = {
   100,//BJetness_avjetschip2dsig
   1,//BJetness_avjetschip3dval
   100,//BJetness_avjetschip3dsig
-  5,//BJetness_sumjetschip2dval
-  100,//BJetness_sumjetschip2dsig
-  5,//BJetness_sumjetschip3dval
-  100//BJetness_sumjetschip3dsig
+  10,//BJetness_sumjetschip2dval
+  1000,//BJetness_sumjetschip2dsig
+  10,//BJetness_sumjetschip3dval
+  1000//BJetness_sumjetschip3dsig
 };
 
 /////
