@@ -570,7 +570,7 @@ const double endRange[numVar]   = {
   1,//BJetness_avjetschip2dval
   100,//BJetness_avjetschip2dsig
   1,//BJetness_avjetschip3dval
-  100//BJetness_avjetschip3dsig
+  100,//BJetness_avjetschip3dsig
   5,//BJetness_sumjetschip2dval
   100,//BJetness_sumjetschip2dsig
   5,//BJetness_sumjetschip3dval
