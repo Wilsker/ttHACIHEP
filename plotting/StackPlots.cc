@@ -65,14 +65,14 @@ const bool show_ratio   = true;
 const double Luminosity = 35900; //pb^-1
 const bool   LumiNorm   = true;
 const bool   PUcorr     = true;
-const bool   SF         = false; //For the TTHbb analysis it represents the bWeight factor
+const bool   SF         = true; //For the TTHbb analysis it represents the bWeight factor
 const bool   LeptonSFs  = true;
 const bool   triggerSFs = true;
 const double scale      = 0;    //0 means no scaling; any other values means scale histo by the value of scale
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = true;
+const bool normalised   = false;
 //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 double normbkg;
 double normdata;
@@ -83,14 +83,14 @@ const bool save_plots   = true;
 const bool show_title   = true;
 const bool doasym       = false;
 const double asymbin[6] = {0,3,4,9,15,20};
-const int    numVar     = 88;
+const int    numVar     = 92;
 const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 //const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 56;
-const unsigned int fin_var = 60;
+const unsigned int ini_var = 88;
+const unsigned int fin_var = 92;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -193,7 +193,11 @@ const char *variables[]         = {
   "BJetness_avjetschip2dval",
   "BJetness_avjetschip2dsig",
   "BJetness_avjetschip3dval",
-  "BJetness_avjetschip3dsig"
+  "BJetness_avjetschip3dsig",
+  "BJetness_sumjetschip2dval",
+  "BJetness_sumjetschip2dsig",
+  "BJetness_sumjetschip3dval",
+  "BJetness_sumjetschip3dsig"
 };
 const char *titleXaxis[]        = {
   "BJetness # pdg ID el",
@@ -283,7 +287,11 @@ const char *titleXaxis[]        = {
   "BJetness_avjetschip2dval",
   "BJetness_avjetschip2dsig",
   "BJetness_avjetschip3dval",
-  "BJetness_avjetschip3dsig"
+  "BJetness_avjetschip3dsig",
+  "BJetness_sumjetschip2dval",
+  "BJetness_sumjetschip2dsig",
+  "BJetness_sumjetschip3dval",
+  "BJetness_sumjetschip3dsig"
 };
 const int    bin[numVar]        = {
   4,//BJetness_num_pdgid_eles
@@ -373,7 +381,11 @@ const int    bin[numVar]        = {
   40,//BJetness_avjetschip2dval
   40,//BJetness_avjetschip2dsig
   40,//BJetness_avjetschip3dval
-  40//BJetness_avjetschip3dsig
+  40,//BJetness_avjetschip3dsig
+  40,//BJetness_sumjetschip2dval
+  40,//BJetness_sumjetschip2dsig
+  40,//BJetness_sumjetschip3dval
+  40//BJetness_sumjetschip3dsig
 };
 const double inRange[numVar]    = {
   0,//BJetness_num_pdgid_eles
@@ -463,7 +475,12 @@ const double inRange[numVar]    = {
   0,//BJetness_avjetschip2dval
   0,//BJetness_avjetschip2dsig
   0,//BJetness_avjetschip3dval
-  0//BJetness_avjetschip3dsig
+  0,//BJetness_avjetschip3dsig
+  0,//BJetness_sumjetschip2dval
+  0,//BJetness_sumjetschip2dsig
+  0,//BJetness_sumjetschip3dval
+  0//BJetness_sumjetschip3dsig
+
 };
 const double endRange[numVar]   = {
   4,//BJetness_num_pdgid_eles
@@ -554,6 +571,10 @@ const double endRange[numVar]   = {
   100,//BJetness_avjetschip2dsig
   1,//BJetness_avjetschip3dval
   100//BJetness_avjetschip3dsig
+  5,//BJetness_sumjetschip2dval
+  100,//BJetness_sumjetschip2dsig
+  5,//BJetness_sumjetschip3dval
+  100//BJetness_sumjetschip3dsig
 };
 
 /////
@@ -621,10 +642,10 @@ void StackPlots(){
         datatype=2;
       }
       if(datatype!=0){
-        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_06_v2/ttHACIHEP/output/MC/";
+        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_06_v3/ttHACIHEP/output/MC/";
       }
       else{
-        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_06_v2/ttHACIHEP/output/DATA/";
+        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_06_v3/ttHACIHEP/output/DATA/";
       }
 
       //For individual background MC, declare temp variable histogram.
