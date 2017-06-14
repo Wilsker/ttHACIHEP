@@ -72,7 +72,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = false;
+const bool normalised   = true;
 //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 double normbkg;
 double normdata;
@@ -939,19 +939,19 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
       normsig = 17518.3;
     }
     else if(var.find("lead_el")!=std::string::npos){
-      normbkg = 1.14165e+07;
-      normdata = 302739;
-      normsig = 7339;
+      normbkg = 1.0663e+07;
+      normdata = 235416;
+      normsig = 7011.01;
     }
     else if(var.find("lead_mu")!=std::string::npos){
-      normbkg = 1.67503e+07;
-      normdata = 378296;
-      normsig = 10485.3;
+      normbkg = 1.56318e+07;
+      normdata = 293532;
+      normsig = 10006.9;
     }
     else{
-      normbkg = 2.36241e+08;//2.82041e+07;//2.81664e+07;
-      normdata = 681035;
-      normsig = 17824.3;
+      normbkg = 2.62942e+07;
+      normdata = 528948;
+      normsig = 17017.9;
     }
 
     cout << "============= normalised ===============" << endl;
@@ -981,6 +981,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
 
 
 TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype){
+  cout << " =========== int_h_var ============" << endl;
   //Call tree and variables
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
 
@@ -1091,19 +1092,19 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
       normsig = 17518.3;
     }
     else if(var.find("lead_el")!=std::string::npos){
-      normbkg = 1.14165e+07;
-      normdata = 302739;
-      normsig = 7339;
+      normbkg = 1.0663e+07;
+      normdata = 235416;
+      normsig = 7011.01;
     }
     else if(var.find("lead_mu")!=std::string::npos){
-      normbkg = 1.67503e+07;
-      normdata = 378296;
-      normsig = 10485.3;
+      normbkg = 1.56318e+07;
+      normdata = 293532;
+      normsig = 10006.9;
     }
     else{
-      normbkg = 2.36241e+08;//2.82041e+07;;//2.81664e+07;
-      normdata = 681035;
-      normsig = 17824.3;
+      normbkg = 2.62942e+07;
+      normdata = 528948;
+      normsig = 17017.9;
     }
 
 
@@ -1272,19 +1273,19 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normsig = 17518.3;
     }
     else if(var.find("lead_el")!=std::string::npos){
-      normbkg = 1.14165e+07;
-      normdata = 302739;
-      normsig = 7339;
+      normbkg = 1.0663e+07;
+      normdata = 235416;
+      normsig = 7011.01;
     }
     else if(var.find("lead_mu")!=std::string::npos){
-      normbkg = 1.67503e+07;
-      normdata = 378296;
-      normsig = 10485.3;
+      normbkg = 1.56318e+07;
+      normdata = 293532;
+      normsig = 10006.9;
     }
     else{
-      normbkg = 2.36241e+08;//2.82041e+07;//2.81664e+07;
-      normdata = 681035;
-      normsig = 17824.3;
+      normbkg = 2.62942e+07;
+      normdata = 528948;
+      normsig = 17017.9;
     }
 
 
