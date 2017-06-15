@@ -72,7 +72,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = true;
+const bool normalised   = false;
 //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 double normbkg;
 double normdata;
@@ -358,9 +358,9 @@ const int    bin[numVar]        = {
   26,//BJetness_numip3dneg
   8,//BJetness_jetschpvass
   7,//BJetness_jetschfrompv
-  50,//BJetness_jetschip3dval
+  60,//BJetness_jetschip3dval
   30,//BJetness_jetschip3dsig
-  50,//BJetness_jetschip2dval
+  60,//BJetness_jetschip2dval
   30,//BJetness_jetschip2dsig
   2,//BJetness_jetschisgoodtrk
   2,//BJetness_jetschtrkpur
@@ -547,9 +547,9 @@ const double endRange[numVar]   = {
   30,//BJetness_numip3dneg
   8,//BJetness_jetschpvass
   7,//BJetness_jetschfrompv
-  10,//BJetness_jetschip3dval
+  6,//BJetness_jetschip3dval
   100,//BJetness_jetschip3dsig
-  10,//BJetness_jetschip2dval
+  60,//BJetness_jetschip2dval
   100,//BJetness_jetschip2dsig
   1,//BJetness_jetschisgoodtrk
   1,//BJetness_jetschtrkpur
@@ -811,6 +811,7 @@ TFile* Call_TFile(string rootpla){
 //   Fill histo with double type
 /////
 TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype){
+  cout << "=========== double_h_var ========== " << endl;
   //Call tree and variables
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
 
@@ -923,7 +924,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   //Get errors, normalise
   int nbins = hist->GetNbinsX();
   if(normalised){
-    if(var.find("BJetness_jetsch")!=std::string::npos){
+    if(var.find("BJetness_jetschip2dval")!=std::string::npos || var.find("BJetness_jetschip3dval")!=std::string::npos){
       normbkg = 5.77269e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata= 1.38596e+07;
       normsig = 609385;
@@ -955,10 +956,6 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
     }
 
     cout << "============= normalised ===============" << endl;
-    cout << "normdata = " << normdata << endl;
-    cout << "normsig = " << normsig << endl;
-    cout << "normbkg = " << normbkg << endl;
-    cout << "hist integral (pre-scaling): " << hist->Integral(0,nbins+1) << endl;
     if(datatype==0) hist->Scale(1/normdata);
     if(datatype==1) hist->Scale(1/normsig);
     if(datatype==2) hist->Scale(1/normbkg);
@@ -1109,12 +1106,12 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
 
 
     cout << "============= normalised ===============" << endl;
-    cout << "normdata = " << normdata << endl;
-    cout << "normsig = " << normsig << endl;
-    cout << "normbkg = " << normbkg << endl;
     if(datatype==0) hist->Scale(1/normdata);
     if(datatype==1) hist->Scale(1/normsig);
     if(datatype==2) hist->Scale(1/normbkg);
+    cout << "Check hist integral (should ==1): " << hist->Integral(0,nbins+1) << endl;
+    cout << "========================================" << endl;
+
   }
   if(datatype==2){
     for(int j=0; j<bin[v]; j++){
@@ -1135,7 +1132,6 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
 TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype){
   //Call tree and variables
   cout << "============== vector_double_h_var =============="<<endl;
-  cout << "rootplas = " << rootplas << endl;
 
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
   vector <double> * var_vals =0;
@@ -1290,10 +1286,6 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
 
 
     cout << "============= normalised ===============" << endl;
-    cout << "normdata = " << normdata << endl;
-    cout << "normsig = " << normsig << endl;
-    cout << "normbkg = " << normbkg << endl;
-    cout << "hist integral (pre-scaling): " << hist->Integral(0,nbins+1) << endl;
     if(datatype==0) hist->Scale(1/normdata);
     if(datatype==1) hist->Scale(1/normsig);
     if(datatype==2) hist->Scale(1/normbkg);
