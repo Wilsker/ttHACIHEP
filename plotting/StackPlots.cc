@@ -89,8 +89,8 @@ const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 0;
-const unsigned int fin_var = 92;
+const unsigned int ini_var = 64;
+const unsigned int fin_var = 68;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -358,10 +358,10 @@ const int    bin[numVar]        = {
   26,//BJetness_numip3dneg
   8,//BJetness_jetschpvass
   7,//BJetness_jetschfrompv
-  20,//BJetness_jetschip3dval
+  50,//BJetness_jetschip3dval
   30,//BJetness_jetschip3dsig
-  20,//BJetness_jetschip2dval
-  10,//BJetness_jetschip2dsig
+  50,//BJetness_jetschip2dval
+  30,//BJetness_jetschip2dsig
   2,//BJetness_jetschisgoodtrk
   2,//BJetness_jetschtrkpur
   50,//BJetness_jetschpt
@@ -547,10 +547,10 @@ const double endRange[numVar]   = {
   30,//BJetness_numip3dneg
   8,//BJetness_jetschpvass
   7,//BJetness_jetschfrompv
-  0.1,//BJetness_jetschip3dval
-  30,//BJetness_jetschip3dsig
-  0.1,//BJetness_jetschip2dval
-  10,//BJetness_jetschip2dsig
+  10,//BJetness_jetschip3dval
+  100,//BJetness_jetschip3dsig
+  10,//BJetness_jetschip2dval
+  100,//BJetness_jetschip2dsig
   1,//BJetness_jetschisgoodtrk
   1,//BJetness_jetschtrkpur
   50,//BJetness_jetschpt
