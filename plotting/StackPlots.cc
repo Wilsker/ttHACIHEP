@@ -656,6 +656,7 @@ void StackPlots(){
 
       if(datatype==2){
         if(var[v].find("BJetness_avjetschip")==std::string::npos && var[v].find("BJetness_sumjetschip")==std::string::npos && (var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos)){
+          cout << "Using vector_double_h_var() " << endl;
           h_var = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets" || var[v]=="npuVertices") {
@@ -667,6 +668,7 @@ void StackPlots(){
       }
       else if(datatype==1){
         if(var[v].find("BJetness_avjetschip")==std::string::npos && var[v].find("BJetness_sumjetschip")==std::string::npos && (var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos)){
+          cout << "Using vector_double_h_var() " << endl;
           h_sig = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets"|| var[v]=="npuVertices") {
@@ -678,6 +680,7 @@ void StackPlots(){
       }
       else{
         if(var[v].find("BJetness_avjetschip")==std::string::npos && var[v].find("BJetness_sumjetschip")==std::string::npos && (var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos)){
+          cout << "Using vector_double_h_var() " << endl;
           h_data_var = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets"|| var[v]=="npuVertices") {
@@ -1079,9 +1082,9 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
 
   if(normalised){
     if(var.find("BJetness_jetsch")!=std::string::npos){
-      normbkg = 5.77269e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normbkg = 5.98384e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata= 1.38596e+07;
-      normsig = 609385;
+      normsig = 608113;
     }
     else if(var.find("BJetness")!=std::string::npos){
       normbkg = 2.62943e+07;
@@ -1131,7 +1134,6 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
 /////
 TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype){
   //Call tree and variables
-  cout << "============== vector_double_h_var =============="<<endl;
 
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
   vector <double> * var_vals =0;
@@ -1259,9 +1261,9 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
 
   if(normalised){
     if(var.find("BJetness_jetsch")!=std::string::npos){
-      normbkg = 5.77269e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normbkg = 5.98384e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata= 1.38596e+07;
-      normsig = 609385;
+      normsig = 608113;
     }
     else if(var.find("BJetness")!=std::string::npos){
       normbkg = 2.62943e+07;
