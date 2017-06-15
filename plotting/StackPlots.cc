@@ -72,7 +72,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = false;
+const bool normalised   = true;
 //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 double normbkg;
 double normdata;
@@ -90,7 +90,7 @@ const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
 const unsigned int ini_var = 64;
-const unsigned int fin_var = 65;
+const unsigned int fin_var = 68;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -924,9 +924,9 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   int nbins = hist->GetNbinsX();
   if(normalised){
     if(var.find("BJetness_jetsch")!=std::string::npos){
-      normbkg = 7.60378e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-      normdata= 1.72775e+07;
-      normsig = 632877;
+      normbkg = 5.77269e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normdata= 1.38596e+07;
+      normsig = 609385;
     }
     else if(var.find("BJetness_avjetschip")!=std::string::npos || var.find("BJetness_sumjetschip")!=std::string::npos){
       normbkg = 2.62923e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
@@ -1082,9 +1082,9 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
 
   if(normalised){
     if(var.find("BJetness_jetsch")!=std::string::npos){
-      normbkg = 7.60378e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-      normdata= 1.72775e+07;
-      normsig = 632877;
+      normbkg = 5.77269e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normdata= 1.38596e+07;
+      normsig = 609385;
     }
     else if(var.find("BJetness")!=std::string::npos){
       normbkg = 2.62943e+07;
@@ -1263,9 +1263,9 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
 
   if(normalised){
     if(var.find("BJetness_jetsch")!=std::string::npos){
-      normbkg = 7.42317e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normbkg = 5.77269e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata= 1.38596e+07;
-      normsig = 597462;
+      normsig = 609385;
     }
     else if(var.find("BJetness")!=std::string::npos){
       normbkg = 2.62943e+07;
