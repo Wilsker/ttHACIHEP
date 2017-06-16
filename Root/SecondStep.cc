@@ -425,6 +425,9 @@ void SecondStep::Process(char* inFile, string outDirPath){
   double BJetness_sumjetschip3dsig_=-99;                TBranch *BJetness_sumjetschip3dsig=newtree->Branch("BJetness_sumjetschip3dsig",&BJetness_sumjetschip3dsig_,"BJetness_sumjetschip3dsig/D");
   //
 
+  vector<double> * allJetsCSVvalue = 0;
+  TBranch* b_allJetsCSVvalue = newtree->Branch("allJetsCSVvalue", &allJetsCSVvalue);
+
 
 
   int number_electrons_ = -99;
@@ -1615,6 +1618,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
     double averageCSV_tagged = 0;
     double averageCSV_all = 0;
     double Lowest_btag=99;
+    vector<double> allJetsCSVvalue_tmp;
     int njets=selectedJetP4.size();
     int ntags=0;
     for(auto itCSV = selectedJetCSV_fixed.begin() ; itCSV != selectedJetCSV_fixed.end(); ++itCSV){
@@ -1622,6 +1626,8 @@ void SecondStep::Process(char* inFile, string outDirPath){
       if(*itCSV<bTagWP_DiscrCut) continue;
       if(*itCSV<Lowest_btag) Lowest_btag=*itCSV;
       if(*itCSV>0) averageCSV_tagged += *itCSV;
+      double temp_itCSV = *itCSV;
+      allJetsCSVvalue_tmp.push_back(*itCSV);
       ntags++;
     }
     if(ntags>0) averageCSV_tagged /= ntags;
@@ -1667,57 +1673,38 @@ void SecondStep::Process(char* inFile, string outDirPath){
     //Calculate av. IP 3d val.
     double sum_ip3dval = 0;
     double av_ip3dval = -999;
-    int max_numtrcks = 5;
-
     std::sort(BJetness_jetschip3dval->rbegin(),BJetness_jetschip3dval->rend());
-    if(BJetness_jetschip3dval->size()>=5){
-      for(int ip=0; ip<max_numtrcks; ip++){
-        sum_ip3dval = sum_ip3dval + BJetness_jetschip3dval->at(ip);
-      }
-      av_ip3dval = sum_ip3dval/5;
+    for(int ip=0; ip<BJetness_jetschip3dval->size(); ip++){
+      sum_ip3dval = sum_ip3dval + BJetness_jetschip3dval->at(ip);
     }
-    else{sum_ip3dval=-999;}
+    av_ip3dval = sum_ip3dval/BJetness_jetschip3dval->size();
 
     //Calculate av. IP 3d significance.
     double sum_ip3dsig = 0;
     double av_ip3dsig = -999;
     std::sort(BJetness_jetschip3dsig->rbegin(),BJetness_jetschip3dsig->rend());
-    if(BJetness_jetschip3dsig->size()>=5){
-      max_numtrcks=5;
-      for(int ip=0; ip<max_numtrcks; ip++){
-        sum_ip3dsig = sum_ip3dsig + BJetness_jetschip3dsig->at(ip);
-      }
-      av_ip3dsig = sum_ip3dsig/5;
+    for(int ip=0; ip<BJetness_jetschip3dsig->size(); ip++){
+      sum_ip3dsig = sum_ip3dsig + BJetness_jetschip3dsig->at(ip);
     }
-    else{sum_ip3dsig=-999;}
+    av_ip3dsig = sum_ip3dsig/BJetness_jetschip3dsig->size();
 
     //BJetness_jetschip2dval
     double sum_ip2dval = 0;
     double av_ip2dval = -999;
     std::sort(BJetness_jetschip2dval->rbegin(),BJetness_jetschip2dval->rend());
-    if(BJetness_jetschip2dval->size()>=5){
-      max_numtrcks=5;
-      for(int ip=0; ip<max_numtrcks; ip++){
-        sum_ip2dval = sum_ip2dval + BJetness_jetschip2dval->at(ip);
-      }
-      av_ip2dval = sum_ip2dval/5;
+    for(int ip=0; ip<BJetness_jetschip2dval->size(); ip++){
+      sum_ip2dval = sum_ip2dval + BJetness_jetschip2dval->at(ip);
     }
-    else{sum_ip2dval=-999;}
-    cout << "sum_ip2dval = " << sum_ip2dval << endl;
-    cout << "av_ip2dval = " << av_ip2dval << endl;
-    
+    av_ip2dval = sum_ip2dval/BJetness_jetschip2dval->size();
+
     //BJetness_jetschip2dsig
     double sum_ip2dsig = 0;
     double av_ip2dsig = -999;
     std::sort(BJetness_jetschip2dsig->rbegin(),BJetness_jetschip2dsig->rend());
-    if(BJetness_jetschip2dsig->size()>=5){
-      max_numtrcks=5;
-      for(int ip=0; ip<max_numtrcks; ip++){
-        sum_ip2dsig = sum_ip2dsig + BJetness_jetschip2dsig->at(ip);
-      }
-      av_ip2dsig = sum_ip2dsig/5;
+    for(int ip=0; ip<BJetness_jetschip2dsig->size(); ip++){
+      sum_ip2dsig = sum_ip2dsig + BJetness_jetschip2dsig->at(ip);
     }
-    else{sum_ip2dsig=-999;}
+    av_ip2dsig = sum_ip2dsig/BJetness_jetschip2dsig->size();
 
     muFuncs muF;
     PUWTool PileupTool;
@@ -1853,6 +1840,8 @@ void SecondStep::Process(char* inFile, string outDirPath){
     sphericity_ = Sphericity;
     tagged_dijet_mass_closest_to_125_ = Tagged_dijet_mass_closest_to_125;
     Evt_CSV_Average_ = averageCSV_all;
+    //cout << "allJetsCSVvalue->at(0) = " << allJetsCSVvalue->at(0) << endl;
+    allJetsCSVvalue = &allJetsCSVvalue_tmp;
     Evt_Deta_JetsAverage_ = detaJetsAverage;
     blr_ = eth_blr;
     trigger_SF_ = trigger_SF;
