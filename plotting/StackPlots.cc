@@ -54,7 +54,7 @@ string path = "";
 "/MC/ttHbb/ttHbb_Merged_rootplas",
 "/DATA/combined_SLep"};*/
 //const char *samples[]   = {"WJets_combined/WJets_combined", "stop_schan/stop_schan_Merged_rootplas", "ttjets_incl/ttjets_incl_Merged_rootplas", "ttHbb/ttHbb_Merged_rootplas", "combined_SLep"};
-const char *samples[]   = {"ttjets_incl/ttjets_incl_Merged_rootplas", "ttHbb/ttHbb_Merged_rootplas", "combined_SLep"};
+const char *samples[]   = {"ttjets_incl/ttjets_incl_Merged_rootplas", "ttHbb/ttHbb_Merged_rootplas", "combined_SLep_BCD"};
 
 // ==== Selection ====
 const string selection  = "_SL"; //_SingleEle, _SingleMu
@@ -72,7 +72,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = true;
+const bool normalised   = false;
 //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 double normbkg;
 double normdata;
