@@ -45,15 +45,10 @@ using namespace std;
 /////
 
 // ==== Path ====
-//const string path       = "/afs/cern.ch/work/f/fromeo/public/TTHbb/8012/";
 string path = "";
 
 // ==== Samples ====
-//const char *samples[]   = {"TT_2b","TT_bb","TT_b","TT_cc","TT_lf", "ttHTobb", "SLep"};
-/*const char *samples[]   = {"/MC/ttjets_incl/ttjets_incl_Merged_rootplas",
-"/MC/ttHbb/ttHbb_Merged_rootplas",
-"/DATA/combined_SLep"};*/
-//const char *samples[]   = {"WJets_combined/WJets_combined", "stop_schan/stop_schan_Merged_rootplas", "ttjets_incl/ttjets_incl_Merged_rootplas", "ttHbb/ttHbb_Merged_rootplas", "combined_SLep"};
+
 const char *samples[]   = {"ttjets_incl/ttjets_incl_Merged_rootplas", "ttHbb/ttHbb_Merged_rootplas", "combined_SLep_BCD"};
 
 // ==== Selection ====
@@ -72,7 +67,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = true;
+const bool normalised   = false;
 //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 double normbkg;
 double normdata;
@@ -89,8 +84,8 @@ const int logYscale[numVar] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 64;
-const unsigned int fin_var = 68;
+const unsigned int ini_var = 84;
+const unsigned int fin_var = 92;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -642,10 +637,10 @@ void StackPlots(){
         datatype=2;
       }
       if(datatype!=0){
-        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_06_v4/ttHACIHEP/output/MC/";
+        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_06_v5/ttHACIHEP/output/MC/";
       }
       else{
-        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_06_v4/ttHACIHEP/output/DATA/";
+        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_06_v5/ttHACIHEP/output/DATA/";
       }
 
       //For individual background MC, declare temp variable histogram.
