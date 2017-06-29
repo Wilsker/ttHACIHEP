@@ -1275,8 +1275,8 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normsig=601180;
     }
     else if(var.find("BJetness")!=std::string::npos){
-      normbkg = 2.62943e+07;
-      normdata= 528946;
+      normbkg = 2.62934e+07;
+      normdata= 208681;
       normsig = 17017.8;
     }
     else if(var.find("lead_el")!=std::string::npos){
