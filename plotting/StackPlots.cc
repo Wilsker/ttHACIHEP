@@ -1290,9 +1290,9 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normsig = 10006.9;
     }
     else{
-      normbkg = 2.62942e+07;
-      normdata = 528948;
-      normsig = 17017.9;
+      normbkg = 2.62934e+07;
+      normdata = 208681;
+      normsig = 17017.8;
     }
 
 
