@@ -28,7 +28,7 @@ sample={
 "ttHbb":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/mc/ttHTobb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/TTHbb_MC_ttHbb_4/170621_142513/0000/',
 #"ttH_nonbb":'/publicfs/cms/data/TopQuark/cms13TeV/FullMorV2/mc/ttHToNonbb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/FullMorV2_ttHnobb/170530_161519/0000/',
 #"ttjets_incl":'/publicfs/cms/data/TopQuark/cms13TeV/FullMorV2/mc/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/FullMorV2_TT/170531_195914/0000/',
-"ttjets_incl":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/mc/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/TTHbb_MC_ttjets_4/170621_142726/0000/'
+"ttjets_incl":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/mc/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/TTHbb_MC_ttjets_4/170621_142726/0000/',
 #"ttjets_DL":'/publicfs/cms/data/TopQuark/cms13TeV/FullMorV2/mc/TTTo2L2Nu_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/FullMorV2_TTTo2L2Nu/170531_200535/0000/',
 #"ttjets_SL":'/publicfs/cms/data/TopQuark/cms13TeV/FullMorV2/mc/TTToSemilepton_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/FullMorV2_TTToSemilepton/170531_200121/0000/',
 #"ttjets_bfilter":'/publicfs/cms/data/TopQuark/cms13TeV/FullMorV2/mc/TTToSemilepton_ttbbFilter_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/FullMorV2_TTToSemilepton_ttbbFilter/170531_200331/0000/',
