@@ -211,6 +211,11 @@ void SecondStep::Process(char* inFile, string outDirPath){
   oldtree->SetBranchStatus("BJetness_avip1d_sig",1);
   oldtree->SetBranchStatus("BJetness_avsip1d_val",1);
   oldtree->SetBranchStatus("BJetness_avsip1d_sig",1);
+  oldtree->SetBranchStatus("BJetnessFV_npvTrkOVcollTrk",1);
+  oldtree->SetBranchStatus("BJetnessFV_avip3d_val",1);
+  oldtree->SetBranchStatus("BJetnessFV_avip3d_sig",1);
+  oldtree->SetBranchStatus("BJetnessFV_avsip3d_sig",1);
+  oldtree->SetBranchStatus("BJetnessFV_avip1d_sig",1);
 
 
   oldtree->SetBranchStatus("bWeight",1);
@@ -702,6 +707,11 @@ void SecondStep::Process(char* inFile, string outDirPath){
   vector<double>* BJetness_avip1d_sig = 0;
   vector<double>* BJetness_avsip1d_val = 0;
   vector<double>* BJetness_avsip1d_sig = 0;
+  vector<double>* BJetnessFV_npvTrkOVcollTrk =0;
+  vector<double>* BJetnessFV_avip3d_val = 0;
+  vector<double>* BJetnessFV_avip3d_sig = 0;
+  vector<double>* BJetnessFV_avsip3d_sig = 0;
+  vector<double>* BJetnessFV_avip1d_sig = 0;
 
   TBranch *b_BJetness_isSingleLepton;
   TBranch*b_BJetness_isDoubleLepton;
@@ -800,6 +810,11 @@ void SecondStep::Process(char* inFile, string outDirPath){
   TBranch *b_BJetness_avip1d_sig;
   TBranch *b_BJetness_avsip1d_val;
   TBranch *b_BJetness_avsip1d_sig;
+  TBranch *b_BJetnessFV_npvTrkOVcollTrk;
+  TBranch *b_BJetnessFV_avip3d_val;
+  TBranch *b_BJetnessFV_avip3d_sig;
+  TBranch *b_BJetnessFV_avsip3d_sig;
+  TBranch *b_BJetnessFV_avip1d_sig;
 
 
   //oldtree->SetBranchAddress("BJetness_jetpt0",&BJetness_jetpt0,&b_BJetness_jetpt0);
@@ -905,6 +920,12 @@ void SecondStep::Process(char* inFile, string outDirPath){
   oldtree->SetBranchAddress("BJetness_avip1d_sig",&BJetness_avip1d_sig,&b_BJetness_avip1d_sig);
   oldtree->SetBranchAddress("BJetness_avsip1d_val",&BJetness_avsip1d_val,&b_BJetness_avsip1d_val);
   oldtree->SetBranchAddress("BJetness_avsip1d_sig",&BJetness_avsip1d_sig,&b_BJetness_avsip1d_sig);
+
+  oldtree->SetBranchAddress("BJetnessFV_npvTrkOVcollTrk",&BJetnessFV_npvTrkOVcollTrk,&b_BJetnessFV_npvTrkOVcollTrk);
+  oldtree->SetBranchAddress("BJetnessFV_avip3d_val",&BJetnessFV_avip3d_val,&b_BJetnessFV_avip3d_val);
+  oldtree->SetBranchAddress("BJetnessFV_avip3d_sig",&BJetnessFV_avip3d_sig,&b_BJetnessFV_avip3d_sig);
+  oldtree->SetBranchAddress("BJetnessFV_avsip3d_sig",&BJetnessFV_avsip3d_sig,&b_BJetnessFV_avsip3d_sig);
+  oldtree->SetBranchAddress("BJetnessFV_avip1d_sig",&BJetnessFV_avip1d_sig,&b_BJetnessFV_avip1d_sig);
 
   TBranch *b_bWeight, *b_bWeightLFup, *b_bWeightLFdown, *b_bWeightHFup, *b_bWeightHFdown, *b_bWeightHFStats1up, *b_bWeightHFStats1down, *b_bWeightLFStats1up, *b_bWeightLFStats1down, *b_bWeightHFStats2up, *b_bWeightHFStats2down, *b_bWeightLFStats2up, *b_bWeightLFStats2down, *b_bWeightCErr1up, *b_bWeightCErr1down, *b_bWeightCErr2up, *b_bWeightCErr2down, *b_bWeightJESup, *b_bWeightJESdown;
 
@@ -1179,7 +1200,7 @@ void SecondStep::Process(char* inFile, string outDirPath){
       if(!(patElectron_pt->at(j)>15)) continue;
       if(!(fabs(patElectron_eta->at(j))<2.4)) continue;
       if(!(patElectron_inCrack->at(j)==0)) continue;
-      if(!(patElectron_isPassMedium->at(j)==1)) continue;
+      if(!(patElectron_isPassMedium->at(j)==1)) continue;//Electron Identification WP
       if(fabs(patElectron_SCeta->at(j))<=1.479){//Barrel impact parameter cuts
         if(fabs(patElectron_d0->at(j))>0.05) continue;
         if(fabs(patElectron_gsfTrack_dz_pv->at(j))>0.10) continue;
