@@ -637,10 +637,10 @@ void StackPlots(){
         datatype=2;
       }
       if(datatype!=0){
-        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_07_v1/ttHACIHEP/output/MC/";
+        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_07_v2/ttHACIHEP/output/MC/";
       }
       else{
-        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_07_v1/ttHACIHEP/output/DATA/";
+        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_07_v2/ttHACIHEP/output/DATA/";
       }
 
       //For individual background MC, declare temp variable histogram.
