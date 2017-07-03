@@ -84,8 +84,8 @@ const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 62;
-const unsigned int fin_var = 65;
+const unsigned int ini_var = 67;
+const unsigned int fin_var = 73;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -923,10 +923,9 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   int nbins = hist->GetNbinsX();
   if(normalised){
     if(var.find("BJetness_jetschip2dval")!=std::string::npos || var.find("BJetness_jetschip3dval")!=std::string::npos){
-      normbkg = 5.98384e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-      //normdata= 1.38596e+07;
-      normdata = 5.44198e+06;
-      normsig = 608113;
+      normbkg = 4.25817e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normdata = 1.07626e+07;
+      normsig = 399163;
     }
     else if(var.find("BJetness_avjetschip")!=std::string::npos || var.find("BJetness_sumjetschip")!=std::string::npos){
       normbkg = 2.62935e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
@@ -1261,9 +1260,9 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       //normbkg = 5.98384e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       //normdata= 1.38596e+07;
       //normsig = 608113;
-      normbkg = 4.21848e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normbkg = 4.25817e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata = 1.07626e+07;
-      normsig = 398879;
+      normsig = 399163;
 
     }
     else if(var.find("BJetness_jetschip2dsig")!=std::string::npos || var.find("BJetness_jetschip3dsig")!=std::string::npos){
