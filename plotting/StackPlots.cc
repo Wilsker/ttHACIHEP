@@ -84,8 +84,8 @@ const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 29;
-const unsigned int fin_var = 39;
+const unsigned int ini_var = 20;
+const unsigned int fin_var = 21;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -1087,15 +1087,15 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
       normdata= 528946;
       normsig = 17017.8;
     }
-    else if(var.find("lead_el")!=std::string::npos){
-      normbkg = 1.0663e+07;
-      normdata = 235416;
-      normsig = 7011.01;
+    else if(var.find("lead_el")!=std::string::npos){//DON'T USE OVERFLOW FOR NORM VALUES
+      normbkg = 1.06648e+07;
+      normdata = 300731;
+      normsig = 7007.4;
     }
-    else if(var.find("lead_mu")!=std::string::npos){
-      normbkg = 1.56318e+07;
-      normdata = 293532;
-      normsig = 10006.9;
+    else if(var.find("lead_mu")!=std::string::npos){//DON'T USE OVERFLOW FOR NORM VALUES
+      normbkg = 1.56299e+07;
+      normdata = 316919;
+      normsig = 10003.1;
     }
     else{
       normbkg = 2.62928e+07;
@@ -1268,7 +1268,6 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normbkg = 4.25817e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata = 1.07626e+07;
       normsig = 399163;
-
     }
     else if(var.find("BJetness_jetschip2dsig")!=std::string::npos || var.find("BJetness_jetschip3dsig")!=std::string::npos){
       //normbkg = 7.94718e+08;
