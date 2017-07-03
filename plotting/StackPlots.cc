@@ -84,8 +84,8 @@ const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 66;
-const unsigned int fin_var = 67;
+const unsigned int ini_var = 67;
+const unsigned int fin_var = 68;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -1261,9 +1261,9 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       //normbkg = 5.98384e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       //normdata= 1.38596e+07;
       //normsig = 608113;
-      normbkg = 5.98384e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-      normdata = 5.44198e+06;
-      normsig = 608113;
+      normbkg = 4.21848e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normdata = 1.07626e+07;
+      normsig = 398879;
 
     }
     else if(var.find("BJetness_jetschip2dsig")!=std::string::npos || var.find("BJetness_jetschip3dsig")!=std::string::npos){
