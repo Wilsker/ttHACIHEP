@@ -49,7 +49,7 @@ string path = "";
 
 // ==== Samples ====
 
-const char *samples[]   = {"ttjets_incl/ttjets_incl_Merged_rootplas", "ttHbb/ttHbb_Merged_rootplas", "combined_SLep_BCD"};
+const char *samples[]   = {"ttjets_incl/ttjets_incl_Merged_rootplas", "ttHbb/ttHbb_Merged_rootplas", "combined_SLep"};
 
 // ==== Selection ====
 const string selection  = "_SL"; //_SingleEle, _SingleMu
@@ -67,7 +67,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = true;
+const bool normalised   = false;
 //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 double normbkg;
 double normdata;
@@ -637,10 +637,10 @@ void StackPlots(){
         datatype=2;
       }
       if(datatype!=0){
-        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_06_v5/ttHACIHEP/output/MC/";
+        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_07_v1/ttHACIHEP/output/MC/";
       }
       else{
-        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_06_v5/ttHACIHEP/output/DATA/";
+        path = "/publicfs/cms/data/TopQuark/ttHbb/JTW/2017_07_v1/ttHACIHEP/output/DATA/";
       }
 
       //For individual background MC, declare temp variable histogram.
