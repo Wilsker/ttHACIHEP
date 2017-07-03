@@ -84,8 +84,8 @@ const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 1;
-const unsigned int fin_var = 2;
+const unsigned int ini_var = 20;
+const unsigned int fin_var = 21;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -1275,9 +1275,9 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normsig=601180;
     }
     else if(var.find("BJetness")!=std::string::npos){
-      normbkg = 2.62934e+07;
-      normdata= 208681;
-      normsig = 17017.8;
+      normbkg = 2.62927e+07;
+      normdata= 617648;
+      normsig = 17010.5;
     }
     else if(var.find("lead_el")!=std::string::npos){
       normbkg = 1.0663e+07;
