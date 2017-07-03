@@ -84,8 +84,8 @@ const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 67;
-const unsigned int fin_var = 73;
+const unsigned int ini_var = 29;
+const unsigned int fin_var = 39;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -1256,7 +1256,13 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
   int nbins = hist->GetNbinsX();
 
   if(normalised){
-    if(var.find("BJetness_jetschip2dval")!=std::string::npos || var.find("BJetness_jetschip3dval")!=std::string::npos){
+    BJetness_jetschtrkpur
+    if(var.find("BJetness_jetsch")!=std::string::npos){
+      normbkg = 4.22092e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normdata = 1.07626e+07;
+      normsig = 398901;
+    }
+    else if(var.find("BJetness_jetschip2dval")!=std::string::npos || var.find("BJetness_jetschip3dval")!=std::string::npos){
       //normbkg = 5.98384e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       //normdata= 1.38596e+07;
       //normsig = 608113;
