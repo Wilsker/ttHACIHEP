@@ -1256,7 +1256,6 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
   int nbins = hist->GetNbinsX();
 
   if(normalised){
-    BJetness_jetschtrkpur
     if(var.find("BJetness_jetsch")!=std::string::npos){
       normbkg = 4.22092e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata = 1.07626e+07;
