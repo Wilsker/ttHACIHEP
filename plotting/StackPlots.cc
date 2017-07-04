@@ -78,14 +78,14 @@ const bool save_plots   = true;
 const bool show_title   = true;
 const bool doasym       = false;
 const double asymbin[6] = {0,3,4,9,15,20};
-const int    numVar     = 92;
-const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+const int    numVar     = 93;
+const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 //const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
 const unsigned int ini_var = 0;
-const unsigned int fin_var = 92;
+const unsigned int fin_var = 93;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -192,8 +192,8 @@ const char *variables[]         = {
   "BJetness_sumjetschip2dval",
   "BJetness_sumjetschip2dsig",
   "BJetness_sumjetschip3dval",
-  "BJetness_sumjetschip3dsig"
-  //allJetsCSVvalue
+  "BJetness_sumjetschip3dsig",
+  "allJetsCSVvalue"
 };
 const char *titleXaxis[]        = {
   "BJetness # pdg ID el",
@@ -287,7 +287,8 @@ const char *titleXaxis[]        = {
   "BJetness_sumjetschip2dval",
   "BJetness_sumjetschip2dsig",
   "BJetness_sumjetschip3dval",
-  "BJetness_sumjetschip3dsig"
+  "BJetness_sumjetschip3dsig",
+  "CSV value"
 };
 const int    bin[numVar]        = {
   4,//BJetness_num_pdgid_eles
@@ -346,8 +347,8 @@ const int    bin[numVar]        = {
   20,//BJetness_avpparjetpt
   10,//BJetness_avpparjeten
   20,//BJetness_chi2
-  10,//BJetness_avip3d_val
-  20,//BJetness_avip3d_sig
+  20,//BJetness_avip3d_val
+  40,//BJetness_avip3d_sig
   20,//BJetness_avsip3d_val
   20,//BJetness_avsip3d_sig
   20,//BJetness_numip3dpos
@@ -367,21 +368,22 @@ const int    bin[numVar]        = {
   20,//BJetness_avip1d_sig
   30,//BJetness_avsip1d_val
   30,//BJetness_avsip1d_sig
-  10,//BJetness_avip2d_val
-  80,//BJetness_avip2d_sig
+  12,//BJetness_avip2d_val
+  15,//BJetness_avip2d_sig
   20,//BJetness_avsip2d_val
   20,//BJetness_avsip2d_sig
   50,//trueInteractions
   50,//pvertex_ndof
   50,//npuVertices
   40,//BJetness_avjetschip2dval
-  40,//BJetness_avjetschip2dsig
+  38,//BJetness_avjetschip2dsig
   40,//BJetness_avjetschip3dval
   40,//BJetness_avjetschip3dsig
   40,//BJetness_sumjetschip2dval
   40,//BJetness_sumjetschip2dsig
   40,//BJetness_sumjetschip3dval
-  40//BJetness_sumjetschip3dsig
+  40,//BJetness_sumjetschip3dsig
+  20//allJetsCSVvalue
 };
 const double inRange[numVar]    = {
   0,//BJetness_num_pdgid_eles
@@ -475,7 +477,8 @@ const double inRange[numVar]    = {
   0,//BJetness_sumjetschip2dval
   0,//BJetness_sumjetschip2dsig
   0,//BJetness_sumjetschip3dval
-  0//BJetness_sumjetschip3dsig
+  0,//BJetness_sumjetschip3dsig
+  0.8//allJetsCSVvalue
 
 };
 const double endRange[numVar]   = {
@@ -536,17 +539,17 @@ const double endRange[numVar]   = {
   1,//BJetness_avpparjeten
   1000,//BJetness_chi2
   0.4,//BJetness_avip3d_val
-  70,//BJetness_avip3d_sig
+  80,//BJetness_avip3d_sig
   0.2,//BJetness_avsip3d_val
   40,//BJetness_avsip3d_sig
   40,//BJetness_numip3dpos
   30,//BJetness_numip3dneg
   8,//BJetness_jetschpvass
   7,//BJetness_jetschfrompv
-  1,//BJetness_jetschip3dval
-  80,//BJetness_jetschip3dsig
-  1,//BJetness_jetschip2dval
-  80,//BJetness_jetschip2dsig
+  0.4,//BJetness_jetschip3dval
+  40,//BJetness_jetschip3dsig
+  0.2,//BJetness_jetschip2dval
+  40,//BJetness_jetschip2dsig
   1,//BJetness_jetschisgoodtrk
   1,//BJetness_jetschtrkpur
   100,//BJetness_jetschpt
@@ -556,21 +559,22 @@ const double endRange[numVar]   = {
   120,//BJetness_avip1d_sig
   0.06,//BJetness_avsip1d_val
   30,//BJetness_avsip1d_sig
-  0.1,//BJetness_avip2d_val
-  15,//BJetness_avip2d_sig
+  0.06,//BJetness_avip2d_val
+  12,//BJetness_avip2d_sig
   0.05,//BJetness_avsip2d_val
   15,//BJetness_avsip2d_sig
   50,//trueInteractions
   50,//pvertex_ndof
   50,//npuVertices
-  0.1,//BJetness_avjetschip2dval
-  20,//BJetness_avjetschip2dsig
+  0.05,//BJetness_avjetschip2dval
+  16,//BJetness_avjetschip2dsig
   0.5,//BJetness_avjetschip3dval
   50,//BJetness_avjetschip3dsig
-  10,//BJetness_sumjetschip2dval
-  1000,//BJetness_sumjetschip2dsig
-  10,//BJetness_sumjetschip3dval
-  1000//BJetness_sumjetschip3dsig
+  1,//BJetness_sumjetschip2dval
+  400,//BJetness_sumjetschip2dsig
+  4,//BJetness_sumjetschip3dval
+  400,//BJetness_sumjetschip3dsig
+  1//allJetsCSVvalue
 };
 
 /////
@@ -651,7 +655,7 @@ void StackPlots(){
 
 
       if(datatype==2){
-        if(var[v].find("BJetness_avjetschip")==std::string::npos && var[v].find("BJetness_sumjetschip")==std::string::npos && (var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos)){
+        if(var[v].find("BJetness_avjetschip")==std::string::npos && var[v].find("BJetness_sumjetschip")==std::string::npos && (var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos || var[v].find("allJetsCSVvalue")!=std::string::npos)){
           h_var = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets" || var[v]=="npuVertices") {
@@ -662,7 +666,7 @@ void StackPlots(){
         }
       }
       else if(datatype==1){
-        if(var[v].find("BJetness_avjetschip")==std::string::npos && var[v].find("BJetness_sumjetschip")==std::string::npos && (var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos)){
+        if(var[v].find("BJetness_avjetschip")==std::string::npos && var[v].find("BJetness_sumjetschip")==std::string::npos && (var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos || var[v].find("allJetsCSVvalue")!=std::string::npos)){
           h_sig = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets"|| var[v]=="npuVertices") {
@@ -673,7 +677,7 @@ void StackPlots(){
         }
       }
       else{
-        if(var[v].find("BJetness_avjetschip")==std::string::npos && var[v].find("BJetness_sumjetschip")==std::string::npos && (var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos)){
+        if(var[v].find("BJetness_avjetschip")==std::string::npos && var[v].find("BJetness_sumjetschip")==std::string::npos && (var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos || var[v].find("allJetsCSVvalue")!=std::string::npos)){
           h_data_var = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets"|| var[v]=="npuVertices") {
