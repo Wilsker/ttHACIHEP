@@ -1253,7 +1253,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normsig=400700;
     }
     else if(var.find("BJetness_jetschisgoodtrk")!=std::string::npos || var.find("BJetness_jetschtrkpur")!=std::string::npos){
-      normbkg=4.882940762+08;
+      normbkg=4.882940762e+08;
       normdata=1.07626e+07;
       normsig=400700;
     }
