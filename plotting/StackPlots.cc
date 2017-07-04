@@ -67,7 +67,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = true;
+const bool normalised   = false;
 //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 double normbkg;
 double normdata;
@@ -84,7 +84,7 @@ const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 0;
+const unsigned int ini_var = 64;
 const unsigned int fin_var = 93;
 const int posvtcr          = 0;
 
@@ -1233,22 +1233,27 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
 
   if(normalised){
     if(var.find("BJetness_jetschip3dval")!=std::string::npos){
-      normbkg = 4.25817e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normbkg = 3.745322931e+08;//4.25817e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata = 1.07626e+07;
       normsig = 399163;
     }
     else if(var.find("BJetness_jetschip2dval")!=std::string::npos){
-      normbkg = 4.21848e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normbkg = 3.633738759e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata = 1.07626e+07;
       normsig = 398879;
     }
     else if(var.find("BJetness_jetschip3dsig")!=std::string::npos){
-      normbkg=4.55933e+08;
+      normbkg=4.131175021e+08;//4.55933e+08;
       normdata=1.07626e+07;
       normsig=401376;
     }
     else if(var.find("BJetness_jetschip2dsig")!=std::string::npos){
-      normbkg=4.45687e+08;
+      normbkg=3.99988333e+08;
+      normdata=1.07626e+07;
+      normsig=400700;
+    }
+    else if(var.find("BJetness_jetschisgoodtrk")!=std::string::npos || var.find("BJetness_jetschtrkpur")!=std::string::npos){
+      normbkg=4.882940762+08;
       normdata=1.07626e+07;
       normsig=400700;
     }
