@@ -67,7 +67,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = false;
+const bool normalised   = true;
 //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 double normbkg;
 double normdata;
@@ -193,6 +193,7 @@ const char *variables[]         = {
   "BJetness_sumjetschip2dsig",
   "BJetness_sumjetschip3dval",
   "BJetness_sumjetschip3dsig"
+  //allJetsCSVvalue
 };
 const char *titleXaxis[]        = {
   "BJetness # pdg ID el",
@@ -348,15 +349,15 @@ const int    bin[numVar]        = {
   10,//BJetness_avip3d_val
   20,//BJetness_avip3d_sig
   20,//BJetness_avsip3d_val
-  40,//BJetness_avsip3d_sig
+  20,//BJetness_avsip3d_sig
   20,//BJetness_numip3dpos
   26,//BJetness_numip3dneg
   8,//BJetness_jetschpvass
   7,//BJetness_jetschfrompv
-  60,//BJetness_jetschip3dval
-  30,//BJetness_jetschip3dsig
-  60,//BJetness_jetschip2dval
-  30,//BJetness_jetschip2dsig
+  40,//BJetness_jetschip3dval
+  40,//BJetness_jetschip3dsig
+  40,//BJetness_jetschip2dval
+  40,//BJetness_jetschip2dsig
   2,//BJetness_jetschisgoodtrk
   2,//BJetness_jetschtrkpur
   50,//BJetness_jetschpt
@@ -364,12 +365,12 @@ const int    bin[numVar]        = {
   30,//BJetness_jetschen
   10,//BJetness_avip1d_val
   20,//BJetness_avip1d_sig
-  40,//BJetness_avsip1d_val
-  40,//BJetness_avsip1d_sig
+  30,//BJetness_avsip1d_val
+  30,//BJetness_avsip1d_sig
   10,//BJetness_avip2d_val
   80,//BJetness_avip2d_sig
-  40,//BJetness_avsip2d_val
-  40,//BJetness_avsip2d_sig
+  20,//BJetness_avsip2d_val
+  20,//BJetness_avsip2d_sig
   50,//trueInteractions
   50,//pvertex_ndof
   50,//npuVertices
@@ -462,7 +463,7 @@ const double inRange[numVar]    = {
   -10,//BJetness_avsip1d_sig
   0,//BJetness_avip2d_val
   0,//BJetness_avip2d_sig
-  -0.1,//BJetness_avsip2d_val
+  -0.02,//BJetness_avsip2d_val
   -10,//BJetness_avsip2d_sig
   0,//trueInteractions
   0,//pvertex_ndof
@@ -534,38 +535,38 @@ const double endRange[numVar]   = {
   2,//BJetness_avpparjetpt
   1,//BJetness_avpparjeten
   1000,//BJetness_chi2
-  0.3,//BJetness_avip3d_val
-  60,//BJetness_avip3d_sig
+  0.4,//BJetness_avip3d_val
+  70,//BJetness_avip3d_sig
   0.2,//BJetness_avsip3d_val
-  80,//BJetness_avsip3d_sig
+  40,//BJetness_avsip3d_sig
   40,//BJetness_numip3dpos
   30,//BJetness_numip3dneg
   8,//BJetness_jetschpvass
   7,//BJetness_jetschfrompv
-  6,//BJetness_jetschip3dval
-  100,//BJetness_jetschip3dsig
-  60,//BJetness_jetschip2dval
-  100,//BJetness_jetschip2dsig
+  1,//BJetness_jetschip3dval
+  80,//BJetness_jetschip3dsig
+  1,//BJetness_jetschip2dval
+  80,//BJetness_jetschip2dsig
   1,//BJetness_jetschisgoodtrk
   1,//BJetness_jetschtrkpur
-  50,//BJetness_jetschpt
+  100,//BJetness_jetschpt
   3,//BJetness_jetscheta
   30,//BJetness_jetschen
-  0.2,//BJetness_avip1d_val
-  100,//BJetness_avip1d_sig
+  0.3,//BJetness_avip1d_val
+  120,//BJetness_avip1d_sig
   0.06,//BJetness_avsip1d_val
   30,//BJetness_avsip1d_sig
-  0.3,//BJetness_avip2d_val
-  80,//BJetness_avip2d_sig
-  0.2,//BJetness_avsip2d_val
-  80,//BJetness_avsip2d_sig
+  0.1,//BJetness_avip2d_val
+  15,//BJetness_avip2d_sig
+  0.05,//BJetness_avsip2d_val
+  15,//BJetness_avsip2d_sig
   50,//trueInteractions
   50,//pvertex_ndof
   50,//npuVertices
-  1,//BJetness_avjetschip2dval
-  100,//BJetness_avjetschip2dsig
-  1,//BJetness_avjetschip3dval
-  100,//BJetness_avjetschip3dsig
+  0.1,//BJetness_avjetschip2dval
+  20,//BJetness_avjetschip2dsig
+  0.5,//BJetness_avjetschip3dval
+  50,//BJetness_avjetschip3dsig
   10,//BJetness_sumjetschip2dval
   1000,//BJetness_sumjetschip2dsig
   10,//BJetness_sumjetschip3dval
@@ -651,7 +652,6 @@ void StackPlots(){
 
       if(datatype==2){
         if(var[v].find("BJetness_avjetschip")==std::string::npos && var[v].find("BJetness_sumjetschip")==std::string::npos && (var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos)){
-          cout << "Using vector_double_h_var() " << endl;
           h_var = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets" || var[v]=="npuVertices") {
@@ -663,7 +663,6 @@ void StackPlots(){
       }
       else if(datatype==1){
         if(var[v].find("BJetness_avjetschip")==std::string::npos && var[v].find("BJetness_sumjetschip")==std::string::npos && (var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos)){
-          cout << "Using vector_double_h_var() " << endl;
           h_sig = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets"|| var[v]=="npuVertices") {
@@ -675,7 +674,6 @@ void StackPlots(){
       }
       else{
         if(var[v].find("BJetness_avjetschip")==std::string::npos && var[v].find("BJetness_sumjetschip")==std::string::npos && (var[v].find("BJetness")!=std::string::npos || var[v].find("pvertex_ndof")!=std::string::npos)){
-          cout << "Using vector_double_h_var() " << endl;
           h_data_var = vector_double_h_var(v,var[v],varTitleXaxis[v],i,rootplas[i],err_AllBkg,ent_AllBkg,datatype);
         }
         else if (var[v]=="NumberOfJets" || var[v]=="NumberOfBJets"|| var[v]=="npuVertices") {
@@ -922,36 +920,20 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   //Get errors, normalise
   int nbins = hist->GetNbinsX();
   if(normalised){
-    if(var.find("BJetness_jetschip2dval")!=std::string::npos || var.find("BJetness_jetschip3dval")!=std::string::npos){
-      normbkg = 4.25817e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-      normdata = 1.07626e+07;
-      normsig = 399163;
-    }
-    else if(var.find("BJetness_avjetschip")!=std::string::npos || var.find("BJetness_sumjetschip")!=std::string::npos){
-      normbkg = 2.62935e+07; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-      //normdata= 528948;//Full 2016
-      normdata = 208664;//Runs BCD
-      normsig = 17017.5;
-    }
-    else if(var.find("BJetness")!=std::string::npos){
-      normbkg = 2.62942e+07;
-      normdata= 208681;
-      normsig = 17017.8;
-    }
-    else if(var.find("lead_el")!=std::string::npos){
-      normbkg = 1.0663e+07;
-      normdata = 235416;
-      normsig = 7011.01;
+    if(var.find("lead_el")!=std::string::npos){
+      normbkg = 1.06648e+07;
+      normdata = 300731;
+      normsig = 7007.4;
     }
     else if(var.find("lead_mu")!=std::string::npos){
-      normbkg = 1.56318e+07;
-      normdata = 293532;
-      normsig = 10006.9;
+      normbkg = 1.56299e+07;
+      normdata = 316919;
+      normsig = 10003.1;
     }
     else{
-      normbkg = 2.62948e+07;
-      normdata = 208683;
-      normsig = 17017.9;
+      normbkg = 2.62946e+07;
+      normdata = 617650;
+      normsig = 17010.5;
     }
 
     cout << "============= normalised ===============" << endl;
@@ -1087,22 +1069,11 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
       normdata= 528946;
       normsig = 17017.8;
     }
-    else if(var.find("lead_el")!=std::string::npos){//DON'T USE OVERFLOW FOR NORM VALUES
-      normbkg = 1.06648e+07;
-      normdata = 300731;
-      normsig = 7007.4;
-    }
-    else if(var.find("lead_mu")!=std::string::npos){//DON'T USE OVERFLOW FOR NORM VALUES
-      normbkg = 1.56299e+07;
-      normdata = 316919;
-      normsig = 10003.1;
-    }
     else{
       normbkg = 2.62928e+07;
       normdata = 617650;
       normsig = 17010.5;
     }
-
 
     cout << "============= normalised ===============" << endl;
     if(datatype==0) hist->Scale(1/normdata);
@@ -1130,6 +1101,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
 /////
 TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, string rootplas, double err_AllBkg[][col_size], double ent_AllBkg[][col_size], int datatype){
   //Call tree and variables
+  cout << "============ vector_double_h_var ============" << endl;
 
   TFile* f = Call_TFile(rootplas); TTree *tree; f->GetObject("BOOM",tree);
   vector <double> * var_vals =0;
@@ -1256,46 +1228,50 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
   int nbins = hist->GetNbinsX();
 
   if(normalised){
-    if(var.find("BJetness_jetsch")!=std::string::npos){
-      normbkg = 4.22092e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-      normdata = 1.07626e+07;
-      normsig = 398901;
-    }
-    else if(var.find("BJetness_jetschip2dval")!=std::string::npos || var.find("BJetness_jetschip3dval")!=std::string::npos){
-      //normbkg = 5.98384e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
-      //normdata= 1.38596e+07;
-      //normsig = 608113;
+    if(var.find("BJetness_jetschip3dval")!=std::string::npos){
       normbkg = 4.25817e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata = 1.07626e+07;
       normsig = 399163;
     }
-    else if(var.find("BJetness_jetschip2dsig")!=std::string::npos || var.find("BJetness_jetschip3dsig")!=std::string::npos){
-      //normbkg = 7.94718e+08;
-      //normdata= 1.38596e+07;
-      //normsig = 601180;
+    else if(var.find("BJetness_jetschip2dval")!=std::string::npos){
+      normbkg = 4.21848e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normdata = 1.07626e+07;
+      normsig = 398879;
+    }
+    else if(var.find("BJetness_jetschip3dsig")!=std::string::npos){
+      normbkg=4.55933e+08;
+      normdata=1.07626e+07;
+      normsig=401376;
+    }
+    else if(var.find("BJetness_jetschip2dsig")!=std::string::npos){
       normbkg=4.45687e+08;
       normdata=1.07626e+07;
       normsig=400700;
     }
-    else if(var.find("BJetness")!=std::string::npos){
-      normbkg = 2.62927e+07;
-      normdata= 617648;
-      normsig = 17010.5;
+    else if(var.find("BJetness_jetsch")!=std::string::npos){
+      normbkg = 4.62176e+08;
+      normdata = 1.07626e+07;
+      normsig = 401736;
     }
-    else if(var.find("lead_el")!=std::string::npos){
-      normbkg = 1.0663e+07;
-      normdata = 235416;
-      normsig = 7011.01;
+    else if(var.find("BJetness_avip")!=std::string::npos||var.find("BJetness_avsip")!=std::string::npos){
+      normbkg = 2.62925e+07;
+      normdata = 617648;
+      normsig = 17010.4;
     }
-    else if(var.find("lead_mu")!=std::string::npos){
-      normbkg = 1.56318e+07;
-      normdata = 293532;
-      normsig = 10006.9;
+    else if(var.find("BJetness_avjets")!=std::string::npos){
+      normbkg = 2.6288e+07;
+      normdata= 617476;
+      normsig = 17009.3;
+    }
+    else if(var.find("BJetness_sumjets")!=std::string::npos){
+      normbkg = 2.62912e+07;
+      normdata= 617650;
+      normsig = 17010.3;
     }
     else{
-      normbkg = 2.62934e+07;
-      normdata = 208681;
-      normsig = 17017.8;
+      normbkg = 2.62946e+07;
+      normdata = 617648;
+      normsig = 17010.5;
     }
 
 
