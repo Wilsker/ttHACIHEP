@@ -1233,29 +1233,49 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
 
   if(normalised){
     if(var.find("BJetness_jetschip3dval")!=std::string::npos){
-      normbkg = 3.745322931e+08;//4.25817e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normbkg = 4.84122e+08;//4.25817e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata = 1.07626e+07;
-      normsig = 399163;
+      normsig = 402225;
     }
     else if(var.find("BJetness_jetschip2dval")!=std::string::npos){
-      normbkg = 3.633738759e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
+      normbkg = 4.89732e+08; //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
       normdata = 1.07626e+07;
-      normsig = 398879;
+      normsig = 402188;
     }
     else if(var.find("BJetness_jetschip3dsig")!=std::string::npos){
-      normbkg=4.131175021e+08;//4.55933e+08;
+      normbkg=5.03186e+08;//4.55933e+08;
       normdata=1.07626e+07;
-      normsig=401376;
+      normsig=401854;
     }
     else if(var.find("BJetness_jetschip2dsig")!=std::string::npos){
-      normbkg=3.99988333e+08;
+      normbkg=4.96608e+08;
       normdata=1.07626e+07;
-      normsig=400700;
+      normsig=402145;
     }
-    else if(var.find("BJetness_jetschisgoodtrk")!=std::string::npos || var.find("BJetness_jetschtrkpur")!=std::string::npos){
-      normbkg=4.882940762e+08;
+    else if(var.find("BJetness_jetschisgoodtrk")!=std::string::npos){
+      normbkg=4.21848e+08;
       normdata=1.07626e+07;
-      normsig=400700;
+      normsig=398879;
+    }
+    else if(var.find("BJetness_jetschtrkpur")!=std::string::npos){
+      normbkg=4.22092e+08;
+      normdata=1.07626e+07;
+      normsig=398901;
+    }
+    else if(var.find("BJetness_jetschen")!=std::string::npos){
+      normbkg = 4.94989e+08;
+      normdata = 1.07626e+07;
+      normsig = 401908;
+    }
+    else if(var.find("BJetness_jetscheta")!=std::string::npos){
+      normbkg = 5.02269e+08;
+      normdata = 1.07626e+07;
+      normsig = 401810;
+    }
+    else if(var.find("BJetness_jetschpt")!=std::string::npos){
+      normbkg = 4.99392e+08;
+      normdata = 1.07626e+07;
+      normsig = 401867;
     }
     else if(var.find("BJetness_jetsch")!=std::string::npos){
       normbkg = 4.62176e+08;
@@ -1276,6 +1296,11 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
       normbkg = 2.62912e+07;
       normdata= 617650;
       normsig = 17010.3;
+    }
+    else if(var.find("allJetsCSVvalue")!=std::string::npos){
+      normbkg = 5.50695e+07;
+      normdata= 1.29358e+06;
+      normsig = 43439.9;
     }
     else{
       normbkg = 2.62946e+07;
