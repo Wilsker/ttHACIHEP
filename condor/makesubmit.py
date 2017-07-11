@@ -8,8 +8,6 @@ import string
 # Output Dir Structure:
 #   /publicfs/cms/data/TopQuark/ttHbb/JTW/2017_07_v1/ttHACIHEP/output/MC/<Process/DataBlock>/<subfile.root>
 
-
-
 #analysis and task
 analysis = "ttHbb"
 taskname = "SL"
@@ -21,14 +19,13 @@ task        = analysis+"_"+taskname
 analysis_dir_path = "/publicfs/cms/user/joshuha/ttHACIHEP/"
 rootplizer = "SecondStep"
 
-
 # Python dictionaries map directory of input files to
 sample={
 #"ttHbb":'/publicfs/cms/data/TopQuark/cms13TeV/FullMorV2/mc/ttHTobb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/FullMorV2_ttHbb/170531_195706/0000/',
-"ttHbb":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/mc/ttHTobb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/TTHbb_MC_ttHbb_4/170621_142513/0000/',
+"ttHbb":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/mc/ttHTobb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/TTHbb_MC_ttHbb_4/170704_151957/0000/',
 #"ttH_nonbb":'/publicfs/cms/data/TopQuark/cms13TeV/FullMorV2/mc/ttHToNonbb_M125_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/FullMorV2_ttHnobb/170530_161519/0000/',
 #"ttjets_incl":'/publicfs/cms/data/TopQuark/cms13TeV/FullMorV2/mc/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/FullMorV2_TT/170531_195914/0000/',
-"ttjets_incl":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/mc/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/TTHbb_MC_ttjets_4/170621_142726/0000/',
+"ttjets_incl":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/mc/TT_TuneCUETP8M2T4_13TeV-powheg-pythia8/TTHbb_MC_ttjets_4/170704_152201/0000/',
 #"ttjets_DL":'/publicfs/cms/data/TopQuark/cms13TeV/FullMorV2/mc/TTTo2L2Nu_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/FullMorV2_TTTo2L2Nu/170531_200535/0000/',
 #"ttjets_SL":'/publicfs/cms/data/TopQuark/cms13TeV/FullMorV2/mc/TTToSemilepton_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/FullMorV2_TTToSemilepton/170531_200121/0000/',
 #"ttjets_bfilter":'/publicfs/cms/data/TopQuark/cms13TeV/FullMorV2/mc/TTToSemilepton_ttbbFilter_TuneCUETP8M2_ttHtranche3_13TeV-powheg-pythia8/FullMorV2_TTToSemilepton_ttbbFilter/170531_200331/0000/',
@@ -108,35 +105,35 @@ sample={
 #"data_SMuBlockG1":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/data/SingleMuon/crab_FullMorV1_SMuBlockG1/170216_140118/0000/',
 #"data_SMuBlockH1":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/data/SingleMuon/crab_FullMorV1_SMuBlockH1/170216_140404/0000/',
 #"data_SMuBlockH2":'/publicfs/cms/data/TopQuark/cms13TeV/FullMoriond2017/data/SingleMuon/crab_FullMorV1_SMuBlockH2/170216_140830/0000/'
-"data_SEleBlockB1_a":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleElectron/crab_TTHbb_SEleBlockB1/170621_143500/0000/',
-"data_SEleBlockB1_b":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleElectron/crab_TTHbb_SEleBlockB1/170621_143500/0001/',
-"data_SEleBlockC1":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleElectron/crab_TTHbb_SEleBlockC1/170621_143729/0000/',
-"data_SEleBlockD1":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleElectron/crab_TTHbb_SEleBlockD1/170621_143954/0000/',
-"data_SEleBlockE1":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleElectron/crab_TTHbb_SEleBlockE1/170621_144216/0000/',
-"data_SEleBlockF1":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleElectron/crab_TTHbb_SEleBlockF1/170621_144427/0000/',
-"data_SEleBlockF2":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleElectron/crab_TTHbb_SEleBlockF2/170621_144635/0000/',
-"data_SEleBlockG1_a":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleElectron/crab_TTHbb_SEleBlockG1/170621_144846/0000/',
-"data_SEleBlockG1_b":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleElectron/crab_TTHbb_SEleBlockG1/170621_144846/0001/',
-"data_SEleBlockH1_a":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleElectron/crab_TTHbb_SEleBlockH1/170621_145056/0000/',
-"data_SEleBlockH1_b":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleElectron/crab_TTHbb_SEleBlockH1/170621_145056/0001/',
-"data_SEleBlockH2":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleElectron/crab_TTHbb_SEleBlockH2/170626_141046/0000/',
-"data_SMuBlockB1_a":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleMuon/crab_TTHbb_SMuBlockB1/170621_145517/0000/',
-"data_SMuBlockB1_b":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleMuon/crab_TTHbb_SMuBlockB1/170621_145517/0000/',
-"data_SMuBlockC1":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleMuon/crab_TTHbb_SMuBlockC1/170621_145733/0000/',
-"data_SMuBlockD1":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleMuon/crab_TTHbb_SMuBlockD1/170621_145947/0000/',
-"data_SMuBlockE1":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleMuon/crab_TTHbb_SMuBlockE1/170621_150159/0000/',
-"data_SMuBlockF1":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleMuon/crab_TTHbb_SMuBlockF1/170621_150407/0000/',
-"data_SMuBlockF2":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleMuon/crab_TTHbb_SMuBlockF2/170621_150618/0000/',
-"data_SMuBlockG1_a":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleMuon/crab_TTHbb_SMuBlockG1/170621_150829/0000/',
-"data_SMuBlockG1_b":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleMuon/crab_TTHbb_SMuBlockG1/170621_150829/0001/',
-"data_SMuBlockH1_a":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleMuon/crab_TTHbb_SMuBlockH1/170621_151043/0000/',
-"data_SMuBlockH1_b":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleMuon/crab_TTHbb_SMuBlockH1/170621_151043/0001/',
-"data_SMuBlockH2":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17/data/SingleMuon/crab_TTHbb_SMuBlockH2/170621_151255/0000/'
+"data_SEleBlockB1_a":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockB1/170704_154200/0000/',
+"data_SEleBlockB1_b":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockB1/170704_154200/0001/',
+"data_SEleBlockC1":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockC1/170704_154534/0000/',
+"data_SEleBlockD1":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockD1/170704_154855/0000/',
+"data_SEleBlockE1":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockE1/170704_155138/0000/',
+"data_SEleBlockF1":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockF1/170704_155353/0000/',
+"data_SEleBlockF2":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockF2/170704_155613/0000/',
+"data_SEleBlockG1_a":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockG1/170704_155815/0000/',
+"data_SEleBlockG1_b":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockG1/170621_144846/0001/',
+"data_SEleBlockH1_a":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockH1/170704_160035/0000/',
+"data_SEleBlockH1_b":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockH1/170704_160035/0001/',
+"data_SEleBlockH2":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockH2/170704_160247/0000/',
+"data_SMuBlockB1_a":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleMuon/crab_TTHbb_SMuBlockB1/170704_160457/0000/',
+"data_SMuBlockB1_b":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleMuon/crab_TTHbb_SMuBlockB1/170704_160457/0001/',
+"data_SMuBlockC1":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleMuon/crab_TTHbb_SMuBlockC1/170704_160709/0000/',
+"data_SMuBlockD1":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleMuon/crab_TTHbb_SMuBlockD1/170704_160918/0000/',
+"data_SMuBlockE1":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleMuon/crab_TTHbb_SMuBlockE1/170704_161130/0000/',
+"data_SMuBlockF1":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleMuon/crab_TTHbb_SMuBlockF1/170704_161341/0000/',
+"data_SMuBlockF2":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleMuon/crab_TTHbb_SMuBlockF2/170704_161551/0000/',
+"data_SMuBlockG1_a":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleMuon/crab_TTHbb_SMuBlockG1/170704_161756/0000/',
+"data_SMuBlockG1_b":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleMuon/crab_TTHbb_SMuBlockG1/170704_161756/0001/',
+"data_SMuBlockH1_a":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleMuon/crab_TTHbb_SMuBlockH1/170704_162006/0000/',
+"data_SMuBlockH1_b":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleMuon/crab_TTHbb_SMuBlockH1/170704_162006/0001/',
+"data_SMuBlockH2":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleMuon/crab_TTHbb_SMuBlockH2/170704_162214/0000/'
        }
 sampleout={
-"ttHbb": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/MC/',
+"ttHbb": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/MC/',
 #"ttH_nonbb": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_06/ttHACIHEP/output/MC/',
-"ttjets_incl": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/MC/',
+"ttjets_incl": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/MC/',
 #"ttjets_DL": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_06/ttHACIHEP/output/MC/',
 #"ttjets_SL": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_06/ttHACIHEP/output/MC/',
 #"ttjets_bfilter": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_06/ttHACIHEP/output/MC/',
@@ -196,30 +193,30 @@ sampleout={
 #"DY_M-50_HT-800to1200":'/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_06/ttHACIHEP/output/MC/',
 #"DY_M-50_HT-1200to2500":'/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_06/ttHACIHEP/output/MC/',
 #"DY_M-50_HT-2500toInf":'/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_06/ttHACIHEP/output/MC/',
-"data_SEleBlockB1_a": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SEleBlockB1_b": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SEleBlockC1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SEleBlockD1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SEleBlockE1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SEleBlockF1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SEleBlockF2": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SEleBlockG1_a": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SEleBlockG1_b": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SEleBlockH1_a": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SEleBlockH1_b": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SEleBlockH2": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SMuBlockB1_a": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SMuBlockB1_b": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SMuBlockC1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SMuBlockD1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SMuBlockE1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SMuBlockF1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SMuBlockF2": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SMuBlockG1_a": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SMuBlockG1_b": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SMuBlockH1_a": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SMuBlockH1_b": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/',
-"data_SMuBlockH2": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v1/ttHACIHEP/output/DATA/'
+"data_SEleBlockB1_a": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SEleBlockB1_b": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SEleBlockC1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SEleBlockD1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SEleBlockE1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SEleBlockF1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SEleBlockF2": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SEleBlockG1_a": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SEleBlockG1_b": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SEleBlockH1_a": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SEleBlockH1_b": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SEleBlockH2": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SMuBlockB1_a": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SMuBlockB1_b": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SMuBlockC1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SMuBlockD1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SMuBlockE1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SMuBlockF1": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SMuBlockF2": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SMuBlockG1_a": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SMuBlockG1_b": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SMuBlockH1_a": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SMuBlockH1_b": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/',
+"data_SMuBlockH2": '/publicfs/cms/data/TopQuark/'+analysis+'/JTW/2017_07_v2/ttHACIHEP/output/DATA/'
           }
 #####
 ##   The script itself
