@@ -113,7 +113,7 @@ sample={
 "data_SEleBlockF1":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockF1/170704_155353/0000/',
 "data_SEleBlockF2":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockF2/170704_155613/0000/',
 "data_SEleBlockG1_a":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockG1/170704_155815/0000/',
-"data_SEleBlockG1_b":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockG1/170621_144846/0001/',
+"data_SEleBlockG1_b":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockG1/170704_155815/0001/',
 "data_SEleBlockH1_a":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockH1/170704_160035/0000/',
 "data_SEleBlockH1_b":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockH1/170704_160035/0001/',
 "data_SEleBlockH2":'/publicfs/cms/data/TopQuark/ttHbb/JTW/crab_Moriond17_output_2017_07_04_v1/data/SingleElectron/crab_TTHbb_SEleBlockH2/170704_160247/0000/',
