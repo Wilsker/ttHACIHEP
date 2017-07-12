@@ -84,8 +84,8 @@ const int logYscale[numVar] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
-const unsigned int ini_var = 0;
-const unsigned int fin_var = 1;
+const unsigned int ini_var = 21;
+const unsigned int fin_var = 22;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -936,7 +936,7 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
     }
     else{
       normbkg = 2.62946e+07;
-      normdata = 617650;
+      normdata = 695610;
       normsig = 17010.5;
     }
 
@@ -1075,7 +1075,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
     }
     else{
       normbkg = 2.62928e+07;
-      normdata = 617650;
+      normdata = 695610;
       normsig = 17010.5;
     }
 
@@ -1304,7 +1304,7 @@ TH1F* vector_double_h_var(unsigned int v, string var, string varT, uint i, strin
     }
     else{
       normbkg = 2.62946e+07;
-      normdata = 617648;
+      normdata = 695610;
       normsig = 17010.5;
     }
 
