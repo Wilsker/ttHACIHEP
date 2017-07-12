@@ -67,7 +67,7 @@ const double scale      = 0;    //0 means no scaling; any other values means sca
 
 // ===== Normalisation of plots =====
 // One must run the script once with "normalised = false" to get the value for the background normalisation.
-const bool normalised   = true;
+const bool normalised   = false;
 //normbkg and normdata values have to be taken after 1 iteration of the macro with normalised = false
 double normbkg;
 double normdata;
@@ -85,7 +85,7 @@ const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
 const unsigned int ini_var = 0;
-const unsigned int fin_var = 93;
+const unsigned int fin_var = 1;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -924,12 +924,12 @@ TH1F* double_h_var(unsigned int v, string var, string varT, uint i, string rootp
   //Get errors, normalise
   int nbins = hist->GetNbinsX();
   if(normalised){
-    if(var.find("lead_el")!=std::string::npos){
+    if(var.find("lead_el")!=std::string::npos){//Never use overflow integral
       normbkg = 1.06648e+07;
       normdata = 300731;
       normsig = 7007.4;
     }
-    else if(var.find("lead_mu")!=std::string::npos){
+    else if(var.find("lead_mu")!=std::string::npos){//Never use overflow integral
       normbkg = 1.56299e+07;
       normdata = 316919;
       normsig = 10003.1;
