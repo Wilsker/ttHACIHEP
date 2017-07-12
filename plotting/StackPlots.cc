@@ -85,7 +85,7 @@ const int    col_size   = 500; //>= highest bin
 
 // Number of variables you want to loop over:
 const unsigned int ini_var = 41;
-const unsigned int fin_var = 42;
+const unsigned int fin_var = 46;
 const int posvtcr          = 0;
 
 // ======= Variables map ======= ???
@@ -1075,7 +1075,7 @@ TH1F* int_h_var(unsigned int v, string var, string varT, uint i, string rootplas
     }
     else{
       normbkg = 2.62928e+07;
-      normdata = 695610;
+      normdata = 695612;
       normsig = 17010.5;
     }
 
